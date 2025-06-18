@@ -1,121 +1,178 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     @include('header')
-    <title>AMRCD | Login</title>
+    <title>Recitur | GM</title>
     <style>
         body {
-            background-image: url("{{ asset('images/wallreci.png') }}");
-            background-size: cover;
-            background-repeat: no-repeat;
             margin: 0;
             padding: 0;
-            background-attachment: fixed;
-            background-position: center;
             font-family: Arial, sans-serif;
+            background: #78AF6C;
         }
 
-        .card-login {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            padding: 10px;
-            max-width: 300px;
-            margin: 0 auto;
+        .navbar-custom {
+            background-color:rgb(240, 240, 240);
+            height: 60px;
+            padding: 0 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
-        .card-login .card-header {
-            background:rgb(255, 255, 255);
-            color: #fff;
-            border-radius: 10px 10px 0 0;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .card-login .card-footer {
-            background: #f8f9fa;
-            border-radius: 0 0 10px 10px;
-            padding: 15px;
-            text-align: right;
-        }
-
-        .btn-primary {
-            background-color: #78AF6C;
+        .navbar-toggler {
+            display: none;
+            background: none;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+            cursor: pointer;
         }
 
-        .btn-primary:hover {
-            background-color: #218838;
+        .navbar-toggler-icon {
+            display: inline-block;
+            width: 25px;
+            height: 3px;
+            background-color: #000;
+            margin: 4px 0;
         }
 
-        .btn-outline-secondary {
-            border: 1px solid #28a745;
-            color: #28a745;
-            transition: all 0.3s ease;
+        .navbar-nav .nav-link {
+            color: #000;
+            margin-right: 15px;
+            font-weight: bold;
         }
 
-        .btn-outline-secondary:hover {
-            background-color: #28a745;
-            color: #fff;
+        .navbar-nav .nav-link:hover {
+            text-decoration: underline;
         }
 
-        @media only screen and (max-width: 768px) {
-            .card-login {
-                width: 90%;
+        @media (max-width: 768px) {
+            .navbar-toggler {
+                display: block;
             }
-
-            img {
-                width: 150px;
+            .navbar-collapse {
+                display: none;
+                flex-direction: column;
+                background: #ffffff;
+                padding: 10px;
+                border-top: 1px solid #ddd;
+            }
+            .navbar-collapse.active {
+                display: flex;
             }
         }
     </style>
 </head>
 <body>
     @include('toast.toasts')
-    
-    <div style="text-align: center; margin-top: 20px;">
-        <div class="card card-login">
-            <div class="card-header">
-                <img src="{{ asset('images/logoreci.png') }}" alt="Logo AMRCD" style="width: 100px;">
+
+    <!-- NAVBAR BLANCO -->
+    <div class="navbar-custom">
+        <a class="navbar-brand" href="#">
+            
+        </a>
+        
+        <nav class="navbar navbar-expand-md navbar-light">
+            <button class="navbar-toggler" id="navbar-toggler">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto extra-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('registropage')}}">Registrarse</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('loginpage')}}">
+                            <i class="fa fa-user-o" aria-hidden="true"></i> Ingresar
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <form method="post" action="{{ url('Login') }}">
-                @csrf
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="mail">Correo</label>
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></div>
-                            </div>
-                            <input required type="email" class="form-control" id="mail" name="mail" placeholder="Correo">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="pass">Contraseña</label>
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fa fa-key" aria-hidden="true"></i></div>
-                            </div>
-                            <input required type="password" class="form-control" id="pass" name="pass" placeholder="Contraseña">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="passconfirm">¿Olvidaste tu contraseña?</label>
-                        <br>
-                        <a class="btn btn-outline-secondary" href="PassReset">Recuperar</a>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Enviar</button>
-                </div>
-            </form>
-        </div>
+        </nav>
     </div>
+
+    <!-- IMAGEN CENTRAL -->
+    <img src="{{asset('images/home.jpeg')}}" alt="Imagen principal" style="width: 100%; display: block;">
+
+    <div class="login-container">
+    <h2>Iniciar Sesión</h2>
+    <form method="POST" action="{{ url('Login') }}">
+        @csrf
+        <div class="form-group">
+            <label for="mail">Correo electrónico</label>
+            <input type="email" name="mail" id="mail" required>
+        </div>
+        <div class="form-group">
+            <label for="pass">Contraseña</label>
+            <input type="password" name="pass" id="pass" required>
+        </div>
+        <button type="submit" class="btn-login">Entrar</button>
+    </form>
+</div>
+
+<style>
+.login-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    max-width: 350px;
+    width: 90%;
+    z-index: 1001;
+}
+
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 10px;
+    background-color: #78AF6C;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-login:hover {
+    background-color: #68985E;
+}
+</style>
+
+
     @include('footer')
+
+    <script>
+        // Mostrar/ocultar menú en móvil
+        document.getElementById('navbar-toggler').addEventListener('click', function () {
+            var navbarCollapse = document.getElementById('navbarSupportedContent');
+            navbarCollapse.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>

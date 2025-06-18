@@ -65,35 +65,10 @@
                                             </select>
                                         </div>
                                     </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="rfc">RFC </label>
-                                            <input  type="text" name="rfc" class="form-control" id="rfc" placeholder="RFC" maxlength="50" aria-invalid="false" >
-                                            <label for="rfc">Constancia de situación fiscal actualizada</label>
-                                            <div class="input-group">
-                                                <div class="custom-file">                                    
-                                                    <input  type="file" class="custom-file-input" id="rfcpdf" name="rfcpdf">
-                                                    <label class="custom-file-label" for="rfcpdf">Cargar Constancia en pdf</label>                                    
-                                                </div>                      
-                                            </div>
-                                        </div>
-                                    </div>                       
+              
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="domicilioempresapdf">Comprobante de domicilio fiscal</label>                                            
-                                            <div class="input-group">
-                                                <div class="custom-file">                                    
-                                                    <input  type="file" class="custom-file-input" id="domicilioempresapdf" name="domicilioempresapdf">
-                                                    <label class="custom-file-label" for="rfcpdf">Cargar comprobante en pdf</label>                                    
-                                                </div>                      
-                                            </div>
-                                        </div>
-                                    </div> 
-                                </div>
+                              
 
                             
                                 <div class="row">
@@ -301,27 +276,11 @@
                                                 <option value="Cédula Profesional">Cédula Profesional</option>
                                                 </optgroup>
                                             </select>
-                                            <div class="input-group">
-                                                <div class="custom-file">                                    
-                                                    <input  type="file" class="custom-file-input" id="identificacionreprepdf" name="identificacionreprepdf">
-                                                    <label class="custom-file-label" for="identificacionreprepdf">Cargar identificación en pdf</label>                                    
-                                                </div>                      
-                                            </div>
+                                          
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="rfcrepre">RFC</label>
-                                            <input  type="text" name="rfcrepre" class="form-control" id="rfcrepre" placeholder="RFC" aria-invalid="false" >
-                                            <div class="input-group">
-                                                <div class="custom-file">                                    
-                                                    <input  type="file" class="custom-file-input" id="rfcreprepdf" name="rfcreprepdf">
-                                                    <label class="custom-file-label" for="rfcreprepdf">Cargar RFC en pdf</label>                                    
-                                                </div>                      
-                                            </div>
-                                        </div>
-                                    </div>
+                                  
 
                                     
                                 </div>
@@ -348,33 +307,10 @@
                                         
                                     </div>
 
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="numeroactacont">Número de acta constitutiva</label>
-                                            <input  type="text" name="numeroactacont" class="form-control" id="numeroactacont" placeholder="Número de acta constitutiva" aria-invalid="false" maxlength="100" >
-                                            <div class="input-group">
-                                                <div class="custom-file">                                    
-                                                    <input  type="file" class="custom-file-input" id="numeroactacontpdf" name="numeroactacontpdf">
-                                                    <label class="custom-file-label" for="numeroactacontpdf">Cargar acta en pdf</label>                                    
-                                                </div>                      
-                                            </div>
-                                        </div>
-                                    </div>
+                                   
                                     
                                 </div>    
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="numeroactacont">Poder Notarial<br>("Si el poder notarial esta en el acta constitutiva por favor vuelve a cargar")</label>
-                                            <div class="input-group">
-                                                <div class="custom-file">                                    
-                                                    <input  type="file" class="custom-file-input" id="podernotarial" name="podernotarial">
-                                                    <label class="custom-file-label" for="podernotarial">Cargar poder notarial pdf</label>                                    
-                                                </div>                      
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>                            
+                                                     
 
                                 <div class="row">
                                     <div class="col-md-6">
@@ -497,12 +433,8 @@
                                                 <option value="Cédula Profesional">Cédula Profesional</option>
                                                 </optgroup>
                                             </select>
-                                            <div class="input-group">
-                                                <div class="custom-file">                                    
-                                                    <input  type="file" class="custom-file-input" id="identificacionfisicapdf" name="identificacionfisicapdf">
-                                                    <label class="custom-file-label" for="identificacionfisicapdf">Cargar identificación en pdf</label>                                    
-                                                </div>                      
-                                            </div>
+                                           
+                                            
                                         </div>
                                     </div>
 

@@ -2,95 +2,103 @@
 <html lang="en">
 <head>
     @include('header')
-    <title>Hoplbox | RSU</title>
-</head>
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        background: #78AF6C;
-    }
-    .full-width-container {
-        margin-top: 50px;
-        width: 100%;
-        padding: 0px;
-        box-sizing: border-box;
-        background-color: #ECEADB;
-        text-align: center;
-        border-radius: 30px 30px 0px 0px;
-    }
-    .full-width-container img {
-        width: 100%;
-        height: auto;
-        display: inline-block;
-    }
-    .navbar-toggler {
-        display: none; /* Ocultar el botón por defecto */
-        background: none;
-        border: none;
-        cursor: pointer;
-    }
-    .navbar-toggler-icon {
-        display: inline-block;
-        width: 25px;
-        height: 3px;
-        background-color: #000;
-        margin: 4px 0;
-    }
-    @media (max-width: 768px) {
+    <title>Recitur | GM</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #78AF6C;
+        }
+
+        .navbar-custom {
+            background-color:rgb(240, 240, 240);
+            height: 60px;
+            padding: 0 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
         .navbar-toggler {
-            display: block; /* Mostrar el botón en dispositivos móviles */
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
         }
-        .navbar-collapse {
-            display: none; /* Ocultar el menú por defecto en móviles */
+
+        .navbar-toggler-icon {
+            display: inline-block;
+            width: 25px;
+            height: 3px;
+            background-color: #000;
+            margin: 4px 0;
         }
-        .navbar-collapse.active {
-            display: block; /* Mostrar el menú cuando esté activo */
+
+        .navbar-nav .nav-link {
+            color: #000;
+            margin-right: 15px;
+            font-weight: bold;
         }
-    }
-</style>
+
+        .navbar-nav .nav-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-toggler {
+                display: block;
+            }
+            .navbar-collapse {
+                display: none;
+                flex-direction: column;
+                background: #ffffff;
+                padding: 10px;
+                border-top: 1px solid #ddd;
+            }
+            .navbar-collapse.active {
+                display: flex;
+            }
+        }
+    </style>
+</head>
 <body>
     @include('toast.toasts')
 
-    <!-- Div que abarca el 100% del ancho -->
-    <div class="full-width-container">
-        <div class="bg-light" style="height:60px; margin-right:10px; margin-left:10px;">
-            <a class="navbar-brand float-left" href="#">
-                <img src="{{asset('images/logoreci.png')}}" class="d-inline-block float-left" alt="">
-            </a>
-            <div class="float-right">
-                <nav class="navbar navbar-expand-md navbar-light navbar-loght">
-                    <!-- Botón de hamburguesa para móviles -->
-                    <button class="navbar-toggler" id="navbar-toggler">
-                        <i class="fa fa-bars" aria-hidden="true"></i>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto extra-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{url('registropage')}}">Registrarse</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{url('loginpage')}}">
-                                    <i class="fa fa-user-o" aria-hidden="true"></i> Ingresar
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
+    <!-- NAVBAR BLANCO -->
+    <div class="navbar-custom">
+        <a class="navbar-brand" href="#">
+            
+        </a>
+        
+        <nav class="navbar navbar-expand-md navbar-light">
+            <button class="navbar-toggler" id="navbar-toggler">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto extra-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('registropage')}}">Registrarse</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('loginpage')}}">
+                            <i class="fa fa-user-o" aria-hidden="true"></i> Ingresar
+                        </a>
+                    </li>
+                </ul>
             </div>
-        </div>
-
-        <!-- Imagen centrada -->
-        <img src="{{asset('images/wallreci.png')}}" alt="">
+        </nav>
     </div>
+
+    <!-- IMAGEN CENTRAL -->
+    <img src="{{asset('images/home.jpeg')}}" alt="Imagen principal" style="width: 100%; display: block;">
 
     @include('footer')
 
     <script>
-        // JavaScript para manejar el clic en el botón de hamburguesa
-        document.getElementById('navbar-toggler').addEventListener('click', function() {
+        // Mostrar/ocultar menú en móvil
+        document.getElementById('navbar-toggler').addEventListener('click', function () {
             var navbarCollapse = document.getElementById('navbarSupportedContent');
             navbarCollapse.classList.toggle('active');
         });
