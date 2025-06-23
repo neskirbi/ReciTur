@@ -8,7 +8,6 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background: #78AF6C;
         }
 
         .navbar-custom {
@@ -92,7 +91,8 @@
     </div>
 
     <!-- IMAGEN CENTRAL -->
-    <img src="{{asset('images/home.jpeg')}}" alt="Imagen principal" style="width: 100%; display: block;">
+    <img src="{{asset('images/GOBM.png')}}" alt="Imagen principal" style="width: 100%; display: block;">
+    <img src="{{asset('images/GOBMF.png')}}" alt="Imagen principal" style="width: 100%; display: block;">
 
     @include('footer')
 

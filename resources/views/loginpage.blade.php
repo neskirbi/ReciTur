@@ -8,7 +8,6 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background: #78AF6C;
         }
 
         .navbar-custom {
@@ -92,7 +91,9 @@
     </div>
 
     <!-- IMAGEN CENTRAL -->
-    <img src="{{asset('images/home.jpeg')}}" alt="Imagen principal" style="width: 100%; display: block;">
+    
+    <img src="{{asset('images/GOBM.png')}}" alt="Imagen principal" style="width: 100%; display: block;">
+    <img src="{{asset('images/GOBMF.png')}}" alt="Imagen principal" style="width: 100%; display: block;">
 
     <div class="login-container">
     <h2>Iniciar Sesión</h2>
@@ -151,7 +152,7 @@
 .btn-login {
     width: 100%;
     padding: 10px;
-    background-color: #78AF6C;
+    background-color: #6D1732;
     color: white;
     border: none;
     border-radius: 6px;
@@ -160,7 +161,7 @@
 }
 
 .btn-login:hover {
-    background-color: #68985E;
+    background-color:rgba(109, 23, 50, 0.66);
 }
 </style>
 
