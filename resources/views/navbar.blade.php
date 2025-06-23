@@ -1,65 +1,83 @@
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
 
+        .navbar-custom {
+            background-color:rgb(240, 240, 240);
+            height: 60px;
+            padding: 0 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
 
-<div class="bg-light" style=" height:60px; margin-right:10px; margin-left:10px; ">
+        .navbar-toggler {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .navbar-toggler-icon {
+            display: inline-block;
+            width: 25px;
+            height: 3px;
+            background-color: #000;
+            margin: 4px 0;
+        }
+
+        .navbar-nav .nav-link {
+            color: #000;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-toggler {
+                display: block;
+            }
+            .navbar-collapse {
+                display: none;
+                flex-direction: column;
+                background: #ffffff;
+                padding: 10px;
+                border-top: 1px solid #ddd;
+            }
+            .navbar-collapse.active {
+                display: flex;
+            }
+        }
+    </style>
     
-    <a class="navbar-brand float-left" href="#" >
-        <img src="{{asset('images/logoreci.png')}}" class="d-inline-block float-left" alt="">
-    </a>
-    <div class=" float-right">
-        <nav class="navbar navbar-expand-md navbar-light navbar-loght">
-            <!--<a class="navbar-brand" href="home">Concretos</a>-->
-           
-
+    <!-- NAVBAR BLANCO -->
+    <div class="navbar-custom">
+        <a class="navbar-brand" href="{{url('home')}}">
+            Recitur
+        </a>
+        
+        <nav class="navbar navbar-expand-md navbar-light">
+            <button class="navbar-toggler" id="navbar-toggler">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto extra-nav">
-
-               
-                  
-                
-                    <!--<li class="nav-item">
-                        <a class="nav-link"  data-toggle="modal" data-target="#modalsedemalogin" href="#">Autoridad </a>
-                    </li>
-
-
-                    <li class="nav-item ">
-                        <a class="nav-link"  data-toggle="modal" data-target="#loginadmin" href="#">Administrador </a>
-                    </li>
-
-                    <li class="nav-item dropdown" style="">
-                        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clientes</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="position:absolute;">
-                            <a class="dropdown-item" data-toggle="modal" data-target="#login" href="#">Acceso</a>
-                            <a class="dropdown-item" data-toggle="modal" data-target="#registro" href="#">Registrar</a>
-                            
-                        </div>
-                    
-                    </li>
-
-
-                    <li class="nav-item dropdown" style="">
-                        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Transportistas</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="position:absolute;">
-                            <a class="dropdown-item" data-toggle="modal" data-target="#logintransport" href="#">Acceso</a>
-                            <a class="dropdown-item" data-toggle="modal" data-target="#registrotransportistas" href="#">Registro</a>
-
-                        </div>
-
-                    </li>-->
-
-               
+                <ul class="navbar-nav ml-auto extra-nav">
                     <li class="nav-item">
-                        <a class="nav-link"  href="{{url('registropage')}}">Registrarse </a>
+                        <a class="nav-link" href="{{url('registropage')}}">Registrarse</a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link"  href="{{url('loginpage')}}"> <i class="fa fa-user-o" aria-hidden="true"></i> Ingresar </a>
+                        <a class="nav-link" href="{{url('loginpage')}}">
+                            <i class="fa fa-user-o" aria-hidden="true"></i> Ingresar
+                        </a>
                     </li>
-
-
                 </ul>
-                
             </div>
         </nav>
     </div>
-</div>
-

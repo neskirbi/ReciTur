@@ -1,0 +1,16 @@
+:root {
+ --info2: #6D1732;
+}
+
+.btn-info2 {
+
+    color: #fff;
+    background-color: #6D1732;
+    border-color: #6D1732;
+
+
+}
+
+.btn-info2:hover {
+    background-color:rgba(109, 23, 50, 0.66);
+}

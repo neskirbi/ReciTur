@@ -65,34 +65,12 @@
 <body>
     @include('toast.toasts')
 
-    <!-- NAVBAR BLANCO -->
-    <div class="navbar-custom">
-        <a class="navbar-brand" href="#">
-            
-        </a>
-        
-        <nav class="navbar navbar-expand-md navbar-light">
-            <button class="navbar-toggler" id="navbar-toggler">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto extra-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url('registropage')}}">Registrarse</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url('loginpage')}}">
-                            <i class="fa fa-user-o" aria-hidden="true"></i> Ingresar
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
+     @include('navbar')
+    
 
     <!-- IMAGEN CENTRAL -->
     <img src="{{asset('images/GOBM.png')}}" alt="Imagen principal" style="width: 100%; display: block;">
-    <img src="{{asset('images/GOBMF.png')}}" alt="Imagen principal" style="width: 100%; display: block;">
+    
 
     @include('footer')
 
