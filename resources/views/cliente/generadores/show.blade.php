@@ -12,17 +12,15 @@
 
   <!-- Navbar -->
  
-  @include('cliente.navigations.navigation')
+  @include('cliente.navbars.navbar')
   <!-- /.navbar -->
 
-  <!-- Main Sidebar Container -->
-  @include('cliente.sidebars.sidebar')
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
-     
+     &nbsp;
     </div>
     <!-- /.content-header -->
 
@@ -36,7 +34,7 @@
             <div class="card card-success">
             @endif
                 <div class="card-header">
-                    <h3 class="card-title">Generador</h3>      
+                    <h3 class="card-title"><i class="fa fa-industry title-icon" aria-hidden="true"></i> Generador</h3>      
                 </div>
                 <!-- /.card-header -->
                 
@@ -67,13 +65,13 @@
                                         <div class="form-group">
                                             <label for="rfc">RFC</label>
                                             <input  type="text" name="rfc" class="form-control" id="rfc" placeholder="RFC" aria-invalid="false" maxlength="50" value="{{$generador->rfc}}" readonly>
-                                            <iframe id="inlineFrameExample"
+                                            <!--<iframe id="inlineFrameExample"
                                                 title="identificación"
                                                 width="100%"
                                                 height="200"
                                                 src="{{asset('documentos/generadores/rfc/empresa').'/'.$generador->rfcpdf}}">
                                             </iframe>                      
-                                            <a target="_blank" class="btn btn-default" href="{{asset('documentos/generadores/rfc/empresa').'/'.$generador->rfcpdf}}">Ver</a>
+                                            <a target="_blank" class="btn btn-default" href="{{asset('documentos/generadores/rfc/empresa').'/'.$generador->rfcpdf}}">Ver</a>-->
                                         </div>
                                     </div>                       
                                 </div>
@@ -222,13 +220,13 @@
                                         <div class="form-group">
                                             <label for="identificacionrepre">Identificación</label>
                                             <input  type="text" class="form-control"  aria-invalid="false" value="{{$generador->identificacionrepre}}" readonly>                                            
-                                            <iframe id="inlineFrameExample"
+                                            <!--<iframe id="inlineFrameExample"
                                                 title="identificación"
                                                 width="100%"
                                                 height="200"
                                                 src="{{asset('documentos/generadores/identificaciones/representante').'/'.$generador->identificacionreprepdf}}">
                                             </iframe>                      
-                                            <a target="_blank" class="btn btn-default" href="{{asset('documentos/generadores/identificaciones/representante').'/'.$generador->identificacionreprepdf}}">Ver</a>
+                                            <a target="_blank" class="btn btn-default" href="{{asset('documentos/generadores/identificaciones/representante').'/'.$generador->identificacionreprepdf}}">Ver</a>-->
                                         </div>
                                     </div>
 
@@ -236,13 +234,13 @@
                                         <div class="form-group">
                                             <label for="rfcrepre">RFC</label>
                                             <input  type="text" name="rfcrepre" class="form-control" id="rfcrepre" placeholder="RFC" aria-invalid="false" maxlength="50" value="{{$generador->rfcrepre}}" readonly>
-                                            <iframe id="inlineFrameExample"
+                                            <!--<iframe id="inlineFrameExample"
                                                 title="identificación"
                                                 width="100%"
                                                 height="200"
                                                 src="{{asset('documentos/generadores/rfc/representante').'/'.$generador->rfcreprepdf}}">
                                             </iframe>                      
-                                            <a target="_blank" class="btn btn-default" href="{{asset('documentos/generadores/rfc/representante').'/'.$generador->rfcreprepdf}}">Ver</a>
+                                            <a target="_blank" class="btn btn-default" href="{{asset('documentos/generadores/rfc/representante').'/'.$generador->rfcreprepdf}}">Ver</a>-->
                                         </div>
                                     </div>
 
@@ -275,13 +273,13 @@
                                         <div class="form-group">
                                             <label for="numeroactacont">Número de acta constitutiva</label>
                                             <input  type="text" name="numeroactacont" class="form-control" id="numeroactacont" placeholder="Número de acta constitutiva" aria-invalid="false" maxlength="100" value="{{$generador->numeroactacont}}" readonly>
-                                            <iframe id="inlineFrameExample"
+                                            <!--<iframe id="inlineFrameExample"
                                                 title="identificación"
                                                 width="100%"
                                                 height="200"
                                                 src="{{asset('documentos/generadores/actas/empresa').'/'.$generador->numeroactacontpdf}}">
                                             </iframe>                      
-                                            <a target="_blank" class="btn btn-default" href="{{asset('documentos/generadores/actas/empresa').'/'.$generador->numeroactacontpdf}}">Ver</a>
+                                            <a target="_blank" class="btn btn-default" href="{{asset('documentos/generadores/actas/empresa').'/'.$generador->numeroactacontpdf}}">Ver</a>-->
                                         </div>
                                     </div>
                                     
@@ -290,25 +288,25 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="podernotarial">Poder Notarial</label> 
-                                            <iframe id="inlineFrameExample"
+                                            <!--<iframe id="inlineFrameExample"
                                                 title="identificación"
                                                 width="100%"
                                                 height="200"
                                                 src="{{asset('documentos/generadores/actas/poder').'/'.$generador->id.'.pdf'}}">
                                             </iframe>                      
-                                            <a target="_blank" class="btn btn-default" href="{{asset('documentos/generadores/actas/poder').'/'.$generador->id.'.pdf'}}">Ver</a>
+                                            <a target="_blank" class="btn btn-default" href="{{asset('documentos/generadores/actas/poder').'/'.$generador->id.'.pdf'}}">Ver</a>-->
                                         </div>
                                     </div> 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="domicilioempresapdf">Comprobante de domicilio fiscal</label>                                            
-                                            <iframe id="inlineFrameExample"
+                                            <!--<iframe id="inlineFrameExample"
                                                 title="identificación"
                                                 width="100%"
                                                 height="200"
                                                 src="{{asset('documentos/generadores/comprobantedomicilio/empresa').'/'.$generador->numeroactacontpdf}}">
                                             </iframe>                      
-                                            <a target="_blank" class="btn btn-default" href="{{asset('documentos/generadores/comprobantedomicilio/empresa').'/'.$generador->numeroactacontpdf}}">Ver</a>
+                                            <a target="_blank" class="btn btn-default" href="{{asset('documentos/generadores/comprobantedomicilio/empresa').'/'.$generador->numeroactacontpdf}}">Ver</a>-->
                                         </div>
                                     </div> 
                                 </div>
@@ -392,13 +390,13 @@
                                         <div class="form-group">
                                             <label for="identificacionfisica">Identificación</label>
                                             <input  type="text" class="form-control"  aria-invalid="false" value="{{$generador->identificacionfisica}}" readonly>                                                                                        
-                                            <iframe id="inlineFrameExample"
+                                            <!--<iframe id="inlineFrameExample"
                                                 title="identificación"
                                                 width="100%"
                                                 height="200"
                                                 src="{{asset('documentos/generadores/identificaciones/personafisica').'/'.$generador->identificacionfisicapdf}}">
                                             </iframe>
-                                            <a target="_blank" class="btn btn-default" href="{{asset('documentos/generadores/identificaciones/personafisica').'/'.$generador->identificacionfisicapdf}}">Ver</a>
+                                            <a target="_blank" class="btn btn-default" href="{{asset('documentos/generadores/identificaciones/personafisica').'/'.$generador->identificacionfisicapdf}}">Ver</a>-->
                                         </div>
                                     </div>
 
@@ -421,35 +419,6 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a target="_blank" href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.1.0
-    </div>
-  </footer>
-
-  
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
-    </div>
-    <!-- ./wrapper -->
-
-    <!-- jQuery -->
-    <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
-    <!-- jQuery UI 1.11.4 -->
-    <script src="{{asset('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
-    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>
-    $.widget.bridge('uibutton', $.ui.button)
-    </script>
-    <!-- Bootstrap 4 -->
-    <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <!-- AdminLTE App, funcion de sidebar -->
-    <script src="{{asset('dist/js/adminlte.js')}}"></script>
-</script>
+  @include('footer')
 </body>
 </html>

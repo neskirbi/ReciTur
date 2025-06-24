@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Generador;
+use App\Models\Entidad;
 use Redirect;
 
 class GeneradoresController extends Controller
@@ -30,6 +31,8 @@ class GeneradoresController extends Controller
         ->where('id_cliente',Auth::guard('clientes')->user()->id)
         ->orderby('created_at','desc')
         ->get();
+
+        
         //return $generadores;
         
         return view('cliente.generadores.index',['generadores'=>$generadores]);
@@ -42,7 +45,8 @@ class GeneradoresController extends Controller
      */
     public function create()
     {
-        return view('cliente.generadores.create');
+          $entidades = Entidad::all();
+        return view('cliente.generadores.create',['entidades'=>$entidades]);
     }
 
     /**
@@ -63,6 +67,7 @@ class GeneradoresController extends Controller
 
         $generador->rfcpdf = $generador->id.'.pdf';
 
+        if(isset($request->rfcpdf))
         if(!GuardarArchivos($request->rfcpdf,'/documentos/generadores/rfc/empresa',$generador->rfcpdf)){
             return Redirect::back()->with('error', 'Error al guardar RFC del generador.');
         }
@@ -91,6 +96,7 @@ class GeneradoresController extends Controller
 
             $generador->identificacionreprepdf = $generador->id.'.pdf';
 
+            if(isset($request->identificacionreprepdf))
             if(!GuardarArchivos($request->identificacionreprepdf,'/documentos/generadores/identificaciones/representante',$generador->identificacionreprepdf)){
                 return Redirect::back()->with('error', 'Error al guardar RFC del generador.');
             }
@@ -99,6 +105,7 @@ class GeneradoresController extends Controller
 
             $generador->rfcreprepdf = $generador->id.'.pdf';
 
+            if(isset($request->rfcreprepdf))
             if(!GuardarArchivos($request->rfcreprepdf,'/documentos/generadores/rfc/representante', $generador->rfcreprepdf)){
                 return Redirect::back()->with('error', 'Error al guardar RFC del generador.');
             }
@@ -111,11 +118,13 @@ class GeneradoresController extends Controller
 
             $generador->numeroactacontpdf = $generador->id.'.pdf';
 
+            if(isset($request->numeroactacontpdf))
             if(!GuardarArchivos($request->numeroactacontpdf,'/documentos/generadores/actas/empresa',$generador->numeroactacontpdf)){
                 return Redirect::back()->with('error', 'Error al guardar RFC del generador.');
             }
             
 
+            if(isset($request->podernotarial))
             if(!GuardarArchivos($request->podernotarial,'/documentos/generadores/actas/poder',$generador->id.'.pdf')){
                 return Redirect::back()->with('error', 'Error al guardar el poder notarial del generador.');
             }
@@ -123,6 +132,7 @@ class GeneradoresController extends Controller
 
             $generador->domicilioempresapdf = $generador->id.'.pdf';
 
+            if(isset($request->domicilioempresapdf))
             if(!GuardarArchivos($request->domicilioempresapdf,'/documentos/generadores/comprobantedomicilio/empresa',$generador->domicilioempresapdf)){
                 return Redirect::back()->with('error', 'Error al guardar Comprobante de domicilio de la empresa.');
             }
@@ -146,6 +156,7 @@ class GeneradoresController extends Controller
 
             $generador->identificacionfisicapdf = $generador->id.'.pdf';
 
+            if(isset($request->identificacionfisicapdf))
             if(!GuardarArchivos($request->identificacionfisicapdf,'/documentos/generadores/identificaciones/personafisica',$generador->identificacionfisicapdf)){
                 return Redirect::back()->with('error', 'Error al guardar RFC del generador.');
             }
@@ -169,7 +180,7 @@ class GeneradoresController extends Controller
     public function show($id)
     {
         $generador = Generador::find($id);
-        return view('cliente.generadores.generador',['generador'=>$generador]);
+        return view('cliente.generadores.show',['generador'=>$generador]);
     }
 
     /**

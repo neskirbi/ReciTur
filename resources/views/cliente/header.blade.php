@@ -3,65 +3,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="{{ asset('images/Favicon.png') }}">
 
-<!-- Scripts 
-<script src="{{ asset('js/app.js') }}" defer></script>-->
+<!-- Font Awesome 6 (versión completa) - SIN CAMBIOS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
-
-<!-- Formateo de numeros -->
+<!-- Formateo de numeros - SIN CAMBIOS -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
 
-<!-- Fonts -->
+<!-- Fonts - SIN CAMBIOS -->
 <link rel="dns-prefetch" href="//fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-<!-- Styles -->
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- Jquery -->
-<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<!-- Bootstrap 5.3.2 (actualizado) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
+      crossorigin="anonymous">
 
-<!-- Iconos boostrap -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+<!-- Styles personalizados - SIN CAMBIOS -->
+<link href="{{ asset('css/app.css') }}?version={{Version()}}" rel="stylesheet">
+<link href="{{ asset('css/stylefona.css') }}?version={{Version()}}" rel="stylesheet">
 
-<!-- Toastr -->
+<!-- jQuery 3.7.1 (actualizado, necesario para algunos plugins) -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
+        crossorigin="anonymous"></script>
+
+<!-- Bootstrap Bundle JS (con Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
+        crossorigin="anonymous"></script>
+
+<!-- Iconos Bootstrap 1.11.1 (actualizado) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<!-- Toastr - SIN CAMBIOS -->
 <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
-
-<!-- Toastr -->
 <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
 
-<!-- Metodos -->
+<!-- Metodos - SIN CAMBIOS -->
 <script src="{{ asset('js/metodos.js') }}?version={{Version()}}"></script>
-
-<!--Para la mensajeria apariencia y funciones-->
-<link href="{{ asset('mensajeria/css/mensajeria.css') }}?version={{Version()}}" rel="stylesheet">
-<script src="{{ asset('mensajeria/js/mensajeria.js') }}?version={{Version()}}"></script>
-
-
-
-
-<!-- Google Font: Source Sans Pro -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-  <!-- JQVMap -->
-  <link rel="stylesheet" href="{{ asset('plugins/jqvmap/jqvmap.min.css') }}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
-  <!-- summernote -->
-  <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
-  
-  <!-- Page specific script -->
-  <script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
-
-  <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>

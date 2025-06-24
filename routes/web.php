@@ -48,7 +48,7 @@ Route::get('home', function () {
     }     
 
     if(Auth::guard('clientes')->check()){
-        return redirect('generadores');
+        return redirect('homec');
     }    
     
     if(Auth::guard('transportistas')->check()){
@@ -143,7 +143,7 @@ Route::resource('campamentos', 'App\Http\Controllers\CampamentoController');
  */
 
 
-//Route::resource('dashboard', 'App\Http\Controllers\Cliente\DashboardController');
+Route::resource('homec', 'App\Http\Controllers\Cliente\HomeController');
 
 Route::get('GraficasPagosCliente','App\Http\Controllers\Cliente\DashboardController@GraficasPagosCliente');
 

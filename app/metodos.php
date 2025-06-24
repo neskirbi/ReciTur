@@ -9,6 +9,7 @@ use App\Models\Chofer;
 use Kreait\Firebase\Factory;
 
 function Version(){
+    return rand(1,100);
     return 4;
 }
 

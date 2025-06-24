@@ -1,6 +1,83 @@
 :root {
- --info2: #6D1732;
+  --theme-success: #176D4A;   /* Verde botella */
+  --theme-info:    #B6425F;   /* Rojo frambuesa */
+  --theme-danger:  #4D0F24;   /* Ciruela oscuro */
+  --theme-warning: #6D4B17;   /* Mostaza quemado */
+  --theme-primary: #6D1732;   /* Rojo vino (tu color principal) */
 }
+
+
+/*Estilo para botones */
+
+.btn-theme-success {
+  background-color: var(--theme-success);
+  border-color: var(--theme-success);
+  color: #fff;
+}
+.btn-theme-success:hover {
+  background-color: rgba(23, 109, 74, 0.75);
+}
+
+.btn-theme-info {
+  background-color: var(--theme-info);
+  border-color: var(--theme-info);
+  color: #fff;
+}
+.btn-theme-info:hover {
+  background-color: rgba(182, 66, 95, 0.75);
+}
+
+.btn-theme-danger {
+  background-color: var(--theme-danger);
+  border-color: var(--theme-danger);
+  color: #fff;
+}
+.btn-theme-danger:hover {
+  background-color: rgba(77, 15, 36, 0.75);
+}
+
+.btn-theme-warning {
+  background-color: var(--theme-warning);
+  border-color: var(--theme-warning);
+  color: #fff;
+}
+.btn-theme-warning:hover {
+  background-color: rgba(109, 75, 23, 0.75);
+}
+
+.btn-theme-primary {
+  background-color: var(--theme-primary);
+  border-color: var(--theme-primary);
+  color: #fff;
+}
+.btn-theme-primary:hover {
+  background-color: rgba(109, 23, 50, 0.75);
+}
+
+/* Fondos */
+.bg-theme-success  { background-color: var(--theme-success); color: #fff; }
+.bg-theme-info     { background-color: var(--theme-info); color: #fff; }
+.bg-theme-danger   { background-color: var(--theme-danger); color: #fff; }
+.bg-theme-warning  { background-color: var(--theme-warning); color: #fff; }
+.bg-theme-primary  { background-color: var(--theme-primary); color: #fff; }
+
+/* Bordes */
+.border-theme-success  { border: 2px solid var(--theme-success); }
+.border-theme-info     { border: 2px solid var(--theme-info); }
+.border-theme-danger   { border: 2px solid var(--theme-danger); }
+.border-theme-warning  { border: 2px solid var(--theme-warning); }
+.border-theme-primary  { border: 2px solid var(--theme-primary); }
+
+/* Texto / íconos */
+.text-theme-success  { color: var(--theme-success) !important; }
+.text-theme-info     { color: var(--theme-info) !important; }
+.text-theme-danger   { color: var(--theme-danger) !important; }
+.text-theme-warning  { color: var(--theme-warning) !important; }
+.text-theme-primary  { color: var(--theme-primary) !important; }
+
+
+
+
 
 .btn-info2 {
 
@@ -13,4 +90,72 @@
 
 .btn-info2:hover {
     background-color:rgba(109, 23, 50, 0.66);
+}
+
+/* Botón info3 */
+.btn-info3 {
+  color: #fff;
+  background-color: var(--info3);
+  border-color: var(--info3);
+}
+.btn-info3:hover {
+  background-color: rgba(182, 66, 95, 0.7);
+}
+
+/* Botón info4 */
+.btn-info4 {
+  color: #fff;
+  background-color: var(--info4);
+  border-color: var(--info4);
+}
+.btn-info4:hover {
+  background-color: rgba(77, 15, 36, 0.7);
+}
+
+/* Botón info5 */
+.btn-info5 {
+  color: #fff;
+  background-color: var(--info5);
+  border-color: var(--info5);
+}
+.btn-info5:hover {
+  background-color: rgba(23, 109, 74, 0.7);
+}
+
+/* Botón info6 */
+.btn-info6 {
+  color: #fff;
+  background-color: var(--info6);
+  border-color: var(--info6);
+}
+.btn-info6:hover {
+  background-color: rgba(109, 75, 23, 0.7);
+}
+
+
+
+ .feature-card {
+    padding: 20px;
+    margin: 50px 0;
+    text-align: center;
+    transition: transform 0.3s;
+}
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: #6D1732; /* Color que coincide con tu esquema */
+}
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.title-icon {
+
+    font-size: 1.5rem;
+    color: #6D1732; /* Color que coincide con tu esquema */
 }
