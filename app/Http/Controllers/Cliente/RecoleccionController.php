@@ -11,6 +11,14 @@ use Redirect;
 
 class RecoleccionController extends Controller
 {
+
+
+    public function __construct(){
+        $this->middleware('clientelogged');
+    }
+
+
+    
     function index(){
         $recolecciones=Cliente::select('recolecciones.id','negocios.negocio','recolecciones.cantidad','negocios.tiponegocio','recolecciones.created_at',
         DB::RAW("(select contenedor from contenedores where opcion=recolecciones.contenedor) as contenedor"),
@@ -22,6 +30,6 @@ class RecoleccionController extends Controller
         ->where('clientes.id',GetId())
         ->orderby('created_at','desc')
         ->get();
-        return view('cliente.recolecciones.recolecciones',['recolecciones'=>$recolecciones]);
+        return view('cliente.recolecciones.index',['recolecciones'=>$recolecciones]);
     }
 }

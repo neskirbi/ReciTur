@@ -2,17 +2,16 @@
 <html lang="en">
 <head>
   @include('cliente.header')
-  <title>CSMX | Generadores</title>
+  <title>Recitur | Generadores</title>
   
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-  @include('toast.toasts')
-  <div class="wrapper">
-    <!-- Navbar -->
+   @include('toast.toasts')
     @include('cliente.navbars.navbar')
-    <!-- /.navbar -->
 
-
+     <div class="container"> <!-- Mejor usar container de Bootstrap -->
+  <div class="wrapper">
+   
     <!-- Content Wrapper -->
     <div class="content-wrapper">
       <!-- Content Header -->
@@ -104,6 +103,6 @@
   <!-- ./wrapper -->
 
  
-  @include('footer')
+  @include('cliente.footers.footer')
 </body>
 </html>

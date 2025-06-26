@@ -67,6 +67,8 @@ class NegocioController extends Controller
        //return $request;
        $id = GetUuid();
 
+
+       if(isset($request->plan))
        if(!GuardarArchivos($request->plan,'/documentos/negocios/plan/', $id)){
             return Redirect::back()->with('error', 'Error al guardar el plan de menejo.');
         }

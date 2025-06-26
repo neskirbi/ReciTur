@@ -3,9 +3,7 @@
 <head>
     @include('cliente.header')
     <title>Recitur | GM</title>
-    <style>
-       
-    </style>
+    
 </head>
 <body>
     @include('toast.toasts')

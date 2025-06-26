@@ -2,23 +2,20 @@
 <html lang="en">
 <head>
   @include('cliente.header')
-  <title>CSMX | Negocios</title>
+  <title>Recitur | Recolecciones</title>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-@include('toast.toasts')  
+  @include('toast.toasts')
+  @include('cliente.navbars.navbar')
 <div class="wrapper">
 
-  <!-- Navbar -->
-  @include('cliente.navigations.navigation')
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  @include('cliente.sidebars.sidebar')
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <div class="content-header"></div>
+    <div class="content-header">
+      &nbsp;
+    </div>
     <!-- /.content-header -->
 
     <!-- Main content -->
@@ -28,7 +25,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title"><i class="fa fa-bars mr-2"></i>Recolecciones</h3>
+                <h3 class="card-title"><i class="fa fa-trash-alt title-icon" aria-hidden="true"></i> Recolecciones</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -56,8 +53,8 @@
                             <td>{{$recoleccion->contenedor.' '.$recoleccion->cantidad}}</td>
                             <td>{{FechaFormateada($recoleccion->created_at)}}</td>
                             <td>
-                              <a href="Manifiesto/{{$recoleccion->id}}" target="_blank" class="btn btn-info btn-sm">
-                                <i class="fa fa-download mr-1"></i>Manifiesto
+                              <a href="Manifiesto/{{$recoleccion->id}}" target="_blank" class="btn btn-theme-info">
+                                <i class="fa fa-download"></i> Manifiesto
                               </a>
                             </td>
                           </tr>
@@ -84,51 +81,8 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.1.0
-    </div>
-  </footer>
+  
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-
-<!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button);
-</script>
-<!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- ChartJS -->
-<script src="plugins/chart.js/Chart.min.js"></script>
-<!-- Sparkline -->
-<script src="plugins/sparklines/sparkline.js"></script>
-<!-- JQVMap -->
-<script src="plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="plugins/jquery-knob/jquery.knob.min.js"></script>
-<!-- daterangepicker -->
-<script src="plugins/moment/moment.min.js"></script>
-<script src="plugins/daterangepicker/daterangepicker.js"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Summernote -->
-<script src="plugins/summernote/summernote-bs4.min.js"></script>
-<!-- overlayScrollbars -->
-<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App, funcion de sidebar -->
-<script src="dist/js/adminlte.js"></script>
+@include('cliente.footers.footer')
 </body>
 </html>

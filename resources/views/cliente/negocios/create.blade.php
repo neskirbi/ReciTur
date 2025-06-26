@@ -2,22 +2,15 @@
 <html lang="en">
 <head>
   @include('cliente.header')
-  <title>CSMX | Registro negocio</title>
+  <title>Recitur | Registro negocio</title>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-@include('toast.toasts')
+  @include('toast.toasts')
+  @include('cliente.navbars.navbar')
 <div class="wrapper">
 
-  <!-- Navbar -->
-  @include('cliente.navigations.navigation')
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  @include('cliente.sidebars.sidebar')
-
-  <!-- Content Wrapper -->
   <div class="content-wrapper">
     <!-- Content Header -->
     <div class="content-header"></div>
@@ -181,7 +174,7 @@
                   </div>
                 </div>
                 <div class="card-footer">
-                    <button type="submit" id="guardar" class="btn btn-info float-right"><i class="fas fa-save"></i> Guardar</button>
+                    <button type="submit" id="guardar" class="btn btn-theme-primary float-right"><i class="fas fa-save"></i> Guardar</button>
                 </div>
               </div>
               
@@ -191,13 +184,7 @@
   </div>
 
   <!-- Footer -->
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.1.0
-    </div>
-  </footer>
+  
 </div>
 
 
@@ -251,7 +238,8 @@ $(function () {
 </script>
 
 <!-- Scripts -->
+
 @include('MapsApi')
-@include('footer')
+@include('cliente.footers.footer')
 </body>
 </html>

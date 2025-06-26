@@ -52,15 +52,18 @@
                 border-top: 1px solid #ddd;
             }
             .navbar-collapse.active {
-                display: flex;
+                display: flex;                
+                z-index: 100000;
             }
         }
+        
+      
     </style>
     
     <!-- NAVBAR BLANCO -->
     <div class="navbar-custom">
         <a class="navbar-brand" href="{{url('home')}}">
-            Recitur
+            <img src="{{asset('images').'/reciturlogo1.png'}}" alt="" height="45px">            
         </a>
         
         <nav class="navbar navbar-expand-md navbar-light">
@@ -70,7 +73,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto extra-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('registropage')}}">Registrarse</a>
+                        <a class="nav-link" href="{{url('registropage')}}">
+                            <i class="fa fa-file-text-o" aria-hidden="true"></i> Registrarse
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('loginpage')}}">

@@ -2,25 +2,21 @@
 <html lang="en">
 <head>
   @include('cliente.header')
-  <title>CSMX | Registro negocio</title>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <title>Recitur | Negocio</title>
+  
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-@include('toast.toasts')
+  @include('toast.toasts')
+  @include('cliente.navbars.navbar')
 <div class="wrapper">
 
-  <!-- Navbar -->
-  @include('cliente.navigations.navigation')
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  @include('cliente.sidebars.sidebar')
 
   <!-- Content Wrapper -->
   <div class="content-wrapper">
     <!-- Content Header -->
-    <div class="content-header"></div>
+    <div class="content-header">
+      &nbsp;
+    </div>
     <!-- /.content-header -->
 
     <!-- Main Content -->
@@ -28,7 +24,7 @@
       <div class="container-fluid">
         <div class="card card-default">
           <div class="card-header">
-            <h3 class="card-title"><i class="fa fa-industry"></i> Registro de Establecimiento</h3>
+            <h3 class="card-title"><i class="fa fa-briefcase title-icon" aria-hidden="true"></i> Negocio</h3>
           </div>
           <div class="card-body">
             <!-- Datos del Establecimiento -->
@@ -144,7 +140,7 @@
               </div>
             </div>
 
-            <!-- Documentación -->
+            <!-- Documentación 
             <div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title"><i class="fas fa-file-pdf"></i> Documentación</h3>
@@ -165,7 +161,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div>-->
 
             <!-- Datos del Contacto -->
             <div class="card card-info">
@@ -203,14 +199,7 @@
     </section>
   </div>
 
-  <!-- Footer -->
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.1.0
-    </div>
-  </footer>
+
 </div>
 
 <!-- Scripts -->
@@ -236,6 +225,7 @@ $(function () {
 </script>
 
 @include('MapsApi')
-@include('footer')
+@include('cliente.footers.footer')
+
 </body>
 </html>

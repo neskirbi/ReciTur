@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   @include('cliente.header')
-  <title>CSMX | Generadores</title>
+  <title>Recitur | Generadores</title>
 
   
 </head>
@@ -419,6 +419,6 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  @include('footer')
+  @include('cliente.footers.footer')
 </body>
 </html>
