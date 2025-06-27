@@ -9,7 +9,6 @@
    @include('toast.toasts')
     @include('cliente.navbars.navbar')
 
-     <div class="container"> <!-- Mejor usar container de Bootstrap -->
   <div class="wrapper">
    
     <!-- Content Wrapper -->

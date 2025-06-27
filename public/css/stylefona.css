@@ -3,11 +3,23 @@
   --theme-info:    #B6425F;   /* Rojo frambuesa */
   --theme-danger:  #4D0F24;   /* Ciruela oscuro */
   --theme-warning: #6D4B17;   /* Mostaza quemado */
-  --theme-primary: #691932;   /* Rojo vino (tu color principal) */
+  --theme-primary: #691932;
+  --theme-gray:    #e2e6ea;   /* Rojo vino (tu color principal) */
 }
 
 
 /*Estilo para botones */
+.btn-theme-outline-gray {
+  background-color: transparent;
+  border: 1px solid #adb5bd;
+  color: #6c757d;
+}
+
+.btn-theme-outline-gray:hover {
+  background-color: var(--theme-success);
+  color: #495057;
+  border-color: #adb5bd;
+}
 
 .btn-theme-success {
   background-color: var(--theme-success);
@@ -53,6 +65,61 @@
 .btn-theme-primary:hover {
   background-color: rgba(109, 23, 50, 0.75);
 }
+
+
+/* Botones con solo el borde (outline buttons) */
+
+.btn-outline-theme-success {
+  background-color: transparent;
+  border: 2px solid var(--theme-success);
+  color: var(--theme-success);
+}
+.btn-outline-theme-success:hover {
+  background-color: var(--theme-success);
+  color: #fff;
+}
+
+.btn-outline-theme-info {
+  background-color: transparent;
+  border: 2px solid var(--theme-info);
+  color: var(--theme-info);
+}
+.btn-outline-theme-info:hover {
+  background-color: var(--theme-info);
+  color: #fff;
+}
+
+.btn-outline-theme-danger {
+  background-color: transparent;
+  border: 2px solid var(--theme-danger);
+  color: var(--theme-danger);
+}
+.btn-outline-theme-danger:hover {
+  background-color: var(--theme-danger);
+  color: #fff;
+}
+
+.btn-outline-theme-warning {
+  background-color: transparent;
+  border: 2px solid var(--theme-warning);
+  color: var(--theme-warning);
+}
+.btn-outline-theme-warning:hover {
+  background-color: var(--theme-warning);
+  color: #fff;
+}
+
+.btn-outline-theme-primary {
+  background-color: transparent;
+  border: 2px solid var(--theme-primary);
+  color: var(--theme-primary);
+}
+.btn-outline-theme-primary:hover {
+  background-color: var(--theme-primary);
+  color: #fff;
+}
+
+
 
 /* Fondos */
 .bg-theme-success  { background-color: var(--theme-success); color: #fff; }
@@ -159,3 +226,7 @@
     font-size: 1.5rem;
     color: #6D1732; /* Color que coincide con tu esquema */
 }
+
+
+
+
