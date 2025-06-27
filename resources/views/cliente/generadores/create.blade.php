@@ -391,7 +391,7 @@
     </section>
     <!-- /.content -->
   </div>
- @include('cliente.footers.footer')
+ @include('cliente.footer')
 
   <!-- /.control-sidebar -->
 </div>

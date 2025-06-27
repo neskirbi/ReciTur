@@ -47,6 +47,6 @@
         </div>
     </div>
 
-    @include('cliente.footers.footer')
+    @include('cliente.footer')
 </body>
 </html>

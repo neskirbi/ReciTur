@@ -240,6 +240,6 @@ $(function () {
 <!-- Scripts -->
 
 @include('MapsApi')
-@include('cliente.footers.footer')
+@include('cliente.footer')
 </body>
 </html>

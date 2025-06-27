@@ -225,7 +225,7 @@ $(function () {
 </script>
 
 @include('MapsApi')
-@include('cliente.footers.footer')
+@include('cliente.footer')
 
 </body>
 </html>
