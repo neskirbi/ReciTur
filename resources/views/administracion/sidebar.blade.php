@@ -39,11 +39,11 @@
 }
 
 </style>
-<!-- Sidebar colapsable -->
+
 <!-- Sidebar colapsable -->
 <nav id="sidebar" class="bg-theme-success text-white position-fixed vh-100" style="width: 250px; transition: transform 0.3s ease; z-index: 1050;">
   <div class="sidebar-header p-3">
-    <h3>Recitur</h3>
+    <h3></h3>
     
   </div>
   <ul class="nav flex-column px-3">

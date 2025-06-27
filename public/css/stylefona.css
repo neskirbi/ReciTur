@@ -4,22 +4,12 @@
   --theme-danger:  #4D0F24;   /* Ciruela oscuro */
   --theme-warning: #6D4B17;   /* Mostaza quemado */
   --theme-primary: #691932;
-  --theme-gray:    #e2e6ea;   /* Rojo vino (tu color principal) */
+  --theme-gray:    #adb5bd;   /* Rojo vino (tu color principal) */
 }
 
 
 /*Estilo para botones */
-.btn-theme-outline-gray {
-  background-color: transparent;
-  border: 1px solid #adb5bd;
-  color: #6c757d;
-}
 
-.btn-theme-outline-gray:hover {
-  background-color: var(--theme-success);
-  color: #495057;
-  border-color: #adb5bd;
-}
 
 .btn-theme-success {
   background-color: var(--theme-success);
@@ -68,6 +58,17 @@
 
 
 /* Botones con solo el borde (outline buttons) */
+.btn-theme-outline-gray {
+  background-color: transparent;
+  border: 1px solid var(--theme-gray);
+  color: #6c757d;
+}
+
+.btn-theme-outline-gray:hover {
+  background-color: #e2e6ea;
+  color: #495057;
+  border-color: #adb5bd;
+}
 
 .btn-outline-theme-success {
   background-color: transparent;

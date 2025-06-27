@@ -55,23 +55,24 @@
     </style>
     
    <!-- NAVBAR BLANCO -->
-<div class="navbar-custom">
-  <a class="navbar-brand" href="{{url('homec')}}" style="display: flex; align-items: center;">
+<div class="navbar-custom" style="display: flex; align-items: center; padding: 0.5rem 1rem;">
+  <!-- Logo -->
+  <a class="navbar-brand" href="{{url('homec')}}" style="display: flex; align-items: center; margin-right: 0.5rem;">
     <img src="{{asset('images').'/reciturlogo1.png'}}" alt="" height="45px">
-    
-    <!-- Botón de colapso justo a la derecha del logo -->
-    
   </a>
-  <button id="sidebarCollapse" class="btn btn-theme-outline-gray btn-sm ms-3 float-left">
-      <i class="fa fa-bars"></i>
-    </button>
 
-  <nav class="navbar navbar-expand-md navbar-light">
+  <!-- Botón de colapso junto al logo -->
+  <button id="sidebarCollapse" class="btn btn-theme-outline-gray btn-sm me-auto">
+    <i class="fa fa-bars"></i>
+  </button>
+
+  <!-- Navegación -->
+  <nav class="navbar navbar-expand-md navbar-light ms-auto">
     <button class="navbar-toggler" id="navbar-toggler">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto extra-nav">
+      <ul class="navbar-nav ms-auto extra-nav">
         <li class="nav-item">
           <a class="nav-link" href="{{url('homec')}}">
             <i class="fas fa-home" style="color: #6D1732"></i> Home
@@ -86,3 +87,4 @@
     </div>
   </nav>
 </div>
+
