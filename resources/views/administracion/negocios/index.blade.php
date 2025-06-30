@@ -7,8 +7,8 @@
   
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-  @include('toast.toasts')
-  @include('administracion.navbars.navbar')
+@include('toast.toasts')
+@include('administracion.navbars.navbar')
 <div class="wrapper">
 
   <!-- Content Wrapper. Contains page content -->

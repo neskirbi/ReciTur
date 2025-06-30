@@ -31,8 +31,8 @@ class RecoleccionController extends Controller
         ->join('negocios','negocios.id','=','recolecciones.id_negocio')
         ->where('recolecciones.id_municipio',GetIdMunicipio())
         ->orderby('created_at','desc')
-        ->get();
-        return view('administracion.recolecciones.recolecciones',['recolecciones'=>$recolecciones]);
+        ->paginate(15);
+        return view('administracion.recolecciones.index',['recolecciones'=>$recolecciones]);
     }
 
 

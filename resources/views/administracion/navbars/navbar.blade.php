@@ -62,7 +62,7 @@
   </a>
 
   <!-- Botón de colapso junto al logo -->
-  <button id="sidebarCollapse" class="btn btn-theme-outline-gray btn-sm me-auto">
+  <button id="sidebarCollapse" class="btn btn-theme-outline-gray  me-auto">
     <i class="fa fa-bars"></i>
   </button>
 
@@ -73,7 +73,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto extra-nav">
-        <li class="nav-item">
+        <!--<li class="nav-item">
           <a class="nav-link" href="{{url('homec')}}">
             <i class="fas fa-home" style="color: #6D1732"></i> Home
           </a>
@@ -82,7 +82,7 @@
           <a class="nav-link" href="{{url('logout')}}">
             <i class="fa fa-sign-out" aria-hidden="true"></i> Salir
           </a>
-        </li>
+        </li>-->
       </ul>
     </div>
   </nav>
