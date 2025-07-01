@@ -31,7 +31,7 @@ class NegocioController extends Controller
         ->where('negocios.negocio','like','%'.$filtros->negocio.'%')
         ->select('negocios.id','negocios.negocio','negocios.tiponegocio','generadores.razonsocial','negocios.verificado')
         ->orderby('negocios.created_at','desc')
-        ->paginate(15);
+        ->paginate(3);
 
         return view('administracion.negocios.index',['negocios'=>$negocios,'filtros'=>$filtros]);
     }

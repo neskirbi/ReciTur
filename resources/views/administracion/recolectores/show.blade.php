@@ -73,7 +73,7 @@
 
                                         <div class="text-end">
                                             <a href="{{ route('recolectores.index') }}" class="btn btn-secondary">Cancelar</a>
-                                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                            <button type="submit" class="btn btn-theme-primary">Guardar Cambios</button>
                                         </div>
                                     </form>
 

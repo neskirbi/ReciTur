@@ -15,21 +15,24 @@ class RecolectorController extends Controller
 {
 
       
+    
     public function __construct(){
-        //$this->middleware('administradorlogged');
+        $this->middleware('administradorlogged');
     }
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $filtros)
     {
         $recolectores=DB::table('recolectores')
         ->orderby('apellidos','asc')
+        ->whereraw(" nombres like '%$filtros->recolector%' or apellidos like '%$filtros->recolector%' ")
         ->paginate(36);
         
-        return view('administracion.recolectores.index',['recolectores'=>$recolectores]);
+        return view('administracion.recolectores.index',['recolectores'=>$recolectores,'filtros'=>$filtros]);
     }
 
     /**
