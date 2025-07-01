@@ -90,6 +90,9 @@
     <li class="nav-item">
       <a class="nav-link" href="{{ url('recoleccion') }}"><i class="fa fa-trash-alt me-2"></i>Recolecciones</a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url('recolectores') }}"><i class="fa fa-users me-2"></i>Recolectores</a>
+    </li>
 
     <div class="nav-section-title">Cuenta</div>
     <li class="nav-item mt-2">

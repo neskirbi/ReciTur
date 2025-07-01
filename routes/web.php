@@ -170,7 +170,7 @@ Route::resource('catalogosasoc', 'App\Http\Controllers\Asociacion\CatalogosContr
 
 
 
-Route::resource('recolectores','App\Http\Controllers\Asociacion\RecolectorController');
+
 
 Route::resource('municipios','App\Http\Controllers\Asociacion\MunicipioController');
 Route::get('administradoresasoc/{id}','App\Http\Controllers\Asociacion\AdministradorController@Administradores');
@@ -269,7 +269,7 @@ Route::resource('catalogos', 'App\Http\Controllers\Administracion\CatalogoContro
 
 
 
-
+Route::resource('recolectores','App\Http\Controllers\Administracion\RecolectorController');
 
 Route::get('BorrarRecolector/{id}','App\Http\Controllers\Administracion\RecolectorController@BorrarRecolector');
 

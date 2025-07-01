@@ -26,12 +26,10 @@ class RecolectorController extends Controller
     public function index()
     {
         $recolectores=DB::table('recolectores')
-        ->where('id_municipio',Auth::guard('administradores')->user()->id_municipio)
-        ->orderby('created_at','asc')
-        ->get();
-
+        ->orderby('apellidos','asc')
+        ->paginate(36);
         
-        return view('administracion.recolectores.recolectores',['recolectores'=>$recolectores]);
+        return view('administracion.recolectores.index',['recolectores'=>$recolectores]);
     }
 
     /**
@@ -89,7 +87,8 @@ class RecolectorController extends Controller
      */
     public function show($id)
     {
-        //
+        $recolector = Recolector::find($id);
+        return view('administracion.recolectores.show',['recolector'=>$recolector]);
     }
 
     /**
@@ -122,11 +121,14 @@ class RecolectorController extends Controller
 
         $recolector=Recolector::find($id);
         
-        $recolector->recolector=$request->nombre;
+        $recolector->nombres=$request->nombres;
+        $recolector->apellidos=$request->apellidos;
         $recolector->mail=isset($request->mail) ? $request->mail : $recolector->mail;                       
-        //$recolector->telefono=$request->telefono;       
-        $recolector->pass=$request->pass;
+        $recolector->telefono=$request->telefono;       
+        $recolector->pass=(isset($request->pass) ? $request->pass : $recolector->pass);
 
+        //No se entra por que no validamos celulares ahorita 
+        if(0)
         if($request->telefono!=null){
             $response=EnviarMensaje("+52".$request->telefono,'Su numero se ha registrado en reci-trash.mx, para confirmar el registro de su número vaya al siguiente link reci-trash.mx/ConfirmacionRecolector/'.$recolector->id.' .');
             if(intval($response)>=400){

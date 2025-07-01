@@ -52,7 +52,7 @@
                     @if(count($recolecciones))
                     
                       
-                        @foreach($recolecciones as $recoleccion)
+                      @foreach($recolecciones as $recoleccion)
 
                         <div class="card mb-4">
                             <!-- Badge de estatus en la esquina superior derecha -->
@@ -81,8 +81,8 @@
                         
 
                       
-                        @endforeach
-                        <div class="d-flex justify-content-center mt-4">
+                      @endforeach
+                      <div class="d-flex justify-content-center mt-4">
                       {{ $recolecciones->appends($_GET)->links('pagination::bootstrap-4') }}
                     </div>
                     @endif
