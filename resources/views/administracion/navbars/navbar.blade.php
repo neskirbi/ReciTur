@@ -62,7 +62,7 @@
   </a>
 
   <!-- Botón de colapso junto al logo -->
-  <button id="sidebarCollapse" class="btn btn-theme-outline-gray  me-auto">
+  <button id="sidebarCollapse" class="btn btn-outline-theme-gray  me-auto">
     <i class="fa fa-bars"></i>
   </button>
 

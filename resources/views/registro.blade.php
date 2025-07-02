@@ -72,7 +72,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <button type="submit" class="btn btn-info2 btn-block">Enviar</button>
+                <button type="submit" class="btn btn-theme-primary btn-block">Enviar</button>
             </div>
             
         

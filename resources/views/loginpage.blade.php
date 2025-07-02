@@ -25,7 +25,7 @@
             <label for="pass">Contraseña</label>
             <input type="password" name="pass" id="pass" required>
         </div>
-        <button type="submit" class="btn btn-info2 btn-block">Entrar</button>
+        <button type="submit" class="btn btn-theme-primary btn-block">Entrar</button>
     </form>
 </div>
 
