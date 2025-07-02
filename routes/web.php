@@ -55,6 +55,10 @@ Route::get('home', function () {
         return redirect('empresas');
     }  
 
+    if(Auth::guard('recolectores')->check()){
+        return redirect('homer');
+    }  
+
     
     
     return view('home');
@@ -462,3 +466,13 @@ Route::resource('vehiculossoporte','App\Http\Controllers\Soporte\VehiculoControl
  * Transportistas
  */
 Route::resource('registrot','App\Http\Controllers\WebApp\Transportista\RegistroTController');
+
+
+
+/**
+ * Rutas recolectores
+ */
+
+
+ Route::resource('homer','App\Http\Controllers\Recolectores\HomeController');
+ Route::resource('recolectar','App\Http\Controllers\Recolectores\RecolectarController');

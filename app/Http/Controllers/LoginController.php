@@ -15,6 +15,7 @@ use App\Models\Token;
 use App\Mail\MailRecuperar;
 use App\Models\Director;
 use App\Models\Sedema;
+use App\Models\Recolector;
 use App\Models\Transportista;
  
 
@@ -106,6 +107,20 @@ class LoginController extends Controller
             return redirect('home');
         }
 
+
+        $recolector = Recolector::where([
+            'mail' => $request->mail
+        ])->first();
+
+        if($recolector){
+            if($request->pass!=$recolector->pass){
+                return redirect('loginpage')->with('error', '¡Error de contraseña!');
+            }
+            Auth::guard('recolectores')->login($recolector);
+            return redirect('home');
+        }
+
+
         return redirect('loginpage')->with('error', '¡Correo no registrado!');
     }
 
@@ -149,6 +164,11 @@ class LoginController extends Controller
         if( Auth::guard('asociados')->check()){
             Auth::guard('asociados')->logout();
             return redirect('acceso');
+        }    
+
+        if( Auth::guard('recolectores')->check()){
+            Auth::guard('recolectores')->logout();
+            return redirect('home');
         }
         
         return redirect('home');
