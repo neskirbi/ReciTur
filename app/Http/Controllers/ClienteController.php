@@ -37,6 +37,12 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
+
+        $correo = BuscarCorreo($request->mail);
+        if($correo !=''){
+            return Redirect::back()->with('error','El correo ya fue registrado anteriormente en '.$correo);
+        }
+
         //return $request;
         if(strlen($request->mail)==0 || strlen($request->pass)==0 || strlen($request->nombres)==0 || strlen($request->apellidos)==0){
             return redirect('home')->with('error', '¡Datos incorrectos!');
@@ -48,14 +54,7 @@ class ClienteController extends Controller
         }
           
         
-        $cliente = Cliente::where([
-            'mail' => $request->mail
-        ])->first();
         
-        if($cliente)
-        {
-            return Redirect::back()->with('error', 'Error al registrar, el correo ya se ha registrado anteriormente.');
-        }
         
         $cliente=new Cliente();
         $id = $cliente->id = GetUuid();

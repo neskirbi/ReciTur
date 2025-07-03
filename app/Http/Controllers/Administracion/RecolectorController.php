@@ -115,11 +115,9 @@ class RecolectorController extends Controller
     public function update(Request $request, $id)
     {
         
-        if(isset($request->mail)){
-            $recolector = Recolector::where('mail','=',$request->mail)->first();
-            if($recolector){
-                return Redirect::back()->with('error','El correo ya fue registrado anteriormente.');
-            }
+        $correo = BuscarCorreo($request->mail);
+        if($correo !=''){
+            return Redirect::back()->with('error','El correo ya fue registrado anteriormente en '.$correo);
         }
 
         $recolector=Recolector::find($id);
@@ -141,7 +139,7 @@ class RecolectorController extends Controller
 
 
         if($recolector->save()){
-            return redirect('recolectores')->with('success','Registro guardado.');
+            return redirect('recolectores/'.$id)->with('success','Registro actualizado.');
         }else{
             return Redirect::back()->with('error','Error al guardar el registro.');
         }

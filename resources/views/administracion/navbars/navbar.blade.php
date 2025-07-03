@@ -67,24 +67,6 @@
   </button>
 
   <!-- Navegación -->
-  <nav class="navbar navbar-expand-md navbar-light ms-auto">
-    <button class="navbar-toggler" id="navbar-toggler">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto extra-nav">
-        <!--<li class="nav-item">
-          <a class="nav-link" href="{{url('homec')}}">
-            <i class="fas fa-home" style="color: #6D1732"></i> Home
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{url('logout')}}">
-            <i class="fa fa-sign-out" aria-hidden="true"></i> Salir
-          </a>
-        </li>-->
-      </ul>
-    </div>
-  </nav>
+  
 </div>
 

@@ -64,12 +64,7 @@
         
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group">
-                    <label for="accept">
-                        Acepto los <a href="terminosycondiciones" target="_blank">Términos y Condiciones</a>
-                    </label>
-                    <input required type="checkbox" id="accept" name="accept">
-                </div>
+                
             </div>
             <div class="col-md-6">
                 <button type="submit" class="btn btn-theme-primary btn-block">Enviar</button>

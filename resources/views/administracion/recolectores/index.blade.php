@@ -63,7 +63,7 @@
 
                                                     <div class="mt-2 w-100 d-flex justify-content-end">
                                                         <a href="{{ url('recolectores') }}/{{$recolector->id }}" 
-                                                        target="_blank" class="btn btn-sm btn-outline-theme-success btn-block">
+                                                        class="btn btn-sm btn-outline-theme-success btn-block">
                                                         Ver
                                                         </a>
                                                     </div>

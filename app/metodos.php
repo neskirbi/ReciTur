@@ -38,18 +38,12 @@ function BuscarCorreo($mail){
     }
 
 
-    if(DB::table('recepciones')->where('mail',$mail)->first()){
-        $res='Recepcion';
-    }
-
-
-    if(DB::table('finanzas')->where('mail',$mail)->first()){
-        $res='Finanzas';
-    }
-
-
     if(DB::table('clientes')->where('mail',$mail)->first()){
         $res='Clientes';
+    }
+
+     if(DB::table('recolectores')->where('mail',$mail)->first()){
+        $res='Recolectores';
     }
 
     return $res;

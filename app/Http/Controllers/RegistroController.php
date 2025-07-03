@@ -17,7 +17,10 @@ class RegistroController extends Controller
      */
     public function Registro(Request $request)
     {
-        
+        $correo = BuscarCorreo($request->mail);
+        if($correo !=''){
+            return Redirect::back()->with('error','El correo ya fue registrado anteriormente en '.$correo);
+        }
 
          //return $request;
          if(strlen($request->mail)==0 || strlen($request->pass)==0 || strlen($request->nombres)==0 || strlen($request->apellidos)==0){
@@ -27,16 +30,6 @@ class RegistroController extends Controller
 
         if($request->pass!=$request->pass2){
             return Redirect::back()->with('error', 'Error al crear el registro, las contraseñas no coinciden.');
-        }
-          
-        
-        $cliente = Cliente::where([
-            'mail' => $request->mail
-        ])->first();
-        
-        if($cliente)
-        {
-            return Redirect::back()->with('error', 'Error al registrar, el correo ya se ha registrado anteriormente.');
         }
 
        
