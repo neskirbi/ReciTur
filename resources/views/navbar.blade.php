@@ -68,18 +68,18 @@
         
         <nav class="navbar navbar-expand-md navbar-light">
             <button class="navbar-toggler" id="navbar-toggler">
-                <span class="navbar-toggler-icon"></span>
+                <i class="fa fa-bars fa-lg"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto extra-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('registropage')}}">
-                            <i class="fa fa-file-text-o" aria-hidden="true"></i> Registrarse
+                            <i class="fa fa-file-text nav-icon fa-lg" aria-hidden="true"></i> Registrarse
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('loginpage')}}">
-                            <i class="fa fa-user-o" aria-hidden="true"></i> Ingresar
+                            <i class="fa fa-user nav-icon fa-lg" aria-hidden="true"></i> Ingresar
                         </a>
                     </li>
                 </ul>

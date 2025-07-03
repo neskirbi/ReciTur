@@ -158,15 +158,23 @@
 .feature-card:hover {
     transform: translateY(-5px);
 }
+
 .card-icon {
     font-size: 3rem;
     margin-bottom: 15px;
     color: var(--theme-primary); /* Color que coincide con tu esquema */
 }
+
 .card-title {
+  
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 0;
+}
+
+.nav-icon {
+  
+    color: var(--theme-primary); /* Color que coincide con tu esquema */
 }
 
 .title-icon {

@@ -10,7 +10,7 @@
 
 <!-- Styles -->
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-<link href="{{ asset('css/stylefona.css') }}" rel="stylesheet">
+<link href="{{ asset('css/stylefona.css') }}?version={{Version()}}" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- Jquery -->
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
