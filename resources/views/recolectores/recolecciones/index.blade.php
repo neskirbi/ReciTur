@@ -37,9 +37,6 @@
                         <thead class="thead-light">
                           <tr>
                             <th>Establecimientos</th>
-                            <th>Tipo</th>                    
-                            <th>Residuo</th>                  
-                            <th>Cantidad</th>
                             <th>Día</th>
                           </tr>
                         </thead>
@@ -47,10 +44,7 @@
                           @foreach($recolecciones as $recoleccion)
                           <tr>
                             <td>{{$recoleccion->negocio}}</td>
-                            <td>{{$recoleccion->tiponegocio}}</td>
-                            <td>{{$recoleccion->residuo}}</td>
-                            <td>{{$recoleccion->contenedor.' '.$recoleccion->cantidad}}</td>
-                            <td>{{FechaFormateada($recoleccion->created_at)}}</td>
+                            <td>{{FechaFormateadaTiempo($recoleccion->created_at)}}</td>
                            
                           </tr>
                           @endforeach

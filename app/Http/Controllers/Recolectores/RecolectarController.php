@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Residuo;
 use App\Models\Negocio;
 use App\Models\Recoleccion;
+use App\Models\Recolec;
 
 class RecolectarController extends Controller
 {
@@ -109,6 +110,18 @@ class RecolectarController extends Controller
         
         $recolectorId = GetId(); // o auth()->id()
 
+        $id_recoleccion = GetUuid();
+
+        $recol = new Recoleccion();
+        $recol->id = $id_recoleccion; 
+        $recol->id_recolector = $recolectorId;
+        $recol->id_negocio = $negocio->id;
+        
+
+        $recol->save();
+
+
+
         foreach ($residuos as $residuoId => $data) {
             if (isset($data['seleccionado']) && floatval($data['cantidad']) > 0) {
                 $residuo = Residuo::find($residuoId);
@@ -118,10 +131,9 @@ class RecolectarController extends Controller
                 $subtotal = $cantidad  * $residuo->precio;
 
             
-                $recol = new Recoleccion();
-                $recol->id = GetUuid(); // varchar(32)
-                $recol->id_recolector = $recolectorId;
-                $recol->id_negocio = $negocio->id;
+                $recol = new Recolec();
+                $recol->id = GetUuid(); 
+                $recol->id_recoleccion = $id_recoleccion;
                 $recol->residuo = $residuo->residuo; 
                 $recol->unidades = $residuo->unidades;
                 $recol->cantidad = $cantidad;
