@@ -23,7 +23,8 @@ class RecoleccionController extends Controller
     }
 
     function index(){
-      $recolecciones=Recoleccion::join('negocios','negocios.id','=','recolecciones.id_negocio')
+      $recolecciones=Recoleccion::select('negocios.negocio','negocios.tiponegocio','recolecciones.id')
+      ->join('negocios','negocios.id','=','recolecciones.id_negocio')
         ->orderby('recolecciones.created_at','desc')
         ->paginate(15);
         return view('administracion.recolecciones.index',['recolecciones'=>$recolecciones]);
