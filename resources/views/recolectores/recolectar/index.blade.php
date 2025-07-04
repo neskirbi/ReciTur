@@ -33,7 +33,7 @@
 
         .qr-instructions {
             position: absolute;
-            bottom: 20px;
+            bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
             font-size: 1.1rem;
@@ -72,6 +72,7 @@
 
             .qr-instructions {
                 font-size: 0.9rem;
+                bottom: 5px;
             }
         }
     </style>
@@ -84,9 +85,9 @@
 
     <div class="container">
         <div class="row justify-content-center">
-            <img src="{{ asset('images/cedulas/acapulco/headercedula.png') }}" alt="" width="100%">
+            <img src="{{ asset('images/cedulas/acapulco/headercedula.png') }}" alt="" style="margin-top: 50px;" width="100%">
 
-            <div class="cedula-body">
+            <div class="cedula-body" style="margin-top: 50px;">
                 <div class="qr-overlay">
                     <img src="{{ asset('images/cedulas/qrgeneral.png') }}" alt="Escanear QR" onclick="abrirCamara()" />
                 </div>
@@ -96,7 +97,7 @@
                 <img src="{{ asset('images/cedulas/acapulco/bodycedula.png') }}" alt="" width="100%" style="visibility: hidden;">
             </div>
 
-            <img src="{{ asset('images/cedulas/acapulco/footercedula.png') }}" alt="" width="100%">
+            <img src="{{ asset('images/cedulas/acapulco/footercedula.png') }}" style="margin-top: 50px;" alt="" width="100%">
         </div>
     </div>
 

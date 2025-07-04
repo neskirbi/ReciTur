@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         'vendedorlogged' => \App\Http\Middleware\VendedorIsLogged::class,        
         'directorlogged' => \App\Http\Middleware\DirectorIsLogged::class,
         'sedemalogged' => \App\Http\Middleware\SedemaIsLogged::class,
+        'recolectorlogged' => \App\Http\Middleware\RecolectorIsLogged::class, 
     ];
 }

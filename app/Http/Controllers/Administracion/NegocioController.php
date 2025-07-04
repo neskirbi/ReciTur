@@ -153,7 +153,7 @@ class NegocioController extends Controller
     
     function Cedula($id){
         $negocio=Negocio::find($id);
-        $url=GeneraQR('images/qr/cedula/',str_replace('/','-',$negocio->negocio).'/'.$id);
+        $url=GeneraQR('images/qr/cedula/',$id);
         return view('formatos.cedulas.cedula',['negocio'=>$negocio,'url'=>$url]);
     }
 }

@@ -211,7 +211,7 @@
                 <table style="border-collapse: collapse;" class="probable100">
                     <tr>
                         <td>NOMBRE:</td>
-                        <td><b>Emiliano</b></td>
+                        <td><b></b></td>
                         <td>FIRMA: </td>
                         <td><img src="" width="70px" alt=""></td>
                     </tr>

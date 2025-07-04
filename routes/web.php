@@ -275,6 +275,9 @@ Route::resource('catalogos', 'App\Http\Controllers\Administracion\CatalogoContro
 
 Route::resource('recolectores','App\Http\Controllers\Administracion\RecolectorController');
 
+
+Route::resource('residuos','App\Http\Controllers\Administracion\ResiduoController');
+
 Route::get('BorrarRecolector/{id}','App\Http\Controllers\Administracion\RecolectorController@BorrarRecolector');
 
 
@@ -476,3 +479,7 @@ Route::resource('registrot','App\Http\Controllers\WebApp\Transportista\RegistroT
 
  Route::resource('homer','App\Http\Controllers\Recolectores\HomeController');
  Route::resource('recolectar','App\Http\Controllers\Recolectores\RecolectarController');
+ Route::get('hacerrecolleccion/{id}','App\Http\Controllers\Recolectores\RecolectarController@HacerRecoleccion');
+ Route::post('GuardarRecoleccion','App\Http\Controllers\Recolectores\RecolectarController@GuardarRecoleccion');
+
+ Route::resource('recoleccionesr','App\Http\Controllers\Recolectores\RecoleccionController');

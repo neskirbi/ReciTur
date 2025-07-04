@@ -23,14 +23,8 @@ class RecoleccionController extends Controller
     }
 
     function index(){
-       $recolecciones=Recoleccion::select('recolecciones.id','negocios.negocio','recolecciones.cantidad','negocios.tiponegocio',
-       'recolecciones.created_at','recolecciones.matriculat',
-        DB::RAW("(select contenedor from contenedores where opcion=recolecciones.contenedor) as contenedor"),
-        DB::RAW("(select residuo from residuos where opcion=recolecciones.residuo) as residuo"),
-        DB::RAW("(select plantaauto from plantas where id=recolecciones.id_municipio) as plantaauto"))
-        ->join('negocios','negocios.id','=','recolecciones.id_negocio')
-        ->where('recolecciones.id_municipio',GetIdMunicipio())
-        ->orderby('created_at','desc')
+      $recolecciones=Recoleccion::join('negocios','negocios.id','=','recolecciones.id_negocio')
+        ->orderby('recolecciones.created_at','desc')
         ->paginate(15);
         return view('administracion.recolecciones.index',['recolecciones'=>$recolecciones]);
     }

@@ -65,7 +65,7 @@
             </a>
         <nav class="navbar navbar-expand-md navbar-light">
             <button class="navbar-toggler" id="navbar-toggler">
-                <span class="navbar-toggler-icon"></span>
+                <i class="fa fa-bars fa-lg"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto extra-nav">
