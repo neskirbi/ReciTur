@@ -2,121 +2,163 @@
 <html lang="es">
 <head>
     @include('recolectores.header')
-    <title>Recitur | Cedula</title>
+    <title>Recitur | Cédula</title>
     <style>
-        .cedula-body {
+        @page {
+            size: auto;
+            margin: 0;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .document-main {
+            width: 1602px;
+            height: 2027px;
             position: relative;
-            width: 100%;
-            height: 500px;
-            background-image: url('{{ asset('images/cedulas/acapulco/bodycedula.png') }}');
-            background-size: cover;
+            margin: 20px;
+            background-image: url('{{ asset("images/cedulas/acapulco/acapulcocedula.png") }}');
+            background-size: 100% 100%;
             background-repeat: no-repeat;
-            background-position: center;
         }
 
-        .qr-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 365px;
-            height: 365px;
-            transform: translate(-50%, -50%);
-            z-index: 2;
-        }
-
-        .qr-overlay img {
+        
+        .content-table {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            cursor: pointer;
+            display: table;
         }
 
-        .qr-instructions {
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 1.1rem;
-            color: #333;
-            font-weight: bold;
+        .table-cell {
+            display: table-cell;
+            vertical-align: middle;
+            padding: 250px 0;
+        }
+
+        .content-box {
+            width: 80%;
+            max-width: 1200px;
+            margin: 0 auto;
             text-align: center;
-            z-index: 1;
         }
 
-        #reader {
-            position: fixed;
-            top: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 400px;
-            z-index: 9999;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-            padding: 1rem;
-            display: none;
+        h2, h4, p {
+            color: #000;
+            margin: 10px 0;
+            word-wrap: break-word;
         }
 
-        #close-reader {
-            text-align: right;
-            margin-bottom: 10px;
+        h4 {
+            font-size: 32px;
+            line-height: 1.3;
         }
 
-        @media (max-width: 576px) {
-            .qr-overlay {
-                width: 250px;
-                height: 250px;
-                top: 45%;
+        h2 {
+            font-size: 42px;
+            margin: 30px 0;
+        }
+
+        p {
+            font-size: 24px;
+        }
+
+        .qr-container img {
+            width: 400px;
+            height: 400px;
+            margin: 30px auto;
+        }
+
+        @media screen and (max-width: 1602px) {
+            .document-main {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 1602/2027;
+                margin: 10px;
+            }
+            
+            .table-cell {
+                padding: 15% 0;
+            }
+        }
+
+        @media print {
+            
+            body {
+                background: none;
+                display: block;
+                height: auto;
+            }
+            
+            .document-main {
+                width: 100%;
+                height: auto;                
+                aspect-ratio: 1602/2027;
+                margin: 0;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                page-break-after: avoid;
+                page-break-inside: avoid;
             }
 
-            .qr-instructions {
-                font-size: 0.9rem;
-                bottom: 5px;
+            
+            
+            .table-cell {
+                padding: 15% 0;
+            }
+            
+            /* Asegurar que el texto sea legible al imprimir */
+            h2, h4, p {
+                color: black !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
         }
     </style>
-    <!-- Carga la librería html5-qrcode -->
 </head>
 <body>
+
     @include('toast.toasts')
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <img src="{{ asset('images/cedulas/acapulco/headercedula.png') }}" alt="" style="margin-top: 50px;" width="100%">
-            <center>
-                <h4>Cedula de identificación <br>para Recolección de <br>Residuos Sólidos Urbanos</h4>
-                <h2>{{$negocio->negocio}}</h2>
-            </center>
+    <div class="document-main">
+        <div class="content-table">
+            <div class="table-cell">
+                <div class="content-box">
+                    <h2>Cédula de identificación <br>para Recolección de <br>Residuos Sólidos Urbanos</h2>
+                    <h4>{{ $negocio->negocio }}</h4>
 
-            <div class="cedula-body" style="margin-top: 50px;">
-                <div class="qr-overlay">
-                    <img src="{{asset($url)}}" alt="Escanear QR" onclick="abrirCamara()" />
+                    <div class="qr-container">
+                        <img src="{{ asset($url) }}" alt="Código QR" />
+                    </div>
+
+                    <p><strong>Nombre del establecimiento:</strong> {{ $negocio->negocio }}</p>
+                    <p><strong>Folio de registro:</strong> {{ $negocio->id }}</p>
+                    <p><strong>Licencia de funcionamiento:</strong> {{ $negocio->licencia }}</p>
+                    <p><strong>ESTE DOCUMENTO DEBERÁ EXHIBIRSE EN UN LUGAR VISIBLE PARA USO DE LA AUTORIDAD</strong></p>
                 </div>
-                <div class="qr-instructions">
-                    <p>
-                        <center>ESTE DOCUMENTO DEBERÁ EXHIBIRSE<center>
-                        <center>EN UN LUGAR VISIBLE PARA USO DE LA AUTORIDAD<center>
-                    </p>
-                </div>
-                <img src="{{ asset('images/cedulas/acapulco/bodycedula.png') }}" alt="" width="100%" style="visibility: hidden;">
             </div>
-
-            <img src="{{ asset('images/cedulas/acapulco/footercedula.png') }}" style="margin-top: 50px;" alt="" width="100%">
         </div>
     </div>
 
-    <!-- Contenedor del lector QR -->
-    <div id="reader">
-        <div id="close-reader">
-            <button onclick="cerrarCamara()" class="btn btn-sm btn-danger">Cerrar</button>
-        </div>
-        <div id="qr-reader"></div>
-    </div>
-
-  
-
-    
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Ajustar para impresión
+            window.onbeforeprint = function() {
+                $('.table-cell').css('padding', '15% 0');
+            };
+            
+            window.onafterprint = function() {
+                $('.table-cell').css('padding', '250px 0');
+            };
+        });
+    </script>
 </body>
 </html>
