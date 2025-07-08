@@ -20,7 +20,7 @@ class GeneralController extends Controller
         'recolectores.nombres','recolectores.apellidos',
         'negocios.negocio',
         'generadores.id_cliente','generadores.razonsocial','generadores.fisicaomoral','generadores.telefono','generadores.calle','generadores.numeroext','generadores.numeroint','generadores.colonia','generadores.municipio','generadores.cp','generadores.entidad')
-        ->join('recolectores','recolectores.id','=','recolecciones.id_recolector')    
+        ->leftjoin('recolectores','recolectores.id','=','recolecciones.id_recolector')    
         ->join('negocios','negocios.id','=','recolecciones.id_negocio')
         ->join('generadores','generadores.id','=','negocios.id_generador')
         ->join('clientes','clientes.id','=','generadores.id_cliente')
