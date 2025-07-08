@@ -59,10 +59,13 @@
 </head>
 <body>
 
-<center><img class="img-icono" src="{{public_path('images/formatos/manifiesto/destino.png')}}" alt="Destino"></center>
-    <div class="text-center titulo-manifiesto">
-        MANIFIESTO DE ENTREGA, TRANSPORTE Y RECEPCIÓN DE<br>RESIDUOS DE MANEJO ESPECIAL
-    </div>
+<center><img class="" src="{{public_path('images/formatos/manifiesto/headermanifiesto.png')}}" alt="" width="100%"></center>
+    <div class=" titulo-manifiesto">
+        MANIFIESTO DE ENTREGA, TRANSPORTE Y RECEPCIÓN DE RESIDUOS DE LA
+CONSTRUCCIÓN
+<br>
+Los generadores de residuos de la construcción deberán de presentar el manifiesto de entrega,
+transporte y recepción de residuos de la construcción de acuerdo al instructivo. 
 
     <div class="text-right"><b>Folio: {{$recoleccion->folio}}</b></div>
     <br>
