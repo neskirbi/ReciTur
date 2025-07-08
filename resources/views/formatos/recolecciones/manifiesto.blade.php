@@ -8,8 +8,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            font-size: 10px;
-            line-height: 1.4;
+            font-size: 8px; /* Tamaño de letra reducido */
+            line-height: 1.3; /* Ajuste de interlineado */
         }
         .bordes {
             border: 2px solid #000;
@@ -31,41 +31,46 @@
             border-collapse: collapse;
         }
         td {
-            padding: 3px;
-            vertical-align: top;
+            padding: 2px; /* Reducido el padding */
+            vertical-align: middle; /* Alineación vertical al centro para todas las celdas */
         }
         hr {
             border: 0.5px solid #000;
-            margin: 5px 0;
+            margin: 3px 0; /* Margen reducido */
         }
         .img-firma {
-            width: 70px;
-            height: 40px;
+            width: 60px; /* Tamaño reducido */
+            height: 30px; /* Tamaño reducido */
             object-fit: contain;
         }
         .img-icono {
-            width: 15px;
-            padding: 10px;
+            width: 12px; /* Tamaño reducido */
+            padding: 5px; /* Padding reducido */
         }
         .titulo-manifiesto {
-            font-size: 12px;
+            font-size: 10px; /* Tamaño reducido */
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 5px; /* Margen reducido */
         }
         .bolder {
             font-weight: bold;
+        }
+        /* Estilo específico para celdas con iconos */
+        .icon-cell {
+            vertical-align: middle;
+            text-align: center;
+            width: 30px;
         }
     </style>
 </head>
 <body>
 
 <center><img class="" src="{{public_path('images/formatos/manifiesto/headermanifiesto.png')}}" alt="" width="100%"></center>
-    <div class=" titulo-manifiesto">
-        MANIFIESTO DE ENTREGA, TRANSPORTE Y RECEPCIÓN DE RESIDUOS DE LA
-CONSTRUCCIÓN
-<br>
-Los generadores de residuos de la construcción deberán de presentar el manifiesto de entrega,
-transporte y recepción de residuos de la construcción de acuerdo al instructivo. 
+    <div class="titulo-manifiesto">
+        MANIFIESTO DE ENTREGA, TRANSPORTE Y RECEPCIÓN DE RESIDUOS DE LA CONSTRUCCIÓN
+        <br>
+        Los generadores de residuos de la construcción deberán de presentar el manifiesto de entrega,
+        transporte y recepción de residuos de la construcción de acuerdo al instructivo. 
 
     <div class="text-right"><b>Folio: {{$recoleccion->folio}}</b></div>
     <br>
@@ -73,12 +78,12 @@ transporte y recepción de residuos de la construcción de acuerdo al instructiv
     <table class="bordes w-100">
         <!-- Sección Generador -->
         <tr>
-            <td class="bordes" style="width: 30px;"><center><img class="img-icono" src="{{public_path('images/formatos/manifiesto/generador.png')}}" alt="Generador"></center></td>
+            <td class="bordes icon-cell"><img class="img-icono" src="{{public_path('images/formatos/manifiesto/generador.png')}}" alt="Generador"></td>
             <td class="bordes">
                 NÚM. DE REGISTRO (Resolutivo de Impacto Ambiental, Plan de Manejo): <span class="bolder">{{$recoleccion->nautorizacion ?? 'N/A'}}</span>
-                <br><br>
+                <br>
                 RAZÓN SOCIAL DE LA PERSONA: <span class="bolder">{{$recoleccion->razonsocial ?? 'N/A'}}</span>
-                <br><br>
+                <br>
                 
                 <table>
                     <tr>
@@ -118,7 +123,6 @@ transporte y recepción de residuos de la construcción de acuerdo al instructiv
                     @endforeach
                 </table>
 
-                
                 <hr>
 
                 <div class="text-center"><b>DECLARACIÓN DEL GENERADOR:</b></div>
@@ -127,7 +131,7 @@ transporte y recepción de residuos de la construcción de acuerdo al instructiv
                     BIEN EMPACADO, MARCADO Y ROTULADO, Y QUE SE HAN PREVISTO LAS CONDICIONES DE SEGURIDAD PARA SU TRANSPORTE 
                     POR VIA TERRESTRE DE ACUERDO A LA LEGISLACIÓN VIGENTE.
                 </div>
-                <br><br>
+                <br>
 
                 <table>
                     <tr>
@@ -147,7 +151,7 @@ transporte y recepción de residuos de la construcción de acuerdo al instructiv
 
         <!-- Sección Transportista -->
         <tr>
-            <td class="bordes"><center><img class="img-icono" src="{{public_path('images/formatos/manifiesto/transporte.png')}}" alt="Transporte"></center></td>
+            <td class="bordes icon-cell"><img class="img-icono" src="{{public_path('images/formatos/manifiesto/transporte.png')}}" alt="Transporte"></td>
             <td class="bordes">
                 <table>
                     <tr>
@@ -219,7 +223,7 @@ transporte y recepción de residuos de la construcción de acuerdo al instructiv
 
         <!-- Sección Destino -->
         <tr>
-            <td class="bordes"><center><img class="img-icono" src="{{public_path('images/formatos/manifiesto/destino.png')}}" alt="Destino"></center></td>
+            <td class="bordes icon-cell"><img class="img-icono" src="{{public_path('images/formatos/manifiesto/destino.png')}}" alt="Destino"></td>
             <td class="bordes">
                 <table>
                     <tr>
