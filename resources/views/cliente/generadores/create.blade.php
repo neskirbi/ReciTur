@@ -40,7 +40,7 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="razonsocial">Denominación/Razon social</label>
-                                    <input type="text" name="razonsocial" class="form-control" id="razonsocial" placeholder="Denominación/Razon social" maxlength="250" aria-invalid="false" value="{{ app()->environment('local') ? 'Empresa Ejemplo S.A. de C.V.' : '' }}">
+                                    <input type="text" name="razonsocial" class="form-control" id="razonsocial" placeholder="Denominación/Razon social" maxlength="250" aria-invalid="false" >
                                 </div>
 
                                 <div class="row">
@@ -48,10 +48,10 @@
                                         <div class="form-group">
                                             <label for="fisicaomoral">Persona</label>
                                             <select  name="fisicaomoral" class="form-control" id="fisicaomoral" aria-invalid="false" maxlength="50">
-                                                <option value="">Persona</option>
+                                                <option >
                                                 <optgroup>
-                                                <option value="Moral">Moral</option>
-                                                <option value="Física">Física</option>
+                                                <option >
+                                                <option >
                                                 </optgroup>
                                                 
                                             </select>
@@ -61,7 +61,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                           <label for="rfc">RFC</label>
-                                            <input type="text" name="rfc" class="form-control" id="rfc" placeholder="RFC" maxlength="250" aria-invalid="false" value="{{ app()->environment('local') ? 'XCASDFDSF34' : '' }}">
+                                            <input type="text" name="rfc" class="form-control" id="rfc" placeholder="RFC" maxlength="250" aria-invalid="false" >
                                         </div>
                                     </div>
               
@@ -74,21 +74,21 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="calle">Calle</label>
-                                            <input type="text" name="calle" class="form-control" id="calle" placeholder="Calle" maxlength="500" aria-invalid="false" value="{{ app()->environment('local') ? 'Av. Reforma' : '' }}">
+                                            <input type="text" name="calle" class="form-control" id="calle" placeholder="Calle" maxlength="500" aria-invalid="false" >
                                         </div>
                                     </div>
 
                                     <div class="col-md-3">                                    
                                         <div class="form-group">
                                             <label for="numeroext">Número ext.</label>
-                                            <input type="text" name="numeroext" class="form-control" id="numeroext" placeholder="Número ext." maxlength="20" aria-invalid="false" value="{{ app()->environment('local') ? '123' : '' }}">
+                                            <input type="text" name="numeroext" class="form-control" id="numeroext" placeholder="Número ext." maxlength="20" aria-invalid="false" >
                                         </div>
                             
                                     </div>
                                     <div class="col-md-3"> 
                                         <div class="form-group">
                                             <label for="numeroint">Número int.</label>
-                                            <input type="text" name="numeroint" class="form-control" id="numeroint" placeholder="Número int." maxlength="20" aria-invalid="false" value="{{ app()->environment('local') ? 'B' : '' }}">
+                                            <input type="text" name="numeroint" class="form-control" id="numeroint" placeholder="Número int." maxlength="20" aria-invalid="false" >
                                         </div>
                             
                                     </div>
@@ -97,7 +97,7 @@
 
                                 <div class="form-group">
                                     <label for="colonia">Colonia</label>
-                                    <input type="text" name="colonia" class="form-control" id="colonia" placeholder="Colonia" aria-invalid="false" maxlength="250" value="{{ app()->environment('local') ? 'Juárez' : '' }}">
+                                    <input type="text" name="colonia" class="form-control" id="colonia" placeholder="Colonia" aria-invalid="false" maxlength="250" >
                                 </div>
 
                                 <div class="row">
@@ -107,9 +107,9 @@
                                             <label for="entidad">Entidad federativa</label>
                                             <!--<input  type="text" name="entidad" class="form-control" id="entidad" placeholder="Entidad federativa" aria-invalid="false" >-->
                                             <select  name="entidad" class="form-control" id="entidad">
-                                                <option value="">--Entidad Federativa--</option>
+                                                <option >
                                                 @foreach($entidades as $entidad)
-                                                <option value="{{$entidad->entidad}}">{{$entidad->entidad}}</option>
+                                                <option >
                                                 @endforeach
                                             </select>
                                         </div>
@@ -118,7 +118,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="municipio">Municipio/Alcaldía</label>
-                                            <input type="text" name="municipio" class="form-control" id="municipio" placeholder="Municipio" aria-invalid="false" maxlength="150" value="{{ app()->environment('local') ? 'Cuauhtémoc' : '' }}">
+                                            <input type="text" name="municipio" class="form-control" id="municipio" placeholder="Municipio" aria-invalid="false" maxlength="150" >
                                         </div>
                                     </div>
 
@@ -129,7 +129,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="cp">CP</label>
-                                            <input type="text" name="cp" class="form-control" id="cp" placeholder="CP" aria-invalid="false" maxlength="20" value="{{ app()->environment('local') ? '06600' : '' }}">
+                                            <input type="text" name="cp" class="form-control" id="cp" placeholder="CP" aria-invalid="false" maxlength="20" >
                                         </div>
                                     </div>
                                 </div>
@@ -139,14 +139,14 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="telefono">Teléfono</label>
-                                            <input type="text" name="telefono" class="form-control" id="telefono" placeholder="Teléfono" aria-invalid="false" maxlength="50" value="{{ app()->environment('local') ? '5555123456' : '' }}">
+                                            <input type="text" name="telefono" class="form-control" id="telefono" placeholder="Teléfono" aria-invalid="false" maxlength="50" >
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="estado">Celular</label>
-                                            <input type="text" name="celular" class="form-control" id="celular" placeholder="Celular" aria-invalid="false" maxlength="50" value="{{ app()->environment('local') ? '5512345678' : '' }}">
+                                            <input type="text" name="celular" class="form-control" id="celular" placeholder="Celular" aria-invalid="false" maxlength="50" >
                                         </div>
                                     </div>
                                 </div>
@@ -156,14 +156,14 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="mail">Correo</label>
-                                            <input type="text" name="mail" class="form-control" id="mail" placeholder="Correo" aria-invalid="false" maxlength="150" value="{{ app()->environment('local') ? 'correo@ejemplo.com' : '' }}">
+                                            <input type="text" name="mail" class="form-control" id="mail" placeholder="Correo" aria-invalid="false" maxlength="150" >
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="mail">Correo</label>
-                                            <input type="text" name="mail2" class="form-control" id="mail2" placeholder="Correo" aria-invalid="false" maxlength="150" value="{{ app()->environment('local') ? 'contacto@empresa.com' : '' }}">
+                                            <input type="text" name="mail2" class="form-control" id="mail2" placeholder="Correo" aria-invalid="false" maxlength="150" >
                                         </div>
                                     </div>
                                 </div>
@@ -183,7 +183,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="nombresrepre">Nombre(s)</label>
-                                            <input type="text" name="nombresrepre" class="form-control" id="nombresrepre" placeholder="Nombre(s)" aria-invalid="false" maxlength="150" value="{{ app()->environment('local') ? 'Carlos' : '' }}">
+                                            <input type="text" name="nombresrepre" class="form-control" id="nombresrepre" placeholder="Nombre(s)" aria-invalid="false" maxlength="150" >
                                         </div>
                                         
                                     </div>
@@ -192,14 +192,14 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="apellidosrepre">Apellidos</label>
-                                            <input type="text" name="apellidosrepre" class="form-control" id="apellidosrepre" placeholder="Apellidos" aria-invalid="false" maxlength="150" value="{{ app()->environment('local') ? 'Ramírez Gómez' : '' }}">
+                                            <input type="text" name="apellidosrepre" class="form-control" id="apellidosrepre" placeholder="Apellidos" aria-invalid="false" maxlength="150" >
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                           <label for="rfcrepre">RFC</label>
-                                            <input type="text" name="rfcrepre" class="form-control" id="rfcrepre" placeholder="RFC" maxlength="250" aria-invalid="false" value="{{ app()->environment('local') ? 'XCASDFDSF34' : '' }}">
+                                            <input type="text" name="rfcrepre" class="form-control" id="rfcrepre" placeholder="RFC" maxlength="250" aria-invalid="false" >
                                         </div>
                                     </div>
                                     
@@ -209,7 +209,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="nombresrepre">Número de Teléfono del Representante Legal </label>
-                                            <input type="text" name="numrepresent" class="form-control" id="numrepresent" placeholder="Núm. Representante Legal" aria-invalid="false" maxlength="150" value="{{ app()->environment('local') ? '5511122233' : '' }}">
+                                            <input type="text" name="numrepresent" class="form-control" id="numrepresent" placeholder="Núm. Representante Legal" aria-invalid="false" maxlength="150" >
                                         </div>
                                         
                                     </div>
@@ -217,7 +217,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="apellidosrepre">Correo Electrónico del Representante Legal</label>
-                                            <input type="text" name="correorepresent" class="form-control" id="correorepresent" placeholder="Mail Representante Legal" aria-invalid="false" maxlength="150" value="{{ app()->environment('local') ? 'carlos.ramirez@ejemplo.com' : '' }}">
+                                            <input type="text" name="correorepresent" class="form-control" id="correorepresent" placeholder="Mail Representante Legal" aria-invalid="false" maxlength="150" >
                                         </div>
                                     </div>
                                     
@@ -227,7 +227,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="nacionalidadrepre">Nacionalidad</label>
-                                            <input type="text" name="nacionalidadrepre" class="form-control" id="nacionalidadrepre" placeholder="Nacionalidad" aria-invalid="false" maxlength="100" value="{{ app()->environment('local') ? 'Mexicana' : '' }}">
+                                            <input type="text" name="nacionalidadrepre" class="form-control" id="nacionalidadrepre" placeholder="Nacionalidad" aria-invalid="false" maxlength="100" >
                                         </div>
                                     </div>
                                 </div>
@@ -240,11 +240,11 @@
                                             <label for="identificacionrepre">Identificación</label>
                                             <!--<input  type="text" name="identificacionrepre" class="form-control" id="identificacionrepre" placeholder="Identificación" aria-invalid="false" >-->
                                             <select class="form-control" name="identificacionrepre" id="identificacionrepre"  aria-invalid="false">
-                                                <option value="">--Identificación--</option>
+                                                <option >
                                                 <optgroup>
-                                                <option value="INE">INE</option>
-                                                <option value="Pasaporte">Pasaporte</option>
-                                                <option value="Cédula Profesional">Cédula Profesional</option>
+                                                <option >
+                                                <option >
+                                                <option >
                                                 </optgroup>
                                             </select>
                                           
@@ -274,7 +274,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="numeroactacont">Acta Constitutiva</label>
-                                            <input type="text" name="numeroactacont" class="form-control" id="numeroactacont" placeholder="Acta Constitutiva" aria-invalid="false" value="{{ app()->environment('local') ? '45' : '' }}">
+                                            <input type="text" name="numeroactacont" class="form-control" id="numeroactacont" placeholder="Acta Constitutiva" aria-invalid="false" >
                                         </div>
                                     </div>
                                 </div>    
@@ -284,21 +284,21 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="notario">Nombre del notario o corredor público</label>
-                                            <input type="text" name="notario" class="form-control" id="notario" placeholder="Nombre del notario o corredor público" aria-invalid="false" maxlength="250" value="{{ app()->environment('local') ? 'Lic. Jorge Mendoza' : '' }}">
+                                            <input type="text" name="notario" class="form-control" id="notario" placeholder="Nombre del notario o corredor público" aria-invalid="false" maxlength="250" >
                                         </div>
                                     </div>
                                 
                                     <!--<div class="col-md-6">
                                         <div class="form-group">
                                             <label for="numeronotario">Número de notario o corredor</label>
-                                            <input type="text" name="numeronotario" class="form-control" id="numeronotario" placeholder="Número de notario o corredor" aria-invalid="false" value="{{ app()->environment('local') ? '45' : '' }}">
+                                            <input type="text" name="numeronotario" class="form-control" id="numeronotario" placeholder="Número de notario o corredor" aria-invalid="false" >
                                         </div>
                                     </div>-->
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="numeronotaria">Número de notaría o correduría</label>
-                                            <input type="text" name="numeronotaria" class="form-control" id="numeronotaria" placeholder="Número de notaría o correduría" aria-invalid="false" maxlength="150" value="{{ app()->environment('local') ? '123' : '' }}">
+                                            <input type="text" name="numeronotaria" class="form-control" id="numeronotaria" placeholder="Número de notaría o correduría" aria-invalid="false" maxlength="150" >
                                         </div>
                                     </div>
                                 </div>
@@ -310,9 +310,9 @@
                                             <label for="entidadnotaria">Entidad de la notaría</label>
                                             <!--<input  type="text" name="entidad" class="form-control" id="entidad" placeholder="Entidad federativa" aria-invalid="false" >-->
                                             <select  name="entidadnotaria" class="form-control" id="entidadnotaria">
-                                                <option value="">--Entidad de la notaría--</option>
+                                                <option >
                                                   @foreach($entidades as $entidad)
-                                                <option value="{{$entidad->entidad}}">{{$entidad->entidad}}</option>
+                                                <option >
                                                 @endforeach
                                             </select>
                                         </div>
@@ -332,7 +332,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="nombresfisica">Nombre(s)</label>
-                                            <input type="text" name="nombresfisica" class="form-control" id="nombresfisica" placeholder="Nombre(s)" aria-invalid="false" maxlength="150" value="{{ app()->environment('local') ? 'Ana María' : '' }}">
+                                            <input type="text" name="nombresfisica" class="form-control" id="nombresfisica" placeholder="Nombre(s)" aria-invalid="false" maxlength="150" >
                                         </div>
                                         
                                     </div>
@@ -340,7 +340,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="apellidosfisica">Apellidos</label>
-                                            <input type="text" name="apellidosfisica" class="form-control" id="apellidosfisica" placeholder="Apellidos" aria-invalid="false" maxlength="150" value="{{ app()->environment('local') ? 'López Pérez' : '' }}">
+                                            <input type="text" name="apellidosfisica" class="form-control" id="apellidosfisica" placeholder="Apellidos" aria-invalid="false" maxlength="150" >
                                         </div>
                                     </div>
                                     
@@ -350,7 +350,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="nacionalidadfisica">Nacionalidad</label>
-                                            <input type="text" name="nacionalidadfisica" class="form-control" id="nacionalidadfisica" placeholder="Nacionalidad" aria-invalid="false" maxlength="100" value="{{ app()->environment('local') ? 'Mexicana' : '' }}">
+                                            <input type="text" name="nacionalidadfisica" class="form-control" id="nacionalidadfisica" placeholder="Nacionalidad" aria-invalid="false" maxlength="100" >
                                         </div>
                                     </div>
                                 </div>
@@ -362,11 +362,11 @@
                                             <label for="identificacionfisica">Identificación</label>
                                             <!--<input  type="text" name="identificacionfisica" class="form-control" id="identificacionfisica" placeholder="Identificación" aria-invalid="false" >-->
                                             <select class="form-control" name="identificacionfisica" id="identificacionfisica"  aria-invalid="false">
-                                                <option value="">--Identificación--</option>
+                                                <option >
                                                 <optgroup>
-                                                <option value="INE">INE</option>
-                                                <option value="Pasaporte">Pasaporte</option>
-                                                <option value="Cédula Profesional">Cédula Profesional</option>
+                                                <option >
+                                                <option >
+                                                <option >
                                                 </optgroup>
                                             </select>
                                         </div>

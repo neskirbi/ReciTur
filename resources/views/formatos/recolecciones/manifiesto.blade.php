@@ -59,6 +59,7 @@
 </head>
 <body>
 
+<center><img class="img-icono" src="{{public_path('images/formatos/manifiesto/destino.png')}}" alt="Destino"></center>
     <div class="text-center titulo-manifiesto">
         MANIFIESTO DE ENTREGA, TRANSPORTE Y RECEPCIÓN DE<br>RESIDUOS DE MANEJO ESPECIAL
     </div>

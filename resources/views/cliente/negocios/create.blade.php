@@ -13,7 +13,9 @@
 
   <div class="content-wrapper">
     <!-- Content Header -->
-    <div class="content-header"></div>
+    <div class="content-header">
+      &nbsp;
+    </div>
     <!-- /.content-header -->
 
     <!-- Main Content -->
