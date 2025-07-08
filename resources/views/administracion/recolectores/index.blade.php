@@ -19,7 +19,10 @@
             <section class="content">
                 
             @include('administracion.sidebar')
-                <div class="container-fluid">
+                <div class="container-fluid"><!-- Botón para abrir el modal -->
+                    <a href="{{url('recolectores/create')}}" class="btn btn-theme-primary mb-3">
+                        <i class="fas fa-plus-circle me-2"></i> Agregar Nuevo Recolector
+                    </a>
                     <div class="row">
                         <div class="col-12">
                             <div class="card">

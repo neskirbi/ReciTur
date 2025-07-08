@@ -42,7 +42,7 @@ class RecolectorController extends Controller
      */
     public function create()
     {
-        //
+        return view('administracion.recolectores.create');
     }
 
     /**
@@ -53,16 +53,18 @@ class RecolectorController extends Controller
      */ 
     public function store(Request $request)
     {
-        $recolector = Recolector::where('mail','=',$request->mail)->first();
-        if($recolector){
-            return Redirect::back()->with('error','El correo ya fue registrado anteriormente.');
+        //return $request;
+        $correo = BuscarCorreo($request->mail);
+        if($correo !=''){
+            return Redirect::back()->with('error','El correo ya fue registrado anteriormente en '.$correo);
         }
+
         
         $recolector=new Recolector();
 
-        $recolector->id=GetUuid();
-        $recolector->id_municipio=GetIdMunicipio();        
-        $recolector->recolector=$request->nombre;
+        $recolector->id=GetUuid();        
+        $recolector->nombres=$request->nombres;
+        $recolector->apellidos=$request->apellidos;
         $recolector->mail=$request->mail;                        
         $recolector->telefono=$request->telefono;             
         $recolector->pass=$request->pass;
