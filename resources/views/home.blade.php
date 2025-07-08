@@ -3,7 +3,30 @@
 <head>
     @include('header')
     <title>Recitur | GM</title>
-    
+    <style>
+        .footer {
+        /* Estilos generales para la imagen */
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        }
+
+        @media (orientation: portrait) {
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: -1; /* Opcional: si quieres que esté detrás del contenido */
+        }
+        
+        /* Opcional: para asegurar que el contenedor padre tenga posición relativa */
+        .contenedor-imagen {
+            position: relative;
+            min-height: 100vh; /* Ajusta según necesites */
+        }
+        }
+    </style>
 </head>
 <body>
     @include('toast.toasts')

@@ -1,2 +1,2 @@
-<img src="{{asset('images/GOBMF.png')}}" alt="Imagen principal" style="width: 100%; display: block;">
+<img src="{{asset('images/GOBMF.png')}}" class="footer" alt="Imagen principal" style=" ">
 @include('firebaseanalytics')
