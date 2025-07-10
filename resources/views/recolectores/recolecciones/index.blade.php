@@ -36,21 +36,31 @@
                       <table class="table table-hover text-nowrap">
                         <thead class="thead-light">
                           <tr>
-                            <th>Establecimientos</th>
                             <th>Día</th>
+                            <th>Recolecciones</th>
+                            <th>Opciones</th>
                           </tr>
                         </thead>
                         <tbody>
                           @foreach($recolecciones as $recoleccion)
                           <tr>
-                            <td>{{$recoleccion->negocio}}</td>
-                            <td>{{FechaFormateadaTiempo($recoleccion->created_at)}}</td>
-                           
+                            <td>{{FechaFormateada($recoleccion->fecha)}}</td>
+                            <td>{{$recoleccion->recolecciones}} Recolecciones</td>
+                            <td>
+                              <a href="manifiestorecoleccion/{{$recoleccion->fecha}}" target="_blank" class="btn btn-theme-info">
+                                <i class="fa fa-download"></i> Manifiesto
+                              </a>
+                            </td>                           
                           </tr>
                           @endforeach
+                          
                         </tbody>
                       </table>
+                      <div class="d-flex justify-content-center mt-4">
+                      {{ $recolecciones->appends($_GET)->links('pagination::bootstrap-4') }}
                     </div>
+                    </div>
+                    
                     @else
                     <div class="alert alert-info" role="alert">
                       <i class="fa fa-info-circle mr-2"></i>No hay recolecciones para mostrar.

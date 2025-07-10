@@ -483,3 +483,6 @@ Route::resource('registrot','App\Http\Controllers\WebApp\Transportista\RegistroT
  Route::post('GuardarRecoleccion','App\Http\Controllers\Recolectores\RecolectarController@GuardarRecoleccion');
 
  Route::resource('recoleccionesr','App\Http\Controllers\Recolectores\RecoleccionController');
+
+Route::get('manifiestorecoleccion/{fecha}','App\Http\Controllers\Recolectores\RecoleccionController@ManifiestoRecolector');
+ 
