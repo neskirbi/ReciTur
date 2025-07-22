@@ -278,6 +278,12 @@ Route::resource('recolectores','App\Http\Controllers\Administracion\RecolectorCo
 
 Route::resource('residuos','App\Http\Controllers\Administracion\ResiduoController');
 
+Route::resource('contenedores','App\Http\Controllers\Administracion\ContenedorController');
+
+
+
+
+
 Route::get('BorrarRecolector/{id}','App\Http\Controllers\Administracion\RecolectorController@BorrarRecolector');
 
 

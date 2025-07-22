@@ -4,22 +4,22 @@ namespace App\Http\Controllers\Administracion;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Contenedor;
 
-use App\Models\Residuo;
-
-class ResiduoController extends Controller
+class ContenedorController extends Controller
 {
-    
     
     public function __construct(){
         $this->middleware('administradorlogged');
     }
+
     
     public function index()
     {
-        $residuos = Residuo::orderby('categoria','asc')->orderby('residuo','asc')->get();
-        return view('administracion.residuos.index',['residuos'=>$residuos]);
+        $contenedores = Contenedor::orderby('contenedor','asc')->get();
+        return view('administracion.contenedores.index',['contenedores'=>$contenedores]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -37,15 +37,13 @@ class ResiduoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $residuo = new Residuo();
-        $residuo->id = GetUuid();
-        $residuo->categoria = $request->categoria;
-        $residuo->residuo = $request->residuo;
-        $residuo->save();
-        
-        return redirect()->back()->with('success', 'Residuo guardado correctamente.');
+    public function store(Request $request){
+        $cont = new Contenedor();
+        $cont->id = GetUuid();
+        $cont->contenedor = $request->contenedor;
+        $cont->save();
+
+        return redirect('contenedores')->with('success','Datos guardados.');
     }
 
     /**
@@ -77,24 +75,21 @@ class ResiduoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        // Validar datos
-   
+    
+    
 
-        // Buscar el residuo por ID
-        $residuo = Residuo::findOrFail($id);
+    
 
-        // Actualizar campos
-        $residuo->categoria = $request->input('categoria');
-        $residuo->residuo   = $request->input('residuo');
-        $residuo->updated_at = now();
+    public function update(Request $request,$id){
 
-        $residuo->save();
+        $cont = Contenedor::find($id);
+        
+        $cont->contenedor = $request->contenedor;
+        $cont->save();
 
-        return redirect()->back()->with('success', 'Residuo actualizado correctamente.');
-    }
+        return redirect('contenedores')->with('success','Datos guardados.');
 
+    } 
     /**
      * Remove the specified resource from storage.
      *
@@ -103,10 +98,10 @@ class ResiduoController extends Controller
      */
     public function destroy($id)
     {
-        // // Buscar el residuo por ID
-        $residuo = Residuo::findOrFail($id);
-        $residuo->delete();
-        return redirect()->back()->with('error', 'Residuo borrado correctamente.');
+        $cont = Contenedor::find($id);
+        
+        $cont->delete();
 
+        return redirect('contenedores')->with('error','Datos borrados.');
     }
 }

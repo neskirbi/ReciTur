@@ -26,7 +26,7 @@
       <div class="container-fluid">
         <!-- Botón para abrir el modal -->
         <button type="button" class="btn btn-theme-primary mb-3" data-bs-toggle="modal" data-bs-target="#nuevoResiduoModal">
-          <i class="fas fa-plus-circle me-2"></i> Agregar Nuevo Residuo
+          <i class="fas fa-plus-circle me-2"></i> Agregar Nuevo Contenedor
         </button>
 
 
@@ -34,7 +34,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header position-relative">
-                <h3 class="card-title"><i class="fa fa-recycler title-icon" aria-hidden="true"></i> Residuos </h3>
+                <h3 class="card-title"><i class="fa fa-trash-alt title-icon" aria-hidden="true"></i> Contenedor </h3>
 
                 
 
@@ -47,40 +47,24 @@
                 
                 <div class="row">
                   <div class="col-md-12" >
-                    @if(count($residuos))
+                    @if(count($contenedores))
                     
                     
-                        @php
-                          $agrupados = $residuos->groupBy('categoria');
-                        @endphp
-
-                        @foreach($agrupados as $categoria => $items)
-                          <div class="mb-4">
-                            <!-- Encabezado de categoría -->
-                            <h5 class="text-theme-primary border-bottom pb-1 mb-3">
-                              <i class="fa fa-tag me-2"></i>{{ $categoria }}
-                            </h5>
-
-                            <ul class="list-group">
-                              @foreach($items as $residuo)
+                     <ul class="list-group">
+                              @foreach($contenedores as $contenedor)
                               <li class="list-group-item border-theme-primary mb-2">
-                                <form method="POST" action="{{ route('residuos.update', $residuo->id) }}" class="residuo-form">
+                                <form method="POST" action="{{ route('contenedores.update', $contenedor->id) }}" class="residuo-form">
                                   @csrf
                                   @method('PUT')
 
                                   <div class="row">
                                     <!-- Categoría (renglón completo) -->
                                     <div class="col-md-6 mb-2">
-                                      <label class="form-label small text-muted">Categoría</label>
-                                      <input type="text" name="categoria" value="{{ $residuo->categoria }}" class="form-control form-control-sm">
+                                      <label class="form-label small text-muted">Contenedor</label>
+                                      <input type="text" name="contenedor" value="{{ $contenedor->contenedor }}" class="form-control form-control-sm">
                                     </div>
 
-                                    <!-- Residuo (renglón completo) -->
-                                    <div class="col-md-6 mb-2">
-                                      <label class="form-label small text-muted">Nombre del residuo</label>
-                                      <input type="text" name="residuo" value="{{ $residuo->residuo }}" class="form-control form-control-sm">
-                                    </div>
-
+                                
                                    
 
                                     <!-- Botones -->
@@ -89,7 +73,7 @@
                                         <i class="fa fa-save"></i> Guardar
                                       </button>
                                       
-                                      <button type="button" class="btn btn-sm btn-danger" onclick="confirmarEliminacion('{{ $residuo->id }}')">
+                                      <button type="button" class="btn btn-sm btn-danger" onclick="confirmarEliminacion('{{ $contenedor->id }}')">
                                         <i class="fa fa-trash"></i>
                                       </button>
                                     </div>
@@ -97,15 +81,13 @@
                                 </form>
 
                                 <!-- Formulario oculto para eliminar -->
-                                <form id="delete-form-{{ $residuo->id }}" action="{{ route('residuos.destroy', $residuo->id) }}" method="POST" style="display: none;">
+                                <form id="delete-form-{{ $contenedor->id }}" action="{{ route('contenedores.destroy', $contenedor->id) }}" method="POST" style="display: none;">
                                   @csrf
                                   @method('DELETE')
                                 </form>
                               </li>
                               @endforeach
                             </ul>
-                          </div>
-                        @endforeach
 
 
                    
@@ -145,32 +127,19 @@ function confirmarEliminacion(id) {
         <h5 class="modal-title" id="nuevoResiduoModalLabel">Registrar Nuevo Residuo</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form method="POST" action="{{ route('residuos.store') }}" id="formNuevoResiduo">
+      <form method="POST" action="{{ route('contenedores.store') }}" id="formNuevoResiduo">
         @csrf
         <div class="modal-body">
           <div class="mb-3">
-            <label for="categoria" class="form-label">Categoría</label>
-            <input type="text" class="form-control" id="categoria" name="categoria" required>
+            <label for="contenedor" class="form-label">Contenedor</label>
+            <input type="text" class="form-control" id="contenedor" name="contenedor" required>
           </div>
-          <div class="mb-3">
-            <label for="residuo" class="form-label">Nombre del Residuo</label>
-            <input type="text" class="form-control" id="residuo" name="residuo" required>
-          </div>
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="precio" class="form-label">Precio</label>
-              <input type="number" step="0.01" class="form-control" id="precio" name="precio" required>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="unidades" class="form-label">Unidades</label>
-              <input type="text" class="form-control" id="unidades" name="unidades" value="Kg" required>
-            </div>
-          </div>
+          
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
           <button type="submit" class="btn btn-theme-primary">
-            <i class="fas fa-save me-2"></i>Guardar Residuo
+            <i class="fas fa-save me-2"></i>Guardar Contenedor
           </button>
         </div>
       </form>

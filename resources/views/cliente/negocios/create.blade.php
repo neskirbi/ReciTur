@@ -58,6 +58,14 @@
                         
                       </div>
                     </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="tiponegocio"><i class="fas fa-store"></i> Giro del Establecimiento</label>
+                        <input type="text" name="tiponegocio" id="tiponegocio" class="form-control" placeholder="Giro del Establecimiento" required>
+                        
+                      </div>
+                    </div>
                   </div>
 
                   <div class="row">

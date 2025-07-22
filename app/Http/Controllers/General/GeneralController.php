@@ -30,7 +30,7 @@ class GeneralController extends Controller
 
         // Obtener los detalles de recolección por separado
         $detallesRecoleccion = DB::table('recoleccion')
-        ->select('recoleccion.residuo','recoleccion.cantidad','recoleccion.subtotal','recoleccion.unidades')
+        ->select('recoleccion.residuo','recoleccion.cantidad','recoleccion.contenedor')
         ->where('id_recoleccion', $recoleccion->id)
         ->get();
         
@@ -39,7 +39,7 @@ class GeneralController extends Controller
         $configuracion = array();
 
         $administrador = array();
-        //return view('formatos.recolecciones.manifiesto',['recoleccion'=>$recoleccion,'configuracion'=>$configuracion,'planta'=>$planta,'administrador'=>$administrador]);
+        //return view('formatos.recolecciones.manifiesto',['recoleccion'=>$recoleccion,'configuracion'=>$configuracion,'planta'=>$planta,'administrador'=>$administrador,'detallesRecoleccion'=>$detallesRecoleccion]);
         $pdf = \PDF::loadView('formatos.recolecciones.manifiesto',['recoleccion'=>$recoleccion,'configuracion'=>$configuracion,'planta'=>$planta,'administrador'=>$administrador,'detallesRecoleccion'=>$detallesRecoleccion]);
         
         return $pdf ->setPaper('A4', 'portrait')->download($recoleccion->negocio.'.pdf');
@@ -63,5 +63,5 @@ class GeneralController extends Controller
         'citas.condicionesmaterial','citas.planta','citas.plantaauto','citas.direccionplanta',
         'citas.nombreres','citas.firmares','citas.nombrecompleto','citas.firmachof','citas.recibio',
         'citas.cargo','citas.firmarecibio','citas.confirmacion')
-     */
+    **/
 }

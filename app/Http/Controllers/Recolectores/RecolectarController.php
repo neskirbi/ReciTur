@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Residuo;
 use App\Models\Negocio;
 use App\Models\Recoleccion;
+use App\Models\Contenedor;
 use App\Models\Recolec;
 
 class RecolectarController extends Controller
@@ -99,51 +100,42 @@ class RecolectarController extends Controller
     function HacerRecoleccion($id){
         $residuos = Residuo::orderby('categoria','asc')
         ->orderby('residuo','asc')->get();
+        $contenedores = Contenedor::orderby('contenedor','asc')->get();
         $negocio = Negocio::find($id);
-        return view('recolectores.recolectar.recoleccion',['id'=>$id,'residuos'=>$residuos,'negocio'=>$negocio]);
+        return view('recolectores.recolectar.recoleccion',['id'=>$id,'residuos'=>$residuos,'contenedores'=>$contenedores,'negocio'=>$negocio]);
     }
 
-    public function GuardarRecoleccion(Request $request){
-       
-        $negocio = Negocio::findOrFail($request->input('negocio_id'));
-        $residuos = $request->input('residuos', []);
-        
-        $recolectorId = GetId(); // o auth()->id()
+    public function GuardarRecoleccion(Request $request)
+{
+    // Obtener datos básicos
+    $negocio = Negocio::findOrFail($request->input('negocio_id'));
+    $residuos = $request->input('residuos', []);
+    $recolectorId = GetId(); // o auth()->id()
 
-        $id_recoleccion = GetUuid();
+    // Crear registro principal
+    $recoleccion = new Recoleccion();
+    $recoleccion->id = GetUuid();
+    $recoleccion->id_recolector = $recolectorId; // Nota: cambié a id_recollector
+    $recoleccion->id_negocio = $negocio->id;
+    $recoleccion->save();
 
-        $recol = new Recoleccion();
-        $recol->id = $id_recoleccion; 
-        $recol->id_recolector = $recolectorId;
-        $recol->id_negocio = $negocio->id;
-        
+    // Guardar detalles (si es que tienes otra tabla para esto)
+    foreach ($residuos as $residuoId => $data) {
+        if (isset($data['seleccionado']) && !empty($data['cantidad'])) {
+            $residuo = Residuo::find($residuoId);
+            if (!$residuo) continue;
 
-        $recol->save();
-
-
-
-        foreach ($residuos as $residuoId => $data) {
-            if (isset($data['seleccionado']) && floatval($data['cantidad']) > 0) {
-                $residuo = Residuo::find($residuoId);
-                if (!$residuo) continue;
-
-                $cantidad = floatval($data['cantidad']);
-                $subtotal = $cantidad  * $residuo->precio;
-
-            
-                $recol = new Recolec();
-                $recol->id = GetUuid(); 
-                $recol->id_recoleccion = $id_recoleccion;
-                $recol->residuo = $residuo->residuo; 
-                $recol->unidades = $residuo->unidades;
-                $recol->cantidad = $cantidad;
-                $recol->subtotal = $subtotal;
-
-                $recol->save();
-            }
+            $detalle = new Recolec(); // Asegúrate que este modelo existe
+            $detalle->id = GetUuid();
+            $detalle->id_recoleccion = $recoleccion->id;
+            $detalle->residuo = $residuo->residuo;
+            $detalle->contenedor = $data['contenedor'] ?? null;
+            $detalle->cantidad = floatval($data['cantidad']);
+            $detalle->save();
         }
-
-        return redirect('recoleccionesr')->with('success', 'Recolección guardada correctamente.');
     }
+
+    return redirect('recoleccionesr')->with('success', 'Recolección guardada correctamente.');
+}
 
 }

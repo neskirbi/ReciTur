@@ -14,12 +14,9 @@ class CreateContenedores extends Migration
     public function up()
     {
         Schema::create('contenedores', function (Blueprint $table) {
-            $table->string('id',32)->unique();
-            $table->string('id_municipio',32);            
-            $table->string('contenedor',150);                  
-            $table->float('cantidad',20,5);  
-            
-            $table->increments('opcion')->start_from(0);
+            $table->string('id',32)->unique();        
+            $table->string('contenedor',150);      
+
             $table->timestamps();
         });
     }

@@ -67,11 +67,9 @@
 
 <center><img class="" src="{{public_path('images/formatos/manifiesto/headermanifiesto.png')}}" alt="" width="100%"></center>
     <div class="titulo-manifiesto">
-        MANIFIESTO DE ENTREGA, TRANSPORTE Y RECEPCIÓN DE RESIDUOS DE LA CONSTRUCCIÓN
+        MANIFIESTO DE ENTREGA, TRANSPORTE Y RECEPCIÓN DE RESIDUOS SÓLIDOS URBANOS	
         <br>
-        Los generadores de residuos de la construcción deberán de presentar el manifiesto de entrega,
-        transporte y recepción de residuos de la construcción de acuerdo al instructivo. 
-
+        Los Generadores de residuos sólidos urbanos deberán de presentar el manifiestos de entrega transporte recpeción de acuerdo al instructivo							
     <div class="text-right"><b>Folio: {{$recoleccion->folio}}</b></div>
     <br>
 
@@ -82,70 +80,57 @@
             <td class="bordes">
                 NÚM. DE REGISTRO (Resolutivo de Impacto Ambiental, Plan de Manejo): <span class="bolder">{{$recoleccion->nautorizacion ?? 'N/A'}}</span>
                 <br>
-                RAZÓN SOCIAL DE LA PERSONA: <span class="bolder">{{$recoleccion->razonsocial ?? 'N/A'}}</span>
-                <br>
+                
                 
                 <table>
                     <tr>
-                        <td style="width: 15%;">DOMICILIO:</td>
-                        <td style="width: 35%;" class="bolder">{{$recoleccion->calle ?? ''}} {{$recoleccion->numeroext ?? ''}} {{$recoleccion->numeroint ? 'Int. '.$recoleccion->numeroint : ''}}</td>
-                        <td style="width: 15%;">COLONIA:</td>
-                        <td style="width: 35%;" class="bolder">{{$recoleccion->colonia ?? 'N/A'}}</td>
-                    </tr>
-                    <tr>
-                        <td>C.P:</td>
-                        <td class="bolder">{{$recoleccion->cp ?? 'N/A'}}</td>
-                        <td>ENTIDAD:</td>
-                        <td class="bolder">{{$recoleccion->entidad ?? 'N/A'}}</td>
-                    </tr>
-                    <tr>
-                        <td>TELÉFONO:</td>
-                        <td class="bolder">{{$recoleccion->telefono ?? 'N/A'}}</td>
-                        <td>MUNICIPIO:</td>
-                        <td class="bolder">{{$recoleccion->municipio ?? 'N/A'}}</td>
-                    </tr>
-                </table>
-                
-                <hr>
-                
-                <div class="text-center"><b>DESCRIPCIÓN RESIDUO</b></div>
-                
-                <table border="0">
-                    <tr>
-                        <td style="width: 30%;"><b>RESIDUO</b></td>
-                        <td style="width: 20%;"><b>CANTIDAD</b></td> 
-                    </tr>
-                    @foreach($detallesRecoleccion as $detalle)
-                    <tr>
-                        <td class="bolder">{{$detalle->residuo ?? 'N/A'}}</td>
-                        <td class="bolder">{{$detalle->cantidad ?? '0'}} {{$detalle->unidades ?? 'N/A'}}</td>
-                    </tr>
-                    @endforeach
-                </table>
-
-                <hr>
-
-                <div class="text-center"><b>DECLARACIÓN DEL GENERADOR:</b></div>
-                <div style="text-align: justify;">
-                    DECLARO QUE EL CONTENIDO DE ESTE LOTE ESTA TOTAL Y CORRECTAMENTE DESCRITO MEDIANTE EL NOMBRE DEL RESIDUO, 
-                    BIEN EMPACADO, MARCADO Y ROTULADO, Y QUE SE HAN PREVISTO LAS CONDICIONES DE SEGURIDAD PARA SU TRANSPORTE 
-                    POR VIA TERRESTRE DE ACUERDO A LA LEGISLACIÓN VIGENTE.
-                </div>
-                <br>
-
-                <table>
-                    <tr>
-                        <td style="width: 40%;">NOMBRE Y FIRMA DEL RESPONSABLE:</td>
-                        <td style="width: 30%;" class="bolder">{{$recoleccion->nombres ?? ''}} {{$recoleccion->apellidos ?? ''}}</td>
-                        <td style="width: 30%;">
-                            @if($recoleccion->firmacliente)
-                                <img class="img-firma" src="{{$recoleccion->firmacliente}}" alt="Firma Cliente">
-                            @else
-                                [SIN FIRMA]
-                            @endif
+                        <td>
+                            RAZÓN SOCIAL DE LA PERSONA: <span class="bolder">{{$recoleccion->razonsocial ?? 'N/A'}}</span>
                         </td>
+                        
+                    </tr>
+                    <tr>
+                        <td style="width: 15%;">DOMICILIO: {{$recoleccion->calle ?? ''}} {{$recoleccion->numeroext ?? ''}} {{$recoleccion->numeroint ? 'Int. '.$recoleccion->numeroint : ''}}</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 15%;">COLONIA: {{$recoleccion->colonia ?? 'N/A'}}</td>
+                    </tr>
+                    <tr>
+                        <td>MUNICIPIO: {{$recoleccion->municipio ?? 'N/A'}}</td>
+                    </tr>
+                    <tr>
+                        <td>ENTIDAD: {{$recoleccion->entidad ?? 'N/A'}}</td>
                     </tr>
                 </table>
+                
+                <hr>
+                
+                <div class="text-center"><b>DATOS DEL COMERCIO</b></div>
+
+                <table>
+                    <tr>
+                        <td>
+                            RAZÓN SOCIAL DE LA PERSONA: <span class="bolder">{{$recoleccion->razonsocial ?? 'N/A'}}</span>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td style="width: 15%;">DOMICILIO: {{$recoleccion->calle ?? ''}} {{$recoleccion->numeroext ?? ''}} {{$recoleccion->numeroint ? 'Int. '.$recoleccion->numeroint : ''}}</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 15%;">COLONIA: {{$recoleccion->colonia ?? 'N/A'}}</td>
+                    </tr>
+                    <tr>
+                        <td>MUNICIPIO: {{$recoleccion->municipio ?? 'N/A'}}</td>
+                    </tr>
+                    <tr>
+                        <td>ENTIDAD: {{$recoleccion->entidad ?? 'N/A'}}</td>
+                    </tr>
+                </table>
+
+
+
+                
             </td>
         </tr>
 
@@ -153,33 +138,29 @@
         <tr>
             <td class="bordes icon-cell"><img class="img-icono" src="{{public_path('images/formatos/manifiesto/transporte.png')}}" alt="Transporte"></td>
             <td class="bordes">
-                <table>
+                 <table border="0">
                     <tr>
-                        <td style="width: 60%;">NOMBRE DE LA EMPRESA TRANSPORTISTA:</td>
-                        <td style="width: 40%;" class="bolder">{{$recoleccion->transportista ?? 'N/A'}}</td>
+                        <td style="width: 30%;"><b>RESIDUO</b></td>
+                        <td style="width: 20%;"><b>CANTIDAD</b></td> 
                     </tr>
+                    @foreach($detallesRecoleccion as $detalle)
                     <tr>
-                        <td>DOMICILIO FISCAL:</td>
-                        <td class="bolder">{{$recoleccion->domiciliot ?? 'N/A'}}</td>
+                        <td class="bolder">{{$detalle->residuo ?? 'N/A'}}</td>
+                        <td class="bolder">{{$detalle->cantidad ?? '0'}} {{$detalle->contenedor ?? 'N/A'}}</td>
                     </tr>
-                    <tr>
-                        <td>TELÉFONO:</td>
-                        <td class="bolder">{{$recoleccion->telefonot ?? 'N/A'}}</td>
-                    </tr>
-                    <tr>
-                        <td>AUTORIZACIÓN RAMIR:</td>
-                        <td class="bolder">{{$recoleccion->autorizacion_ramir ?? 'N/A'}}</td>
-                    </tr>
-                    <tr>
-                        <td>NO. DE REGISTRO S.C.T.:</td>
-                        <td class="bolder">{{$recoleccion->regsct ?? 'N/A'}}</td>
-                    </tr>
+                    @endforeach
                 </table>
+
+
+                
                 
                 <hr>
                 
-                <div class="text-center">RECIBÍ LOS RESIDUOS DESCRITOS EN EL MANIFIESTO PARA SU TRANSPORTE.</div>
+                <div class="text-center">DECLARACIÓN DEL GENERADOR</div>
                 <br>
+                <div class="text-center"> 
+                    DECLARO QUE EL CONTENIDO DE ESTE LOTE ESTA TOTAL Y CORRECTAMENTE DESCRITO MEDIANTE EL NOMBRE DEL RESIDUO, BIEN EMPACADO, MARCADO Y ROTULADO, Y QUE SE HAN PREVISTO LAS CONDICIONES DE SEGURIDAD PARA SU TRANSPORTE POR VÍA TERRESTRE DE ACUERDO A LA LEGISLACIÓN APLICABLE Y VIGENTE			
+                </div>
                 
                 <table>
                     <tr>
@@ -194,30 +175,10 @@
                             @endif
                         </td>
                     </tr>
-                    <tr>
-                        <td>CARGO:</td>
-                        <td class="bolder">Recolector</td>
-                        <td>FECHA DE EMBARQUE:</td>
-                        <td class="bolder">{{FechaFormateada($recoleccion->created_at)}}</td>
-                    </tr>
+                  
                 </table>
                 
-                <hr>
-                
-                <div>10.- Ruta de la empresa generadora hasta su entrega:</div>
-                <div class="bolder">{{$configuracion->ruta ?? 'N/A'}}</div>
-                <br>
-                
-                <hr>
-                
-                <table>
-                    <tr>
-                        <td style="width: 30%;">TIPO DE VEHÍCULO:</td>
-                        <td style="width: 20%;" class="bolder">{{$recoleccion->vehiculo ?? 'N/A'}}</td>
-                        <td style="width: 30%;">No. DE MATRÍCULA:</td>
-                        <td style="width: 20%;" class="bolder">{{$recoleccion->matriculat ?? 'N/A'}}</td>
-                    </tr>
-                </table>
+              
             </td>
         </tr>
 
@@ -225,6 +186,8 @@
         <tr>
             <td class="bordes icon-cell"><img class="img-icono" src="{{public_path('images/formatos/manifiesto/destino.png')}}" alt="Destino"></td>
             <td class="bordes">
+                
+            
                 <table>
                     <tr>
                         <td style="width: 60%;">NOMBRE DE LA EMPRESA DESTINATARIA:</td>

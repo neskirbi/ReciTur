@@ -9,20 +9,14 @@
             box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
         }
         .category-header {
-            background-color: #e9ecef !important;
+            background-color: #e9ecef;
             font-size: 1.1rem;
         }
         .residuo-row:hover {
             background-color: #f8f9fa;
         }
-        .input-group-text {
-            min-width: 80px;
-            justify-content: center;
-            background-color: #f8f9fa;
-        }
         .card {
             border-radius: 10px;
-            border: none;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
         .btn-theme-primary {
@@ -34,12 +28,7 @@
         }
         .btn-theme-primary:hover {
             background-color: #218838;
-            border-color: #1e7e34;
             transform: translateY(-2px);
-        }
-        .form-control:focus {
-            border-color: #80bdff;
-            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
         }
     </style>
 </head>
@@ -49,14 +38,14 @@
 
     <div class="container mt-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h3 class="mb-0">Recolección de Residuos</h3>
-            <div class="badge badge-primary p-2" style="background-color: #6c757d; font-size: 1rem;">
+            <h3>Recolección de Residuos</h3>
+            <div class="badge bg-secondary p-2 fs-6">
                 Negocio: <strong>{{ $negocio->negocio }}</strong>
             </div>
         </div>
 
         <div class="row justify-content-center">
-            <div class="col-lg-10">
+            <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body p-4">
                         <form id="recoleccionForm" action="{{ url('GuardarRecoleccion') }}" method="POST">
@@ -65,56 +54,55 @@
 
                             <div class="table-responsive">
                                 <table class="table table-hover">
-                                    <thead class="thead-light">
+                                    <thead>
                                         <tr>
-                                            <th width="10%" class="text-center">Selección</th>
-                                            <th width="45%">Tipo de Residuo</th>
-                                            <th width="45%">Cantidad Recolectada</th>
+                                            <th width="5%" class="text-center">✓</th>
+                                            <th width="35%">Tipo de Residuo</th>
+                                            <th width="30%">Cantidad</th>
+                                            <th width="30%">Contenedor</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php
-                                            $categoriaAnterior = null;
-                                        @endphp
+                                        @php $categoriaAnterior = null; @endphp
 
                                         @foreach($residuos as $residuo)
                                             @if($residuo->categoria !== $categoriaAnterior)
                                                 <tr class="category-header">
-                                                    <td colspan="3" class="font-weight-bold text-uppercase">
-                                                        <i class="fas fa-trash-alt mr-2"></i>{{ $residuo->categoria }}
+                                                    <td colspan="4" class="fw-bold text-uppercase">
+                                                        <i class="fas fa-trash-alt me-2"></i>{{ $residuo->categoria }}
                                                     </td>
                                                 </tr>
-                                                @php
-                                                    $categoriaAnterior = $residuo->categoria;
-                                                @endphp
+                                                @php $categoriaAnterior = $residuo->categoria; @endphp
                                             @endif
 
                                             <tr class="residuo-row align-middle">
-                                                <td class="text-center align-middle">
-                                                    <div class="custom-control custom-checkbox">
+                                                <td class="text-center">
+                                                    <div class="form-check">
                                                         <input type="checkbox" 
                                                                id="residuo-{{ $residuo->id }}" 
                                                                name="residuos[{{ $residuo->id }}][seleccionado]" 
                                                                value="1" 
-                                                               class="custom-control-input residuo-checkbox">
-                                                        <label class="custom-control-label" for="residuo-{{ $residuo->id }}"></label>
+                                                               class="form-check-input residuo-checkbox">
                                                     </div>
-                                                </td>
-                                                <td class="align-middle">
-                                                    <label for="residuo-{{ $residuo->id }}" class="mb-0">{{ $residuo->residuo }}</label>
                                                 </td>
                                                 <td>
-                                                    <div class="input-group">
-                                                        <input type="number" 
-                                                               name="residuos[{{ $residuo->id }}][cantidad]" 
-                                                               class="form-control cantidad-input" 
-                                                               min="0" 
-                                                               step="0.01"
-                                                               placeholder="0.00">
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text">{{ $residuo->unidades }}</span>
-                                                        </div>
-                                                    </div>
+                                                    <label for="residuo-{{ $residuo->id }}" class="form-check-label">{{ $residuo->residuo }}</label>
+                                                </td>
+                                                <td>
+                                                    <input type="number" 
+                                                           name="residuos[{{ $residuo->id }}][cantidad]" 
+                                                           class="form-control cantidad-input" 
+                                                           min="0" 
+                                                           step="0.01"
+                                                           placeholder="0.00">
+                                                </td>
+                                                <td>
+                                                    <select name="residuos[{{ $residuo->id }}][contenedor]" class="form-select">
+                                                        <option value="">--- Seleccionar ---</option>
+                                                        @foreach($contenedores as $contenedor)
+                                                            <option value="{{ $contenedor->contenedor }}">{{ $contenedor->contenedor }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -122,9 +110,9 @@
                                 </table>
                             </div>
 
-                            <div class="text-right mt-4">
+                            <div class="text-end mt-4">
                                 <button type="submit" class="btn btn-theme-primary btn-lg">
-                                    <i class="fas fa-save mr-2"></i>Registrar Recolección
+                                    <i class="fas fa-save me-2"></i>Registrar
                                 </button>
                             </div>
                         </form>
@@ -139,43 +127,47 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
-            // Manejar el cambio en los checkboxes
+            // Manejar cambio en checkboxes
             $('.residuo-checkbox').change(function() {
-                const $cantidadInput = $(this).closest('tr').find('.cantidad-input');
-                if ($(this).is(':checked')) {
-                    $cantidadInput.prop('required', true)
-                                .addClass('required-field')
-                                .focus();
-                } else {
-                    $cantidadInput.prop('required', false)
-                                .removeClass('required-field');
-                }
+                const row = $(this).closest('tr');
+                row.find('.cantidad-input, .form-select')
+                   .prop('required', this.checked)
+                   .toggleClass('required-field', this.checked);
             });
 
-            // Validar antes de enviar el formulario
+            // Validar formulario
             $('#recoleccionForm').submit(function(e) {
                 let isValid = true;
                 $('.residuo-checkbox:checked').each(function() {
-                    const $cantidadInput = $(this).closest('tr').find('.cantidad-input');
-                    if (!$cantidadInput.val() || parseFloat($cantidadInput.val()) <= 0) {
-                        $cantidadInput.addClass('required-field');
+                    const row = $(this).closest('tr');
+                    const cantidad = row.find('.cantidad-input');
+                    const contenedor = row.find('.form-select');
+                    
+                    if (!cantidad.val() || parseFloat(cantidad.val()) <= 0) {
+                        cantidad.addClass('required-field');
+                        isValid = false;
+                    }
+                    
+                    if (!contenedor.val()) {
+                        contenedor.addClass('required-field');
                         isValid = false;
                     }
                 });
 
                 if (!isValid) {
                     e.preventDefault();
-                    // Mostrar toast de error en lugar de alert
-                    $('.toast-error').toast('show').find('.toast-body').text('Por favor, ingresa la cantidad para los residuos seleccionados.');
+                    $('.toast-error').toast('show')
+                        .find('.toast-body').text('Complete los campos requeridos');
                     $('html, body').animate({
                         scrollTop: $('.required-field').first().offset().top - 100
                     }, 500);
                 }
             });
 
-            // Mejorar la experiencia de usuario
-            $('.cantidad-input').focus(function() {
-                $(this).closest('tr').find('.residuo-checkbox').prop('checked', true).trigger('change');
+            // Auto-marcar checkbox al interactuar
+            $('.cantidad-input, .form-select').focus(function() {
+                $(this).closest('tr').find('.residuo-checkbox')
+                    .prop('checked', true).trigger('change');
             });
         });
     </script>
