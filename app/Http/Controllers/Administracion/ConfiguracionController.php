@@ -51,6 +51,7 @@ class ConfiguracionController extends Controller
         $cla->id = GetUuid();
         $cla->giro = $request->giro;
         $cla->clasificacion = $request->clasificacion;
+        $cla->unidades = $request->unidades;
         $cla->de = $request->de;
         $cla->a = $request->a;
 
@@ -68,6 +69,7 @@ class ConfiguracionController extends Controller
         
         $cla->giro = $request->giro;
         $cla->clasificacion = $request->clasificacion;
+        $cla->unidades = $request->unidades;
         $cla->de = $request->de;
         $cla->a = $request->a;
 

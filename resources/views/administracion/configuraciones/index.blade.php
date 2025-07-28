@@ -47,12 +47,12 @@
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link btn-outline-theme-primary" id="pestania2-tab" data-bs-toggle="tab" data-bs-target="#pestania2" type="button" role="tab">
-                                Pestaña 2
+                                Centro de Acopio
                             </button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link btn-outline-theme-primary" id="pestania3-tab" data-bs-toggle="tab" data-bs-target="#pestania3" type="button" role="tab">
-                                Pestaña 3
+                                Info. Adicional
                             </button>
                         </li>
                     </ul>
@@ -71,15 +71,21 @@
                                         @csrf
                                         <div class="row">
                                             <!-- Giro -->
-                                            <div class="col-md-4 mb-2">
+                                            <div class="col-md-3 mb-2">
                                                 <label class="form-label small text-muted">Giro</label>
                                                 <input type="text" name="giro" value="{{$cla->giro}}" class="form-control form-control-sm">
                                             </div>
                                             
                                             <!-- Clasificación -->
-                                            <div class="col-md-4 mb-2">
+                                            <div class="col-md-3 mb-2">
                                                 <label class="form-label small text-muted">Clasificación</label>
                                                 <input type="text" name="clasificacion" value="{{$cla->clasificacion}}" class="form-control form-control-sm">
+                                            </div>
+                                            
+                                            <!-- Unidades -->
+                                            <div class="col-md-2 mb-2">
+                                                <label class="form-label small text-muted">Unidades</label>
+                                                <input type="text" name="unidades" value="{{$cla->unidades}}" class="form-control form-control-sm" maxlength="20">
                                             </div>
                                             
                                             <!-- Rango De -->
@@ -182,11 +188,15 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6 mb-3">
+            <div class="col-md-4 mb-3">
+              <label for="unidades" class="form-label">Unidades</label>
+              <input type="text" class="form-control" id="unidades" name="unidades" maxlength="20">
+            </div>
+            <div class="col-md-4 mb-3">
               <label for="de" class="form-label">De</label>
               <input type="number" class="form-control" id="de" name="de" required>
             </div>
-            <div class="col-md-6 mb-3">
+            <div class="col-md-4 mb-3">
               <label for="a" class="form-label">A</label>
               <input type="number" class="form-control" id="a" name="a" required>
             </div>
