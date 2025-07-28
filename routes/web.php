@@ -297,6 +297,11 @@ Route::resource('citasfecha', 'App\Http\Controllers\Administracion\CitasFechaCon
 
 Route::resource('configuracion', 'App\Http\Controllers\Administracion\ConfiguracionController');
 
+Route::post('GuardarClasificaciones', 'App\Http\Controllers\Administracion\ConfiguracionController@GuardarClasificaciones');
+Route::post('ActualizarClasificaciones/{id}', 'App\Http\Controllers\Administracion\ConfiguracionController@ActualizarClasificaciones');
+Route::post('EliminarClasificaciones/{id}', 'App\Http\Controllers\Administracion\ConfiguracionController@EliminarClasificaciones');
+
+
 Route::post('configuracioncuenta', 'App\Http\Controllers\Administracion\ConfiguracionController@ConfiguracionCuenta');
 Route::post('ConfiguracionRepresentante', 'App\Http\Controllers\Administracion\ConfiguracionController@ConfiguracionRepresentante');
 Route::post('configuracionbanco', 'App\Http\Controllers\Administracion\ConfiguracionController@ConfiguracionBanco');

@@ -98,6 +98,9 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" href="{{ url('contenedores') }}"><i class="fa fa-trash-alt me-2"></i>Contenedores</a>
+    </li>    
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url('configuracion') }}"><i class="fa fa-cogs me-2"></i>Configuración</a>
     </li>
 
     <div class="nav-section-title">Cuenta</div>
