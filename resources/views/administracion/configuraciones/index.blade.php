@@ -23,9 +23,7 @@
   @include('administracion.sidebar')
       <div class="container-fluid">
         <!-- Botón para agregar nueva clasificación -->
-        <button type="button" class="btn btn-theme-primary mb-3" data-bs-toggle="modal" data-bs-target="#nuevaClasificacionModal">
-          <i class="fas fa-plus-circle me-2"></i> Agregar Nueva Clasificación
-        </button>
+        
 
         <div class="row">
           <div class="col-12">
@@ -61,6 +59,9 @@
                     <div class="tab-content p-3 border border-top-0 rounded-bottom" id="myTabContent">
                         <!-- Pestaña 1: Tipo de Negocio -->
                         <div class="tab-pane fade show active" id="negocio" role="tabpanel">
+                          <button type="button" class="btn btn-theme-primary mb-3" data-bs-toggle="modal" data-bs-target="#nuevaClasificacionModal">
+                            <i class="fas fa-plus-circle me-2"></i> Agregar Nueva Clasificación
+                          </button>
                             <h4 class="text-theme-primary mb-4">Clasificaciones registradas</h4>
                             
                             @if(count($clas))
@@ -128,15 +129,77 @@
                         </div>
 
                         <!-- Otras pestañas (mantenidas igual) -->
+                        <!-- Pestaña 2: Centro de Acopio -->
+                        <!-- Pestaña 2: Centro de Acopio -->
                         <div class="tab-pane fade" id="pestania2" role="tabpanel">
-                            <div class="feature-card">
-                                <div class="card-icon">
-                                    <i class="bi bi-building"></i>
-                                </div>
-                                <h4 class="card-title text-theme-primary">Pestaña 2</h4>
-                                <p>Contenido de ejemplo para la segunda pestaña</p>
-                            </div>
+                            <h4 class="text-theme-primary mb-4">Registro de Recepción de Residuos</h4>
+                            
+                            <form id="centroAcopioForm" class="needs-validation" 
+      action="{{ isset($centro) ? url('ActualizarCentro/' . $centro->id) : url('GuardarCentro') }}" method="post">
+                              @csrf
+                              
+                              <!-- Si estamos editando, usa método PUT -->
+                            
+                              <div class="row mb-3">
+                                  <div class="col-md-6">
+                                      <label for="nombreEmpresa" class="form-label">NOMBRE DE LA EMPRESA DESTINATARIA:</label>
+                                      <input type="text" class="form-control" id="nombreEmpresa" name="nombreEmpresa" 
+                                            value="{{ $centro->nombreEmpresa ?? '' }}" required>
+                                      <div class="invalid-feedback">
+                                          Por favor ingrese el nombre de la empresa
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <label for="autorizacionRamir" class="form-label">AUTORIZACIÓN RAMIR:</label>
+                                      <input type="text" class="form-control" id="autorizacionRamir" name="autorizacionRamir" 
+                                            value="{{ $centro->autorizacionRamir ?? '' }}" required>
+                                  </div>
+                              </div>
+                              
+                              <div class="row mb-3">
+                                  <div class="col-md-12">
+                                      <label for="domicilioFiscal" class="form-label">DOMICILIO FISCAL:</label>
+                                      <input type="text" class="form-control" id="domicilioFiscal" name="domicilioFiscal" 
+                                            value="{{ $centro->domicilioFiscal ?? '' }}" required>
+                                      <div class="invalid-feedback">
+                                          Por favor ingrese el domicilio fiscal
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                  <div class="col-md-6">
+                                      <label for="telefono" class="form-label">TELÉFONO:</label>
+                                      <input type="tel" class="form-control" id="telefono" name="telefono" 
+                                            value="{{ $centro->telefono ?? '' }}" required>
+                                  </div>
+                              </div>
+                              
+                              <div class="row mb-3">
+                                  <div class="col-md-6">
+                                      <label for="nombreReceptor" class="form-label">NOMBRE DEL RECEPTOR:</label>
+                                      <input type="text" class="form-control" id="nombreReceptor" name="nombreReceptor" 
+                                            value="{{ $centro->nombreReceptor ?? '' }}" required>
+                                      <div class="invalid-feedback">
+                                          Por favor ingrese el nombre del receptor
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <label for="cargoReceptor" class="form-label">CARGO:</label>
+                                      <input type="text" class="form-control" id="cargoReceptor" name="cargoReceptor" 
+                                            value="{{ $centro->cargoReceptor }}" required>
+                                  </div>
+                              </div>
+                              
+                              <div class="d-flex justify-content-end gap-2">
+                                  <button type="submit" class="btn btn-theme-primary">
+                                      <i class="fas fa-save me-2"></i>{{ isset($centro) ? 'Actualizar' : 'Guardar' }} 
+                                  </button>
+                              </div>
+                          </form>
                         </div>
+
+
 
                         <div class="tab-pane fade" id="pestania3" role="tabpanel">
                             <div class="feature-card">

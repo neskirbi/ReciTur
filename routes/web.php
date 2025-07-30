@@ -302,6 +302,11 @@ Route::post('ActualizarClasificaciones/{id}', 'App\Http\Controllers\Administraci
 Route::post('EliminarClasificaciones/{id}', 'App\Http\Controllers\Administracion\ConfiguracionController@EliminarClasificaciones');
 
 
+Route::post('GuardarCentro', 'App\Http\Controllers\Administracion\ConfiguracionController@GuardarCentro');
+Route::post('ActualizarCentro/{id}', 'App\Http\Controllers\Administracion\ConfiguracionController@ActualizarCentro');
+
+Route::post('GurdarCentro', 'App\Http\Controllers\Administracion\ConfiguracionController@GurdarCentro');
+
 Route::post('configuracioncuenta', 'App\Http\Controllers\Administracion\ConfiguracionController@ConfiguracionCuenta');
 Route::post('ConfiguracionRepresentante', 'App\Http\Controllers\Administracion\ConfiguracionController@ConfiguracionRepresentante');
 Route::post('configuracionbanco', 'App\Http\Controllers\Administracion\ConfiguracionController@ConfiguracionBanco');

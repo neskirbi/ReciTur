@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Clasificacion;
+use App\Models\Centro;
 
 
 use Redirect;
@@ -22,7 +23,9 @@ class ConfiguracionController extends Controller
     public function index()
     {   
         $clas = Clasificacion::orderby('giro','asc')->get();
-        return view('administracion.configuraciones.index',['clas'=>$clas]);
+        $centro =  Centro::where('id_administrador',GetId())->first();
+
+        return view('administracion.configuraciones.index',['clas'=>$clas,'centro'=>$centro]);
     }
 
 
@@ -86,6 +89,40 @@ class ConfiguracionController extends Controller
 
         return Redirect::back()->with('error','Datos borrados.');
 
+    }
+
+    function GuardarCentro(Request $request){
+        $centro = new Centro();
+
+        $centro->id = GetUuid();
+        
+        $centro->id_administrador = GetId();
+        $centro->nombreEmpresa = $request->nombreEmpresa;
+        $centro->autorizacionRamir = $request->autorizacionRamir;
+        $centro->domicilioFiscal = $request->domicilioFiscal;
+        $centro->telefono = $request->telefono;
+        $centro->nombreReceptor = $request->nombreReceptor;
+        $centro->cargoReceptor = $request->cargoReceptor;
+      
+        $centro->save();
+
+        return Redirect::back()->with('success','Datos guardados.');
+    }
+
+    function ActualizarCentro(Request $request,$id){
+        $centro = Centro::find($id);
+      
+        
+        $centro->nombreEmpresa = $request->nombreEmpresa;
+        $centro->autorizacionRamir = $request->autorizacionRamir;
+        $centro->domicilioFiscal = $request->domicilioFiscal;
+        $centro->telefono = $request->telefono;
+        $centro->nombreReceptor = $request->nombreReceptor;
+        $centro->cargoReceptor = $request->cargoReceptor;
+      
+        $centro->save();
+
+        return Redirect::back()->with('success','Datos guardados.');
     }
 
     
