@@ -10,6 +10,7 @@ use App\Models\Administrador;
 use App\Models\Planta;
 use App\Models\Recoleccion;
 use App\Models\Configuracion;
+use App\Models\Centro;
 
 
 class GeneralController extends Controller
@@ -17,7 +18,7 @@ class GeneralController extends Controller
     function Manifiesto($id){
 
         $recoleccion=Recoleccion::select('recolecciones.id','recolecciones.folio',
-        'recolectores.nombres','recolectores.apellidos',
+        'recolectores.nombres','recolectores.apellidos','recolecciones.created_at',
         'negocios.negocio',
         'generadores.id_cliente','generadores.razonsocial','generadores.fisicaomoral','generadores.telefono','generadores.calle','generadores.numeroext','generadores.numeroint','generadores.colonia','generadores.municipio','generadores.cp','generadores.entidad')
         ->leftjoin('recolectores','recolectores.id','=','recolecciones.id_recolector')    
@@ -28,6 +29,8 @@ class GeneralController extends Controller
         ->orderby('recolecciones.created_at','desc')
         ->first();
 
+        
+        $centro = Centro::first();
         // Obtener los detalles de recolección por separado
         $detallesRecoleccion = DB::table('recoleccion')
         ->select('recoleccion.residuo','recoleccion.cantidad','recoleccion.contenedor')
@@ -39,8 +42,8 @@ class GeneralController extends Controller
         $configuracion = array();
 
         $administrador = array();
-        //return view('formatos.recolecciones.manifiesto',['recoleccion'=>$recoleccion,'configuracion'=>$configuracion,'planta'=>$planta,'administrador'=>$administrador,'detallesRecoleccion'=>$detallesRecoleccion]);
-        $pdf = \PDF::loadView('formatos.recolecciones.manifiesto',['recoleccion'=>$recoleccion,'configuracion'=>$configuracion,'planta'=>$planta,'administrador'=>$administrador,'detallesRecoleccion'=>$detallesRecoleccion]);
+        //return view('formatos.recolecciones.manifiesto',['recoleccion'=>$recoleccion,'configuracion'=>$configuracion,'planta'=>$planta,'administrador'=>$administrador,'detallesRecoleccion'=>$detallesRecoleccion,'centro'=>$centro]);
+        $pdf = \PDF::loadView('formatos.recolecciones.manifiesto',['recoleccion'=>$recoleccion,'configuracion'=>$configuracion,'planta'=>$planta,'administrador'=>$administrador,'detallesRecoleccion'=>$detallesRecoleccion,'centro'=>$centro]);
         
         return $pdf ->setPaper('A4', 'portrait')->download($recoleccion->negocio.'.pdf');
     }

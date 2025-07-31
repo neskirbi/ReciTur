@@ -191,19 +191,19 @@
                 <table>
                     <tr>
                         <td style="width: 60%;">NOMBRE DE LA EMPRESA DESTINATARIA:</td>
-                        <td style="width: 40%;" class="bolder">{{$configuracion->razonsocial ?? 'N/A'}}</td>
+                        <td style="width: 40%;" class="bolder">{{$centro->nombreEmpresa ?? 'N/A'}}</td>
                     </tr>
                     <tr>
                         <td>AUTORIZACIÓN RAMIR:</td>
-                        <td class="bolder">{{$planta->autorizacion_ramir ?? 'N/A'}}</td>
+                        <td class="bolder">{{$centro->autorizacionRamir ?? 'N/A'}}</td>
                     </tr>
                     <tr>
                         <td>DOMICILIO FISCAL:</td>
-                        <td class="bolder">{{$planta->domicilio ?? 'N/A'}}</td>
+                        <td class="bolder">{{$centro->domicilioFiscal ?? 'N/A'}}</td>
                     </tr>
                     <tr>
                         <td>TELÉFONO:</td>
-                        <td class="bolder">{{$configuracion->telefono ?? 'N/A'}}</td>
+                        <td class="bolder">{{$centro->telefono ?? 'N/A'}}</td>
                     </tr>
                 </table>
 
@@ -215,7 +215,7 @@
                 <table>
                     <tr>
                         <td style="width: 15%;">NOMBRE:</td>
-                        <td style="width: 35%;" class="bolder"></td>
+                        <td style="width: 35%;" class="bolder">{{$centro->nombreReceptor ?? 'N/A'}}</td>
                         <td style="width: 15%;">FIRMA:</td>
                         <td style="width: 35%;">
                            
