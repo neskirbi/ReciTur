@@ -8,8 +8,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            font-size: 8px; /* Tamaño de letra reducido */
-            line-height: 1.3; /* Ajuste de interlineado */
+            font-size: 8px;
+            line-height: 1.3;
         }
         .bordes {
             border: 2px solid #000;
@@ -31,31 +31,30 @@
             border-collapse: collapse;
         }
         td {
-            padding: 2px; /* Reducido el padding */
-            vertical-align: middle; /* Alineación vertical al centro para todas las celdas */
+            padding: 2px;
+            vertical-align: middle;
         }
         hr {
             border: 0.5px solid #000;
-            margin: 3px 0; /* Margen reducido */
+            margin: 3px 0;
         }
         .img-firma {
-            width: 60px; /* Tamaño reducido */
-            height: 30px; /* Tamaño reducido */
+            width: 60px;
+            height: 30px;
             object-fit: contain;
         }
         .img-icono {
-            width: 12px; /* Tamaño reducido */
-            padding: 5px; /* Padding reducido */
+            width: 12px;
+            padding: 5px;
         }
         .titulo-manifiesto {
-            font-size: 10px; /* Tamaño reducido */
+            font-size: 10px;
             font-weight: bold;
-            margin-bottom: 5px; /* Margen reducido */
+            margin-bottom: 5px;
         }
         .bolder {
             font-weight: bold;
         }
-        /* Estilo específico para celdas con iconos */
         .icon-cell {
             vertical-align: middle;
             text-align: center;
@@ -65,7 +64,7 @@
 </head>
 <body>
 
-<center><img class="" src="{{public_path('images/formatos/manifiesto/headermanifiesto.png')}}" alt="" width="100%"></center>
+<center><img class="" src="{{ isset($vista) ? asset('images/formatos/manifiesto/headermanifiesto.png') : public_path('images/formatos/manifiesto/headermanifiesto.png') }}" alt="" width="100%"></center>
     <div class="titulo-manifiesto">
         MANIFIESTO DE ENTREGA, TRANSPORTE Y RECEPCIÓN DE RESIDUOS SÓLIDOS URBANOS	
         <br>
@@ -76,18 +75,16 @@
     <table class="bordes w-100">
         <!-- Sección Generador -->
         <tr>
-            <td class="bordes icon-cell"><img class="img-icono" src="{{public_path('images/formatos/manifiesto/generador.png')}}" alt="Generador"></td>
+            <td class="bordes icon-cell"><img class="img-icono" src="{{ isset($vista) ? asset('images/formatos/manifiesto/generador.png') : public_path('images/formatos/manifiesto/generador.png') }}" alt="Generador"></td>
             <td class="bordes">
                 NÚM. DE REGISTRO (Resolutivo de Impacto Ambiental, Plan de Manejo): <span class="bolder">{{$recoleccion->nautorizacion ?? 'N/A'}}</span>
                 <br>
-                
                 
                 <table>
                     <tr>
                         <td>
                             RAZÓN SOCIAL DE LA PERSONA: <span class="bolder">{{$recoleccion->razonsocial ?? 'N/A'}}</span>
                         </td>
-                        
                     </tr>
                     <tr>
                         <td style="width: 15%;">DOMICILIO: {{$recoleccion->calle ?? ''}} {{$recoleccion->numeroext ?? ''}} {{$recoleccion->numeroint ? 'Int. '.$recoleccion->numeroint : ''}}</td>
@@ -112,7 +109,6 @@
                         <td>
                             RAZÓN SOCIAL DE LA PERSONA: <span class="bolder">{{$recoleccion->razonsocial ?? 'N/A'}}</span>
                         </td>
-                        
                     </tr>
                     <tr>
                         <td style="width: 15%;">DOMICILIO: {{$recoleccion->calle ?? ''}} {{$recoleccion->numeroext ?? ''}} {{$recoleccion->numeroint ? 'Int. '.$recoleccion->numeroint : ''}}</td>
@@ -127,18 +123,14 @@
                         <td>ENTIDAD: {{$recoleccion->entidad ?? 'N/A'}}</td>
                     </tr>
                 </table>
-
-
-
-                
             </td>
         </tr>
 
         <!-- Sección Transportista -->
         <tr>
-            <td class="bordes icon-cell"><img class="img-icono" src="{{public_path('images/formatos/manifiesto/transporte.png')}}" alt="Transporte"></td>
+            <td class="bordes icon-cell"><img class="img-icono" src="{{ isset($vista) ? asset('images/formatos/manifiesto/transporte.png') : public_path('images/formatos/manifiesto/transporte.png') }}" alt="Transporte"></td>
             <td class="bordes">
-                 <table border="0">
+                <table border="0">
                     <tr>
                         <td style="width: 30%;"><b>RESIDUO</b></td>
                         <td style="width: 20%;"><b>CANTIDAD</b></td> 
@@ -150,9 +142,6 @@
                     </tr>
                     @endforeach
                 </table>
-
-
-                
                 
                 <hr>
                 
@@ -169,25 +158,20 @@
                         <td style="width: 15%;">FIRMA:</td>
                         <td style="width: 35%;">
                             @if($recoleccion->firmat)
-                                <img class="img-firma" src="{{$recoleccion->firmat}}" alt="Firma Transportista">
+                                <img class="img-firma" src="{{ isset($vista) ? asset($recoleccion->firmat) : public_path($recoleccion->firmat) }}" alt="Firma Transportista">
                             @else
                                 [SIN FIRMA]
                             @endif
                         </td>
                     </tr>
-                  
                 </table>
-                
-              
             </td>
         </tr>
 
         <!-- Sección Destino -->
         <tr>
-            <td class="bordes icon-cell"><img class="img-icono" src="{{public_path('images/formatos/manifiesto/destino.png')}}" alt="Destino"></td>
+            <td class="bordes icon-cell"><img class="img-icono" src="{{ isset($vista) ? asset('images/formatos/manifiesto/destino.png') : public_path('images/formatos/manifiesto/destino.png') }}" alt="Destino"></td>
             <td class="bordes">
-                
-            
                 <table>
                     <tr>
                         <td style="width: 60%;">NOMBRE DE LA EMPRESA DESTINATARIA:</td>
@@ -217,9 +201,7 @@
                         <td style="width: 15%;">NOMBRE:</td>
                         <td style="width: 35%;" class="bolder">{{$centro->nombreReceptor ?? 'N/A'}}</td>
                         <td style="width: 15%;">FIRMA:</td>
-                        <td style="width: 35%;">
-                           
-                        </td>
+                        <td style="width: 35%;"></td>
                     </tr>
                     <tr>
                         <td>CARGO:</td>
@@ -231,5 +213,6 @@
             </td>
         </tr>
     </table>
+    <img src="{{ isset($vista) ? asset($qr) : public_path($qr) }}" width="100px">
 </body>
 </html>

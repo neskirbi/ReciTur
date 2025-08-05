@@ -21,9 +21,27 @@ function GetSiglas($opcion){
             break;
 
         case 2:
-            return 'Reci-Trash';
+            return 'Recitur';
         break;
     }
+}
+
+function GetUrl() {
+    $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https://" : "http://");
+    $url = $_SERVER['HTTP_HOST'];
+    
+    // Si es entorno local
+    if(in_array($url, ['localhost', '127.0.0.1', '::1'])){
+        // Primero intenta con la IP de red
+        $local_ip = gethostbyname(gethostname());
+        
+        // Si falla, usa la IP del servidor
+        $server_ip = ($local_ip == gethostname()) ? $_SERVER['SERVER_ADDR'] : $local_ip;
+        
+        return $protocol.$server_ip."/Recitur/public/";
+    }
+    
+    return $protocol.$url."/";
 }
 
 function BuscarCorreo($mail){
@@ -522,17 +540,17 @@ function Entregado($cita){
    
 }
 
-function GeneraQR($path,$texto){
+function GeneraQR($path,$texto,$id){
     
     if(!is_dir(public_path().'/'.$path))
         mkdir(public_path().'/'.$path, 0777,true);
         
-$nombre=GetUuid().'.png';
+    $nombre=$id.'.png';
 
 
-$url= ($path.$nombre);
-\QRCode::text($texto)->setOutfile($url)->png(); 
-return $url;
+    $url= ($path.$nombre);
+    \QRCode::text($texto)->setOutfile($url)->png(); 
+    return $url;
 
 }
 

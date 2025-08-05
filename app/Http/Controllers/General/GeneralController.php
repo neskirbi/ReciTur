@@ -42,8 +42,10 @@ class GeneralController extends Controller
         $configuracion = array();
 
         $administrador = array();
-        //return view('formatos.recolecciones.manifiesto',['recoleccion'=>$recoleccion,'configuracion'=>$configuracion,'planta'=>$planta,'administrador'=>$administrador,'detallesRecoleccion'=>$detallesRecoleccion,'centro'=>$centro]);
-        $pdf = \PDF::loadView('formatos.recolecciones.manifiesto',['recoleccion'=>$recoleccion,'configuracion'=>$configuracion,'planta'=>$planta,'administrador'=>$administrador,'detallesRecoleccion'=>$detallesRecoleccion,'centro'=>$centro]);
+        //return GetUrl()."manifiesto/".$recoleccion->id;
+        $qr = (GeneraQR('images/qr/manifiesto/',GetUrl()."Manifiesto/".$recoleccion->id,$recoleccion->id));
+        //return view('formatos.recolecciones.manifiesto',['recoleccion'=>$recoleccion,'configuracion'=>$configuracion,'planta'=>$planta,'administrador'=>$administrador,'detallesRecoleccion'=>$detallesRecoleccion,'centro'=>$centro,'qr'=>$qr,'vista'=>1]);
+        $pdf = \PDF::loadView('formatos.recolecciones.manifiesto',['recoleccion'=>$recoleccion,'configuracion'=>$configuracion,'planta'=>$planta,'administrador'=>$administrador,'detallesRecoleccion'=>$detallesRecoleccion,'centro'=>$centro,'qr'=>$qr]);
         
         return $pdf ->setPaper('A4', 'portrait')->download($recoleccion->negocio.'.pdf');
     }
