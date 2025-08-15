@@ -1,7 +1,7 @@
 
 function Url(){
     if(window.location.origin.includes('localhost') || window.location.origin.includes('192.168')){
-        return window.location.origin+'/recitrash/public/';
+        return window.location.origin+'/Recitur/public/';
     }else{
        return window.location.origin+'/';
     }
@@ -3042,6 +3042,30 @@ function EnviarCodigo(_this){
         }
     }).fail(function(xhr, status, error) {
         console.log(error);
+        
+    });
+}
+
+function GetUnidadesClasificacion(_this){
+
+    var clasificacion = $(_this).find('option:selected').text();
+    
+
+    var data={clasificacion:clasificacion};
+
+    $.ajax({
+            
+        headers: { "APP-KEY": AppKey() },
+        method:'post',
+        url: Url()+"api/GetUnidadesClasificacion",
+        data:data,
+        context: document.body
+    }).done(function(data) {       
+        console.log(data);
+        $('#unidades').html(data.unidades);
+        
+    }).fail(function(xhr, status, error) {
+        alert(error);
         
     });
 }

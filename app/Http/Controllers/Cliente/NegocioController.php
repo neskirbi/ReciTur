@@ -14,6 +14,7 @@ use App\Models\Planta;
 use App\Models\Entidad;
 use App\Models\Generador;
 use App\Models\Configuracion;
+use App\Models\Clasificacion;
 
 use Redirect;
 
@@ -31,7 +32,6 @@ class NegocioController extends Controller
 
     public function index()
     {
-        
 
         $negocios = DB::table('negocios')
         ->join('generadores', 'generadores.id', '=', 'negocios.id_generador')
@@ -40,8 +40,6 @@ class NegocioController extends Controller
         ->orderby('negocios.created_at','desc')
         ->get();
 
-        
-
         return view('cliente.negocios.index',['negocios'=>$negocios]);
     
     }
@@ -49,11 +47,24 @@ class NegocioController extends Controller
     
     public function create()
     {
-        $plantas=Planta::all();        
-        $tiponegocios=TipoNegocio::All();
+              
+        
         $entidades=Entidad::All();
         $generadores=Generador::where('id_cliente','=',Auth::guard('clientes')->user()->id)->get();
-        return view('cliente.negocios.create',['generadores'=>$generadores,'plantas'=>$plantas,'tiponegocios'=>$tiponegocios,'entidades'=>$entidades]);
+
+        
+        
+
+        $giros = Clasificacion::select('giro')
+        ->distinct()
+        ->whereNotNull('giro')
+        ->orderBy('giro')
+        ->get();
+
+
+        return view('cliente.negocios.create',['generadores'=>$generadores,
+        'entidades'=>$entidades,
+        'giros'=>$giros]);
     }
 
     /**

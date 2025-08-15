@@ -54,15 +54,20 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="tiponegocio"><i class="fas fa-store"></i> Giro del Establecimiento</label>
-                        <input type="text" name="tiponegocio" id="tiponegocio" class="form-control" placeholder="Giro del Establecimiento" required>
+                        <select name="tiponegocio" id="tiponegocio" class="form-control" onchange="GetUnidadesClasificacion(this);" required>
+                          <option value=""></option>
+                          @foreach($giros as $giro)
+                          <option value="{{$giro->giro}}">{{$giro->giro}}</option>
+                          @endforeach
+                        </select>
                         
                       </div>
                     </div>
 
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="tiponegocio"><i class="fas fa-store"></i> Giro del Establecimiento</label>
-                        <input type="text" name="tiponegocio" id="tiponegocio" class="form-control" placeholder="Giro del Establecimiento" required>
+                        <label for="cantidad"><i class="fa fa-list-ol"></i> <span id="unidades"> ---</span></label>
+                        <input type="text" name="cantidad" id="cantidad" class="form-control" placeholder="" required>
                         
                       </div>
                     </div>
@@ -199,52 +204,94 @@
 
 
 <script>
-$(function () {
-  bsCustomFileInput.init();
-});
+
+
 </script>
 <script>
     var markers = [];
+    
+    
+  
     function initMap() {
-        const myLatlng = { lat:  20.248882446801847, lng: -101.45472227050904 };
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
+                const userLatLng = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                  $('#latitud').val(position.coords.latitude);
+                  $('#longitud').val(position.coords.longitude);
+                
+                const map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: 15,
+                    center: userLatLng,
+                });
+                
+                // Marcador azul para ubicación actual (no se elimina)
+                new google.maps.Marker({
+                    position: userLatLng,
+                    map: map,
+                    title: "Tu ubicación actual",
+                    icon: {
+                        url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                    }
+                });
+                
+                setupMapFeatures(map);
+            },
+            function(error) {
+                console.error("Error obteniendo ubicación:", error);
+                const defaultLatLng = { lat: 20.248882446801847, lng: -101.45472227050904 };
+                const map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: 4,
+                    center: defaultLatLng,
+                });
+                setupMapFeatures(map);
+            }
+        );
+    } else {
+        const defaultLatLng = { lat: 20.248882446801847, lng: -101.45472227050904 };
         const map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 4,
-          center: myLatlng,
+            zoom: 4,
+            center: defaultLatLng,
         });
-        // Create the initial InfoWindow.
-        let infoWindow = new google.maps.InfoWindow({
-          content: "Seleccione ubicación",
-          position: myLatlng,
-        });
-        infoWindow.open(map);
-        // Configure the click listener.
-         
-        map.addListener("click", (mapsMouseEvent) => {
-            // Close the current InfoWindow.
-            infoWindow.close();
-            DeleteMarkers()
-            // Create a new InfoWindow.
-            infoWindow = new google.maps.InfoWindow({
-              position: mapsMouseEvent.latLng,
-            });
-            var coordenadas=mapsMouseEvent.latLng.toJSON();
-            $('#latitud').val(coordenadas.lat);
-            $('#longitud').val(coordenadas.lng);
-            const coornegocio = { lat:  coordenadas.lat*1, lng: coordenadas.lng*1 };
-            const marker = new google.maps.Marker({
-            position: coornegocio,
-            map,
-            title:$('#negocio').val()
-            });
-             //Add marker to the array.
-            markers.push(marker);
-            infoWindow.setContent('La negocio se localiza:<br>Latitud:'+coordenadas.lat+'<br>Longitud:'+coordenadas.lng);
-          
-            infoWindow.open(map,marker);
-          
-        });
+        setupMapFeatures(map);
     }
-      
+}
+
+function setupMapFeatures(map) {
+    let infoWindow = new google.maps.InfoWindow();
+    let selectedMarker = null; // Solo guardaremos un marcador de selección
+
+    map.addListener("click", (mapsMouseEvent) => {
+        // Eliminar el marcador de selección anterior si existe
+        if (selectedMarker) {
+            selectedMarker.setMap(null);
+        }
+        
+        // Crear nuevo marcador de selección
+        selectedMarker = new google.maps.Marker({
+            position: mapsMouseEvent.latLng,
+            map: map,
+            title: $('#negocio').val() || 'Ubicación seleccionada'
+        });
+        
+        // Actualizar campos de coordenadas
+        const coordenadas = mapsMouseEvent.latLng.toJSON();
+        $('#latitud').val(coordenadas.lat.toFixed(6));
+        $('#longitud').val(coordenadas.lng.toFixed(6));
+        
+        // Configurar InfoWindow
+        infoWindow.setContent(
+            'Ubicación seleccionada:<br>' +
+            'Latitud: ' + coordenadas.lat.toFixed(6) + '<br>' +
+            'Longitud: ' + coordenadas.lng.toFixed(6)
+        );
+        infoWindow.open(map, selectedMarker);
+    });
+}
 </script>
 
 <!-- Scripts -->

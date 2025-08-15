@@ -1,1 +1,5 @@
 
+Quitar el campo de giro de el negocio esta doble en el registro, revisar create, edit y show.
+
+Categorias de RSU Organicos e inorganicos, mezclado y otros.
+
