@@ -256,6 +256,7 @@ function EsValido(seccion){
    
 }
 function RecorreFormularioAdelante(){
+    console.log(numeroformulario);
     switch(numeroformulario){
         case 1:
            if(!EsValido('fiscales')){
@@ -303,6 +304,7 @@ function RecorreFormularioAdelante(){
 }
 
 function RecorreFormularioAtras(){
+    console.log(numeroformulario);
     switch(numeroformulario){
         
 
@@ -434,17 +436,25 @@ function RecorreFormularioAtras2(){
 }
 
 function GuardarGenerador(){
-    
-    if($('#fisicaomoral').val().includes('Moral')){
-        if(!EsValido('empresa')){
-            return false;
-        }
-    }else if($('#fisicaomoral').val().includes('Física')){
-        if(!EsValido('fisica')){
-            return false; 
-        }
+
+    if(!EsValido('fiscales')){
+        return false;
     }
-    if(ValidacionFinal())
+
+    if(!EsValido('representante')){
+        return false;
+    }
+
+     if(!EsValido('empresa')){
+        return false;
+    }
+
+        if(!EsValido('fisica')){
+        return false; 
+    }
+
+    
+    
     $('#formgenerador').submit();
 
 }

@@ -47,11 +47,11 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="fisicaomoral">Persona</label>
-                                            <select  name="fisicaomoral" class="form-control" id="fisicaomoral" aria-invalid="false" maxlength="50">
-                                                <option >
+                                            <select data-invalido="true" name="fisicaomoral" class="form-control" id="fisicaomoral" aria-invalid="false" maxlength="50">
+                                                <option value="">Persona</option>
                                                 <optgroup>
-                                                <option >
-                                                <option >
+                                                <option value="Moral">Moral</option>
+                                                <option value="Física">Física</option>
                                                 </optgroup>
                                                 
                                             </select>
@@ -106,10 +106,10 @@
                                         <div class="form-group">
                                             <label for="entidad">Entidad federativa</label>
                                             <!--<input  type="text" name="entidad" class="form-control" id="entidad" placeholder="Entidad federativa" aria-invalid="false" >-->
-                                            <select  name="entidad" class="form-control" id="entidad">
+                                            <select name="entidad" class="form-control" id="entidad" onchange="MunicipiosApi(this,2);" required>
                                                 <option >
                                                 @foreach($entidades as $entidad)
-                                                <option >
+                                                    <option value="{{$entidad->id}}">{{$entidad->entidad}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -118,7 +118,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="municipio">Municipio/Alcaldía</label>
-                                            <input type="text" name="municipio" class="form-control" id="municipio" placeholder="Municipio" aria-invalid="false" maxlength="150" >
+                                            <select  name="municipio" class="form-control" id="municipio" aria-invalid="false" data-mun="municipio" >
+                                            </select>
                                         </div>
                                     </div>
 
@@ -174,7 +175,7 @@
                         
                         <!--Datos del representante legal en caso de ser persona moral-->
 
-                        <div class="card card-primary" style="display:none;" id="representante">
+                        <div class="card card-primary"  id="representante">
                             <div class="card-header">
                                 <h3 class="card-title">Representante legal</h3>            
                             </div>
@@ -183,7 +184,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="nombresrepre">Nombre(s)</label>
-                                            <input type="text" name="nombresrepre" class="form-control" id="nombresrepre" placeholder="Nombre(s)" aria-invalid="false" maxlength="150" >
+                                            <input data-invalido="true" type="text" name="nombresrepre" class="form-control" id="nombresrepre" placeholder="Nombre(s)" aria-invalid="false" maxlength="150" >
                                         </div>
                                         
                                     </div>
@@ -192,14 +193,14 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="apellidosrepre">Apellidos</label>
-                                            <input type="text" name="apellidosrepre" class="form-control" id="apellidosrepre" placeholder="Apellidos" aria-invalid="false" maxlength="150" >
+                                            <input data-invalido="true" type="text" name="apellidosrepre" class="form-control" id="apellidosrepre" placeholder="Apellidos" aria-invalid="false" maxlength="150" >
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                           <label for="rfcrepre">RFC</label>
-                                            <input type="text" name="rfcrepre" class="form-control" id="rfcrepre" placeholder="RFC" maxlength="250" aria-invalid="false" >
+                                            <input data-invalido="true" type="text" name="rfcrepre" class="form-control" id="rfcrepre" placeholder="RFC" maxlength="250" aria-invalid="false" >
                                         </div>
                                     </div>
                                     
@@ -209,7 +210,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="nombresrepre">Número de Teléfono del Representante Legal </label>
-                                            <input type="text" name="numrepresent" class="form-control" id="numrepresent" placeholder="Núm. Representante Legal" aria-invalid="false" maxlength="150" >
+                                            <input data-invalido="true" type="text" name="numrepresent" class="form-control" id="numrepresent" placeholder="Núm. Representante Legal" aria-invalid="false" maxlength="150" >
                                         </div>
                                         
                                     </div>
@@ -217,7 +218,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="apellidosrepre">Correo Electrónico del Representante Legal</label>
-                                            <input type="text" name="correorepresent" class="form-control" id="correorepresent" placeholder="Mail Representante Legal" aria-invalid="false" maxlength="150" >
+                                            <input data-invalido="true" type="text" name="correorepresent" class="form-control" id="correorepresent" placeholder="Mail Representante Legal" aria-invalid="false" maxlength="150" >
                                         </div>
                                     </div>
                                     
@@ -227,7 +228,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="nacionalidadrepre">Nacionalidad</label>
-                                            <input type="text" name="nacionalidadrepre" class="form-control" id="nacionalidadrepre" placeholder="Nacionalidad" aria-invalid="false" maxlength="100" >
+                                            <input data-invalido="true" type="text" name="nacionalidadrepre" class="form-control" id="nacionalidadrepre" placeholder="Nacionalidad" aria-invalid="false" maxlength="100" >
                                         </div>
                                     </div>
                                 </div>
@@ -239,12 +240,12 @@
                                         <div class="form-group">
                                             <label for="identificacionrepre">Identificación</label>
                                             <!--<input  type="text" name="identificacionrepre" class="form-control" id="identificacionrepre" placeholder="Identificación" aria-invalid="false" >-->
-                                            <select class="form-control" name="identificacionrepre" id="identificacionrepre"  aria-invalid="false">
-                                                <option >
+                                            <select data-invalido="true" class="form-control" name="identificacionrepre" id="identificacionrepre"  aria-invalid="false">
+                                               <option value="">--Identificación--</option>
                                                 <optgroup>
-                                                <option >
-                                                <option >
-                                                <option >
+                                                <option value="INE">INE</option>
+                                                <option value="Pasaporte">Pasaporte</option>
+                                                <option value="Cédula Profesional">Cédula Profesional</option>
                                                 </optgroup>
                                             </select>
                                           
@@ -257,7 +258,7 @@
 
                         <!--Datos de la empresa en cas ode ser persona moral-->
 
-                        <div class="card card-primary" style="display:none;"  id="empresa">
+                        <div class="card card-primary"   id="empresa">
                             <div class="card-header">
                                 <h3 class="card-title">Empresa</h3>            
                             </div>
@@ -266,7 +267,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="fechaconst">Fecha Constitución</label>
-                                            <input  type="date" name="fechaconst" class="form-control" id="fechaconst" aria-invalid="false" maxlength="50" >
+                                            <input data-invalido="true"  type="date" name="fechaconst" class="form-control" id="fechaconst" aria-invalid="false" maxlength="50" >
                                         </div>
                                         
                                     </div>
@@ -274,7 +275,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="numeroactacont">Acta Constitutiva</label>
-                                            <input type="text" name="numeroactacont" class="form-control" id="numeroactacont" placeholder="Acta Constitutiva" aria-invalid="false" >
+                                            <input data-invalido="true" type="text" name="numeroactacont" class="form-control" id="numeroactacont" placeholder="Acta Constitutiva" aria-invalid="false" >
                                         </div>
                                     </div>
                                 </div>    
@@ -284,7 +285,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="notario">Nombre del notario o corredor público</label>
-                                            <input type="text" name="notario" class="form-control" id="notario" placeholder="Nombre del notario o corredor público" aria-invalid="false" maxlength="250" >
+                                            <input data-invalido="true" type="text" name="notario" class="form-control" id="notario" placeholder="Nombre del notario o corredor público" aria-invalid="false" maxlength="250" >
                                         </div>
                                     </div>
                                 
@@ -298,7 +299,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="numeronotaria">Número de notaría o correduría</label>
-                                            <input type="text" name="numeronotaria" class="form-control" id="numeronotaria" placeholder="Número de notaría o correduría" aria-invalid="false" maxlength="150" >
+                                            <input data-invalido="true" type="text" name="numeronotaria" class="form-control" id="numeronotaria" placeholder="Número de notaría o correduría" aria-invalid="false" maxlength="150" >
                                         </div>
                                     </div>
                                 </div>
@@ -309,10 +310,10 @@
                                         <div class="form-group">
                                             <label for="entidadnotaria">Entidad de la notaría</label>
                                             <!--<input  type="text" name="entidad" class="form-control" id="entidad" placeholder="Entidad federativa" aria-invalid="false" >-->
-                                            <select  name="entidadnotaria" class="form-control" id="entidadnotaria">
+                                            <select data-invalido="true"  name="entidadnotaria" class="form-control" id="entidadnotaria">
                                                 <option >
-                                                  @foreach($entidades as $entidad)
-                                                <option >
+                                                @foreach($entidades as $entidad)
+                                                    <option value="{{$entidad->id}}">{{$entidad->entidad}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -322,7 +323,7 @@
                         </div>
 
                         <!--En caso de ser persona fisica-->
-                        <div class="card card-primary"  style="display:none;"  id="fisica">
+                        <div class="card card-primary"    id="fisica">
                             <div class="card-header">
                                 <h3 class="card-title">Personales</h3>            
                             </div>
@@ -332,7 +333,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="nombresfisica">Nombre(s)</label>
-                                            <input type="text" name="nombresfisica" class="form-control" id="nombresfisica" placeholder="Nombre(s)" aria-invalid="false" maxlength="150" >
+                                            <input data-invalido="true" type="text" name="nombresfisica" class="form-control" id="nombresfisica" placeholder="Nombre(s)" aria-invalid="false" maxlength="150" >
                                         </div>
                                         
                                     </div>
@@ -340,7 +341,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="apellidosfisica">Apellidos</label>
-                                            <input type="text" name="apellidosfisica" class="form-control" id="apellidosfisica" placeholder="Apellidos" aria-invalid="false" maxlength="150" >
+                                            <input data-invalido="true" type="text" name="apellidosfisica" class="form-control" id="apellidosfisica" placeholder="Apellidos" aria-invalid="false" maxlength="150" >
                                         </div>
                                     </div>
                                     
@@ -350,7 +351,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="nacionalidadfisica">Nacionalidad</label>
-                                            <input type="text" name="nacionalidadfisica" class="form-control" id="nacionalidadfisica" placeholder="Nacionalidad" aria-invalid="false" maxlength="100" >
+                                            <input data-invalido="true" type="text" name="nacionalidadfisica" class="form-control" id="nacionalidadfisica" placeholder="Nacionalidad" aria-invalid="false" maxlength="100" >
                                         </div>
                                     </div>
                                 </div>
@@ -361,7 +362,7 @@
                                         <div class="form-group">
                                             <label for="identificacionfisica">Identificación</label>
                                             <!--<input  type="text" name="identificacionfisica" class="form-control" id="identificacionfisica" placeholder="Identificación" aria-invalid="false" >-->
-                                            <select class="form-control" name="identificacionfisica" id="identificacionfisica"  aria-invalid="false">
+                                            <select data-invalido="true" class="form-control" name="identificacionfisica" id="identificacionfisica"  aria-invalid="false">
                                                 <option >
                                                 <optgroup>
                                                 <option >
@@ -377,8 +378,8 @@
                 </form>
                 <div style="margin-top:30px; ">
                     <button onclick="RecorreFormularioAtras();" class="btn  btn-theme-primary float-left" style="display:none;" id="anterior"><i class="fa fa-chevron-left" ></i> Anterior</button>
-                    <button onclick="RecorreFormularioAdelante();" class="btn  btn-theme-primary float-right" id="siguiente">Siguiente <i class="fa fa-chevron-right" ></i></button>
-                    <button type="submit" style="display:none;" id="guardar" class="btn  btn-theme-primary float-right" onclick="GuardarGenerador();">Guardar</button>
+                    <button onclick="RecorreFormularioAdelante();" class="btn  btn-theme-primary float-right"  style="display:none;" id="siguiente">Siguiente <i class="fa fa-chevron-right" ></i></button>
+                    <button type="submit" id="guardar" class="btn  btn-theme-primary float-right" onclick="GuardarGenerador();">Guardar</button>
                 </div>
                 <br><br><br><br>
                 
