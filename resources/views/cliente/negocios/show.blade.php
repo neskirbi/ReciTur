@@ -49,19 +49,25 @@
                 </div>
 
                 <div class="row">
+                    
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="nautorizacion"><i class="fas fa-file-alt"></i> # Autorización</label>
-                      <input type="text" class="form-control" id="nautorizacion" value="{{$negocio->nautorizacion}}" readonly>
+                      <label for="giro"><i class="fas fa-store"></i> Giro del Establecimiento</label>
+                      <input type="text" class="form-control" id="tiponegocio" value="{{$negocio->giro}}" readonly>
+                      
                     </div>
                   </div>
+
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="tiponegocio"><i class="fas fa-store"></i> Giro del Establecimiento</label>
-                      <input type="text" class="form-control" id="tiponegocio" value="{{$negocio->tiponegocio}}" readonly>
+                      <label for="cantidad"><i class="fa fa-list-ol"></i> <span id="unidades"> {{$negocio->unidades}}</span></label>
+                      <input type="text" name="cantidad" id="cantidad" class="form-control"  value="{{$negocio->cantidad}}" readonly>
+                      
                     </div>
                   </div>
                 </div>
+
+               
 
                 <div class="row">
                   <div class="col-md-6">

@@ -53,8 +53,8 @@
                     
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="tiponegocio"><i class="fas fa-store"></i> Giro del Establecimiento</label>
-                        <select name="tiponegocio" id="tiponegocio" class="form-control" onchange="GetUnidadesClasificacion(this);" required>
+                        <label for="giro"><i class="fas fa-store"></i> Giro del Establecimiento</label>
+                        <select name="giro" id="giro" class="form-control" onchange="GetUnidadesClasificacion(this);" required>
                           <option value=""></option>
                           @foreach($giros as $giro)
                           <option value="{{$giro->giro}}">{{$giro->giro}}</option>
@@ -115,7 +115,7 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="entidad"><i class="fas fa-flag"></i> Entidad Federativa</label>
-                        <select name="entidad" class="form-control" id="entidad" onchange="MunicipiosApi(this,2);" required>
+                        <select name="entidad" class="form-control" id="entidad" onchange="MunicipiosApi(this,1);" required>
                           <option value="">--Entidad Federativa--</option>
                           @foreach($entidades as $entidad)
                             <option value="{{$entidad->id}}">{{$entidad->entidad}}</option>

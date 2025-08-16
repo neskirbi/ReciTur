@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Negocio;
-use App\Models\TipoNegocio;
 use App\Models\Planta;
 use App\Models\Entidad;
 use App\Models\Generador;
@@ -36,7 +35,7 @@ class NegocioController extends Controller
         $negocios = DB::table('negocios')
         ->join('generadores', 'generadores.id', '=', 'negocios.id_generador')
         ->where('generadores.id_cliente',Auth::guard('clientes')->user()->id)
-        ->select('negocios.id','negocios.negocio','negocios.tiponegocio','generadores.razonsocial','negocios.verificado')
+        ->select('negocios.id','negocios.negocio','negocios.giro','generadores.razonsocial','negocios.verificado')
         ->orderby('negocios.created_at','desc')
         ->get();
 
@@ -80,10 +79,20 @@ class NegocioController extends Controller
 
 
        if(isset($request->plan))
-       if(!GuardarArchivos($request->plan,'/documentos/negocios/plan/', $id)){
+        if(!GuardarArchivos($request->plan,'/documentos/negocios/plan/', $id)){
             return Redirect::back()->with('error', 'Error al guardar el plan de menejo.');
         }
 
+        $clasificacion = Clasificacion::WhereRaw("giro = '".$request->giro."' and de <= ".$request->cantidad." and a >= ".$request->cantidad."  ")->first();
+
+        $cla='';
+        $uni='';
+        if($clasificacion){
+            $cla = $clasificacion->clasificacion;
+            $uni = $clasificacion->unidades;
+        }
+
+        $entidad = Entidad::where('id',$request->entidad)->first();
 
         $negocio = new Negocio();
         
@@ -91,12 +100,17 @@ class NegocioController extends Controller
         $negocio->id_generador = $request->generador;
         $negocio->id_municipio = $request->municipio;
         $negocio->negocio = $request->negocio;
-        $negocio->tiponegocio = $request->tiponegocio;
+        $negocio->giro = $request->giro;
+        $negocio->cantidad = $request->cantidad;
+        $negocio->unidades = $uni;
+        $negocio->clasificacion = $cla;
         $negocio->calle = $request->calle;
         $negocio->numeroext = $request->numeroext;
         $negocio->numeroint = $request->numeroint=='' ? '' : $request->numeroint ;
         $negocio->colonia = $request->colonia;
         $negocio->cp = $request->cp;
+        $negocio->entidad = $entidad->entidad;
+        $negocio->municipio = $request->municipio;
         $negocio->latitud = $request->latitud;
         $negocio->longitud = $request->longitud;
         $negocio->correo = $request->correo;
@@ -124,17 +138,13 @@ class NegocioController extends Controller
         ->where('generadores.id',$negocio->id_generador)
         ->first();
 
-        $planta=DB::table('plantas')
-        ->where('plantas.id',$negocio->id_municipio)
-        ->first();
-
         $entidad=DB::table('entidades')
         ->where('id',$negocio->entidad)
         ->first();
 
 
         
-        return view('cliente.negocios.show',['negocio'=>$negocio,'generador'=>$generador,'planta'=>$planta,'entidad'=>$entidad]);
+        return view('cliente.negocios.show',['negocio'=>$negocio,'generador'=>$generador,'entidad'=>$entidad]);
 
 
     }
@@ -180,23 +190,6 @@ class NegocioController extends Controller
     }
 
 
-    public function RegistroNegocio(){
-        $generadores = Generador::all()
-        ->where('id_cliente',Auth::guard('clientes')->user()->id)
-        ->where('borrado','1')
-        ->where('verificado','1');
-        
-        
-        $configuraciones=DB::table('configuraciones')->first();
-      
-
-        $tiponegocio=TipoNegocio::select('tiponegocio','tag')->distinct()->get();
-        $subtiponegocio=TipoNegocio::all();
-        
-        
-        $plantas=Planta::all();
-        return view('cliente.negocios.registronegocios',['generadores'=>$generadores,'tiponegocios'=>$tiponegocios,'subtiponegocios'=>$subtiponegocios,'plantas'=>$plantas]);
-    }
 
 
 

@@ -29,7 +29,7 @@ class NegocioController extends Controller
         ->leftjoin('generadores', 'generadores.id', '=', 'negocios.id_generador')
         ->where('negocios.id_municipio',GetIdMunicipio())   
         ->where('negocios.negocio','like','%'.$filtros->negocio.'%')
-        ->select('negocios.id','negocios.negocio','negocios.tiponegocio','generadores.razonsocial','negocios.verificado')
+        ->select('negocios.id','negocios.negocio','negocios.giro','generadores.razonsocial','negocios.verificado')
         ->orderby('negocios.created_at','desc')
         ->paginate(15);
 
