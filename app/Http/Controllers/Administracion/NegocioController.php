@@ -12,6 +12,7 @@ use App\Models\TipoNegocio;
 use App\Models\Entidad;
 use App\Models\Municipio;
 use App\Models\Configuracion;
+use App\Models\Clasificacion;
 use Redirect;
 
 class NegocioController extends Controller
@@ -27,7 +28,6 @@ class NegocioController extends Controller
     {
         $negocios = DB::table('negocios')
         ->leftjoin('generadores', 'generadores.id', '=', 'negocios.id_generador')
-        ->where('negocios.id_municipio',GetIdMunicipio())   
         ->where('negocios.negocio','like','%'.$filtros->negocio.'%')
         ->select('negocios.id','negocios.negocio','negocios.giro','generadores.razonsocial','negocios.verificado')
         ->orderby('negocios.created_at','desc')
@@ -74,19 +74,30 @@ class NegocioController extends Controller
         ->where('generadores.id',$negocio->id_generador)
         ->first();
 
+
+        $giros = Clasificacion::select('giro')
+        ->distinct()
+        ->whereNotNull('giro')
+        ->orderBy('giro')
+        ->get();
+
+        
         $entidad=DB::table('entidades')
         ->where('entidad',$negocio->entidad)
         ->first();
+        /*
 
         $municipio = Municipio::find($negocio->id_municipio);
         $entidad=Entidad::find($municipio->id_entidad);
 
+
+        */
         $generadores=Generador::all();
         
         return view('administracion.negocios.show',['generadores'=>$generadores,
         'negocio'=>$negocio,'generador'=>$generador,
         'entidad'=>$entidad,
-        'entidades'=>$entidades,'municipio'=>$municipio,'entidad'=>$entidad,'tiponegocios'=>$tiponegocios]);
+        'entidades'=>$entidades,'tiponegocios'=>$tiponegocios,'giros'=>$giros]);
 
     }
 
@@ -104,30 +115,43 @@ class NegocioController extends Controller
     {
         //return $request;
 
-        //negocio->id=GetUuid(); 
+
+        $clasificacion = Clasificacion::WhereRaw("giro = '".$request->giro."' and de <= ".$request->cantidad." and a >= ".$request->cantidad."  ")->first();
+
+        $cla='';
+        $uni='';
+        if($clasificacion){
+            $cla = $clasificacion->clasificacion;
+            $uni = $clasificacion->unidades;
+        }
+
+        $entidad = Entidad::where('id',$request->entidad)->first();
+
+        $negocio = new Negocio();
+
+        
+        
         $negocio=Negocio::find($id);      
-        $negocio->id_generador=isset($request->generador) ? $request->generador : '' ;
-        $negocio->id_municipio=$request->municipio;
-
-        $negocio->negocio=$request->negocio;
-        $negocio->tiponegocio=$request->tiponegocio;
-        $negocio->calle=$request->calle;
-        $negocio->numeroext=$request->numeroext;
-        $negocio->numeroint=$request->numeroint;
-        $negocio->colonia=$request->colonia;
-        $negocio->cp=$request->cp;
-        $negocio->latitud=$request->latitud;
-        $negocio->longitud=$request->longitud;
-        $negocio->verificado=1;
         
-        
-       
-        $negocio->telefono=$request->telefono;
-        $negocio->celular=$request->celular;
-        $negocio->correo=$request->correo;
-
-        
-        $negocio->iva=16;
+        $negocio->id_generador = $request->generador;
+        $negocio->id_municipio = $request->municipio;
+        $negocio->negocio = $request->negocio;
+        $negocio->giro = $request->giro;
+        $negocio->cantidad = $request->cantidad;
+        $negocio->unidades = $uni;
+        $negocio->clasificacion = $cla;
+        $negocio->calle = $request->calle;
+        $negocio->numeroext = $request->numeroext;
+        $negocio->numeroint = $request->numeroint=='' ? '' : $request->numeroint ;
+        $negocio->colonia = $request->colonia;
+        $negocio->cp = $request->cp;
+        $negocio->entidad = $entidad->entidad;
+        $negocio->municipio = $request->municipio;
+        $negocio->latitud = $request->latitud;
+        $negocio->longitud = $request->longitud;
+        $negocio->correo = $request->correo;
+        $negocio->telefono = $request->telefono;
+        $negocio->celular = $request->celular;
         
 
         if($negocio->save()){
