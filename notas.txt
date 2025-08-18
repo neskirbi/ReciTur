@@ -1,5 +1,5 @@
+HAcer otro usuario para que regidtren comercios y que puedan seleccionar el generador al que se le va a guardar
+HAcer un mapa general 
 
-Quitar el campo de giro de el negocio esta doble en el registro, revisar create, edit y show.
-
-Categorias de RSU Organicos e inorganicos, mezclado y otros.
-
+Formulario de registro de generadores 
+Generar solicitud de recoleccion 
