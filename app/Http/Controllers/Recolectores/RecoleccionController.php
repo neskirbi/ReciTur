@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Recoleccion;
+use App\Models\Centro;
 use Redirect;
 
 
@@ -45,19 +46,21 @@ class RecoleccionController extends Controller
         ->orderby('recolecciones.created_at','desc')
         ->get();
 
+        $centro = Centro::first();
         //$recolecciones = Recoleccion::whereraw("id_recolector = '".GetId()."' and date(created_at) = '".$fecha."'")->get();
         $detallesRecoleccion=array();
 
         foreach($recolecciones as $recoleccion){
             // Obtener los detalles de recolección por separado
-            $detallesRecoleccion[] = DB::table('recoleccion')
-            ->select('recoleccion.residuo','recoleccion.cantidad','recoleccion.subtotal','recoleccion.unidades')
+            $detallesRecoleccions[] = DB::table('recoleccion')
+            ->select('recoleccion.residuo','recoleccion.cantidad','recoleccion.contenedor')
             ->where('id_recoleccion', $recoleccion->id)
             ->get();
         }
         
+        //return $detallesRecoleccion;
 
-        return view('recolectores.recolecciones.manifiesto',['recolecciones'=>$recolecciones,'detallesRecoleccion'=>$detallesRecoleccion]);
+        return view('recolectores.recolecciones.manifiesto',['recolecciones'=>$recolecciones,'detallesRecoleccions'=>$detallesRecoleccions,'centro'=>$centro,'vista'=>1]);
         
     }
 }

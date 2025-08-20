@@ -102,7 +102,31 @@ class RecolectarController extends Controller
         ->orderby('residuo','asc')->get();
         $contenedores = Contenedor::orderby('contenedor','asc')->get();
         $negocio = Negocio::find($id);
-        return view('recolectores.recolectar.recoleccion',['id'=>$id,'residuos'=>$residuos,'contenedores'=>$contenedores,'negocio'=>$negocio]);
+        if(count($residuos)!=0){
+            return view('recolectores.recolectar.recoleccion',['id'=>$id,'residuos'=>$residuos,'contenedores'=>$contenedores,'negocio'=>$negocio]);
+        }else{
+            $negocio = Negocio::findOrFail($id);
+            $recolectorId = GetId();
+
+            $recoleccion = new Recoleccion();
+            $recoleccion->id = GetUuid();
+            $recoleccion->id_recolector = $recolectorId; 
+            $recoleccion->id_negocio = $negocio->id;
+            $recoleccion->save();
+
+    
+
+            $detalle = new Recolec(); 
+            $detalle->id = GetUuid();
+            $detalle->id_recoleccion = $recoleccion->id;
+            $detalle->residuo = "Recolección";
+            $detalle->contenedor = "kg";
+            $detalle->cantidad = $negocio->estimado;
+            $detalle->save();
+
+            return redirect('recoleccionesr')->with('success', 'Recolección guardada correctamente.');
+
+        }
     }
 
     public function GuardarRecoleccion(Request $request)

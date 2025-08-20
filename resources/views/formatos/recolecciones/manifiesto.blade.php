@@ -213,6 +213,8 @@
             </td>
         </tr>
     </table>
+    @if(isset($qr))
     <img src="{{ isset($vista) ? asset($qr) : public_path($qr) }}" width="100px">
+    @endif
 </body>
 </html>
