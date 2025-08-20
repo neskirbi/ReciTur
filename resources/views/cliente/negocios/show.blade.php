@@ -184,21 +184,30 @@
                 <h3 class="card-title"><i class="fas fa-id-card"></i> Datos del Contacto</h3>
               </div>
               <div class="card-body">
+
+
                 <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="contacto"><i class="fas fa-user"></i> Contacto <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" name="contacto" id="contacto" placeholder="Contacto" value="{{$negocio->contacto}}" readonly>
+                    </div>
+                  </div>              
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="correo"><i class="fas fa-envelope"></i> Correo Contacto</label>
                       <input type="email" class="form-control" id="correo" value="{{$negocio->correo}}" readonly>
                     </div>
                   </div>
+                </div>
+                <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="telefono"><i class="fas fa-phone"></i> Teléfono</label>
                       <input type="tel" class="form-control" id="telefono" value="{{$negocio->telefono}}" readonly>
                     </div>
                   </div>
-                </div>
-                <div class="row">
+                
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="celular"><i class="fas fa-mobile-alt"></i> Celular</label>

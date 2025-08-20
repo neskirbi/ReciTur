@@ -32,7 +32,7 @@
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="generador"><i class="fas fa-user-tie"></i> Generador</label>
+                        <label for="generador"><i class="fas fa-user-tie"></i> Generador <span class="text-danger">*</span></label>
                         <select class="form-control" name="generador" id="generador" required>
                           <option value="">--Generador--</option>
                           @foreach($generadores as $generador)
@@ -43,7 +43,7 @@
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="negocio"><i class="fas fa-signature"></i> Nombre del Establecimiento</label>
+                        <label for="negocio"><i class="fas fa-signature"></i> Nombre del Establecimiento <span class="text-danger">*</span></label>
                         <input type="text" name="negocio" class="form-control" id="negocio" placeholder="Nombre del Establecimiento" required>
                       </div>
                     </div>
@@ -53,7 +53,7 @@
                     
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="giro"><i class="fas fa-store"></i> Giro del Establecimiento</label>
+                        <label for="giro"><i class="fas fa-store"></i> Giro del Establecimiento <span class="text-danger">*</span></label>
                         <select name="giro" id="giro" class="form-control" onchange="GetUnidadesClasificacion(this);" required>
                           <option value=""></option>
                           @foreach($giros as $giro)
@@ -66,7 +66,7 @@
 
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="cantidad"><i class="fa fa-list-ol"></i> <span id="unidades"> ---</span></label>
+                        <label for="cantidad"><i class="fa fa-list-ol"></i> <span id="unidades"> ---</span> <span class="text-danger">*</span></label>
                         <input type="text" name="cantidad" id="cantidad" class="form-control" placeholder="" required>
                         
                       </div>
@@ -76,7 +76,7 @@
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="estimado"><i class="fas fa-trash-alt"></i> Estimación (Generación Diaria) </label>
+                        <label for="estimado"><i class="fas fa-trash-alt"></i> Estimación (Generación Diaria)  <span class="text-danger">*</span></label>
                         <input type="number" step="0.01" min="0.0" name="estimado" class="form-control" id="estimado" placeholder="0.0" value="" required>
                       </div>
                     </div>
@@ -85,19 +85,19 @@
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="calle"><i class="fas fa-road"></i> Calle</label>
+                        <label for="calle"><i class="fas fa-road"></i> Calle <span class="text-danger">*</span></label>
                         <input type="text" name="calle" class="form-control" id="calle" placeholder="Calle" required>
                       </div>
                     </div>
                     <div class="col-md-3">
                       <div class="form-group">
-                        <label for="numeroext"><i class="fas fa-home"></i> Número Ext.</label>
+                        <label for="numeroext"><i class="fas fa-home"></i> Número Ext. <span class="text-danger">*</span></label>
                         <input type="text" name="numeroext" class="form-control" id="numeroext" placeholder="Número Ext." required>
                       </div>
                     </div>
                     <div class="col-md-3">
                       <div class="form-group">
-                        <label for="numeroint"><i class="fas fa-home"></i> Número Int.</label>
+                        <label for="numeroint"><i class="fas fa-home"></i> Número Int. </label>
                         <input type="text" name="numeroint" class="form-control" id="numeroint" placeholder="Número Int.">
                       </div>
                     </div>
@@ -106,13 +106,13 @@
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="colonia"><i class="fas fa-map-marker-alt"></i> Colonia</label>
+                        <label for="colonia"><i class="fas fa-map-marker-alt"></i> Colonia <span class="text-danger">*</span></label>
                         <input type="text" name="colonia" class="form-control" id="colonia" placeholder="Colonia" required>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="cp"><i class="fas fa-map-pin"></i> C.P.</label>
+                        <label for="cp"><i class="fas fa-map-pin"></i> C.P. <span class="text-danger">*</span></label>
                         <input type="text" name="cp" class="form-control" id="cp" placeholder="C.P." required>
                       </div>
                     </div>
@@ -123,7 +123,7 @@
                     
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="entidad"><i class="fas fa-flag"></i> Entidad Federativa</label>
+                        <label for="entidad"><i class="fas fa-flag"></i> Entidad Federativa <span class="text-danger">*</span></label>
                         <select name="entidad" class="form-control" id="entidad" onchange="MunicipiosApi(this,1);" required>
                           <option value="">--Entidad Federativa--</option>
                           @foreach($entidades as $entidad)
@@ -134,7 +134,7 @@
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="municipio"><i class="fas fa-city"></i> Alcaldía/Municipio</label>
+                        <label for="municipio"><i class="fas fa-city"></i> Alcaldía/Municipio <span class="text-danger">*</span></label>
                         <select  name="municipio" class="form-control" id="municipio" aria-invalid="false" data-mun="municipio" >
                         </select>
                       </div>
@@ -143,7 +143,7 @@
 
                   <div class="row">
                     <div class="col-md-12">
-                      <label for="map"><i class="fas fa-map-marked-alt"></i> Ubicación del Establecimiento</label>
+                      <label for="map"><i class="fas fa-map-marked-alt"></i> Ubicación del Establecimiento <span class="text-danger">*</span></label>
                       <div id="map" style="height: 350px; width: 100%;"></div>
                     </div>
                   </div>
@@ -151,13 +151,13 @@
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="latitud"><i class="fas fa-latitude"></i> Latitud</label>
+                        <label for="latitud"><i class="fas fa-latitude"></i> Latitud <span class="text-danger">*</span></label>
                         <input type="text" name="latitud" class="form-control" id="latitud" placeholder="Latitud" readonly>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="longitud"><i class="fas fa-longitude"></i> Longitud</label>
+                        <label for="longitud"><i class="fas fa-longitude"></i> Longitud <span class="text-danger">*</span></label>
                         <input type="text" name="longitud" class="form-control" id="longitud" placeholder="Longitud" readonly>
                       </div>
                     </div>
@@ -174,24 +174,33 @@
                   <h3 class="card-title"><i class="fas fa-id-card"></i> Datos del Contacto</h3>
                 </div>
                 <div class="card-body">
-                  <div class="row">
+                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="correo"><i class="fas fa-envelope"></i> Correo Contacto</label>
+                        <label for="contacto"><i class="fas fa-user"></i> Contacto <span class="text-danger">*</span></label>
+                        <input type="text" name="contacto" class="form-control" id="contacto" placeholder="Contacto" required>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="correo"><i class="fas fa-envelope"></i> Correo Contacto <span class="text-danger">*</span></label>
                         <input type="email" name="correo" class="form-control" id="correo" placeholder="Correo" required>
                       </div>
                     </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="telefono"><i class="fas fa-phone"></i> Teléfono</label>
-                        <input type="tel" name="telefono" class="form-control" id="telefono" placeholder="Teléfono" required>
-                      </div>
-                    </div>
+                    
                   </div>
+
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="celular"><i class="fas fa-mobile-alt"></i> Celular</label>
+                        <label for="telefono"><i class="fas fa-phone"></i> Teléfono <span class="text-danger">*</span></label>
+                        <input type="tel" name="telefono" class="form-control" id="telefono" placeholder="Teléfono" required>
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="celular"><i class="fas fa-mobile-alt"></i> Celular <span class="text-danger">*</span></label>
                         <input type="tel" name="celular" class="form-control" id="celular" placeholder="Celular" required>
                       </div>
                     </div>

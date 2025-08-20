@@ -148,6 +148,7 @@ class NegocioController extends Controller
         $negocio->municipio = $request->municipio;
         $negocio->latitud = $request->latitud;
         $negocio->longitud = $request->longitud;
+        $negocio->contacto = $request->contacto;
         $negocio->correo = $request->correo;
         $negocio->telefono = $request->telefono;
         $negocio->celular = $request->celular;

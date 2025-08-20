@@ -44,8 +44,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="fisicaomoral"><i class="fas fa-user-tie mr-2"></i>Persona <span class="text-danger">*</span></label>
-                                <select data-invalido="true" name="fisicaomoral" class="form-control" id="fisicaomoral" aria-invalid="false" maxlength="50" required>
+                                <label for="fisicaomoral"><i class="fas fa-user-tie mr-2"></i>Persona </label>
+                                <select data-invalido="true" name="fisicaomoral" class="form-control" id="fisicaomoral" aria-invalid="false" maxlength="50">
                                     <option value="">Seleccione el tipo de persona</option>
                                     <optgroup>
                                     <option value="Moral">Persona Moral</option>
@@ -57,8 +57,8 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="rfc"><i class="fas fa-id-card mr-2"></i>RFC <span class="text-danger">*</span></label>
-                                <input data-invalido="true" type="text" name="rfc" class="form-control" id="rfc" placeholder="Ej: XAXX010101000 (Persona Física) o MECE910711ABC (Moral)" maxlength="250" aria-invalid="false" required>
+                                <label for="rfc"><i class="fas fa-id-card mr-2"></i>RFC </label>
+                                <input data-invalido="true" type="text" name="rfc" class="form-control" id="rfc" placeholder="Ej: XAXX010101000 (Persona Física) o MECE910711ABC (Moral)" maxlength="250" aria-invalid="false">
                             </div>
                         </div>
                     </div>
