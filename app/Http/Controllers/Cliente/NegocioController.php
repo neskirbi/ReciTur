@@ -103,6 +103,7 @@ class NegocioController extends Controller
         $negocio->giro = $request->giro;
         $negocio->cantidad = $request->cantidad;
         $negocio->unidades = $uni;
+        $negocio->estimado = $request->estimado;
         $negocio->clasificacion = $cla;
         $negocio->calle = $request->calle;
         $negocio->numeroext = $request->numeroext;

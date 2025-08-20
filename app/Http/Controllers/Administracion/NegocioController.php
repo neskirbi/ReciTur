@@ -127,8 +127,6 @@ class NegocioController extends Controller
 
         $entidad = Entidad::where('id',$request->entidad)->first();
 
-        $negocio = new Negocio();
-
         
         
         $negocio=Negocio::find($id);      
@@ -139,6 +137,7 @@ class NegocioController extends Controller
         $negocio->giro = $request->giro;
         $negocio->cantidad = $request->cantidad;
         $negocio->unidades = $uni;
+        $negocio->estimado = $request->estimado;
         $negocio->clasificacion = $cla;
         $negocio->calle = $request->calle;
         $negocio->numeroext = $request->numeroext;
@@ -152,6 +151,7 @@ class NegocioController extends Controller
         $negocio->correo = $request->correo;
         $negocio->telefono = $request->telefono;
         $negocio->celular = $request->celular;
+        $negocio->verificado = 1;
         
 
         if($negocio->save()){

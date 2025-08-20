@@ -67,6 +67,15 @@
                   </div>
                 </div>
 
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="estimado"><i class="fas fa-trash-alt"></i> Estimación (Generación Diaria) </label>
+                      <input type="number" step="0.01" name="estimado" class="form-control" id="estimado" placeholder="0.0" value="{{$negocio->estimado}}" readonly>
+                    </div>
+                  </div>
+                </div>
+
                
 
                 <div class="row">

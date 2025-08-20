@@ -88,6 +88,15 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
+                      <label for="estimado"><i class="fas fa-trash-alt"></i> Estimación (Generación Diaria) </label>
+                      <input type="number" step="0.01" min="0.0" name="estimado" class="form-control" id="estimado" placeholder="0.0" value="{{$negocio->estimado}}" required>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
                       <label for="calle"><i class="fas fa-road"></i> Calle</label>
                       <input type="text" class="form-control" name="calle" id="calle" value="{{$negocio->calle}}" required>
                     </div>
@@ -101,7 +110,7 @@
                   <div class="col-md-3">
                     <div class="form-group">
                       <label for="numeroint"><i class="fas fa-home"></i> Número Int.</label>
-                      <input type="text" class="form-control" name="numeroint" id="numeroint" value="{{$negocio->numeroint}}" required>
+                      <input type="text" class="form-control" name="numeroint" id="numeroint" value="{{$negocio->numeroint}}" >
                     </div>
                   </div>
                 </div>
@@ -128,7 +137,7 @@
                     <div class="form-group">
                       <label for="entidad"><i class="fas fa-flag"></i> Entidad Federativa</label>
                       <select class="form-control" name="entidad" id="entidad" onchange="MunicipiosApi(this,1);" required>
-                        <option value="{{$entidad->id}}">{{$entidad->entidad}}</option>
+                        <option value="{{isset($entidad->id) ? $entidad->id :''}}">{{isset($entidad->entidad) ? $entidad->entidad : ''}}</option>
                         @foreach($entidades as $entidad)
                           <option value="{{$entidad->id}}">{{$entidad->entidad}}</option>
                         @endforeach
@@ -139,7 +148,7 @@
                     <div class="form-group">
                       <label for="municipio"><i class="fas fa-city"></i> Alcaldía/Municipio</label>
                       <select  class="form-control" name="municipio" id="municipio" aria-invalid="false" data-mun="municipio" >
-                        <option value="{{$negocio->municipio}}">{{$negocio->municipio}}</option>
+                        <option value="{{isset($negocio->municipio) ? $negocio->municipio :''}}">{{isset($negocio->municipio) ? $negocio->municipio : ''}}</option>
                       </select>
                     </div>
                   </div>
@@ -224,7 +233,9 @@
             </div>
           </div>
           <div class="card-footer">
-            <button type="submit" name="guardar" id="guardar" class="btn btn-theme-primary float-right"><i class="fas fa-save"></i> Guardar</button>
+            <button type="submit" name="guardar" id="guardar" class="btn btn-theme-primary float-right">
+    {!! $negocio->verificado == 0 ? '<i class="fas fa-check"></i> Validar y Guardar' : '<i class="fas fa-save"></i> Guardar' !!}
+</button>
           </div>
         </div>
         </form>

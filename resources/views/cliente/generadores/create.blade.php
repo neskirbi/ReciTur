@@ -32,16 +32,20 @@
                 </div>
 
                 <div class="card-body">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle mr-2"></i> Los campos marcados con <span class="text-danger">*</span> son obligatorios.
+                    </div>
+
                     <div class="form-group">
-                        <label for="razonsocial"><i class="fas fa-building mr-2"></i>Denominación/Razon social</label>
-                        <input type="text" name="razonsocial" class="form-control" id="razonsocial" placeholder="Ej: Empresa S.A. de C.V." maxlength="250" aria-invalid="false">
+                        <label for="razonsocial"><i class="fas fa-building mr-2"></i>Denominación/Razon social <span class="text-danger">*</span></label>
+                        <input type="text" name="razonsocial" class="form-control" id="razonsocial" placeholder="Ej: Empresa S.A. de C.V." maxlength="250" aria-invalid="false" required>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="fisicaomoral"><i class="fas fa-user-tie mr-2"></i>Persona</label>
-                                <select data-invalido="true" name="fisicaomoral" class="form-control" id="fisicaomoral" aria-invalid="false" maxlength="50">
+                                <label for="fisicaomoral"><i class="fas fa-user-tie mr-2"></i>Persona <span class="text-danger">*</span></label>
+                                <select data-invalido="true" name="fisicaomoral" class="form-control" id="fisicaomoral" aria-invalid="false" maxlength="50" required>
                                     <option value="">Seleccione el tipo de persona</option>
                                     <optgroup>
                                     <option value="Moral">Persona Moral</option>
@@ -53,8 +57,8 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="rfc"><i class="fas fa-id-card mr-2"></i>RFC</label>
-                                <input data-invalido="true" type="text" name="rfc" class="form-control" id="rfc" placeholder="Ej: XAXX010101000 (Persona Física) o MECE910711ABC (Moral)" maxlength="250" aria-invalid="false">
+                                <label for="rfc"><i class="fas fa-id-card mr-2"></i>RFC <span class="text-danger">*</span></label>
+                                <input data-invalido="true" type="text" name="rfc" class="form-control" id="rfc" placeholder="Ej: XAXX010101000 (Persona Física) o MECE910711ABC (Moral)" maxlength="250" aria-invalid="false" required>
                             </div>
                         </div>
                     </div>
@@ -62,34 +66,34 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="calle"><i class="fas fa-road mr-2"></i>Calle</label>
-                                <input type="text" name="calle" class="form-control" id="calle" placeholder="Ej: Av. Juárez" maxlength="500" aria-invalid="false">
+                                <label for="calle"><i class="fas fa-road mr-2"></i>Calle <span class="text-danger">*</span></label>
+                                <input type="text" name="calle" class="form-control" id="calle" placeholder="Ej: Av. Juárez" maxlength="500" aria-invalid="false" required>
                             </div>
                         </div>
 
                         <div class="col-md-3">                                    
                             <div class="form-group">
-                                <label for="numeroext"><i class="fas fa-home mr-2"></i>Número ext.</label>
-                                <input type="text" name="numeroext" class="form-control" id="numeroext" placeholder="Ej: 123" maxlength="20" aria-invalid="false">
+                                <label for="numeroext"><i class="fas fa-home mr-2"></i>Número ext. <span class="text-danger">*</span></label>
+                                <input type="text" name="numeroext" class="form-control" id="numeroext" placeholder="Ej: 123" maxlength="20" aria-invalid="false" required>
                             </div>
                         </div>
                         <div class="col-md-3"> 
                             <div class="form-group">
                                 <label for="numeroint"><i class="fas fa-home mr-2"></i>Número int.</label>
-                                <input  data-invalido="true" type="text" name="numeroint" class="form-control" id="numeroint" placeholder="Opcional" maxlength="20" aria-invalid="false">
+                                <input data-invalido="true" type="text" name="numeroint" class="form-control" id="numeroint" placeholder="Opcional" maxlength="20" aria-invalid="false">
                             </div>
                         </div>
                     </div>                            
 
                     <div class="form-group">
-                        <label for="colonia"><i class="fas fa-map-marker-alt mr-2"></i>Colonia</label>
-                        <input type="text" name="colonia" class="form-control" id="colonia" placeholder="Ej: Centro" aria-invalid="false" maxlength="250">
+                        <label for="colonia"><i class="fas fa-map-marker-alt mr-2"></i>Colonia <span class="text-danger">*</span></label>
+                        <input type="text" name="colonia" class="form-control" id="colonia" placeholder="Ej: Centro" aria-invalid="false" maxlength="250" required>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="entidad"><i class="fas fa-map mr-2"></i>Entidad federativa</label>
+                                <label for="entidad"><i class="fas fa-map mr-2"></i>Entidad federativa <span class="text-danger">*</span></label>
                                 <select name="entidad" class="form-control" id="entidad" onchange="MunicipiosApi(this,2);" required>
                                     <option value="">Seleccione un estado</option>
                                     @foreach($entidades as $entidad)
@@ -101,8 +105,8 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="municipio"><i class="fas fa-city mr-2"></i>Municipio/Alcaldía</label>
-                                <select name="municipio" class="form-control" id="municipio" aria-invalid="false" data-mun="municipio">
+                                <label for="municipio"><i class="fas fa-city mr-2"></i>Municipio/Alcaldía <span class="text-danger">*</span></label>
+                                <select name="municipio" class="form-control" id="municipio" aria-invalid="false" data-mun="municipio" required>
                                     <option value="">Seleccione primero un estado</option>
                                 </select>
                             </div>
@@ -112,8 +116,8 @@
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="cp"><i class="fas fa-mail-bulk mr-2"></i>C.P.</label>
-                                <input type="text" name="cp" class="form-control" id="cp" placeholder="Ej: 01000" aria-invalid="false" maxlength="20">
+                                <label for="cp"><i class="fas fa-mail-bulk mr-2"></i>C.P. <span class="text-danger">*</span></label>
+                                <input type="text" name="cp" class="form-control" id="cp" placeholder="Ej: 01000" aria-invalid="false" maxlength="20" required>
                             </div>
                         </div>
                     </div>
@@ -121,8 +125,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="telefono"><i class="fas fa-phone mr-2"></i>Teléfono</label>
-                                <input type="text" name="telefono" class="form-control" id="telefono" placeholder="Ej: 5551234567" aria-invalid="false" maxlength="50">
+                                <label for="telefono"><i class="fas fa-phone mr-2"></i>Teléfono <span class="text-danger">*</span></label>
+                                <input type="text" name="telefono" class="form-control" id="telefono" placeholder="Ej: 5551234567" aria-invalid="false" maxlength="50" required>
                             </div>
                         </div>
 
@@ -137,8 +141,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="mail"><i class="fas fa-envelope mr-2"></i>Correo (De preferencia diferente al de registro)</label>
-                                <input type="text" name="mail" class="form-control" id="mail" placeholder="Ej: contacto@empresa.com" aria-invalid="false" maxlength="150">
+                                <label for="mail"><i class="fas fa-envelope mr-2"></i>Correo (De preferencia diferente al de registro) <span class="text-danger">*</span></label>
+                                <input type="text" name="mail" class="form-control" id="mail" placeholder="Ej: contacto@empresa.com" aria-invalid="false" maxlength="150" required>
                             </div>
                         </div>
                     </div>
@@ -147,7 +151,7 @@
         </form>
         
         <div style="margin-top:30px;">
-            <button onclick="RecorreFormularioAtras();" class="btn btn-theme-primary float-left" style="display:none;" id="anterior">
+            <button onclick="RecorreFormularioAtras();" class="btn btn-theme-primary float-left" style="display:none;" id="anterior"> los no obligatorios tienen esto : data-invalido="true"
                 <i class="fas fa-chevron-left mr-2"></i>Anterior
             </button>
             <button onclick="RecorreFormularioAdelante();" class="btn btn-theme-primary float-right" style="display:none;" id="siguiente">
