@@ -85,6 +85,9 @@
 
     <div class="nav-section-title">Administración</div>
     <li class="nav-item">
+      <a class="nav-link" href="{{ url('mapa') }}"><i class="fa fa-map me-2"></i>Mapa</a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" href="{{ url('establecimientos') }}"><i class="fa fa-briefcase me-2"></i>Negocios</a>
     </li>
     <li class="nav-item">

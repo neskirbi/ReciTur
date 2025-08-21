@@ -254,10 +254,8 @@ Route::get('BorrarGenerador/{id}', 'App\Http\Controllers\Asociacion\GeneradorCon
  * Rutas para administradores
  */
 
- Route::resource('planta','App\Http\Controllers\Administracion\PlantaController');
 
-Route::post('EditarAdmin/{id}','App\Http\Controllers\Administracion\PlantaController@EditarAdmin');
-Route::get('BorrarAdmin/{id}','App\Http\Controllers\Administracion\PlantaController@BorrarAdmin');
+Route::resource('mapa','App\Http\Controllers\Administracion\MapaController');
 
 
 Route::resource('pagos', 'App\Http\Controllers\Administracion\PagoController');
