@@ -6,19 +6,23 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Negocio;
+use App\Models\Clasificacion;
 
 class MapaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    
+    public function __construct(){
+        $this->middleware('administradorlogged');
+    }
+
+    public function index(Request $filtros)
     {
         $negocios = Negocio::select('negocio','latitud','longitud','solicitud','clasificacion')->get();
-        $negocios2 = Negocio::select('negocio','latitud','longitud','solicitud','clasificacion')->paginate(15);
-        return view('administracion.mapas.index',['negocion'=>$negocios,'negocios2'=>$negocios2]);
+        $negocios2 = Negocio::select('negocio','latitud','longitud','solicitud','clasificacion') 
+        ->whereraw("clasificacion like '%".$filtros->clasificacion."%'")       
+        ->orderby('solicitud','desc')->orderby('negocio','asc')->paginate(15);
+        $clasificaciones = Clasificacion::all();
+        return view('administracion.mapas.index',['negocion'=>$negocios,'negocios2'=>$negocios2,'clasificaciones'=>$clasificaciones,'filtros'=>$filtros]);
     }
 
     /**

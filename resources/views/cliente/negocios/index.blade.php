@@ -69,18 +69,28 @@
                                   <i class="fa fa-check" aria-hidden="true"></i> Verificado
                                 </small>
                               @endif
-                              <h5 class="card-title">{{$negocio->razonsocial}}</h5>
+                              <h5 class="card-title">{{$negocio->negocio}}</h5>
                               <p class="card-text">
-                                <strong>{{$negocio->negocio}}</strong> <br>
+                                <strong>{{$negocio->razonsocial}}</strong> <br>
                               </p>
                             </div>
                             <div class="card-footer">
+                              <div class="row">
+                                <div class="col-md-3">
+                                  <a href="negocios/{{$negocio->id}}" class="btn btn-theme-success btn-sm btn-block" style="margin-bottom:10px;">
+                                    <i class="fa fa-eye" aria-hidden="true"></i> Ver
+                                  </a>
+                                </div>
+                                <div class="col-md-3">
+                                  <a href="solicitud/{{$negocio->id}}" class="btn {{$negocio->solicitud == 0 ? 'btn-theme-warning' : 'btn-theme-danger'}} btn-sm btn-block" style="margin-bottom:10px;">
+                                      {!! $negocio->solicitud == 0 ? '<i class="fa fa-truck" aria-hidden="true"></i> Solicitar Recolección' : '<i class="fa fa-times" aria-hidden="true"></i> Cancelar Recolección' !!}
+                                  </a>
+                                </div>
+                              </div>
                               <!-- Botones -->
                               <div class="mt-2">
                                 <!-- Botón Ver -->
-                                <a href="negocios/{{$negocio->id}}" class="btn btn-theme-success btn-sm btn-block">
-                                  <i class="fa fa-eye" aria-hidden="true"></i> Ver
-                                </a>
+                                
                                 <!-- Botón Quitar (solo si no está verificado) -->
                                 @if($negocio->verificado == 0)
                                 <hr>

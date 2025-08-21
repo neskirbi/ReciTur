@@ -35,7 +35,8 @@ class NegocioController extends Controller
         $negocios = DB::table('negocios')
         ->join('generadores', 'generadores.id', '=', 'negocios.id_generador')
         ->where('generadores.id_cliente',Auth::guard('clientes')->user()->id)
-        ->select('negocios.id','negocios.negocio','negocios.giro','generadores.razonsocial','negocios.verificado')
+        ->select('negocios.id','negocios.negocio','negocios.giro','generadores.razonsocial',
+        'negocios.verificado','negocios.solicitud')
         ->orderby('negocios.created_at','desc')
         ->get();
 
@@ -190,6 +191,24 @@ class NegocioController extends Controller
             return redirect('negocios')->with('error', 'Error al eliminar.');
         }
     }
+
+
+    function Solicitud($id){
+        $negocio=Negocio::find($id);
+
+        if($negocio->solicitud){
+            $negocio->solicitud = 0;
+            $mensaje = 'Se canceló la solicitud de recolección.';
+            $satus = 'error';
+        }else{
+            $negocio->solicitud = 1;
+            $mensaje = 'Se solicitó la recolección.';
+            $satus = 'warning';
+        }
+        $negocio->save();
+        return Redirect::back()->with($satus, $mensaje);
+    }
+
 
 
 

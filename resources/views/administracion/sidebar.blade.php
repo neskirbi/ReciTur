@@ -9,6 +9,29 @@
     width: 250px;
     z-index: 1050;
     background-color: var(--theme-primary);
+    /* Propiedades para hacerlo scrollable */
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  /* Personalización de la barra de desplazamiento para navegadores WebKit */
+  #sidebar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  #sidebar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+  }
+
+  #sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+  }
+
+  #sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
   }
 
   #sidebar.collapsed {
@@ -69,10 +92,7 @@
 
 <!-- Sidebar colapsable -->
 <nav id="sidebar" class="position-fixed vh-100 text-white">
-  <div class="sidebar-header p-3">
-    
-    <!--<h4 class="mb-0" style="color: var(--theme-success);">Recitur</h4>-->
-  </div>
+ 
 
   <ul class="nav flex-column px-3">
     <!--<div class="nav-section-title">General</div>

@@ -38,14 +38,22 @@
                       Filtros <i class="fa fa-sliders" aria-hidden="true"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end p-3" style="width:300px;">
-                      <form class="px-4 py-3" action="{{url('establecimientos')}}" method="GET">
-                        <div class="input-group mb-3">
-                          <span class="input-group-text"><i class="far fa-building"></i></span>
-                          <input type="text" class="form-control" name="negocio" id="negocio" placeholder="Establecimiento" @if(isset($filtros->negocio)) value="{{$filtros->negocio}}" @endif>
+                      <form class="px-4 py-3" action="{{url('mapa')}}" method="GET">
+                        
+                        <div class="form-group">
+                          <label for="clasificacion"><i class="fas fa-list"></i> Clasificación</label>
+                          <select class="form-control" name="clasificacion" id="clasificacion" required>
+                            <option value="{{$filtros->clasificacion ?? '' }}">{{$filtros->clasificacion ?? '--Clasificación--' }}</option>
+                            @foreach($clasificaciones as $clas)
+                              <option value="{{$clas->clasificacion}}">{{$clas->clasificacion}}</option>
+                            @endforeach
+                          </select>
                         </div>
+                      
+
                         <div class="dropdown-divider"></div>
-                        <a href="{{url('establecimientos')}}" class="btn btn-default btn-sm">Limpiar</a>
-                        <button type="submit" class="btn btn-info btn-sm float-end">Aplicar</button>
+                        <a href="{{url('mapa')}}" class="btn-outline-theme-gray btn-sm">Limpiar</a>
+                        <button type="submit" class="btn btn-outline-theme-info btn-sm float-end">Aplicar</button>
                       </form>
                     </div>
                   </div>
@@ -75,10 +83,12 @@
                             <p class="card-text mb-1">
                               <i class="fas fa-tag"></i> {{ $neg->clasificacion }}
                             </p>
-                            
+                            @if($neg->solicitud == 1)
+                            <i class="fas fa-truck"></i>                            
                             <span class="badge status-badge {{ $neg->solicitud == 1 ? 'bg-warning' : 'bg-success' }}">
-                              {{ $neg->solicitud == 1 ? 'Recolectar' : 'Recolectado' }}
+                               {{ $neg->solicitud == 1 ? 'Recolectar' : 'Recolectado' }}
                             </span>
+                            @endif
                           </div>
                         </div>
                       </div>

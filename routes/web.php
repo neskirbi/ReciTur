@@ -156,6 +156,8 @@ Route::resource('generadores', 'App\Http\Controllers\Cliente\GeneradoresControll
 Route::get('registrogenerador','App\Http\Controllers\RegistroGeneradoresController@index');
 
 Route::resource('negocios','App\Http\Controllers\Cliente\NegocioController');
+Route::get('solicitud/{id}','App\Http\Controllers\Cliente\NegocioController@Solicitud');
+
 
 
 Route::resource('recolecciones','App\Http\Controllers\Cliente\RecoleccionController');

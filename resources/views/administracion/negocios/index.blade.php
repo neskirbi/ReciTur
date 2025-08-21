@@ -76,9 +76,9 @@
                                   <i class="fa fa-check" aria-hidden="true"></i> Verificado
                                 </small>
                               @endif
-                              <h5 class="card-title">{{$negocio->razonsocial}}</h5>
+                              <h5 class="card-title">{{$negocio->negocio}}</h5>
                               <p class="card-text">
-                                <strong>{{$negocio->negocio}}</strong> <br>
+                                <strong>{{$negocio->razonsocial}}</strong> <br>
                               </p>
                             </div>
                             <div class="card-footer">

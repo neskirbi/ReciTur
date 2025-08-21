@@ -41,17 +41,17 @@
               <div class="card-body">
                 <div class="row">
 
-                <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="generador"><i class="fas fa-user-tie"></i> Generador</label>
-                        <select class="form-control" name="generador" id="generador" required>
-                          <option value="{{$negocio->id_generador}}">{{$generador->razonsocial ?? '' }}</option>
-                          @foreach($generadores as $generador)
-                            <option value="{{$generador->id}}">{{$generador->razonsocial}}</option>
-                          @endforeach
-                        </select>
-                      </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="generador"><i class="fas fa-user-tie"></i> Generador</label>
+                      <select class="form-control" name="generador" id="generador" required>
+                        <option value="{{$negocio->id_generador}}">{{$generador->razonsocial ?? '' }}</option>
+                        @foreach($generadores as $generador)
+                          <option value="{{$generador->id}}">{{$generador->razonsocial}}</option>
+                        @endforeach
+                      </select>
                     </div>
+                  </div>
                
                   <div class="col-md-6">
                     <div class="form-group">
@@ -211,7 +211,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="contacto"><i class="fas fa-user"></i> Contacto <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" name="contacto" id="contacto" placeholder="Contacto" value="{{$negocio->contacto}}" >
+                      <input type="text" class="form-control" name="contacto" id="contacto" placeholder="Contacto" value="{{$negocio->contacto}}" required>
                     </div>
                   </div>              
                   <div class="col-md-6">
