@@ -37,7 +37,7 @@
                         <thead class="thead-light">
                           <tr>
                             <th>Establecimientos</th>
-                            <th>Día</th>
+                            <th>Fecha Recolección</th>
                             <th>Opciones</th>
                           </tr>
                         </thead>
