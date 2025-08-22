@@ -112,7 +112,10 @@ class RecoleccionController extends Controller
             'negocios.negocio as ESTABLECIMIENTO', 
             'negocios.clasificacion as CLASIFICACION',
             'recolecciones.created_at as FECHA_DE_RECOLECCION',
-            DB::RAW("(select sum(cantidad) from recoleccion where id_recoleccion = recolecciones.id) as CANTIDAD")
+            DB::RAW("(select  GROUP_CONCAT(
+                    CONCAT(cantidad, ' ', contenedor) 
+                    SEPARATOR ', '
+                )  from recoleccion where id_recoleccion = recolecciones.id) as CANTIDAD")
         )
         ->whereBetween('recolecciones.created_at', [$FechaIni, $fechaFinAjustada])
         ->orderBy('recolecciones.created_at', 'desc')
