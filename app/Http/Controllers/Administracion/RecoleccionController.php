@@ -102,6 +102,9 @@ class RecoleccionController extends Controller
         ->get();
         */
 
+        // Ajustar la fecha final para incluir todo el día
+        $fechaFinAjustada = date('Y-m-d', strtotime($FechaFin)) . ' 23:59:59';
+
         $recolecciones = Generador::join('negocios', 'negocios.id_generador', '=', 'generadores.id')
         ->join('recolecciones', 'recolecciones.id_negocio', '=', 'negocios.id')
         ->select(
@@ -111,7 +114,7 @@ class RecoleccionController extends Controller
             'recolecciones.created_at as FECHA_DE_RECOLECCION',
             DB::RAW("(select sum(cantidad) from recoleccion where id_recoleccion = recolecciones.id) as CANTIDAD")
         )
-        ->whereBetween('recolecciones.created_at', [$FechaIni, $FechaFin])
+        ->whereBetween('recolecciones.created_at', [$FechaIni, $fechaFinAjustada])
         ->orderBy('recolecciones.created_at', 'desc')
         ->get();
 
