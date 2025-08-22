@@ -5,12 +5,16 @@ namespace App\Http\Controllers\Administracion;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Exports\Administracion\RecoleccionesExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 use App\Models\Recoleccion;
 use App\Models\Vehiculo;
 use App\Models\Planta;
 use App\Models\Configuracion;
 use App\Models\Recolector;
 use App\Models\EmpresaTransporte;
+use App\Models\Generador;
 use Redirect;
 
 
@@ -85,6 +89,38 @@ class RecoleccionController extends Controller
         $recoleccion->save();
 
         return redirect('recoleccion')->with('success','Se guardó la información.');
+
+    }
+
+    function ReporteRecolecciones($FechaIni,$FechaFin){
+        /*
+        return $negocios = Generador::join('negocios','negocios.id_generador','=','generadores.id')
+        ->join('recolecciones','recolecciones.id_negocio','=','negocios.id')
+        ->select('generadores.razonsocial','negocios.negocio as estableciomiento','negocios.clasificacion','recolecciones.created_at',
+        DB::RAW("(select sum(cantidad) from recoleccion where id_recoleccion = recolecciones.id) as cantidad"))
+        ->WhereRaw("recolecciones.created_at >='".$FechaIni."' and recolecciones.created_at <='".$FechaFin."' ")
+        ->get();
+        */
+
+        $recolecciones = Generador::join('negocios', 'negocios.id_generador', '=', 'generadores.id')
+        ->join('recolecciones', 'recolecciones.id_negocio', '=', 'negocios.id')
+        ->select(
+            'generadores.razonsocial as GENERADOR',
+            'negocios.negocio as ESTABLECIMIENTO', 
+            'negocios.clasificacion as CLASIFICACION',
+            'recolecciones.created_at as FECHA_DE_RECOLECCION',
+            DB::RAW("(select sum(cantidad) from recoleccion where id_recoleccion = recolecciones.id) as CANTIDAD")
+        )
+        ->whereBetween('recolecciones.created_at', [$FechaIni, $FechaFin])
+        ->orderBy('recolecciones.created_at', 'desc')
+        ->get();
+
+        //$recolecciones = $this->ReporteRecolecciones($FechaIni, $FechaFin);
+    
+        return Excel::download(
+            new RecoleccionesExport($recolecciones), 
+            'reporte_recolecciones_' . $FechaIni . '_al_' . $FechaFin . '.xlsx'
+        );
 
     }
 }

@@ -181,4 +181,6 @@ class NegocioController extends Controller
         $url=GeneraQR('images/qr/cedula/',$id,$id);
         return view('formatos.cedulas.cedula',['negocio'=>$negocio,'url'=>$url]);
     }
+
+    
 }

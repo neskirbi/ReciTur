@@ -291,6 +291,7 @@ Route::resource('vehiculos','App\Http\Controllers\Administracion\VehiculoControl
 Route::get('BorrarRecolector/{id}','App\Http\Controllers\Administracion\RecolectorController@BorrarRecolector');
 
 Route::resource('recoleccion','App\Http\Controllers\Administracion\RecoleccionController');
+Route::get('ReporteRecolecciones/{FechaIni}/{FechaFin}','App\Http\Controllers\Administracion\RecoleccionController@ReporteRecolecciones');
 
 
 Route::resource('citasfecha', 'App\Http\Controllers\Administracion\CitasFechaController');
