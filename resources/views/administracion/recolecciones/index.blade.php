@@ -93,11 +93,6 @@
                       </div>
                     </div>
                     <div class="col-md-3">
-                      <div class="form-group">
-                        <button type="submit" class="btn btn-theme-primary btn-block">
-                          <i class="fa fa-search"></i> Buscar
-                        </button>
-                      </div>
                     </div>
                     <div class="col-md-3">
                       <div class="form-group">
