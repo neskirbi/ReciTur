@@ -10,7 +10,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 use App\Models\Recoleccion;
 use App\Models\Vehiculo;
-use App\Models\Planta;
+use App\Models\Negocio;
 use App\Models\Configuracion;
 use App\Models\Recolector;
 use App\Models\EmpresaTransporte;
@@ -26,12 +26,21 @@ class RecoleccionController extends Controller
         $this->middleware('administradorlogged');
     }
 
-    function index(){
-      $recolecciones=Recoleccion::select('negocios.negocio','negocios.giro','recolecciones.id','recolecciones.created_at')
-      ->join('negocios','negocios.id','=','recolecciones.id_negocio')
+    function index(Request $filtros){
+        //return $filtros;
+        
+        $negocios = Negocio::select('id','negocio')->orderby('negocio','asc')->get(); 
+        $neg = Negocio::select('id','negocio')->where('id',$filtros->negocio)->first(); 
+        $where = isset($filtros->fecha_ini) ? " negocios.id like '%$filtros->negocio%' and date(recolecciones.created_at) >= '$filtros->fecha_ini' and date(recolecciones.created_at) <= '$filtros->fecha_fin' " : " 1=1 "  ;
+        $pag = isset($filtros->fecha_ini) ? 15 : 1000000000;
+        $recolecciones=Recoleccion::select('negocios.negocio','negocios.giro','recolecciones.id','recolecciones.created_at')
+        ->join('negocios','negocios.id','=','recolecciones.id_negocio')
         ->orderby('recolecciones.created_at','desc')
-        ->paginate(15);
-        return view('administracion.recolecciones.index',['recolecciones'=>$recolecciones]);
+        ->whereraw($where)
+        ->paginate($pag);
+
+        
+        return view('administracion.recolecciones.index',['recolecciones'=>$recolecciones,'negocios'=>$negocios,'neg'=>$neg,'filtros'=>$filtros]);
     }
 
 
@@ -92,41 +101,36 @@ class RecoleccionController extends Controller
 
     }
 
-    function ReporteRecolecciones($FechaIni,$FechaFin){
-        /*
-        return $negocios = Generador::join('negocios','negocios.id_generador','=','generadores.id')
-        ->join('recolecciones','recolecciones.id_negocio','=','negocios.id')
-        ->select('generadores.razonsocial','negocios.negocio as estableciomiento','negocios.clasificacion','recolecciones.created_at',
-        DB::RAW("(select sum(cantidad) from recoleccion where id_recoleccion = recolecciones.id) as cantidad"))
-        ->WhereRaw("recolecciones.created_at >='".$FechaIni."' and recolecciones.created_at <='".$FechaFin."' ")
-        ->get();
-        */
+    function ReporteRecolecciones($FechaIni, $FechaFin, $Negocio) {
+    // Ajustar la fecha final para incluir todo el día
+    $fechaFinAjustada = date('Y-m-d', strtotime($FechaFin)) . ' 23:59:59';
+    $Negocio = str_replace("-", "", $Negocio);
 
-        // Ajustar la fecha final para incluir todo el día
-        $fechaFinAjustada = date('Y-m-d', strtotime($FechaFin)) . ' 23:59:59';
-
-        $recolecciones = Generador::join('negocios', 'negocios.id_generador', '=', 'generadores.id')
+    $query = Generador::join('negocios', 'negocios.id_generador', '=', 'generadores.id')
         ->join('recolecciones', 'recolecciones.id_negocio', '=', 'negocios.id')
         ->select(
             'generadores.razonsocial as GENERADOR',
             'negocios.negocio as ESTABLECIMIENTO', 
             'negocios.clasificacion as CLASIFICACION',
             'recolecciones.created_at as FECHA_DE_RECOLECCION',
-            DB::RAW("(select  GROUP_CONCAT(
+            DB::RAW("(SELECT GROUP_CONCAT(
                     CONCAT(cantidad, ' ', contenedor) 
                     SEPARATOR ', '
-                )  from recoleccion where id_recoleccion = recolecciones.id) as CANTIDAD")
+                ) FROM recoleccion WHERE id_recoleccion = recolecciones.id) as CANTIDAD")
         )
         ->whereBetween('recolecciones.created_at', [$FechaIni, $fechaFinAjustada])
-        ->orderBy('recolecciones.created_at', 'desc')
-        ->get();
+        ->orderBy('recolecciones.created_at', 'desc');
 
-        //$recolecciones = $this->ReporteRecolecciones($FechaIni, $FechaFin);
-    
-        return Excel::download(
-            new RecoleccionesExport($recolecciones), 
-            'reporte_recolecciones_' . $FechaIni . '_al_' . $FechaFin . '.xlsx'
-        );
-
+    // Filtrar por ID de negocio si se proporciona
+    if ($Negocio != '') {
+        $query->where('negocios.id', $Negocio);
     }
+
+    $recolecciones = $query->get();
+
+    return Excel::download(
+        new RecoleccionesExport($recolecciones), 
+        'reporte_recolecciones_' . $FechaIni . '_al_' . $FechaFin . '.xlsx'
+    );
+}
 }

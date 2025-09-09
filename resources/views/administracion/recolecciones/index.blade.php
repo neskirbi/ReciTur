@@ -76,7 +76,24 @@
                 <h5 class="card-title mb-0"><i class="fa fa-file"></i> Reporte</h5>
               </div>
               <div class="card-body">
-                <form action="" method="GET" id="dateFilterForm">
+                <form action="recoleccion" method="get" id="dateFilterForm">
+                  <div class="form-row align-items-end">
+                    <div class="col-md-9">
+                      <div class="form-group">
+                        <label for="negocio" class="font-weight-bold">Negocio</label>
+                        <select class="form-control" id="negocio" name="negocio" >
+                          @if(isset($neg->id))
+                          <option value="">---Todos--</option>
+                          @endif
+                          <option selected  value="{{isset($neg->id) ? $neg->id : ''}}">{{isset($neg->id) ? $neg->negocio : "---Todos--"}}</option>
+                          @foreach($negocios as $negocio)
+                          <option value="{{$negocio->id}}">{{$negocio->negocio}}</option>
+                          @endforeach                               
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
                   <div class="form-row align-items-end">
                     <div class="col-md-3">
                       <div class="form-group">
@@ -93,6 +110,11 @@
                       </div>
                     </div>
                     <div class="col-md-3">
+                      <div class="form-group">
+                        <button type="submite" class="btn btn-theme-primary btn-block" id="revisar">
+                          <i class="fa fa-eye"></i> Revisar
+                        </button>
+                      </div>
                     </div>
                     <div class="col-md-3">
                       <div class="form-group">
@@ -199,6 +221,7 @@
     // Obtener los valores del formulario
     var fechaIni = $('#fecha_ini').val();
     var fechaFin = $('#fecha_fin').val();
+    var negocio = $('#negocio').val();
     
     // Validar que ambas fechas estén seleccionadas
     if (!fechaIni || !fechaFin) {
@@ -207,7 +230,7 @@
     }
     
     // Construir la URL con los parámetros
-    var url = "{{ url('ReporteRecolecciones') }}/" + fechaIni + "/" + fechaFin;
+    var url = "{{ url('ReporteRecolecciones') }}/" + fechaIni + "/" + fechaFin+ "/" + (negocio=='' ? '----' : negocio);
     
     // Abrir en una nueva pestaña
     window.open(url, '_blank');
