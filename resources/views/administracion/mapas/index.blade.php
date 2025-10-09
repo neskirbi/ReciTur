@@ -126,7 +126,7 @@
 <script>
     function initMap() {
         // Obtener los datos de negocios desde PHP
-        var negocios = @json($negocion);
+        var negocios = @json($negocios);
         
         // Verificar si tenemos negocios con coordenadas
         if (negocios.length === 0) {
@@ -142,6 +142,9 @@
         
         // Crear un array para almacenar los marcadores
         var markers = [];
+        
+        // Variable para llevar el control del InfoWindow abierto
+        var currentInfoWindow = null;
         
         // Definir los iconos para diferentes estados de solicitud
         var yellowIcon = {
@@ -168,14 +171,32 @@
                     icon: icon
                 });
                 
-                // Agregar información en un popup al hacer clic
+                // Agregar información en un popup
                 var infoWindow = new google.maps.InfoWindow({
                     content: '<div><strong>' + negocio.negocio + '</strong><br>' +
-                             'Estado: ' + (negocio.solicitud == 1 ? 'Pendiente' : 'Aprobado') + '</div>'
+                             'Estado: ' + (negocio.solicitud == 1 ? 'Pendiente' : 'Aprobado') + '<br>' 
                 });
                 
-                marker.addListener('click', function() {
+                // Evento mouseover - abrir InfoWindow al pasar el ratón
+                marker.addListener('mouseover', function() {
+                    // Cerrar el InfoWindow anterior si existe
+                    if (currentInfoWindow) {
+                        currentInfoWindow.close();
+                    }
+                    // Abrir el nuevo InfoWindow
                     infoWindow.open(map, marker);
+                    currentInfoWindow = infoWindow;
+                });
+                
+                // Evento mouseout - cerrar InfoWindow al quitar el ratón (opcional)
+                marker.addListener('mouseout', function() {
+                    // Puedes comentar esta línea si quieres que el InfoWindow permanezca abierto
+                    // infoWindow.close();
+                });
+                
+                // Evento click - abrir en nueva pestaña
+                marker.addListener('click', function() {
+                    window.open(url('establecimientos') + '/' + negocio.id, '_blank');
                 });
                 
                 markers.push(marker);
@@ -202,6 +223,14 @@
                            '<div><img src="http://maps.google.com/mapfiles/ms/icons/yellow-dot.png" height="16" width="16"> Solicitud de Recoleccion</div>';
         
         map.controls[google.maps.ControlPosition.RIGHT_TOP].push(legend);
+    }
+    
+    // Función para generar URLs (compatible con Laravel)
+    function url(path, id = '') {
+        // Si estás usando Laravel, puedes usar route() o asset()
+        // Esta es una implementación básica - ajusta según tu framework
+        var baseUrl = Url();
+        return baseUrl + path + id;
     }
     
     // Inicializar el mapa cuando la página esté cargada

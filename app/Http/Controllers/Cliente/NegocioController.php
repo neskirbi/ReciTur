@@ -14,6 +14,7 @@ use App\Models\Entidad;
 use App\Models\Generador;
 use App\Models\Configuracion;
 use App\Models\Clasificacion;
+use App\Models\Recoleccion;
 
 use Redirect;
 
@@ -45,12 +46,14 @@ class NegocioController extends Controller
     }
 
     
-    public function create()
+    public function create(Request $request)
     {
               
         
         $entidades=Entidad::All();
-        $generadores=Generador::where('id_cliente','=',Auth::guard('clientes')->user()->id)->get();
+        $generadores=Generador::where('id_cliente','=',Auth::guard('clientes')->user()->id)
+        ->where('id',$request->id)
+        ->get();
 
         
         
@@ -122,7 +125,7 @@ class NegocioController extends Controller
 
         $negocio->save();
 
-        return redirect('negocios')->with('success', 'Registro correcto.');
+        return redirect('generadores/'.$request->generador)->with('success', 'Registro correcto.');
 
     }
 
@@ -146,8 +149,14 @@ class NegocioController extends Controller
         ->first();
 
 
+        $recolecciones=Recoleccion::select('negocios.negocio','negocios.giro','recolecciones.id','recolecciones.created_at')
+        ->join('negocios','negocios.id','=','recolecciones.id_negocio')
+        ->orderby('recolecciones.created_at','desc')
+        ->where('recolecciones.id_negocio',$id)
+        ->get();
+
         
-        return view('cliente.negocios.show',['negocio'=>$negocio,'generador'=>$generador,'entidad'=>$entidad]);
+        return view('cliente.negocios.show',['negocio'=>$negocio,'generador'=>$generador,'entidad'=>$entidad,'recolecciones'=>$recolecciones]);
 
 
     }

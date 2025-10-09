@@ -412,6 +412,72 @@
               
                 
             </div>
+            <br>
+             <div class="d-flex justify-content-end mb-3">
+                  <a href="{{url('negocios/create')}}?id={{$generador->id}}" class="btn btn-theme-success">
+                    <i class="bi bi-plus-circle"></i> Agregar Negocio
+                  </a>
+                </div>
+
+            <div class="row">
+                <div class="col-md-12" style="overflow-x:scroll;">
+                @if(count($negocios))
+
+                @foreach($negocios as $negocio)
+                        <div class="card mb-4">
+                        <!-- Badge de estatus en la esquina superior derecha -->
+                        
+                        <div class="card-body">
+                            @if($negocio->verificado == 0)
+                            <small class="badge bg-theme-warning float-right">
+                                <i class="fa fa-exclamation" aria-hidden="true"></i> Pendiente
+                            </small>
+                            @else
+                            <small class="badge bg-theme-success float-right">
+                                <i class="fa fa-check" aria-hidden="true"></i> Verificado
+                            </small>
+                            @endif
+                            <h5 class="card-title">{{$negocio->negocio}}</h5>
+                            <p class="card-text">
+                            <strong>{{$negocio->razonsocial}}</strong> <br>
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                            <div class="col-md-3">
+                                <a href="{{url('negocios')}}/{{$negocio->id}}" class="btn btn-theme-success btn-sm btn-block" style="margin-bottom:10px;">
+                                <i class="fa fa-eye" aria-hidden="true"></i> Ver
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="{{url('solicitud')}}/{{$negocio->id}}" class="btn {{$negocio->solicitud == 0 ? 'btn-theme-warning' : 'btn-theme-danger'}} btn-sm btn-block" style="margin-bottom:10px;">
+                                    {!! $negocio->solicitud == 0 ? '<i class="fa fa-truck" aria-hidden="true"></i> Solicitar Recolección' : '<i class="fa fa-times" aria-hidden="true"></i> Cancelar Recolección' !!}
+                                </a>
+                            </div>
+                            </div>
+                            <!-- Botones -->
+                            <div class="mt-2">
+                            <!-- Botón Ver -->
+                            
+                            <!-- Botón Quitar (solo si no está verificado) -->
+                            @if($negocio->verificado == 0)
+                            <hr>
+                                <form action="negocios/{{$negocio->id}}" method="POST" class="d-inline">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button id="borrar" class="borrar btn btn-theme-danger btn-sm btn-block btn-quitar" data-texto="¿Deseas quitar este generador?">
+                                    <i class="fa fa-times" aria-hidden="true"></i> Quitar
+                                </button>
+                                </form>
+                            @endif
+                            </div>
+                        </div>
+                        </div>
+                    @endforeach
+                
+                @endif
+                </div>
+            </div>
             
           
         </div><!-- /.container-fluid -->

@@ -95,7 +95,18 @@ class GeneradoresController extends Controller
     public function show($id)
     {
         $generador = Generador::find($id);
-        return view('cliente.generadores.show',['generador'=>$generador]);
+
+        $negocios = DB::table('negocios')
+        ->select('negocios.id','negocios.negocio','negocios.giro','generadores.razonsocial',
+        'negocios.verificado','negocios.solicitud')
+        ->join('generadores', 'generadores.id', '=', 'negocios.id_generador')
+        ->where('generadores.id_cliente',Auth::guard('clientes')->user()->id)
+        ->where('generadores.id',$id)        
+        ->orderby('negocios.created_at','desc')
+        ->get();
+
+
+        return view('cliente.generadores.show',['generador'=>$generador,'negocios'=>$negocios]);
     }
 
     /**

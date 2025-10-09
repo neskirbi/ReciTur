@@ -13,6 +13,7 @@ use App\Models\Entidad;
 use App\Models\Municipio;
 use App\Models\Configuracion;
 use App\Models\Clasificacion;
+use App\Models\Recoleccion;
 use Redirect;
 
 class NegocioController extends Controller
@@ -93,11 +94,19 @@ class NegocioController extends Controller
 
         */
         $generadores=Generador::all();
+
+        
+       
+        $recolecciones=Recoleccion::select('negocios.negocio','negocios.giro','recolecciones.id','recolecciones.created_at')
+        ->join('negocios','negocios.id','=','recolecciones.id_negocio')
+        ->orderby('recolecciones.created_at','desc')
+        ->where('recolecciones.id_negocio',$id)
+        ->get();
         
         return view('administracion.negocios.show',['generadores'=>$generadores,
         'negocio'=>$negocio,'generador'=>$generador,
         'entidad'=>$entidad,
-        'entidades'=>$entidades,'tiponegocios'=>$tiponegocios,'giros'=>$giros]);
+        'entidades'=>$entidades,'tiponegocios'=>$tiponegocios,'giros'=>$giros,'recolecciones'=>$recolecciones]);
 
     }
 

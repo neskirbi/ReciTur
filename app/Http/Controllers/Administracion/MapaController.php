@@ -17,12 +17,12 @@ class MapaController extends Controller
 
     public function index(Request $filtros)
     {
-        $negocios = Negocio::select('negocio','latitud','longitud','solicitud','clasificacion')->get();
+        $negocios = Negocio::select('id','negocio','latitud','longitud','solicitud','clasificacion')->get();
         $negocios2 = Negocio::select('negocio','latitud','longitud','solicitud','clasificacion') 
         ->whereraw("clasificacion like '%".$filtros->clasificacion."%'")       
         ->orderby('solicitud','desc')->orderby('negocio','asc')->paginate(15);
         $clasificaciones = Clasificacion::all();
-        return view('administracion.mapas.index',['negocion'=>$negocios,'negocios2'=>$negocios2,'clasificaciones'=>$clasificaciones,'filtros'=>$filtros]);
+        return view('administracion.mapas.index',['negocios'=>$negocios,'negocios2'=>$negocios2,'clasificaciones'=>$clasificaciones,'filtros'=>$filtros]);
     }
 
     /**
