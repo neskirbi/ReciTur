@@ -162,6 +162,8 @@ Route::get('solicitud/{id}','App\Http\Controllers\Cliente\NegocioController@Soli
 
 Route::resource('recolecciones','App\Http\Controllers\Cliente\RecoleccionController');
 
+Route::get('EstadoCuentaMesCliente','App\Http\Controllers\Cliente\RecoleccionController@EstadoCuentaMesCliente');
+
 
 
 

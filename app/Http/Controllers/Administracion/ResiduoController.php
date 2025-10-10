@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Residuo;
+use App\Models\Contenedor;
 
 class ResiduoController extends Controller
 {
@@ -18,7 +19,8 @@ class ResiduoController extends Controller
     public function index()
     {
         $residuos = Residuo::orderby('categoria','asc')->orderby('residuo','asc')->get();
-        return view('administracion.residuos.index',['residuos'=>$residuos]);
+        $contenedores = Contenedor::orderby('contenedor','asc')->get();
+        return view('administracion.residuos.index',['residuos'=>$residuos,'contenedores'=>$contenedores]);
     }
 
     /**
@@ -43,6 +45,8 @@ class ResiduoController extends Controller
         $residuo->id = GetUuid();
         $residuo->categoria = $request->categoria;
         $residuo->residuo = $request->residuo;
+        $residuo->unidades = $request->unidades;
+        $residuo->precio = $request->precio;
         $residuo->save();
         
         return redirect()->back()->with('success', 'Residuo guardado correctamente.');
@@ -88,6 +92,8 @@ class ResiduoController extends Controller
         // Actualizar campos
         $residuo->categoria = $request->input('categoria');
         $residuo->residuo   = $request->input('residuo');
+        $residuo->unidades   = $request->input('unidades');
+        $residuo->precio   = $request->input('precio');
         $residuo->updated_at = now();
 
         $residuo->save();

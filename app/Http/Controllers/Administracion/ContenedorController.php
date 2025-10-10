@@ -41,6 +41,7 @@ class ContenedorController extends Controller
         $cont = new Contenedor();
         $cont->id = GetUuid();
         $cont->contenedor = $request->contenedor;
+        $cont->multiplicador = $request->multiplicador;
         $cont->save();
 
         return redirect('contenedores')->with('success','Datos guardados.');
@@ -85,6 +86,7 @@ class ContenedorController extends Controller
         $cont = Contenedor::find($id);
         
         $cont->contenedor = $request->contenedor;
+        $cont->multiplicador = $request->multiplicador;
         $cont->save();
 
         return redirect('contenedores')->with('success','Datos guardados.');

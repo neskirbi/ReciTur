@@ -59,14 +59,17 @@
 
                                   <div class="row">
                                     <!-- Categoría (renglón completo) -->
-                                    <div class="col-md-6 mb-2">
+                                    <div class="col-md-6">
                                       <label class="form-label small text-muted">Contenedor</label>
                                       <input type="text" name="contenedor" value="{{ $contenedor->contenedor }}" class="form-control form-control-sm">
                                     </div>
-
-                                
-                                   
-
+                                    <div class="col-md-4">
+                                      <label class="form-label small text-muted">Multiplicador</label>
+                                      <input type="number" step="1" min="0" name="multiplicador" value="{{ $contenedor->multiplicador }}" class="form-control form-control-sm">
+                                    </div>
+                                  </div>
+                                  <br>
+                                  <div class="row">
                                     <!-- Botones -->
                                     <div class="col-md-4 d-flex align-items-end gap-2">
                                       <button type="submit" class="btn btn-sm btn-theme-primary flex-grow-1">
@@ -130,10 +133,22 @@ function confirmarEliminacion(id) {
       <form method="POST" action="{{ route('contenedores.store') }}" id="formNuevoResiduo">
         @csrf
         <div class="modal-body">
-          <div class="mb-3">
-            <label for="contenedor" class="form-label">Contenedor</label>
-            <input type="text" class="form-control" id="contenedor" name="contenedor" required>
+          <div class="row">
+            <div class="mb-3">
+              <label for="contenedor" class="form-label">Contenedor</label>
+              <input type="text" class="form-control" id="contenedor" name="contenedor" required>
+            </div>
           </div>
+          <div class="row">
+            <div class="col-md-4">
+              <label class="form-label small text-muted">Multiplicador</label>
+              <input type="number" step="1" min="0" name="multiplicador" value="{{ $contenedor->multiplicador }}" class="form-control form-control-sm">
+            </div>
+          
+          </div>
+          
+
+          
           
         </div>
         <div class="modal-footer">

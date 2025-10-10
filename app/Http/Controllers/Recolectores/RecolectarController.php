@@ -130,36 +130,52 @@ class RecolectarController extends Controller
     }
 
     public function GuardarRecoleccion(Request $request)
-{
-    // Obtener datos básicos
-    $negocio = Negocio::findOrFail($request->input('negocio_id'));
-    $residuos = $request->input('residuos', []);
-    $recolectorId = GetId(); // o auth()->id()
+    {
+        // Obtener datos básicos
+        $negocio = Negocio::findOrFail($request->input('negocio_id'));
+        $residuos = $request->input('residuos', []);
+        $recolectorId = GetId(); // o auth()->id()
 
-    // Crear registro principal
-    $recoleccion = new Recoleccion();
-    $recoleccion->id = GetUuid();
-    $recoleccion->id_recolector = $recolectorId; // Nota: cambié a id_recollector
-    $recoleccion->id_negocio = $negocio->id;
-    $recoleccion->save();
+        // Crear registro principal
+        $recoleccion = new Recoleccion();
+        $recoleccion->id = GetUuid();
+        $recoleccion->id_recolector = $recolectorId;
+        $recoleccion->id_negocio = $negocio->id;
+        $recoleccion->save();
 
-    // Guardar detalles (si es que tienes otra tabla para esto)
-    foreach ($residuos as $residuoId => $data) {
-        if (isset($data['seleccionado']) && !empty($data['cantidad'])) {
-            $residuo = Residuo::find($residuoId);
-            if (!$residuo) continue;
+        // Guardar detalles en la tabla recolecciones
+        foreach ($residuos as $residuoId => $data) {
+            if (isset($data['seleccionado']) && !empty($data['cantidad'])) {
+                $residuo = Residuo::find($residuoId);
+                if (!$residuo) continue;
 
-            $detalle = new Recolec(); // Asegúrate que este modelo existe
-            $detalle->id = GetUuid();
-            $detalle->id_recoleccion = $recoleccion->id;
-            $detalle->residuo = $residuo->residuo;
-            $detalle->contenedor = $data['contenedor'] ?? null;
-            $detalle->cantidad = floatval($data['cantidad']);
-            $detalle->save();
+                // Obtener el contenedor seleccionado
+                $contenedorId = $data['contenedor'] ?? null;
+                $contenedor = null;
+                $multiplicador = 0.00;
+                $nombreContenedor = null;
+                
+                if ($contenedorId) {
+                    $contenedor = Contenedor::find($contenedorId);
+                    if ($contenedor) {
+                        $multiplicador = $contenedor->multiplicador;
+                        $nombreContenedor = $contenedor->contenedor;
+                    }
+                }
+
+                $detalle = new Recolec();
+                $detalle->id = GetUuid();
+                $detalle->id_recoleccion = $recoleccion->id;
+                $detalle->residuo = $residuo->residuo;
+                $detalle->contenedor = $nombreContenedor;
+                $detalle->cantidad = floatval($data['cantidad']);
+                $detalle->precio = $residuo->precio ?? 0.00;
+                $detalle->multiplicador = $multiplicador;
+                $detalle->save();
+            }
         }
-    }
 
-    return redirect('recoleccionesr')->with('success', 'Recolección guardada correctamente.');
-}
+        return redirect('recoleccionesr')->with('success', 'Recolección guardada correctamente.');
+    }
 
 }
