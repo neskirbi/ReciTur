@@ -29,52 +29,7 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <!-- Fila para exportación -->
-                <div class="row mb-4">
-                  <div class="col-md-12">
-                    <div class="card bg-light">
-                      <div class="card-body">
-                        <h5 class="card-title"><i class="fa fa-file-excel text-success"></i> Exportar a Excel</h5>
-                        <form action="{{ url('EstadoCuentaMesCliente') }}" method="GET" target="_blank" class="form-inline">
-                          <div class="form-group mr-3">
-                            <label for="anio" class="mr-2">Año:</label>
-                            <select class="form-control" id="anio" name="anio" required>
-                              @php
-                                $currentYear = date('Y');
-                                $startYear = 2021;
-                              @endphp
-                              @for($year = $currentYear; $year >= $startYear; $year--)
-                                <option value="{{ $year }}" {{ $year == $currentYear ? 'selected' : '' }}>
-                                  {{ $year }}
-                                </option>
-                              @endfor
-                            </select>
-                          </div>
-                          <div class="form-group mr-3">
-                            <label for="mes" class="mr-2">Mes:</label>
-                            <select class="form-control" id="mes" name="mes" required>
-                              @php
-                                $currentMonth = date('n');
-                                $months = [
-                                  1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril',
-                                  5 => 'Mayo', 6 => 'Junio', 7 => 'Julio', 8 => 'Agosto',
-                                  9 => 'Septiembre', 10 => 'Octubre', 11 => 'Noviembre', 12 => 'Diciembre'
-                                ];
-                              @endphp
-                              @foreach($months as $key => $month)
-                                <option value="{{ $key }}" {{ $key == $currentMonth ? 'selected' : '' }}>
-                                  {{ $month }}
-                                </option>
-                              @endforeach
-                            </select>
-                          </div>
-                          <button type="submit" class="btn btn-success">
-                            <i class="fa fa-download"></i> Exportar
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                
                 
                 <div class="row">
                   <div class="col-md-12">

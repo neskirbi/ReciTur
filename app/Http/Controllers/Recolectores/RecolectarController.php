@@ -167,6 +167,7 @@ class RecolectarController extends Controller
                 $detalle->id = GetUuid();
                 $detalle->id_recoleccion = $recoleccion->id;
                 $detalle->residuo = $residuo->residuo;
+                $detalle->unidades = $residuo->unidades;
                 $detalle->contenedor = $nombreContenedor;
                 $detalle->cantidad = floatval($data['cantidad']);
                 $detalle->precio = $residuo->precio ?? 0.00;
