@@ -36,7 +36,9 @@ class RecoleccionesExport implements FromCollection, WithHeadings, WithMapping, 
             'ESTABLECIMIENTO', 
             'CLASIFICACIÓN',
             'FECHA DE RECOLECCIÓN',
-            'CANTIDAD'
+            'RESIDUO',
+            'DETALLE DE CANTIDAD',
+            'SUBTOTAL'
         ];
     }
     
@@ -45,12 +47,17 @@ class RecoleccionesExport implements FromCollection, WithHeadings, WithMapping, 
      */
     public function map($recoleccion): array
     {
+        // Formatear el subtotal como moneda
+        $subtotalFormateado = '$' . number_format($recoleccion->SUBTOTAL, 2);
+        
         return [
             $recoleccion->GENERADOR,
             $recoleccion->ESTABLECIMIENTO,
             $recoleccion->CLASIFICACION,
             \Carbon\Carbon::parse($recoleccion->FECHA_DE_RECOLECCION)->format('d/m/Y H:i'),
-            $recoleccion->CANTIDAD
+            $recoleccion->RECIDUO ?? 'N/A',
+            $recoleccion->CANTIDAD ?? 'N/A',
+            $subtotalFormateado
         ];
     }
     
@@ -59,28 +66,62 @@ class RecoleccionesExport implements FromCollection, WithHeadings, WithMapping, 
      */
     public function styles(Worksheet $sheet)
     {
+        // Obtener el número total de filas (datos + encabezado)
+        $totalRows = count($this->recolecciones) + 1;
+        
         // Estilo para los encabezados
-        $sheet->getStyle('A1:E1')->applyFromArray([
+        $sheet->getStyle('A1:G1')->applyFromArray([
             'font' => [
                 'bold' => true,
-                'color' => ['rgb' => 'FFFFFF']
+                'color' => ['rgb' => 'FFFFFF'],
+                'size' => 12
             ],
             'fill' => [
                 'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
                 'startColor' => ['rgb' => '176D4A'] // Verde de tu tema
+            ],
+            'alignment' => [
+                'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+                'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER
             ]
         ]);
         
         // Autoajustar el ancho de las columnas
-        $sheet->getColumnDimension('A')->setWidth(30);
-        $sheet->getColumnDimension('B')->setWidth(25);
-        $sheet->getColumnDimension('C')->setWidth(20);
-        $sheet->getColumnDimension('D')->setWidth(20);
-        $sheet->getColumnDimension('E')->setWidth(15);
+        $sheet->getColumnDimension('A')->setWidth(25); // GENERADOR
+        $sheet->getColumnDimension('B')->setWidth(25); // ESTABLECIMIENTO
+        $sheet->getColumnDimension('C')->setWidth(20); // CLASIFICACIÓN
+        $sheet->getColumnDimension('D')->setWidth(20); // FECHA
+        $sheet->getColumnDimension('E')->setWidth(20); // RESIDUO
+        $sheet->getColumnDimension('F')->setWidth(25); // DETALLE DE CANTIDAD
+        $sheet->getColumnDimension('G')->setWidth(15); // SUBTOTAL
         
-        // Alineación de celdas
-        $sheet->getStyle('A:E')->getAlignment()->setVertical('center');
-        $sheet->getStyle('E')->getAlignment()->setHorizontal('right');
+        // Estilo para los datos
+        if ($totalRows > 1) {
+            $sheet->getStyle('A2:G' . $totalRows)->applyFromArray([
+                'alignment' => [
+                    'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER
+                ],
+                'borders' => [
+                    'allBorders' => [
+                        'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                        'color' => ['rgb' => 'DDDDDD']
+                    ]
+                ]
+            ]);
+            
+            // Alineación específica por columnas
+            $sheet->getStyle('D2:D' . $totalRows)->getAlignment()->setHorizontal('center');
+            $sheet->getStyle('F2:F' . $totalRows)->getAlignment()->setHorizontal('right');
+            $sheet->getStyle('G2:G' . $totalRows)->getAlignment()->setHorizontal('right');
+            
+            // Formato de moneda para SUBTOTAL
+            $sheet->getStyle('G2:G' . $totalRows)
+                  ->getNumberFormat()
+                  ->setFormatCode('"$"#,##0.00');
+        }
+        
+        // Congelar paneles (fijar encabezados)
+        $sheet->freezePane('A2');
         
         return [
             1 => ['font' => ['bold' => true]],

@@ -113,8 +113,10 @@ class RecoleccionController extends Controller
             'negocios.negocio as ESTABLECIMIENTO', 
             'negocios.clasificacion as CLASIFICACION',
             'recolecciones.created_at as FECHA_DE_RECOLECCION',
+            DB::RAW("(SELECT residuo FROM recoleccion WHERE id_recoleccion = recolecciones.id) as RECIDUO"),
+            DB::RAW("(SELECT (cantidad*multiplicador*precio) FROM recoleccion WHERE id_recoleccion = recolecciones.id) as SUBTOTAL"),
             DB::RAW("(SELECT GROUP_CONCAT(
-                    CONCAT(cantidad, ' ', contenedor) 
+                    CONCAT((cantidad*multiplicador), ' ', contenedor,' ',multiplicador,' ',unidades) 
                     SEPARATOR ', '
                 ) FROM recoleccion WHERE id_recoleccion = recolecciones.id) as CANTIDAD")
         )
