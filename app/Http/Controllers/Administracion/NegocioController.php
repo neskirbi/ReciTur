@@ -64,51 +64,68 @@ class NegocioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $negocio=Negocio::find($id);
-        $tiponegocios=TipoNegocio::all();
+{
+    $negocio=Negocio::find($id);
+    $tiponegocios=TipoNegocio::all();
+    $entidades=Entidad::all();
+    
+    $generador=DB::table('generadores')
+    ->where('generadores.id',$negocio->id_generador)
+    ->first();
 
-        $entidades=Entidad::all();
-        
+    $giros = Clasificacion::select('giro')
+    ->distinct()
+    ->whereNotNull('giro')
+    ->orderBy('giro')
+    ->get();
+    
+    $entidad=DB::table('entidades')
+    ->where('entidad',$negocio->entidad)
+    ->first();
 
-        $generador=DB::table('generadores')
-        ->where('generadores.id',$negocio->id_generador)
-        ->first();
+    $generadores=Generador::all();
+   
+    $recolecciones=Recoleccion::select('negocios.negocio','negocios.giro','recolecciones.id','recolecciones.created_at')
+    ->join('negocios','negocios.id','=','recolecciones.id_negocio')
+    ->orderby('recolecciones.created_at','desc')
+    ->where('recolecciones.id_negocio',$id)
+    ->get();
 
-
-        $giros = Clasificacion::select('giro')
-        ->distinct()
-        ->whereNotNull('giro')
-        ->orderBy('giro')
+    // Datos para el gráfico de recolección diaria
+    $chartData = [];
+    $chartLabels = [];
+    
+    // Obtener recolecciones de los últimos 30 días agrupadas por día
+    $recoleccionesChart = DB::table('recolecciones')
+        ->join('recoleccion', 'recoleccion.id_recoleccion', '=', 'recolecciones.id')
+        ->select(
+            DB::raw('DATE(recolecciones.created_at) as fecha'),
+            DB::raw('SUM(recoleccion.cantidad * recoleccion.multiplicador) as cantidad_total')
+        )
+        ->where('recolecciones.id_negocio', $id)
+        ->where('recolecciones.created_at', '>=', now()->subDays(30))
+        ->groupBy('fecha')
+        ->orderBy('fecha', 'asc')
         ->get();
 
-        
-        $entidad=DB::table('entidades')
-        ->where('entidad',$negocio->entidad)
-        ->first();
-        /*
-
-        $municipio = Municipio::find($negocio->id_municipio);
-        $entidad=Entidad::find($municipio->id_entidad);
-
-
-        */
-        $generadores=Generador::all();
-
-        
-       
-        $recolecciones=Recoleccion::select('negocios.negocio','negocios.giro','recolecciones.id','recolecciones.created_at')
-        ->join('negocios','negocios.id','=','recolecciones.id_negocio')
-        ->orderby('recolecciones.created_at','desc')
-        ->where('recolecciones.id_negocio',$id)
-        ->get();
-        
-        return view('administracion.negocios.show',['generadores'=>$generadores,
-        'negocio'=>$negocio,'generador'=>$generador,
-        'entidad'=>$entidad,
-        'entidades'=>$entidades,'tiponegocios'=>$tiponegocios,'giros'=>$giros,'recolecciones'=>$recolecciones]);
-
+    foreach ($recoleccionesChart as $item) {
+        $chartLabels[] = \Carbon\Carbon::parse($item->fecha)->format('d/m');
+        $chartData[] = $item->cantidad_total;
     }
+
+    return view('administracion.negocios.show',[
+        'generadores' => $generadores,
+        'negocio' => $negocio,
+        'generador' => $generador,
+        'entidad' => $entidad,
+        'entidades' => $entidades,
+        'tiponegocios' => $tiponegocios,
+        'giros' => $giros,
+        'recolecciones' => $recolecciones,
+        'chartData' => $chartData,
+        'chartLabels' => $chartLabels
+    ]);
+}
 
     /**
      * Show the form for editing the specified resource.

@@ -249,6 +249,24 @@
 
         <br>
 
+        <!-- Gráfico de Recolección Diaria -->
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title"><i class="fas fa-chart-line title-icon"></i> Gráfico de Recolección Diaria</h3>
+              </div>
+              <div class="card-body">
+                <div class="chart-container">
+                  <canvas id="recoleccionChart" height="100"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br>
+
         <div class="row">
           <div class="col-12">
             <div class="card">
@@ -305,7 +323,7 @@
 </div>
 
 <!-- Scripts -->
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
     var markers = [];
@@ -356,7 +374,56 @@
         });
     }
 
-    
+    // Gráfico de Recolección Diaria
+    document.addEventListener('DOMContentLoaded', function() {
+        var ctx = document.getElementById('recoleccionChart').getContext('2d');
+        
+        // Datos para el gráfico (estos vendrían del controlador)
+        var chartData = {
+            labels: {!! json_encode($chartLabels ?? []) !!},
+            datasets: [{
+                label: 'Cantidad Recolectada',
+                data: {!! json_encode($chartData ?? []) !!},
+                backgroundColor: 'rgba(23, 109, 74, 0.2)',
+                borderColor: 'rgba(23, 109, 74, 1)',
+                borderWidth: 2,
+                tension: 0.4,
+                fill: true
+            }]
+        };
+
+        var recoleccionChart = new Chart(ctx, {
+            type: 'line',
+            data: chartData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Recolección Diaria - Últimos 30 días'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Cantidad (Kg)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Fecha'
+                        }
+                    }
+                }
+            }
+        });
+    });
 </script>
 
 @include('MapsApi')
