@@ -265,8 +265,6 @@
           </div>
         </div>
 
-        <br>
-
         <div class="row">
           <div class="col-12">
             <div class="card">
@@ -282,8 +280,10 @@
                       <table class="table table-hover text-nowrap">
                         <thead class="thead-light">
                           <tr>
-                            <th>Establecimientos</th>
+                            <th>Establecimiento</th>
                             <th>Fecha Recolección</th>
+                            <th>Residuo</th>
+                            <th>Cantidad</th>
                             <th>Opciones</th>
                           </tr>
                         </thead>
@@ -292,6 +292,20 @@
                           <tr>
                             <td>{{$recoleccion->negocio}}</td>
                             <td>{{FechaFormateada($recoleccion->created_at)}}</td>
+                            <td>
+                              @if(isset($recoleccion->residuo) && $recoleccion->residuo)
+                                {{$recoleccion->residuo}}
+                              @else
+                                <span class="text-muted">No especificado</span>
+                              @endif
+                            </td>
+                            <td>
+                              @if(isset($recoleccion->cantidad_calculada))
+                                {{number_format($recoleccion->cantidad_calculada, 2)}} {{$recoleccion->unidades ?? 'Kg'}}
+                              @else
+                                <span class="text-muted">N/A</span>
+                              @endif
+                            </td>
                             <td>
                               <a href="Manifiesto/{{$recoleccion->id}}" target="_blank" class="btn btn-theme-info">
                                 <i class="fa fa-download"></i> Manifiesto

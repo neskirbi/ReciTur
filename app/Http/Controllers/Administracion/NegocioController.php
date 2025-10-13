@@ -85,11 +85,24 @@ class NegocioController extends Controller
 
     $generadores=Generador::all();
    
-    $recolecciones=Recoleccion::select('negocios.negocio','negocios.giro','recolecciones.id','recolecciones.created_at')
-    ->join('negocios','negocios.id','=','recolecciones.id_negocio')
-    ->orderby('recolecciones.created_at','desc')
-    ->where('recolecciones.id_negocio',$id)
-    ->get();
+    // Recolecciones con datos de residuos y cantidad calculada
+    $recolecciones = DB::table('recolecciones')
+        ->join('negocios', 'negocios.id', '=', 'recolecciones.id_negocio')
+        ->leftJoin('recoleccion', 'recoleccion.id_recoleccion', '=', 'recolecciones.id')
+        ->select(
+            'negocios.negocio',
+            'negocios.giro',
+            'recolecciones.id',
+            'recolecciones.created_at',
+            'recoleccion.residuo',
+            'recoleccion.cantidad',
+            'recoleccion.multiplicador',
+            'recoleccion.unidades',
+            DB::raw('(recoleccion.cantidad * recoleccion.multiplicador) as cantidad_calculada')
+        )
+        ->where('recolecciones.id_negocio', $id)
+        ->orderBy('recolecciones.created_at', 'desc')
+        ->get();
 
     // Datos para el gráfico de recolección diaria
     $chartData = [];
