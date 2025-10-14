@@ -98,7 +98,7 @@
 
                         <div class="card card-primary" id="fiscales">
                             <div class="card-header">
-                                <h3 class="card-title">Datos fiscales</h3>            
+                                <h3 class="card-title">Datos Genrador</h3>            
                             </div>
 
                             <div class="card-body">
