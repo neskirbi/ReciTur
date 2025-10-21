@@ -261,7 +261,7 @@ Route::get('BorrarGenerador/{id}', 'App\Http\Controllers\Asociacion\GeneradorCon
 
 Route::resource('mapa','App\Http\Controllers\Administracion\MapaController');
 
-Route::resource('generadores','App\Http\Controllers\Administracion\GeneradorController');
+Route::resource('generadoresa','App\Http\Controllers\Administracion\GeneradorController');
 
 
 Route::resource('pagos', 'App\Http\Controllers\Administracion\PagoController');

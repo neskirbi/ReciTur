@@ -33,9 +33,7 @@
                 <div class="card-body">
 
                 <div class="d-flex justify-content-end mb-3">
-                  <a href="{{ route('generadores.create') }}" class="btn btn-theme-success">
-                    <i class="bi bi-plus-circle"></i> Agregar Generador
-                  </a>
+                 
                 </div>
                   @if(count($generadores))
                     <div class="row">
@@ -64,13 +62,13 @@
                               <!-- Botones -->
                               <div class="mt-2">
                                 <!-- Botón Ver -->
-                                <a href="generadores/{{$generador->id}}" class="btn btn-theme-success  btn-block text-white">
+                                <a href="generadoresa/{{$generador->id}}" class="btn btn-theme-success  btn-block text-white">
                                   <i class="fa fa-eye" aria-hidden="true"></i> Ver
                                 </a>
                                 <!-- Botón Quitar (solo si no está verificado) -->
                                 @if($generador->verificado == 0)
                                 <hr>
-                                  <form action="generadores/{{$generador->id}}" method="POST" class="d-inline">
+                                  <form action="generadoresa/{{$generador->id}}" method="POST" class="d-inline">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="_method" value="DELETE">
                                     <button id="borrar" class="borrar btn btn-theme-danger btn-block btn-quitar" data-texto="¿Deseas quitar este generador?">
