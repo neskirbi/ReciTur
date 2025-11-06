@@ -79,7 +79,7 @@
             text-align: right;
         }
         .qr-image {
-            max-width: 80px;
+            max-width: 100px;
             height: auto;
         }
     </style>
