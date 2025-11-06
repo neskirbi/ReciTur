@@ -307,7 +307,7 @@
                               @endif
                             </td>
                             <td>
-                              <a href="Manifiesto/{{$recoleccion->id}}" target="_blank" class="btn btn-theme-info">
+                              <a href="{{url('Manifiesto')}}/{{$recoleccion->id}}" target="_blank" class="btn btn-theme-info">
                                 <i class="fa fa-download"></i> Manifiesto
                               </a>
                             </td>
