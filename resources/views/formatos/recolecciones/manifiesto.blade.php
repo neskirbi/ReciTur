@@ -10,6 +10,8 @@
             font-family: Arial, sans-serif;
             font-size: 8px;
             line-height: 1.3;
+            margin: 0;
+            padding: 0;
         }
         .bordes {
             border: 2px solid #000;
@@ -60,11 +62,46 @@
             text-align: center;
             width: 30px;
         }
+        
+        /* Estilos para la tabla header */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 5px;
+        }
+        .header-image-cell {
+            width: 70%;
+            vertical-align: top;
+        }
+        .qr-cell {
+            width: 30%;
+            vertical-align: top;
+            text-align: right;
+        }
+        .qr-image {
+            max-width: 80px;
+            height: auto;
+        }
     </style>
 </head>
 <body>
 
-<center><img class="" src="{{ isset($vista) ? asset('images/formatos/manifiesto/headermanifiesto.png') : public_path('images/formatos/manifiesto/headermanifiesto.png') }}" alt="" width="100%"></center>
+    <!-- Tabla para header y QR -->
+    <table class="header-table">
+        <tr>
+            <td class="header-image-cell">
+                <!-- Imagen del encabezado a la izquierda -->
+                <img src="{{ isset($vista) ? asset('images/formatos/manifiesto/headermanifiesto.png') : public_path('images/formatos/manifiesto/headermanifiesto.png') }}" alt="" width="100%">
+            </td>
+            <td class="qr-cell">
+                <!-- QR a la derecha -->
+                @if(isset($qr))
+                <img class="qr-image" src="{{ isset($vista) ? asset($qr) : public_path($qr) }}" alt="Código QR">
+                @endif
+            </td>
+        </tr>
+    </table>
+
     <div class="titulo-manifiesto">
         MANIFIESTO DE ENTREGA, TRANSPORTE Y RECEPCIÓN DE RESIDUOS SÓLIDOS URBANOS	
         <br>
@@ -213,8 +250,5 @@
             </td>
         </tr>
     </table>
-    @if(isset($qr))
-    <img src="{{ isset($vista) ? asset($qr) : public_path($qr) }}" width="100px">
-    @endif
 </body>
 </html>

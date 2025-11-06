@@ -35,7 +35,7 @@ class GeneralController extends Controller
         $detallesRecoleccion = DB::table('recoleccion')
         ->select('recoleccion.residuo','recoleccion.cantidad','recoleccion.contenedor')
         ->where('id_recoleccion', $recoleccion->id)
-        ->get();
+        ->get(); 
         
 
         //return GetUrl()."manifiesto/".$recoleccion->id;
