@@ -300,11 +300,7 @@
                               @endif
                             </td>
                             <td>
-                              @if(isset($recoleccion->cantidad_calculada))
-                                {{number_format($recoleccion->cantidad_calculada, 2)}} {{$recoleccion->unidades ?? 'Kg'}}
-                              @else
-                                <span class="text-muted">N/A</span>
-                              @endif
+                              {{number_format($recoleccion->cantidad_calculada, 2)}} {{$recoleccion->unidades ?? 'Kg'}}
                             </td>
                             <td>
                               <a href="{{url('Manifiesto')}}/{{$recoleccion->id}}" target="_blank" class="btn btn-theme-info">
