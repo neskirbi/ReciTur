@@ -100,6 +100,11 @@ return [
             'driver' => 'session',
             'provider' => 'recolectores',
         ],
+        
+        'inspectores' => [
+            'driver' => 'session',
+            'provider' => 'inspectores',
+        ],
 
         'api' => [
             'driver' => 'token',
@@ -189,6 +194,11 @@ return [
         'recolectores' => [
             'driver' => 'eloquent',
             'model' => App\Models\Recolector::class,
+        ],
+
+        'inspectores' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Inspector::class,
         ]
 
         // 'users' => [

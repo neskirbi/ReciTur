@@ -118,27 +118,6 @@
     <li class="nav-item">
       <a class="nav-link" href="{{ url('mapa') }}"><i class="fa fa-map me-2"></i>Mapa</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{{ url('generadoresa') }}"><i class="fa fa-building me-2"></i>Generador</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{{ url('establecimientos') }}"><i class="fa fa-briefcase me-2"></i>Negocios</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{{ url('recoleccion') }}"><i class="fa fa-recycle me-2"></i>Recolecciones</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{{ url('recolectores') }}"><i class="fa fa-users me-2"></i>Recolectores</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{{ url('residuos') }}"><i class="fa fa-asterisk me-2"></i>Residuos</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{{ url('contenedores') }}"><i class="fa fa-trash-alt me-2"></i>Contenedores</a>
-    </li>    
-    <li class="nav-item">
-      <a class="nav-link" href="{{ url('configuracion') }}"><i class="fa fa-cogs me-2"></i>Configuración</a>
-    </li>
 
     <div class="nav-section-title">Cuenta</div>
     <li class="nav-item mt-2">

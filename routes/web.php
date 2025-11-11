@@ -60,6 +60,13 @@ Route::get('home', function () {
     }  
 
     
+
+    if(Auth::guard('inspectores')->check()){
+        return redirect('maps');
+    }  
+
+
+    
     
     return view('home');
 });
@@ -498,12 +505,17 @@ Route::resource('registrot','App\Http\Controllers\WebApp\Transportista\RegistroT
  */
 
 
- Route::resource('homer','App\Http\Controllers\Recolectores\HomeController');
- Route::resource('recolectar','App\Http\Controllers\Recolectores\RecolectarController');
- Route::get('hacerrecolleccion/{id}','App\Http\Controllers\Recolectores\RecolectarController@HacerRecoleccion');
- Route::post('GuardarRecoleccion','App\Http\Controllers\Recolectores\RecolectarController@GuardarRecoleccion');
+Route::resource('homer','App\Http\Controllers\Recolectores\HomeController');
+Route::resource('recolectar','App\Http\Controllers\Recolectores\RecolectarController');
+Route::get('hacerrecolleccion/{id}','App\Http\Controllers\Recolectores\RecolectarController@HacerRecoleccion');
+Route::post('GuardarRecoleccion','App\Http\Controllers\Recolectores\RecolectarController@GuardarRecoleccion');
 
- Route::resource('recoleccionesr','App\Http\Controllers\Recolectores\RecoleccionController');
+Route::resource('recoleccionesr','App\Http\Controllers\Recolectores\RecoleccionController');
 
 Route::get('manifiestorecoleccion/{fecha}','App\Http\Controllers\Recolectores\RecoleccionController@ManifiestoRecolector');
  
+/**
+ * Rutas Inspecccion 
+ */
+
+Route::resource('maps','App\Http\Controllers\Inspector\MapaController');

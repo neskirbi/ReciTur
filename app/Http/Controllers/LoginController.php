@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\Asociado;
 use App\Models\Cliente;
+use App\Models\Inspector;
 use App\Models\Administrador;
 use App\Models\Configuracion;
 use App\Models\Token;
@@ -117,6 +118,21 @@ class LoginController extends Controller
                 return redirect('loginpage')->with('error', '¡Error de contraseña!');
             }
             Auth::guard('recolectores')->login($recolector);
+            return redirect('home');
+        }
+
+        
+
+
+        $inspector = Inspector::where([
+            'mail' => $request->mail
+        ])->first();
+
+        if($inspector){
+            if($request->pass!=$inspector->pass){
+                return redirect('loginpage')->with('error', '¡Error de contraseña!');
+            }
+            Auth::guard('inspectores')->login($inspector);
             return redirect('home');
         }
 
