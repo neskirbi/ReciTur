@@ -186,6 +186,11 @@ class LoginController extends Controller
             Auth::guard('recolectores')->logout();
             return redirect('home');
         }
+
+        if( Auth::guard('inspectores')->check()){
+            Auth::guard('inspectores')->logout();
+            return redirect('home');
+        }
         
         return redirect('home');
     }
