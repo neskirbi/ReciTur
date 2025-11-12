@@ -519,3 +519,5 @@ Route::get('manifiestorecoleccion/{fecha}','App\Http\Controllers\Recolectores\Re
  */
 
 Route::resource('maps','App\Http\Controllers\Inspector\MapaController');
+
+Route::resource('negocio', 'App\Http\Controllers\Inspector\NegocioController');

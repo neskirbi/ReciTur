@@ -7,7 +7,7 @@ php artisan migrate:refresh
 *Refresca solo una tabla en base de datos
 *Cambiar tabla por el nombre de la migracion que se creo
 */
-php artisan migrate:refresh --path=/database/migrations/2025_07_30_115521_create_centros.php
+php artisan migrate:refresh --path=/database/migrations/2025_11_11_124033_create_inspectores.php
 
 /*
 *Crea una migracion en laravel para el diseño de una tabla de la base de datos 

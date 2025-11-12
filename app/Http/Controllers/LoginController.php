@@ -129,7 +129,7 @@ class LoginController extends Controller
         ])->first();
 
         if($inspector){
-            if($request->pass!=$inspector->pass){
+            if(!password_verify($request->pass,$inspector->pass)){
                 return redirect('loginpage')->with('error', '¡Error de contraseña!');
             }
             Auth::guard('inspectores')->login($inspector);

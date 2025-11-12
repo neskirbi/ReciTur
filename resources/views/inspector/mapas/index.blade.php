@@ -72,34 +72,7 @@
                   </div>
                 </div>
 
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="row" id="businessList">
-                      @foreach($negocios2 as $neg)
-                      <div class="col-md-12 mb-3">
-                        <div class="card business-card {{ $neg->solicitud == 1 ? 'pending' : 'approved' }}">
-                          <div class="card-body">
-                            <h5 class="card-title">{{ $neg->negocio }}</h5>
-                            <p class="card-text mb-1">
-                              <i class="fas fa-tag"></i> {{ $neg->clasificacion }}
-                            </p>
-                            @if($neg->solicitud == 1)
-                            <i class="fas fa-truck"></i>                            
-                            <span class="badge status-badge {{ $neg->solicitud == 1 ? 'bg-warning' : 'bg-success' }}">
-                               {{ $neg->solicitud == 1 ? 'Recolectar' : 'Recolectado' }}
-                            </span>
-                            @endif
-                          </div>
-                        </div>
-                      </div>
-                      @endforeach
-                    </div>
-                    <div class="d-flex justify-content-center mt-4">
-                      {{ $negocios2->appends($_GET)->links('pagination::bootstrap-4') }}
-                    </div>
-                   
-                  </div>
-                </div>
+                
                 
                 
                 
@@ -196,7 +169,7 @@
                 
                 // Evento click - abrir en nueva pestaña
                 marker.addListener('click', function() {
-                    window.open(url('establecimientos') + '/' + negocio.id, '_blank');
+                    window.open(url('negocio') + '/' + negocio.id, '_blank');
                 });
                 
                 markers.push(marker);
