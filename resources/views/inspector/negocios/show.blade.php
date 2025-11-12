@@ -287,13 +287,33 @@
 
         // Gráfica de avance del mes - BARRAS VERTICALES
         var avanceCtx = document.getElementById('avanceChart').getContext('2d');
+        
+        // Calcular datos para la gráfica de avance
+        var estimadoDiario = {{$negocio->estimado ?? 0}};
+        var diasEnMes = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate();
+        var metaMensual = estimadoDiario * diasEnMes;
+        
+        // Calcular total recolectado en el mes actual
+        var totalRecolectadoMes = 0;
+        <?php
+        // Calcular total del mes actual desde PHP
+        $mesActual = now()->format('Y-m');
+        $totalMesActual = 0;
+        foreach($recolecciones as $recoleccion) {
+            if (strpos($recoleccion->created_at, $mesActual) === 0) {
+                $totalMesActual += $recoleccion->cantidad_calculada;
+            }
+        }
+        ?>
+        totalRecolectadoMes = {{$totalMesActual}};
+
         var avanceChart = new Chart(avanceCtx, {
             type: 'bar',
             data: {
                 labels: ['Meta', 'Actual'],
                 datasets: [{
                     label: 'Kg Recolectados',
-                    data: [500, 320], // Datos de ejemplo - Meta a la izquierda, Actual a la derecha
+                    data: [metaMensual, totalRecolectadoMes],
                     backgroundColor: [
                         'rgba(54, 162, 235, 0.7)', // Azul para Meta
                         'rgba(23, 109, 74, 0.7)'   // Verde para Actual
@@ -320,6 +340,13 @@
                 plugins: {
                     legend: {
                         display: false // Ocultamos la leyenda ya que los colores son evidentes
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.raw.toFixed(2) + ' Kg';
+                            }
+                        }
                     }
                 }
             }
