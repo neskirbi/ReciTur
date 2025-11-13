@@ -42,7 +42,17 @@
                         
                         <div class="form-group">
                           <label for="negocio"><i class="fas fa-store"></i> Negocio</label>
-                          <input class="form-control" name="negocio" id="negocio" value="{{isset($filtros->negocio) ? $filtros->negocio : ''}}" required >
+                          <input class="form-control" name="negocio" id="negocio" value="{{isset($filtros->negocio) ? $filtros->negocio : ''}}"  >
+                        </div>
+
+                        <div class="form-group">
+                          <label for="clasificacion"><i class="fas fa-list"></i> Clasificación</label>
+                          <select class="form-control" name="clasificacion" id="clasificacion" >
+                            <option value="{{$filtros->clasificacion ?? '' }}">{{$filtros->clasificacion ?? '--Clasificación--' }}</option>
+                            @foreach($clasificaciones as $clas)
+                              <option value="{{$clas->clasificacion}}">{{$clas->clasificacion}}</option>
+                            @endforeach
+                          </select>
                         </div>
                       
 

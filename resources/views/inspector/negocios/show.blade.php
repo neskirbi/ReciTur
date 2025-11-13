@@ -156,8 +156,8 @@
                 <h3 class="card-title"><i class="fas fa-chart-line title-icon"></i> Gráfico de Recolección Diaria</h3>
               </div>
               <div class="card-body">
-                <div class="chart-container">
-                  <canvas id="recoleccionChart" height="100"></canvas>
+                <div class="chart-container" >
+                  <canvas id="recoleccionChart" height="100" ></canvas>
                 </div>
               </div>
             </div>
