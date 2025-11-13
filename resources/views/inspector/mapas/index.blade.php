@@ -41,6 +41,11 @@
                       <form class="px-4 py-3" action="{{url('maps')}}" method="GET">
                         
                         <div class="form-group">
+                          <label for="generador"><i class="fas fa-store"></i> Generador</label>
+                          <input class="form-control" name="generador" id="generador" value="{{isset($filtros->generador) ? $filtros->generador : ''}}"  >
+                        </div>
+
+                        <div class="form-group">
                           <label for="negocio"><i class="fas fa-store"></i> Negocio</label>
                           <input class="form-control" name="negocio" id="negocio" value="{{isset($filtros->negocio) ? $filtros->negocio : ''}}"  >
                         </div>

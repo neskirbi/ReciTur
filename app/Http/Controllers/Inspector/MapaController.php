@@ -17,8 +17,9 @@ class MapaController extends Controller
 
     public function index(Request $filtros)
     {
-        $negocios = Negocio::select('id','negocio','latitud','longitud','solicitud','clasificacion')        
-        ->whereraw("negocio like '%".$filtros->negocio."%'")     
+        $negocios = Negocio::join('generadores','generadores.id','=','negocios.id_generador')
+        ->select('generadores.razonsocial','negocios.id','negocios.negocio','negocios.latitud','negocios.longitud','negocios.solicitud','negocios.clasificacion')        
+        ->whereraw("negocios.negocio like '%".$filtros->negocio."%' and negocios.clasificacion like '%".$filtros->clasificacion."%' and generadores.razonsocial like '%".$filtros->generador."%'")
         ->get();
        
         $clasificaciones = Clasificacion::all();
