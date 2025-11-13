@@ -38,21 +38,16 @@
                       Filtros <i class="fa fa-sliders" aria-hidden="true"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end p-3" style="width:300px;">
-                      <form class="px-4 py-3" action="{{url('mapa')}}" method="GET">
+                      <form class="px-4 py-3" action="{{url('maps')}}" method="GET">
                         
                         <div class="form-group">
-                          <label for="clasificacion"><i class="fas fa-list"></i> Clasificación</label>
-                          <select class="form-control" name="clasificacion" id="clasificacion" required>
-                            <option value="{{$filtros->clasificacion ?? '' }}">{{$filtros->clasificacion ?? '--Clasificación--' }}</option>
-                            @foreach($clasificaciones as $clas)
-                              <option value="{{$clas->clasificacion}}">{{$clas->clasificacion}}</option>
-                            @endforeach
-                          </select>
+                          <label for="negocio"><i class="fas fa-store"></i> Negocio</label>
+                          <input class="form-control" name="negocio" id="negocio" value="{{isset($filtros->negocio) ? $filtros->negocio : ''}}" required >
                         </div>
                       
 
                         <div class="dropdown-divider"></div>
-                        <a href="{{url('mapa')}}" class="btn-outline-theme-gray btn-sm">Limpiar</a>
+                        <a href="{{url('maps')}}" class="btn-outline-theme-gray btn-sm">Limpiar</a>
                         <button type="submit" class="btn btn-outline-theme-info btn-sm float-end">Aplicar</button>
                       </form>
                     </div>
