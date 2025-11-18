@@ -100,7 +100,7 @@
             <!-- Gráfica de avance del mes -->
             <div class="card h-100"> <!-- Agregada clase h-100 -->
               <div class="card-header">
-                <h3 class="card-title"><i class="fas fa-chart-bar"></i> Avance del Mes</h3>
+                <h3 class="card-title"><i class="fas fa-chart-bar title-icon"></i> Avance del Mes</h3>
               </div>
               <div class="card-body d-flex align-items-center justify-content-center"> <!-- Agregadas clases flex -->
                 <div class="chart-container w-100"> <!-- Agregada clase w-100 -->
