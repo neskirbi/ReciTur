@@ -170,6 +170,8 @@ Route::get('solicitud/{id}','App\Http\Controllers\Cliente\NegocioController@Soli
 Route::resource('recolecciones','App\Http\Controllers\Cliente\RecoleccionController');
 
 Route::get('EstadoCuentaMesCliente/{id}','App\Http\Controllers\Cliente\NegocioController@EstadoCuentaMesCliente');
+Route::get('EstadoCuentaRangoCliente/{id}','App\Http\Controllers\Cliente\NegocioController@EstadoCuentaRangoCliente');
+Route::get('ConstanciaGestionRCD/{id}','App\Http\Controllers\Cliente\NegocioController@ConstanciaGestionRCD');
 
 
 

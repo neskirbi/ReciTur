@@ -173,4 +173,7 @@ class EstadoCuentaExport implements FromCollection, WithHeadings, WithTitle, Wit
             }
         ];
     }
+
+
+    
 }

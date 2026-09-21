@@ -308,4 +308,82 @@ class NegocioController extends Controller
             return redirect()->back()->with('error', 'Error al generar el reporte: ' . $e->getMessage());
         }
     }
+
+    public function ConstanciaGestionRCD($id)
+    {
+        try {
+            // Obtener el negocio
+            $negocio = Negocio::find($id);
+
+            if (!$negocio) {
+                return redirect()->back()->with('error', 'No se encontró el negocio.');
+            }
+
+            // Obtener el generador
+            $generador = Generador::find($negocio->id_generador);
+
+            // Obtener todas las recolecciones del negocio con su detalle
+            $recolecciones = Cliente::join('generadores', 'generadores.id_cliente', '=', 'clientes.id')
+                ->join('negocios', 'negocios.id_generador', '=', 'generadores.id')
+                ->join('recolecciones', 'recolecciones.id_negocio', '=', 'negocios.id')
+                ->join('recoleccion', 'recoleccion.id_recoleccion', '=', 'recolecciones.id')
+                ->where('clientes.id', GetId())
+                ->where('negocios.id', $id)
+                ->select(
+                    'recolecciones.created_at as fecha_recoleccion',
+                    'negocios.negocio as nombre_negocio',
+                    'recoleccion.residuo',
+                    'recoleccion.contenedor',
+                    'recoleccion.cantidad',
+                    'recoleccion.precio',
+                    'recoleccion.multiplicador',
+                    'recoleccion.unidades'
+                )
+                ->orderBy('recolecciones.created_at', 'asc')
+                ->get();
+
+            // Calcular volumen total gestionado (cantidad * multiplicador)
+            $volumenTotal = 0;
+            $data = [];
+
+            foreach ($recolecciones as $recoleccion) {
+                $cantidadTotal = $recoleccion->cantidad * $recoleccion->multiplicador;
+                $volumenTotal += $cantidadTotal;
+
+                $data[] = [
+                    'fecha' => FechaFormateada($recoleccion->fecha_recoleccion),
+                    'residuos' => $recoleccion->residuo,
+                    'contenedor' => $recoleccion->contenedor,
+                    'cantidad_con_unidades' => $cantidadTotal . ' ' . ($recoleccion->unidades ?? ''),
+                    'precio' => $recoleccion->precio,
+                    'subtotal' => $recoleccion->cantidad * $recoleccion->precio * $recoleccion->multiplicador
+                ];
+            }
+
+            // Obtener fecha de primera y última recolección para el período
+            $fechaInicio = $recolecciones->min('fecha_recoleccion');
+            $fechaFin = $recolecciones->max('fecha_recoleccion');
+
+            $periodoInicio = $fechaInicio ? date('d/m/Y', strtotime($fechaInicio)) : 'N/A';
+            $periodoFin = $fechaFin ? date('d/m/Y', strtotime($fechaFin)) : 'N/A';
+
+            // Generar el PDF
+            $pdf = PDF::loadView('cliente.negocios.constancia-rcd', [
+                'negocio' => $negocio,
+                'generador' => $generador,
+                'data' => $data,
+                'volumenTotal' => $volumenTotal,
+                'periodoInicio' => $periodoInicio,
+                'periodoFin' => $periodoFin,
+                'fechaExpedicion' => date('d/m/Y')
+            ]);
+
+            $filename = "Constancia_RCD_" . str_replace(' ', '_', $negocio->negocio) . ".pdf";
+
+            return $pdf->setPaper('A4', 'portrait')->download($filename);
+
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al generar la constancia: ' . $e->getMessage());
+        }
+    }
 }

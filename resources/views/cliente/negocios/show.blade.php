@@ -209,61 +209,32 @@
               <div class="card-body">
 
               <div class="row mb-4">
-                  <div class="col-md-12">
-                    <div class="card bg-light">
-                      <div class="card-body">
-                        <h5 class="card-title"><i class="fa fa-file-excel text-success"></i> Exportar Estado de Cuenta</h5>
-                        <form action="{{ url('EstadoCuentaRangoCliente') }}/{{$negocio->id}}" method="GET" target="_blank" class="form-inline">
-                          <div class="form-group mr-3">
-                            <label for="fecha_inicio" class="mr-2">Fecha Inicio:</label>
-                            <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required>
-                          </div>
-                          <div class="form-group mr-3">
-                            <label for="fecha_fin" class="mr-2">Fecha Fin:</label>
-                            <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" required>
-                          </div>
-                          <button type="submit" class="btn btn-success">
-                            <i class="fa fa-download"></i> Exportar
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <div class="col-md-12">
+                  <div class="card bg-light">
+                    <div class="card-body">
+                      <h5 class="card-title"><i class="fa fa-file-excel text-success"></i> Exportar Estado de Cuenta</h5>
+                      <form action="{{ url('EstadoCuentaRangoCliente') }}/{{$negocio->id}}" method="GET" target="_blank" class="form-inline mb-3">
+                        <div class="form-group mr-3">
+                          <label for="fecha_inicio" class="mr-2">Fecha Inicio:</label>
+                          <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required>
+                        </div>
+                        <div class="form-group mr-3">
+                          <label for="fecha_fin" class="mr-2">Fecha Fin:</label>
+                          <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">
+                          <i class="fa fa-download"></i> Exportar
+                        </button>
+                      </form>
 
-                
-                <div class="row">
-                  <div class="col-md-12">
-                    @if(count($recolecciones))
-                    <div class="table-responsive">
-                      <table class="table table-hover text-nowrap">
-                        <thead class="thead-light">
-                          <tr>
-                            <th>Establecimientos</th>
-                            <th>Fecha Recolección</th>
-                            <th>Opciones</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          @foreach($recolecciones as $recoleccion)
-                          <tr>
-                            <td>{{$recoleccion->negocio}}</td>
-                            <td>{{FechaFormateada($recoleccion->created_at)}}</td>
-                            <td>
-                              <a href="{{url('Manifiesto')}}/{{$recoleccion->id}}" target="_blank" class="btn btn-theme-info">
-                                <i class="fa fa-download"></i> Manifiesto
-                              </a>
-                            </td>
-                          </tr>
-                          @endforeach
-                        </tbody>
-                      </table>
+                      <hr>
+
+                      <h5 class="card-title"><i class="fa fa-file-pdf text-danger"></i> Constancia de Gestión Responsable de RCD</h5>
+                      <p class="text-muted small mb-2">Descarga el estado general del negocio con todas las recolecciones realizadas hasta el momento.</p>
+                      <a href="{{ url('ConstanciaGestionRCD') }}/{{$negocio->id}}" target="_blank" class="btn btn-danger">
+                        <i class="fa fa-download"></i> Descargar Constancia
+                      </a>
                     </div>
-                    @else
-                    <div class="alert alert-info" role="alert">
-                      <i class="fa fa-info-circle mr-2"></i>No hay recolecciones para mostrar.
-                    </div>
-                    @endif
                   </div>
                 </div>
               </div>
