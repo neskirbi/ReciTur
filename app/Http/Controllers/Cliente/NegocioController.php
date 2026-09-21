@@ -221,12 +221,17 @@ class NegocioController extends Controller
         return Redirect::back()->with($satus, $mensaje);
     }
 
-    public function EstadoCuentaMesCliente(Request $request, $id)
+    public function EstadoCuentaRangoCliente(Request $request, $id)
     {
         try {
             // Validar parámetros
-            if (!is_numeric($request->anio) || !is_numeric($request->mes) || $request->mes < 1 || $request->mes > 12) {
-                return redirect()->back()->with('error', 'Parámetros inválidos');
+            if (!$request->fecha_inicio || !$request->fecha_fin) {
+                return redirect()->back()->with('error', 'Debe seleccionar fecha de inicio y fecha fin');
+            }
+
+            // Validar que la fecha fin no sea menor a la fecha inicio
+            if ($request->fecha_fin < $request->fecha_inicio) {
+                return redirect()->back()->with('error', 'La fecha fin no puede ser menor a la fecha inicio');
             }
 
             // Obtener las recolecciones con las relaciones
@@ -236,8 +241,8 @@ class NegocioController extends Controller
                 ->join('recoleccion', 'recoleccion.id_recoleccion', '=', 'recolecciones.id')
                 ->where('clientes.id', GetId())
                 ->where('negocios.id', $id)
-                ->whereYear('recolecciones.created_at', $request->anio)
-                ->whereMonth('recolecciones.created_at', $request->mes)
+                ->whereDate('recolecciones.created_at', '>=', $request->fecha_inicio)
+                ->whereDate('recolecciones.created_at', '<=', $request->fecha_fin)
                 ->select(
                     'recolecciones.created_at as fecha_recoleccion',
                     'negocios.negocio as nombre_negocio',
@@ -282,23 +287,18 @@ class NegocioController extends Controller
                 ];
             }
 
-            // Nombre del mes
-            $meses = [
-                1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril',
-                5 => 'Mayo', 6 => 'Junio', 7 => 'Julio', 8 => 'Agosto',
-                9 => 'Septiembre', 10 => 'Octubre', 11 => 'Noviembre', 12 => 'Diciembre'
-            ];
-            
-            $nombreMes = $meses[$request->mes];
-            $filename = "Estado_Cuenta_{$nombreNegocio}_{$nombreMes}_{$request->anio}.pdf";
+            // Formatear fechas para el nombre del archivo
+            $fechaInicio = date('d-m-Y', strtotime($request->fecha_inicio));
+            $fechaFin = date('d-m-Y', strtotime($request->fecha_fin));
+            $filename = "Estado_Cuenta_{$nombreNegocio}_{$fechaInicio}_al_{$fechaFin}.pdf";
 
-            // Generar PDF con tu mismo estilo
+            // Generar PDF
             $pdf = PDF::loadView('cliente.negocios.estado-cuenta-pdf', [
                 'data' => $data,
                 'totalGeneral' => $totalGeneral,
                 'negocio' => $nombreNegocio,
-                'mes' => $nombreMes,
-                'anio' => $request->anio,
+                'fecha_inicio' => $fechaInicio,
+                'fecha_fin' => $fechaFin,
                 'generador' => $generador
             ]);
             

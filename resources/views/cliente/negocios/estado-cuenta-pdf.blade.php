@@ -122,8 +122,8 @@
 
         <!-- Header -->
         <div class="header">
-            <div class="title">ESTADO DE CUENTA MENSUAL</div>
-            <div class="subtitle">MES: {{ strtoupper($mes) }} {{ $anio }}</div>
+            <div class="title">ESTADO DE CUENTA</div>
+            <div class="subtitle">PERÍODO: {{ $fecha_inicio }} AL {{ $fecha_fin }}</div>
         </div>
 
         <!-- Información del generador y negocio -->

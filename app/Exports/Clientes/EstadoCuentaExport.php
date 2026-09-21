@@ -16,17 +16,17 @@ class EstadoCuentaExport implements FromCollection, WithHeadings, WithTitle, Wit
     private $data;
     private $totalGeneral;
     private $negocio;
-    private $mes;
-    private $anio;
+    private $fecha_inicio;
+    private $fecha_fin;
     private $generador;
 
-    public function __construct($data, $totalGeneral, $negocio, $mes, $anio, $generador = null)
+    public function __construct($data, $totalGeneral, $negocio, $fecha_inicio, $fecha_fin, $generador = null)
     {
         $this->data = $data;
         $this->totalGeneral = $totalGeneral;
         $this->negocio = $negocio;
-        $this->mes = $mes;
-        $this->anio = $anio;
+        $this->fecha_inicio = $fecha_inicio;
+        $this->fecha_fin = $fecha_fin;
         $this->generador = $generador;
     }
 
@@ -61,21 +61,21 @@ class EstadoCuentaExport implements FromCollection, WithHeadings, WithTitle, Wit
                 
                 // Título principal centrado
                 $sheet->mergeCells('A1:F1');
-                $sheet->setCellValue('A1', 'ESTADO DE CUENTA MENSUAL');
+                $sheet->setCellValue('A1', 'ESTADO DE CUENTA');
                 $sheet->getStyle('A1')->applyFromArray([
                     'font' => ['bold' => true, 'size' => 16],
                     'alignment' => ['horizontal' => Alignment::HORIZONTAL_CENTER]
                 ]);
 
-                // Mes y año en la parte superior derecha
-                $sheet->setCellValue('F2', 'MES: ' . strtoupper($this->mes));
+                // Período en la parte superior derecha
+                $sheet->setCellValue('F2', 'PERÍODO: ' . $this->fecha_inicio . ' AL ' . $this->fecha_fin);
                 $sheet->getStyle('F2')->applyFromArray([
                     'font' => ['bold' => true],
                     'alignment' => ['horizontal' => Alignment::HORIZONTAL_RIGHT]
                 ]);
 
                 // Generador y negocio en la parte superior izquierda
-                $sheet->setCellValue('A3', 'GENERADOR: ' . ($this->generador ?: 'HILTON'));
+                $sheet->setCellValue('A3', 'GENERADOR: ' . ($this->generador ?: ''));
                 $sheet->setCellValue('A4', 'ESTABLECIMIENTO: ' . $this->negocio);
                 $sheet->getStyle('A3:A4')->applyFromArray([
                     'font' => ['bold' => true]

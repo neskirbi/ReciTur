@@ -155,29 +155,6 @@
               </div>
             </div>
 
-            <!-- Documentación 
-            <div class="card card-info">
-              <div class="card-header">
-                <h3 class="card-title"><i class="fas fa-file-pdf"></i> Documentación</h3>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="plan"><i class="fas fa-file-upload"></i> Plan de manejo (pdf)</label>
-                      <iframe id="inlineFrameExample"
-                        title="Plan de manejo"
-                        width="100%"
-                        height="200"
-                        src="{{asset('documentos/clientes/negocios/plan').'/'.$negocio->id.'.pdf'.'?ver='.rand(0,10000)}}">
-                      </iframe>
-                      <a target="_blank" class="btn btn-default" href="{{asset('documentos/clientes/negocios/plan').'/'.$negocio->id.'.pdf'.'?ver='.rand(0,10000)}}">Ver</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>-->
-
             <!-- Datos del Contacto -->
             <div class="card card-info">
               <div class="card-header">
@@ -235,39 +212,15 @@
                   <div class="col-md-12">
                     <div class="card bg-light">
                       <div class="card-body">
-                        <h5 class="card-title"><i class="fa fa-file-excel text-success"></i> Exportar a Excel</h5>
-                        <form action="{{ url('EstadoCuentaMesCliente') }}/{{$negocio->id}}" method="GET" target="_blank" class="form-inline">
+                        <h5 class="card-title"><i class="fa fa-file-excel text-success"></i> Exportar Estado de Cuenta</h5>
+                        <form action="{{ url('EstadoCuentaRangoCliente') }}/{{$negocio->id}}" method="GET" target="_blank" class="form-inline">
                           <div class="form-group mr-3">
-                            <label for="anio" class="mr-2">Año:</label>
-                            <select class="form-control" id="anio" name="anio" required>
-                              @php
-                                $currentYear = date('Y');
-                                $startYear = 2021;
-                              @endphp
-                              @for($year = $currentYear; $year >= $startYear; $year--)
-                                <option value="{{ $year }}" {{ $year == $currentYear ? 'selected' : '' }}>
-                                  {{ $year }}
-                                </option>
-                              @endfor
-                            </select>
+                            <label for="fecha_inicio" class="mr-2">Fecha Inicio:</label>
+                            <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required>
                           </div>
                           <div class="form-group mr-3">
-                            <label for="mes" class="mr-2">Mes:</label>
-                            <select class="form-control" id="mes" name="mes" required>
-                              @php
-                                $currentMonth = date('n');
-                                $months = [
-                                  1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril',
-                                  5 => 'Mayo', 6 => 'Junio', 7 => 'Julio', 8 => 'Agosto',
-                                  9 => 'Septiembre', 10 => 'Octubre', 11 => 'Noviembre', 12 => 'Diciembre'
-                                ];
-                              @endphp
-                              @foreach($months as $key => $month)
-                                <option value="{{ $key }}" {{ $key == $currentMonth ? 'selected' : '' }}>
-                                  {{ $month }}
-                                </option>
-                              @endforeach
-                            </select>
+                            <label for="fecha_fin" class="mr-2">Fecha Fin:</label>
+                            <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" required>
                           </div>
                           <button type="submit" class="btn btn-success">
                             <i class="fa fa-download"></i> Exportar
