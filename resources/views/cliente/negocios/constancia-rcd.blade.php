@@ -272,7 +272,7 @@
         color: #222222;
     }
 
-    /* Firma y verificación */
+    /* ===== FIRMA CENTRADA ===== */
     .signature-table {
         width: 100%;
         border-collapse: collapse;
@@ -280,47 +280,41 @@
 
     .signature-table > tbody > tr > td {
         vertical-align: bottom;
-    }
-
-    .firma-cell {
-        width: 62%;
-        text-align: left;
-        padding-left: 25px;
-        padding-top: 6px;
-    }
-
-    .codigo-cell {
-        width: 38%;
         text-align: center;
-        vertical-align: bottom !important;
+    }
+
+    /* La firma ahora ocupa el 100% y se centra */
+    .firma-cell {
+        width: 100%;
+        text-align: center;
         padding-top: 6px;
     }
 
+    /* La imagen de firma se centra */
     .firma-img {
         display: block;
         height: 54px;
         width: auto;
-        margin-left: 45px;
-        margin-bottom: 12px;
+        margin: 0 auto 12px auto;
     }
 
+    /* La línea se centra */
     .firma-linea {
         border-top: 1px solid #333;
         width: 245px;
-        margin: 2px 0 12px 20px;
+        margin: 2px auto 12px auto;
     }
 
-    /* ✅ Datos de firma como TABLA (DomPDF respeta padding en td) */
+    /* Los datos de la firma se centran */
     .firma-datos {
         width: 100%;
         border-collapse: collapse;
-        margin-left: 20px;
     }
 
     .firma-datos td {
         padding: 0;
         line-height: 1.45;
-        text-align: left;
+        text-align: center;
     }
 
     .firma-datos .firma-nombre {
@@ -329,20 +323,14 @@
         color: #222222;
         padding-top: 8px !important;
         padding-bottom: 4px !important;
+        text-align: center;
     }
 
     .firma-datos .firma-cargo {
         font-size: 9.5px;
         color: #333333;
         padding: 1px 0 !important;
-    }
-
-    .codigo-verificacion {
-        font-size: 9.5px;
-        color: #222222;
-        font-weight: normal;
         text-align: center;
-        line-height: 1.5;
     }
 
     /* Barra inferior */
@@ -551,13 +539,13 @@
 
             <tr><td class="sep-md"><br><br><br><br><br><br></td></tr>
 
-            <!-- FIRMA / CÓDIGO -->
+            <!-- FIRMA CENTRADA -->
             <tr>
                 <td>
                     <table class="signature-table">
                         <tr>
                             <td class="firma-cell">
-                                
+                               
 
                                 <div class="firma-linea"></div>
 
@@ -572,13 +560,6 @@
                                         <td class="firma-cargo">Recitrack Gestión de Residuos</td>
                                     </tr>
                                 </table>
-                            </td>
-
-                            <td class="codigo-cell">
-                                <div class="codigo-verificacion">CÓDIGO DE VERIFICACIÓN</div>
-                                <div class="codigo-verificacion">
-                                    {{ strtoupper(substr(md5($negocio->id . $fechaExpedicion), 0, 16)) }}
-                                </div>
                             </td>
                         </tr>
                     </table>
