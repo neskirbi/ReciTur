@@ -268,7 +268,7 @@
                                 <img src="{{ public_path('images/GOBM.png') }}" class="logo" alt="Recitrack">
                             </td>
                             <td class="folio-cell">
-                               
+                               <img src="{{ public_path('images/acapulco.png') }}" class="logo" alt="Recitrack">
                             </td>
                             <td class="amr-cell">
                                 <div class="amr-logo">
