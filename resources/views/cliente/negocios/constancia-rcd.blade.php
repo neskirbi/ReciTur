@@ -363,19 +363,16 @@
                     <table class="top-header">
                         <tr>
                             <td class="logo-cell">
-                                <img src="{{ public_path('images/generales/l1.png') }}" class="logo" alt="Recitrack">
+                                <img src="{{ public_path('images/GOBM.png') }}" class="logo" alt="Recitrack">
                             </td>
                             <td class="folio-cell">
                                 <div class="folio">
-                                    FOLIO DE CONSTANCIA<br>
-                                    {{ $folio ?? 'CONS-GRRCD/2026-008' }}
+                                 
                                 </div>
                             </td>
                             <td class="amr-cell">
                                 <div class="amr-logo">
-                                    AMR<br>
-                                    <span class="amr-small">CD</span>
-                                    <div class="amr-mark"></div>
+                                   <img src="{{ public_path('images/reciturlogo1.png') }}" class="logo" alt="Recitrack">
                                 </div>
                             </td>
                         </tr>
@@ -568,19 +565,7 @@
 
             <tr><td class="sep-lg"></td></tr>
 
-            <!-- BARRA INFERIOR -->
-            <tr>
-                <td>
-                    <table class="bottom-bar">
-                        <tr>
-                            <td>TRAZABILIDAD</td>
-                            <td>TRANSPARENCIA</td>
-                            <td>SUSTENTABILIDAD</td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-
+          
         </table>
         <!-- ========== FIN TABLA MAESTRA ========== -->
 
