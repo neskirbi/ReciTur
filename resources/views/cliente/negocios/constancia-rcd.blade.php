@@ -2,17 +2,10 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Constancia de Gestión Responsable de RCD</title>
+    <title>Constancia Anual de Gestión y Trazabilidad de RSU</title>
     <style>
-    @page {
-        margin: 0;
-    }
-
-    html, body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-    }
+    @page { margin: 0; }
+    html, body { margin: 0; padding: 0; width: 100%; }
 
     body {
         font-family: Arial, Helvetica, sans-serif;
@@ -22,24 +15,14 @@
         background: #ffffff;
     }
 
-    /* Contenedor principal: sin padding inferior para que la imagen pegue al borde */
-    .page {
-        padding: 30px 55px 0 55px;
-    }
+    .page { padding: 30px 55px 0 55px; }
 
-    /* ===== TABLA MAESTRA ===== */
-    .layout {
-        width: 100%;
-        border-collapse: collapse;
-    }
+    .layout { width: 100%; border-collapse: collapse; }
+    .layout > tbody > tr > td { padding: 0; }
 
-    .layout > tbody > tr > td {
-        padding: 0;
-    }
-
-    .sep-sm  { height: 10px; line-height: 10px; font-size: 1px; }
-    .sep-md  { height: 16px; line-height: 16px; font-size: 1px; }
-    .sep-lg  { height: 22px; line-height: 22px; font-size: 1px; }
+    .sep-sm { height: 10px; line-height: 10px; font-size: 1px; }
+    .sep-md { height: 16px; line-height: 16px; font-size: 1px; }
+    .sep-lg { height: 22px; line-height: 22px; font-size: 1px; }
 
     /* Encabezado */
     .top-header { width: 100%; border-collapse: collapse; }
@@ -47,34 +30,31 @@
     .logo-cell { width: 25%; text-align: left; }
     .folio-cell { width: 50%; text-align: center; padding-top: 3px; }
     .amr-cell { width: 25%; text-align: right; }
-
     .logo { width: 112px; height: auto; }
-
-    .amr-logo {
-        display: inline-block;
-        text-align: center;
-        line-height: 1;
-        color: #222222;
-    }
 
     /* Títulos */
     .title-block { text-align: center; }
-
     .title {
-        font-size: 32px;
-        line-height: 1.1;
+        font-size: 22px;
+        line-height: 1.15;
         font-weight: bold;
         color: #38679f;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.3px;
         margin: 0;
     }
-
     .subtitle {
-        font-size: 16px;
-        line-height: 1.2;
+        font-size: 13px;
+        line-height: 1.25;
         font-weight: bold;
         color: #075d2b;
         margin: 6px 0 0 0;
+    }
+    .folio {
+        font-size: 11px;
+        font-weight: bold;
+        color: #222;
+        margin-top: 6px;
+        text-align: right;
     }
 
     .company-intro {
@@ -93,7 +73,7 @@
     }
 
     .negocio-description {
-        text-align: center;
+        text-align: justify;
         font-size: 10.5px;
         line-height: 1.55;
         padding: 0 15px;
@@ -117,15 +97,8 @@
     }
     .info-grid .value { width: 84%; text-align: left; }
 
-    .legal-top {
-        text-align: center;
-        font-size: 10px;
-        line-height: 1.55;
-        padding: 0 15px;
-    }
-
-    /* Panel de indicadores */
-    .cards-wrapper { width: 78%; margin: 0 auto; }
+    /* Panel de indicadores (recuadro verde) */
+    .cards-wrapper { width: 88%; margin: 0 auto; }
 
     .cards {
         width: 100%;
@@ -135,10 +108,9 @@
         border: 3px solid #126524;
         border-radius: 23px;
     }
-
     .cards td {
         width: 50%;
-        padding: 14px 15px;
+        padding: 12px 15px;
         vertical-align: middle;
         text-align: left;
         background: transparent;
@@ -153,13 +125,7 @@
         padding-right: 6px !important;
         vertical-align: middle;
     }
-
-    .metric-icon img {
-        width: 22px;
-        height: 22px;
-        display: block;
-        margin: 0 auto;
-    }
+    .metric-icon img { width: 22px; height: 22px; display: block; margin: 0 auto; }
 
     .card-label {
         font-size: 9.5px;
@@ -168,7 +134,6 @@
         line-height: 1.3;
         margin-bottom: 4px;
     }
-
     .card-value {
         font-size: 10.5px;
         font-weight: normal;
@@ -176,9 +141,29 @@
         line-height: 1.4;
     }
 
+    /* Desglose por tipo de residuos (dentro del recuadro verde) */
+    .desglose-title {
+        text-align: center;
+        font-weight: bold;
+        font-size: 10px;
+        color: #111;
+        padding-top: 6px;
+        padding-bottom: 4px;
+        border-top: 1px dashed #126524;
+    }
+    .desglose-item {
+        text-align: center;
+        font-size: 9.5px;
+        line-height: 1.35;
+        color: #111;
+        padding: 2px 0;
+    }
+    .desglose-item .nombre { font-weight: bold; }
+    .desglose-item .volumen { color: #333; }
+
     .legal-text {
         font-size: 10px;
-        text-align: center;
+        text-align: justify;
         color: #3d3d3d;
         line-height: 1.55;
         padding: 0 15px;
@@ -197,26 +182,18 @@
         vertical-align: bottom;
         text-align: center;
     }
-
-    .firma-cell {
-        width: 100%;
-        text-align: center;
-        padding-top: 6px;
-    }
-
+    .firma-cell { width: 100%; text-align: center; padding-top: 6px; }
     .firma-linea {
         border-top: 1px solid #333;
         width: 245px;
         margin: 2px auto 12px auto;
     }
-
     .firma-datos { width: 100%; border-collapse: collapse; }
     .firma-datos td {
         padding: 0;
         line-height: 1.45;
         text-align: center;
     }
-
     .firma-datos .firma-nombre {
         font-size: 10.5px;
         font-weight: bold;
@@ -225,7 +202,6 @@
         padding-bottom: 4px !important;
         text-align: center;
     }
-
     .firma-datos .firma-cargo {
         font-size: 9.5px;
         color: #333333;
@@ -233,236 +209,247 @@
         text-align: center;
     }
 
-    /* ===== IMAGEN INFERIOR FULL WIDTH ===== */
+    /* Imagen inferior full width */
     .bottom-image-full {
         width: 100%;
-        margin: 0;
-        padding: 0;
+        margin: 0; padding: 0;
         display: block;
-        line-height: 0;
-        font-size: 0;
+        line-height: 0; font-size: 0;
     }
-
     .bottom-image-full img {
-        width: 100%;
-        height: auto;
-        display: block;
-        margin: 0;
-        padding: 0;
-        border: 0;
+        width: 100%; height: auto;
+        display: block; margin: 0; padding: 0; border: 0;
     }
 </style>
 </head>
 
 <body>
-    <div class="page">
+<div class="page">
 
-        <table class="layout">
+    <table class="layout">
 
-            <!-- ENCABEZADO -->
-            <tr>
-                <td>
-                    <table class="top-header">
+        <!-- ENCABEZADO -->
+        <tr>
+            <td>
+                <table class="top-header">
+                    <tr>
+                        <td class="logo-cell">
+                            <img src="{{ public_path('images/GOBM.png') }}" class="logo" alt="Gobierno">
+                        </td>
+                        <td class="folio-cell">
+                            <img src="{{ public_path('images/acapulco.png') }}" class="logo" alt="Acapulco">
+                        </td>
+                        <td class="amr-cell">
+                            <img src="{{ public_path('images/reciturlogo1.png') }}" class="logo" alt="Recitur">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr><td class="sep-md"></td></tr>
+
+        <!-- TÍTULO -->
+        <tr>
+            <td class="title-block">
+                <div class="title">CONSTANCIA ANUAL DE GESTIÓN Y TRAZABILIDAD</div>
+                <div class="subtitle">DE RESIDUOS SÓLIDOS URBANOS</div>
+                <div class="folio">FOLIO: {{ $folio ?? '_______________' }}</div>
+            </td>
+        </tr>
+
+        <tr><td class="sep-md"></td></tr>
+
+        <tr>
+            <td class="company-intro">
+                <strong>RECITRACK GESTIÓN DE RESIDUOS S.A.P.I. DE C.V.</strong><br>
+                En el marco del programa de trazabilidad de Residuos Sólidos Urbanos implementado mediante la plataforma RECITUR, se hace constar que el negocio:
+            </td>
+        </tr>
+
+        <tr><td class="sep-md"></td></tr>
+
+        <tr>
+            <td class="negocio-box">{{ $negocio->negocio }}</td>
+        </tr>
+
+        <tr><td class="sep-sm"></td></tr>
+
+        <tr>
+            <td class="negocio-description">
+                Gestionó sus Residuos Sólidos Urbanos dando cumplimiento a la Legislación y Normatividad en materia de Economía Circular y Medio Ambiente en la República Mexicana y el Estado de Guerrero, de tal suerte que registró las operaciones de entrega asociadas al establecimiento, generándose los correspondientes Manifiestos de Entrega – Transporte - Recepción, cuyos datos consolidados son los siguientes:
+            </td>
+        </tr>
+
+        <tr><td class="sep-lg"></td></tr>
+
+        <!-- RECUADRO VERDE DE INDICADORES + DESGLOSE -->
+        <tr>
+            <td>
+                <div class="cards-wrapper">
+                    <table class="cards">
+
+                        <!-- Fila 1: Giro | Período -->
                         <tr>
-                            <td class="logo-cell">
-                                <img src="{{ public_path('images/GOBM.png') }}" class="logo" alt="Recitrack">
-                            </td>
-                            <td class="folio-cell">
-                               <img src="{{ public_path('images/acapulco.png') }}" class="logo" alt="Recitrack">
-                            </td>
-                            <td class="amr-cell">
-                                <div class="amr-logo">
-                                   <img src="{{ public_path('images/reciturlogo1.png') }}" class="logo" alt="Recitrack">
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-
-            <tr><td class="sep-md"></td></tr>
-
-            <tr>
-                <td class="title-block">
-                    <div class="title">CONSTANCIA</div>
-                    <div class="subtitle">DE GESTIÓN RESPONSABLE DE RCD</div>
-                </td>
-            </tr>
-
-            <tr><td class="sep-md"></td></tr>
-
-            <tr>
-                <td class="company-intro">
-                    <strong>RECITRACK GESTIÓN DE RESIDUOS S.A.P.I. DE C.V.</strong><br>
-                    hace constar que el negocio:
-                </td>
-            </tr>
-
-            <tr><td class="sep-md"></td></tr>
-
-            <tr>
-                <td class="negocio-box">
-                    {{ $negocio->negocio }}
-                </td>
-            </tr>
-
-            <tr><td class="sep-sm"></td></tr>
-
-            <tr>
-                <td class="negocio-description">
-                    Realizó la gestión de sus Residuos de la Construcción y Demolición (RCD) a través de RECITRACK,<br>
-                    garantizando la trazabilidad desde el punto de generación hasta su destino final autorizado,<br>
-                    cumpliendo con la LGEC y demás normatividad ambiental aplicable.
-                </td>
-            </tr>
-
-            <tr><td class="sep-lg"></td></tr>
-
-            <tr>
-                <td>
-                    <table class="info-grid">
-                        <tr>
-                            <td class="label">Ubicación:</td>
-                            <td class="value">
-                                {{ $negocio->calle }} {{ $negocio->numeroext }}@if($negocio->numeroint), NÚMERO INT. {{ $negocio->numeroint }}@endif,
-                                COL. {{ $negocio->colonia }}, {{ $negocio->municipio }}, C.P. {{ $negocio->cp }}, {{ $negocio->entidad }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="label">Generador:</td>
-                            <td class="value">{{ $generador->razonsocial ?? 'N/A' }}</td>
-                        </tr>
-                        <tr>
-                            <td class="label">R.F.C.:</td>
-                            <td class="value">{{ $generador->rfc ?? 'N/A' }}</td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-
-            <tr><td class="sep-lg"></td></tr>
-
-            <tr>
-                <td class="legal-top">
-                    El presente documento acredita que el negocio mencionado gestionó sus Residuos de la Construcción y<br>
-                    Demolición (RCD) dando cumplimiento a la Legislación y Normatividad en materia de Economía Circular,<br>
-                    Medio Ambiente y Obras en la Ciudad de México.
-                </td>
-            </tr>
-
-            <tr><td class="sep-lg"></td></tr>
-
-            <tr>
-                <td>
-                    <div class="cards-wrapper">
-                        <table class="cards">
-                            <tr>
-                                <td>
-                                    <table class="metric">
-                                        <tr>
-                                            <td class="metric-icon">
-                                                <img src="{{ public_path('images/iconos/negocio.fw.png') }}" alt="Giro">
-                                            </td>
-                                            <td>
-                                                <div class="card-label">Giro del Negocio:</div>
-                                                <div class="card-value">{{ $negocio->giro ?? 'Comercio' }}</div>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-
-                                <td>
-                                    <table class="metric">
-                                        <tr>
-                                            <td class="metric-icon">
-                                                <img src="{{ public_path('images/iconos/periodo.fw.png') }}" alt="Periodo">
-                                            </td>
-                                            <td>
-                                                <div class="card-label">Periodo de Ejecución:</div>
-                                                <div class="card-value">{{ $periodoInicio }} al {{ $periodoFin }}</div>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <table class="metric">
-                                        <tr>
-                                            <td class="metric-icon">
-                                                <img src="{{ public_path('images/iconos/reciclado.fw.png') }}" alt="Volumen">
-                                            </td>
-                                            <td>
-                                                <div class="card-label">Volumen Total Gestionado:</div>
-                                                <div class="card-value">{{ number_format($volumenTotal, 2) }} m³</div>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </div>
-                </td>
-            </tr>
-
-            <tr><td class="sep-lg"></td></tr>
-
-            <tr>
-                <td class="legal-text">
-                    Se expide la presente constancia con respaldo de la <strong>Asociación Mexicana de Reciclaje de Residuos de la<br>
-                    Construcción y Demolición S.A. de C.V.</strong> para los fines que al interesado convengan, sin que esto se considere<br>
-                    como un Manifiesto Global o sustituya a los Manifiestos Individuales por viaje que marca la Norma Ambiental.
-                </td>
-            </tr>
-
-            <tr><td class="sep-md"></td></tr>
-
-            <tr>
-                <td class="fecha-expedicion">
-                    Ciudad de México, a {{ $fechaExpedicion }}
-                </td>
-            </tr>
-
-            <tr><td class="sep-md"><br><br><br><br><br><br></td></tr>
-
-            <tr>
-                <td>
-                    <table class="signature-table">
-                        <tr>
-                            <td class="firma-cell">
-
-                                <div class="firma-linea"></div>
-
-                                <table class="firma-datos">
+                            <td>
+                                <table class="metric">
                                     <tr>
-                                        <td class="firma-nombre">LIC. EMILIANO ROJAS PACHECO</td>
+                                        <td class="metric-icon">
+                                            <img src="{{ public_path('images/iconos/negocio.fw.png') }}" alt="Giro">
+                                        </td>
+                                        <td>
+                                            <div class="card-label">Giro del Negocio:</div>
+                                            <div class="card-value">{{ $negocio->giro ?? 'HOTEL' }}</div>
+                                        </td>
                                     </tr>
+                                </table>
+                            </td>
+                            <td>
+                                <table class="metric">
                                     <tr>
-                                        <td class="firma-cargo">Dirección General</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="firma-cargo">Recitrack Gestión de Residuos</td>
+                                        <td class="metric-icon">
+                                            <img src="{{ public_path('images/iconos/periodo.fw.png') }}" alt="Periodo">
+                                        </td>
+                                        <td>
+                                            <div class="card-label">Periodo de Ejecución:</div>
+                                            <div class="card-value">{{ $periodoInicio }} al {{ $periodoFin }}</div>
+                                        </td>
                                     </tr>
                                 </table>
                             </td>
                         </tr>
+
+                        <!-- Fila 2: Volumen Total | Número de Manifiestos -->
+                        <tr>
+                            <td>
+                                <table class="metric">
+                                    <tr>
+                                        <td class="metric-icon">
+                                            <img src="{{ public_path('images/iconos/reciclado.fw.png') }}" alt="Volumen">
+                                        </td>
+                                        <td>
+                                            <div class="card-label">Volumen Total Gestionado:</div>
+                                            <div class="card-value">{{ number_format($volumenTotal, 2) }} m³</div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td>
+                                <table class="metric">
+                                    <tr>
+                                        <td class="metric-icon">
+                                            
+                                        </td>
+                                        <td>
+                                            <div class="card-label">Número de Manifiestos:</div>
+                                            <div class="card-value">{{ $numeroManifiestos ?? 0 }}</div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <!-- DESGLOSE POR TIPO DE RESIDUOS -->
+                        <tr>
+                            <td colspan="2">
+                                <div class="desglose-title">Desglose por tipo de Residuos</div>
+
+                                @forelse($desgloseResiduos as $item)
+                                    <div class="desglose-item">
+                                        <span class="nombre">{{ $item['nombre'] }}</span><br>
+                                        <span class="volumen">{{ number_format($item['volumen'], 2) }} m³</span>
+                                    </div>
+                                @empty
+                                    <div class="desglose-item">
+                                        <span class="nombre">[NOMBRE DEL RESIDUO]</span><br>
+                                        <span class="volumen">Volumen</span>
+                                    </div>
+                                @endforelse
+                            </td>
+                        </tr>
+
                     </table>
-                </td>
-            </tr>
+                </div>
+            </td>
+        </tr>
 
-            <tr><td class="sep-lg"></td></tr>
+        <tr><td class="sep-lg"></td></tr>
 
-        </table>
+        <!-- UBICACIÓN / GENERADOR / RFC -->
+        <tr>
+            <td>
+                <table class="info-grid">
+                    <tr>
+                        <td class="label">Ubicación:</td>
+                        <td class="value">
+                            {{ $negocio->calle }} {{ $negocio->numeroext }}@if($negocio->numeroint), NÚMERO INT. {{ $negocio->numeroint }}@endif,
+                            COL. {{ $negocio->colonia }}, {{ $negocio->municipio }}, C.P. {{ $negocio->cp }}, {{ $negocio->entidad }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">Generador:</td>
+                        <td class="value">{{ $generador->razonsocial ?? 'N/A' }}</td>
+                    </tr>
+                    <tr>
+                        <td class="label">R.F.C.:</td>
+                        <td class="value">{{ $generador->rfc ?? 'N/A' }}</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
 
-    </div>
-    <!-- FIN .page -->
+        <tr><td class="sep-lg"></td></tr>
 
-    <!-- ===== IMAGEN INFERIOR FULL WIDTH (SIN position, compatible con DomPDF) ===== -->
-    <div class="bottom-image-full">
-        <img src="{{ public_path('images/GOBMF.png') }}" alt="Gobierno de México">
-    </div>
+        <!-- TEXTO LEGAL -->
+        <tr>
+            <td class="legal-text">
+                Este documento se expide para su presentación ante <strong>FONATUR Infraestructura</strong> y, en su caso, ante las autoridades administrativas que determinen su procedencia como documentación soporte para los trámites correspondientes al establecimiento. La presente constancia no sustituye los Manifiestos de Entrega – Transporte - Recepción individuales.
+            </td>
+        </tr>
+
+        <tr><td class="sep-md"></td></tr>
+
+        <tr>
+            <td class="fecha-expedicion">
+                Acapulco de Juárez, Guerrero, a {{ $fechaExpedicion }}
+            </td>
+        </tr>
+
+        <tr><td class="sep-md"><br><br><br><br></td></tr>
+
+        <!-- FIRMA -->
+        <tr>
+            <td>
+                <table class="signature-table">
+                    <tr>
+                        <td class="firma-cell">
+                            <div class="firma-linea"></div>
+                            <table class="firma-datos">
+                                <tr>
+                                    <td class="firma-nombre">LIC. EMILIANO ROJAS PACHECO</td>
+                                </tr>
+                                <tr>
+                                    <td class="firma-cargo">Dirección General</td>
+                                </tr>
+                                <tr>
+                                    <td class="firma-cargo">Recitrack Gestión de Residuos</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr><td class="sep-lg"></td></tr>
+
+    </table>
+</div>
+
+<!-- IMAGEN INFERIOR FULL WIDTH -->
+<div class="bottom-image-full">
+    <img src="{{ public_path('images/GOBMF.png') }}" alt="Gobierno de México">
+</div>
 
 </body>
 </html>
