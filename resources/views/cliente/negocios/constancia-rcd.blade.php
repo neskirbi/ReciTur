@@ -108,7 +108,7 @@
         border: 3px solid #126524;
         border-radius: 23px;
     }
-    .cards td {
+    .cards > tbody > tr > td {
         width: 50%;
         padding: 12px 15px;
         vertical-align: middle;
@@ -116,16 +116,32 @@
         background: transparent;
     }
 
-    .metric { width: 100%; border-collapse: collapse; }
-    .metric td { padding: 0; vertical-align: middle; }
-
-    .metric-icon {
-        width: 34px;
-        text-align: center;
-        padding-right: 6px !important;
+    /* Fila de métrica SIN tabla anidada: icono + texto en la misma celda */
+    .metric-row {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .metric-row td {
+        padding: 0 !important;
         vertical-align: middle;
     }
-    .metric-icon img { width: 22px; height: 22px; display: block; margin: 0 auto; }
+    .metric-icon-cell {
+        width: 28px;
+        vertical-align: middle;
+        padding: 0 !important;
+        text-align: left;
+    }
+    .metric-icon-cell img {
+        width: 22px;
+        height: 22px;
+        display: block;
+        margin: 0;
+    }
+    .metric-text-cell {
+        vertical-align: middle;
+        padding: 0 0 0 4px !important;
+        text-align: left;
+    }
 
     .card-label {
         font-size: 9.5px;
@@ -249,11 +265,11 @@
 
         <tr><td class="sep-md"></td></tr>
 
-        <!-- TÍTULO -->
+        <!-- TÍTULO EN 3 LÍNEAS -->
         <tr>
             <td class="title-block">
-                <div class="title">CONSTANCIA ANUAL DE GESTIÓN Y TRAZABILIDAD</div>
-                <div class="subtitle">DE RESIDUOS SÓLIDOS URBANOS</div>
+                <div class="title">CONSTANCIA ANUAL DE GESTIÓN<br>Y TRAZABILIDAD DE RESIDUOS</div>
+                <div class="subtitle">SÓLIDOS URBANOS</div>
                 <div class="folio">FOLIO: {{ $folio ?? '_______________' }}</div>
             </td>
         </tr>
@@ -292,12 +308,12 @@
                         <!-- Fila 1: Giro | Período -->
                         <tr>
                             <td>
-                                <table class="metric">
+                                <table class="metric-row">
                                     <tr>
-                                        <td class="metric-icon">
+                                        <td class="metric-icon-cell">
                                             <img src="{{ public_path('images/iconos/negocio.fw.png') }}" alt="Giro">
                                         </td>
-                                        <td>
+                                        <td class="metric-text-cell">
                                             <div class="card-label">Giro del Negocio:</div>
                                             <div class="card-value">{{ $negocio->giro ?? 'HOTEL' }}</div>
                                         </td>
@@ -305,13 +321,13 @@
                                 </table>
                             </td>
                             <td>
-                                <table class="metric">
+                                <table class="metric-row">
                                     <tr>
-                                        <td class="metric-icon">
+                                        <td class="metric-icon-cell">
                                             <img src="{{ public_path('images/iconos/periodo.fw.png') }}" alt="Periodo">
                                         </td>
-                                        <td>
-                                            <div class="card-label">Periodo de Ejecución:</div>
+                                        <td class="metric-text-cell">
+                                            <div class="card-label">Periodo:</div>
                                             <div class="card-value">{{ $periodoInicio }} al {{ $periodoFin }}</div>
                                         </td>
                                     </tr>
@@ -322,12 +338,12 @@
                         <!-- Fila 2: Volumen Total | Número de Manifiestos -->
                         <tr>
                             <td>
-                                <table class="metric">
+                                <table class="metric-row">
                                     <tr>
-                                        <td class="metric-icon">
+                                        <td class="metric-icon-cell">
                                             <img src="{{ public_path('images/iconos/reciclado.fw.png') }}" alt="Volumen">
                                         </td>
-                                        <td>
+                                        <td class="metric-text-cell">
                                             <div class="card-label">Volumen Total Gestionado:</div>
                                             <div class="card-value">{{ number_format($volumenTotal, 2) }} m³</div>
                                         </td>
@@ -335,12 +351,12 @@
                                 </table>
                             </td>
                             <td>
-                                <table class="metric">
+                                <table class="metric-row">
                                     <tr>
-                                        <td class="metric-icon">
-                                            
+                                        <td class="metric-icon-cell">
+                                            <img src="{{ public_path('images/iconos/manifiestos.fw.png') }}" alt="Volumen">
                                         </td>
-                                        <td>
+                                        <td class="metric-text-cell">
                                             <div class="card-label">Número de Manifiestos:</div>
                                             <div class="card-value">{{ $numeroManifiestos ?? 0 }}</div>
                                         </td>
