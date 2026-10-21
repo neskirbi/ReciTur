@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   @include('cliente.header')
-  <title>Recitur | Negocio</title>
+  <title>{{GetSiglas(2)}} | Negocio</title>
   
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     @include('header')
-    <title>Recitur | GM</title>
+    <title>{{GetSiglas(2)}} | GM</title>
     <style>
         .footer {
         /* Estilos generales para la imagen */

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   @include('administracion.header')
-  <title>Recitur | Generadores</title>
+  <title>{{GetSiglas(2)}} | Generadores</title>
 
   
 </head>
@@ -12,7 +12,7 @@
 
   <!-- Navbar -->
  
-  @include('administracion.navbars.navbar')
+  @include('administracion.navbar')
   <!-- /.navbar -->
 
 

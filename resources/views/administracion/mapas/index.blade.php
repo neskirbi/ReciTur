@@ -2,44 +2,46 @@
 <html lang="en">
 <head>
   @include('administracion.header')
-  <title>Recitur | Negocios</title>
-
-  
+  <title>{{GetSiglas(2)}} | Negocios</title>
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini">
 @include('toast.toasts')
-@include('administracion.navbars.navbar')
+@include('administracion.navbar')
+
 <div class="wrapper">
+
+  <!-- Sidebar FUERA del content-wrapper -->
+  @include('administracion.sidebar')
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+
     <!-- Content Header (Page header) -->
     <div class="content-header">
-     &nbsp;
+      &nbsp;
     </div>
     <!-- /.content-header -->
 
     <!-- Main content -->
     <section class="content">
-      
-  @include('administracion.sidebar')
       <div class="container-fluid">
 
-        
         <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-header position-relative">
-                <h3 class="card-title"><i class="fa fa-briefcase title-icon" aria-hidden="true"></i> Negocios </h3>
+                <h3 class="card-title">
+                  <i class="fa fa-briefcase title-icon" aria-hidden="true"></i> Negocios
+                </h3>
 
-                <div class="card-tools position-absolute end-0 top-0 mt-1 me-2" style="z-index: 2000;">
+                <div class="card-tools position-absolute end-0 top-0 mt-1 me-2" style="z-index: 100;">
                   <div class="btn-group">
                     <button type="button" class="btn btn-outline-theme-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                       Filtros <i class="fa fa-sliders" aria-hidden="true"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end p-3" style="width:300px;">
                       <form class="px-4 py-3" action="{{url('mapa')}}" method="GET">
-                        
+
                         <div class="form-group">
                           <label for="clasificacion"><i class="fas fa-list"></i> Clasificación</label>
                           <select class="form-control" name="clasificacion" id="clasificacion" required>
@@ -49,7 +51,6 @@
                             @endforeach
                           </select>
                         </div>
-                      
 
                         <div class="dropdown-divider"></div>
                         <a href="{{url('mapa')}}" class="btn-outline-theme-gray btn-sm">Limpiar</a>
@@ -59,8 +60,6 @@
                   </div>
                 </div>
 
-
-                
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -84,7 +83,7 @@
                               <i class="fas fa-tag"></i> {{ $neg->clasificacion }}
                             </p>
                             @if($neg->solicitud == 1)
-                            <i class="fas fa-truck"></i>                            
+                            <i class="fas fa-truck"></i>
                             <span class="badge status-badge {{ $neg->solicitud == 1 ? 'bg-warning' : 'bg-success' }}">
                                {{ $neg->solicitud == 1 ? 'Recolectar' : 'Recolectado' }}
                             </span>
@@ -97,12 +96,9 @@
                     <div class="d-flex justify-content-center mt-4">
                       {{ $negocios2->appends($_GET)->links('pagination::bootstrap-4') }}
                     </div>
-                   
                   </div>
                 </div>
-                
-                
-                
+
               </div>
               <!-- /.card-body -->
             </div>
@@ -115,94 +111,84 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
- 
-  <!-- /.control-sidebar -->
+
 </div>
 <!-- ./wrapper -->
 
 @include('administracion.footer')
 
-
 <script>
     function initMap() {
         // Obtener los datos de negocios desde PHP
         var negocios = @json($negocios);
-        
+
         // Verificar si tenemos negocios con coordenadas
         if (negocios.length === 0) {
             console.error('No hay negocios con coordenadas para mostrar');
             return;
         }
-        
+
         // Crear el mapa centrado en el primer negocio
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 12,
             center: {lat: parseFloat(negocios[0].latitud), lng: parseFloat(negocios[0].longitud)}
         });
-        
+
         // Crear un array para almacenar los marcadores
         var markers = [];
-        
+
         // Variable para llevar el control del InfoWindow abierto
         var currentInfoWindow = null;
-        
+
         // Definir los iconos para diferentes estados de solicitud
         var yellowIcon = {
             url: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png',
             scaledSize: new google.maps.Size(32, 32)
         };
-        
+
         var greenIcon = {
             url: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
             scaledSize: new google.maps.Size(32, 32)
         };
-        
+
         // Crear un marcador para cada negocio
         negocios.forEach(function(negocio) {
             // Verificar que las coordenadas sean válidas
             if (negocio.latitud && negocio.longitud) {
                 // Determinar el color del marcador según el estado de solicitud
                 var icon = (negocio.solicitud == 1) ? yellowIcon : greenIcon;
-                
+
                 var marker = new google.maps.Marker({
                     position: {lat: parseFloat(negocio.latitud), lng: parseFloat(negocio.longitud)},
                     map: map,
                     title: negocio.negocio,
                     icon: icon
                 });
-                
+
                 // Agregar información en un popup
                 var infoWindow = new google.maps.InfoWindow({
                     content: '<div><strong>' + negocio.negocio + '</strong><br>' +
-                             'Estado: ' + (negocio.solicitud == 1 ? 'Pendiente' : 'Aprobado') + '<br>' 
+                             'Estado: ' + (negocio.solicitud == 1 ? 'Pendiente' : 'Aprobado') + '<br></div>'
                 });
-                
+
                 // Evento mouseover - abrir InfoWindow al pasar el ratón
                 marker.addListener('mouseover', function() {
-                    // Cerrar el InfoWindow anterior si existe
                     if (currentInfoWindow) {
                         currentInfoWindow.close();
                     }
-                    // Abrir el nuevo InfoWindow
                     infoWindow.open(map, marker);
                     currentInfoWindow = infoWindow;
                 });
-                
-                // Evento mouseout - cerrar InfoWindow al quitar el ratón (opcional)
-                marker.addListener('mouseout', function() {
-                    // Puedes comentar esta línea si quieres que el InfoWindow permanezca abierto
-                    // infoWindow.close();
-                });
-                
+
                 // Evento click - abrir en nueva pestaña
                 marker.addListener('click', function() {
-                    window.open(url('establecimientos') + '/' + negocio.id, '_blank');
+                    window.open("{{ url('establecimientos') }}/" + negocio.id, '_blank');
                 });
-                
+
                 markers.push(marker);
             }
         });
-        
+
         // Si hay múltiples marcadores, ajustar la vista para mostrarlos todos
         if (markers.length > 1) {
             var bounds = new google.maps.LatLngBounds();
@@ -211,7 +197,7 @@
             });
             map.fitBounds(bounds);
         }
-        
+
         // Agregar leyenda al mapa
         var legend = document.createElement('div');
         legend.id = 'legend';
@@ -221,21 +207,12 @@
         legend.style.boxShadow = '0 2px 6px rgba(0,0,0,0.3)';
         legend.innerHTML = '<div style="font-weight: bold; margin-bottom: 5px;">Leyenda:</div>' +
                            '<div><img src="http://maps.google.com/mapfiles/ms/icons/yellow-dot.png" height="16" width="16"> Solicitud de Recoleccion</div>';
-        
+
         map.controls[google.maps.ControlPosition.RIGHT_TOP].push(legend);
     }
-    
-    // Función para generar URLs (compatible con Laravel)
-    function url(path, id = '') {
-        // Si estás usando Laravel, puedes usar route() o asset()
-        // Esta es una implementación básica - ajusta según tu framework
-        var baseUrl = Url();
-        return baseUrl + path + id;
-    }
-    
+
     // Inicializar el mapa cuando la página esté cargada
     document.addEventListener('DOMContentLoaded', function() {
-        // Verificar si Google Maps está cargado
         if (typeof google !== 'undefined') {
             initMap();
         } else {

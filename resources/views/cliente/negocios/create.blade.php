@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   @include('cliente.header')
-  <title>Recitur | Registro negocio</title>
+  <title>{{GetSiglas(2)}} | Registro negocio</title>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>

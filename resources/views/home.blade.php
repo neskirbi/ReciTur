@@ -6,37 +6,37 @@
     <!-- Meta Tags Esenciales -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recitur | Sistema de Gestión de Residuos - Gobierno Municipal</title>
+    <title>{{GetSiglas(2)}} | Sistema de Gestión de Residuos - Gobierno Municipal</title>
     
     <!-- Meta Description -->
-    <meta name="description" content="Recitur - Plataforma oficial del Gobierno Municipal para la gestión, seguimiento y recolección de residuos. Sistema especializado para negocios, hoteles y restaurantes en Acapulco.">
+    <meta name="description" content="{{GetSiglas(2)}} - Plataforma oficial del Gobierno Municipal para la gestión, seguimiento y recolección de residuos. Sistema especializado para negocios, hoteles y restaurantes en Acapulco.">
     
     <!-- Keywords -->
-    <meta name="keywords" content="recitur, gestión residuos, recolección basura, gobierno municipal, medio ambiente, reciclaje, residuos comerciales, sustentabilidad, recolección Acapulco, reci-tur">
+    <meta name="keywords" content="{{GetSiglas(2)}}, gestión residuos, recolección basura, gobierno municipal, medio ambiente, reciclaje, residuos comerciales, sustentabilidad, recolección Acapulco, reci-tur">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://reci-tur.com/">
-    <meta property="og:title" content="Recitur | Sistema de Gestión de Residuos - Gobierno Municipal">
+    <meta property="og:title" content="{{GetSiglas(2)}} | Sistema de Gestión de Residuos - Gobierno Municipal">
     <meta property="og:description" content="Plataforma oficial del Gobierno Municipal para la gestión y seguimiento de residuos comerciales e industriales en Acapulco.">
     <meta property="og:image" content="https://reci-tur.com/images/GOBM.png">
-    <meta property="og:site_name" content="Recitur">
+    <meta property="og:site_name" content="{{GetSiglas(2)}}">
     <meta property="og:locale" content="es_MX">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://reci-tur.com/">
-    <meta property="twitter:title" content="Recitur | Sistema de Gestión de Residuos">
+    <meta property="twitter:title" content="{{GetSiglas(2)}} | Sistema de Gestión de Residuos">
     <meta property="twitter:description" content="Plataforma oficial del Gobierno Municipal para la gestión de residuos comerciales en Acapulco.">
     <meta property="twitter:image" content="https://reci-tur.com/images/GOBM.png">
-    <meta property="twitter:site" content="@recitur">
+    <meta property="twitter:site" content="@{{GetSiglas(2)}}">
     
     <!-- Schema.org markup -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "Recitur - Sistema de Gestión de Residuos",
+        "name": "{{GetSiglas(2)}} - Sistema de Gestión de Residuos",
         "alternateName": "Reci-Tur",
         "description": "Plataforma oficial del Gobierno Municipal para la gestión y seguimiento de residuos comerciales e industriales en Acapulco",
         "url": "https://reci-tur.com",
@@ -70,7 +70,7 @@
     {
         "@context": "https://schema.org",
         "@type": "GovernmentOrganization",
-        "name": "Recitur - Gobierno Municipal de Acapulco",
+        "name": "{{GetSiglas(2)}} - Gobierno Municipal de Acapulco",
         "alternateName": "Reci-Tur",
         "description": "Sistema de gestión de residuos del Gobierno Municipal de Acapulco",
         "url": "https://reci-tur.com",
@@ -171,27 +171,27 @@
     <!-- Contenido principal -->
     <main role="main">
         <!-- Texto oculto para SEO pero visible para screen readers -->
-        <h1 class="sr-only">Recitur - Sistema de Gestión de Residuos del Gobierno Municipal de Acapulco</h1>
+        <h1 class="sr-only">{{GetSiglas(2)}} - Sistema de Gestión de Residuos del Gobierno Municipal de Acapulco</h1>
         <p class="sr-only">Plataforma oficial Reci-Tur para el registro, seguimiento y gestión de residuos comerciales e industriales en Acapulco. Sistema especializado para hoteles, restaurantes y negocios del sector turístico.</p>
         
         <!-- IMAGEN CENTRAL con metadatos optimizados -->
         <div class="contenedor-imagen" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
             <img src="{{asset('images/GOBM.png')}}" 
-                 alt="Recitur - Sistema de Gestión de Residuos del Gobierno Municipal de Acapulco" 
-                 title="Recitur - Plataforma de Gestión de Residuos Comerciales"
+                 alt="{{GetSiglas(2)}} - Sistema de Gestión de Residuos del Gobierno Municipal de Acapulco" 
+                 title="{{GetSiglas(2)}} - Plataforma de Gestión de Residuos Comerciales"
                  itemprop="contentUrl"
                  class="hero-image"
                  width="1200" 
                  height="630">
-            <meta itemprop="description" content="Plataforma Recitur del Gobierno Municipal de Acapulco para gestión de residuos comerciales y turísticos">
-            <meta itemprop="name" content="Recitur Gobierno Municipal Acapulco">
+            <meta itemprop="description" content="Plataforma {{GetSiglas(2)}} del Gobierno Municipal de Acapulco para gestión de residuos comerciales y turísticos">
+            <meta itemprop="name" content="{{GetSiglas(2)}} Gobierno Municipal Acapulco">
             <meta itemprop="url" content="https://reci-tur.com/images/GOBM.png">
         </div>
         
         <!-- Contenido semántico adicional para SEO -->
         <div style="display: none;" aria-hidden="true">
             <h2>Gestión de Residuos Acapulco</h2>
-            <p>Recitur es el sistema oficial del Gobierno Municipal de Acapulco para la gestión integral de residuos sólidos urbanos. Plataforma especializada en el sector turístico y comercial.</p>
+            <p>{{GetSiglas(2)}} es el sistema oficial del Gobierno Municipal de Acapulco para la gestión integral de residuos sólidos urbanos. Plataforma especializada en el sector turístico y comercial.</p>
             <h3>Servicios de Reci-Tur</h3>
             <ul>
                 <li>Registro de generadores de residuos</li>

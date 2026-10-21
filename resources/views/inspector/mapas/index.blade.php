@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   @include('inspector.header')
-  <title>Recitur | Negocios</title>
+  <title>{{GetSiglas(2)}} | Negocios</title>
 
   
 </head>

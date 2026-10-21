@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   @include('cliente.header')
-  <title>Recitur | Generadores</title>
+  <title>{{GetSiglas(2)}} | Generadores</title>
   
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">

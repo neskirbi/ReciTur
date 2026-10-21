@@ -2,7 +2,7 @@
 <html lang="es"> <!-- Cambiado a "es" para español -->
 <head>
     @include('cliente.header')
-    <title>Recitur | GM</title>
+    <title>{{GetSiglas(2)}} | GM</title>
     
 </head>
 <body>

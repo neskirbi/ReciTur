@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   @include('recolectores.header')
-  <title>Recitur | Recolecciones</title>
+  <title>{{GetSiglas(2)}} | Recolecciones</title>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
   @include('toast.toasts')

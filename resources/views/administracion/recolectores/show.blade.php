@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     @include('administracion.header')
-    <title>Recitur | Recolectores</title>
+    <title>{{GetSiglas(2)}} | Recolectores</title>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 @include('toast.toasts')
-@include('administracion.navbars.navbar')
+@include('administracion.navbar')
     <div class="wrapper">
 
         <!-- Content Wrapper. Contains page content -->

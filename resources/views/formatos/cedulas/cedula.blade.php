@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     @include('recolectores.header')
-    <title>Recitur | Cédula</title>
+    <title>{{GetSiglas(2)}} | Cédula</title>
     <style>
         @page {
             size: auto;

@@ -1,7 +1,9 @@
 <style>
   #sidebar {
     left: 0;
-    top: 60px;
+      top: 60px;              /* debajo del navbar de 60px */
+    position: fixed;        /* ← viene de la clase .position-fixed */
+    z-index: 1050;          /* por encima del navbar (1030) */
     margin: 0;
     padding: 0;
     box-sizing: border-box;

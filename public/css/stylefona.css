@@ -1,15 +1,19 @@
 :root {
-  --theme-success: #176D4A;   /* Verde botella */
-  --theme-info:    #B6425F;   /* Rojo frambuesa */
-  --theme-danger:  #4D0F24;   /* Ciruela oscuro */
-  --theme-warning: #6D4B17;   /* Mostaza quemado */
-  --theme-primary: #691932;
-  --theme-gray:    #adb5bd;   /* Rojo vino (tu color principal) */
+  /* ============================================
+     PALETA: OCEAN SUNSET
+     ============================================ */
+  --theme-success: #0F9B8E;   /* Verde menta / turquesa */
+  --theme-info:    #2E86AB;   /* Azul océano */
+  --theme-danger:  #E4572E;   /* Naranja coral intenso */
+  --theme-warning: #F4A259;   /* Naranja melocotón */
+  --theme-primary: #1B4965;   /* Azul marino profundo */
+  --theme-gray:    #9CAEA9;   /* Gris verdoso suave */
 }
 
 
-/*Estilo para botones */
-
+/* ============================================
+   ESTILO PARA BOTONES
+   ============================================ */
 
 .btn-theme-success {
   background-color: var(--theme-success);
@@ -17,7 +21,7 @@
   color: #fff;
 }
 .btn-theme-success:hover {
-  background-color: rgba(23, 109, 74, 0.75);
+  background-color: color-mix(in srgb, var(--theme-success) 75%, transparent);
 }
 
 .btn-theme-info {
@@ -26,7 +30,7 @@
   color: #fff;
 }
 .btn-theme-info:hover {
-  background-color: rgba(182, 66, 95, 0.75);
+  background-color: color-mix(in srgb, var(--theme-info) 75%, transparent);
 }
 
 .btn-theme-danger {
@@ -35,7 +39,7 @@
   color: #fff;
 }
 .btn-theme-danger:hover {
-  background-color: rgba(77, 15, 36, 0.75);
+  background-color: color-mix(in srgb, var(--theme-danger) 75%, transparent);
 }
 
 .btn-theme-warning {
@@ -44,7 +48,7 @@
   color: #fff;
 }
 .btn-theme-warning:hover {
-  background-color: rgba(109, 75, 23, 0.75);
+  background-color: color-mix(in srgb, var(--theme-warning) 75%, transparent);
 }
 
 .btn-theme-primary {
@@ -53,11 +57,14 @@
   color: #fff;
 }
 .btn-theme-primary:hover {
-  background-color: rgba(109, 23, 50, 0.75);
+  background-color: color-mix(in srgb, var(--theme-primary) 75%, transparent);
 }
 
 
-/* Botones con solo el borde (outline buttons) */
+/* ============================================
+   BOTONES OUTLINE (solo borde)
+   ============================================ */
+
 .btn-outline-theme-gray {
   background-color: transparent;
   border: 1px solid var(--theme-gray);
@@ -67,7 +74,7 @@
 .btn-outline-theme-gray:hover {
   background-color: #e2e6ea;
   color: #495057;
-  border-color: #adb5bd;
+  border-color: var(--theme-gray);
 }
 
 .btn-outline-theme-success {
@@ -121,22 +128,27 @@
 }
 
 
-
-/* Fondos */
+/* ============================================
+   FONDOS
+   ============================================ */
 .bg-theme-success  { background-color: var(--theme-success); color: #fff; }
 .bg-theme-info     { background-color: var(--theme-info); color: #fff; }
 .bg-theme-danger   { background-color: var(--theme-danger); color: #fff; }
 .bg-theme-warning  { background-color: var(--theme-warning); color: #fff; }
 .bg-theme-primary  { background-color: var(--theme-primary); color: #fff; }
 
-/* Bordes */
+/* ============================================
+   BORDES
+   ============================================ */
 .border-theme-success  { border: 2px solid var(--theme-success); }
 .border-theme-info     { border: 2px solid var(--theme-info); }
 .border-theme-danger   { border: 2px solid var(--theme-danger); }
 .border-theme-warning  { border: 2px solid var(--theme-warning); }
 .border-theme-primary  { border: 2px solid var(--theme-primary); }
 
-/* Texto / íconos */
+/* ============================================
+   TEXTO / ÍCONOS
+   ============================================ */
 .text-theme-success  { color: var(--theme-success) !important; }
 .text-theme-info     { color: var(--theme-info) !important; }
 .text-theme-danger   { color: var(--theme-danger) !important; }
@@ -144,53 +156,68 @@
 .text-theme-primary  { color: var(--theme-primary) !important; }
 
 
-
-
-
-
-
- .feature-card {
-    padding: 20px;
-    margin: 50px 0;
-    text-align: center;
-    transition: transform 0.3s;
+/* ============================================
+   TARJETAS DE CARACTERÍSTICAS
+   ============================================ */
+.feature-card {
+  padding: 20px;
+  margin: 50px 0;
+  text-align: center;
+  transition: transform 0.3s;
 }
 .feature-card:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
 }
 
 .card-icon {
-    font-size: 3rem;
-    margin-bottom: 15px;
-    color: var(--theme-primary); /* Color que coincide con tu esquema */
+  font-size: 3rem;
+  margin-bottom: 15px;
+  color: var(--theme-primary);
 }
 
 .card-title {
-  
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 0;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 0;
 }
 
 .nav-icon {
-  
-    color: var(--theme-primary); /* Color que coincide con tu esquema */
+  color: var(--theme-primary);
 }
 
 .title-icon {
-
-    font-size: 1.5rem;
-    color: var(--theme-primary); /* Color que coincide con tu esquema */
+  font-size: 1.5rem;
+  color: var(--theme-primary);
 }
+
+/* ============================================
+   PAGINACIÓN
+   ============================================ */
 .pagination .page-link {
-    border-radius: 0.375rem;
-    margin-left: 4px;
-    margin-right: 4px;
-    color: var(--theme-primary);
+  border-radius: 0.375rem;
+  margin-left: 4px;
+  margin-right: 4px;
+  color: var(--theme-primary);
 }
 
 .pagination .page-item.active .page-link {
-    background-color: var(--theme-primary);
-    border-color: var(--theme-primary);
+  background-color: var(--theme-primary);
+  border-color: var(--theme-primary);
 }
 
+/* ============================================
+   LAYOUT GLOBAL — Navbar fijo + Sidebar fijo
+   ============================================ */
+.content-wrapper {
+    padding-top: 60px;
+}
+
+#sidebar {
+    top: 60px !important;
+}
+
+@media (max-width: 768px) {
+    .content-wrapper {
+        padding-top: 60px !important;
+    }
+}

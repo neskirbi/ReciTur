@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   @include('administracion.header')
-  <title>Recitur | Negocio</title>
+  <title>{{GetSiglas(2)}} | Negocio</title>
   
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
   @include('toast.toasts')
-  @include('administracion.navbars.navbar')
+  @include('administracion.navbar')
 <div class="wrapper">
 
 

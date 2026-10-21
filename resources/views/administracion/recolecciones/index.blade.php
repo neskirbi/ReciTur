@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   @include('administracion.header')
-  <title>Recitur | Recolecciones</title>
+  <title>{{GetSiglas(2)}} | Recolecciones</title>
   <style>
     .stats-card {
       border-left: 4px solid var(--theme-primary);
@@ -30,7 +30,7 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 @include('toast.toasts')  
-@include('administracion.navbars.navbar')
+@include('administracion.navbar')
 <div class="wrapper">
 
   <!-- Content Wrapper. Contains page content -->

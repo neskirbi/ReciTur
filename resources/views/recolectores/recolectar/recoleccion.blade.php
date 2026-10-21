@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     @include('recolectores.header')
-    <title>Recitur | Recolección de Residuos</title>
+    <title>{{GetSiglas(2)}} | Recolección de Residuos</title>
     <style>
         /* Estilos específicos para uso con guantes */
         .guante-friendly .btn-lg {
