@@ -19,7 +19,7 @@
     <meta property="og:url" content="https://reci-tur.com/">
     <meta property="og:title" content="{{GetSiglas(2)}} | Sistema de Gestión de Residuos - Gobierno Municipal">
     <meta property="og:description" content="Plataforma oficial del Gobierno Municipal para la gestión y seguimiento de residuos comerciales e industriales en Acapulco.">
-    <meta property="og:image" content="https://reci-tur.com/images/GOBM.png">
+    <meta property="og:image" content="https://reci-tur.com/images/{{GetLogoPrortal()}}">
     <meta property="og:site_name" content="{{GetSiglas(2)}}">
     <meta property="og:locale" content="es_MX">
     
@@ -28,7 +28,7 @@
     <meta property="twitter:url" content="https://reci-tur.com/">
     <meta property="twitter:title" content="{{GetSiglas(2)}} | Sistema de Gestión de Residuos">
     <meta property="twitter:description" content="Plataforma oficial del Gobierno Municipal para la gestión de residuos comerciales en Acapulco.">
-    <meta property="twitter:image" content="https://reci-tur.com/images/GOBM.png">
+    <meta property="twitter:image" content="https://reci-tur.com/images/{{GetLogoPrortal()}}">
     <meta property="twitter:site" content="@{{GetSiglas(2)}}">
     
     <!-- Schema.org markup -->
@@ -74,7 +74,7 @@
         "alternateName": "Reci-Tur",
         "description": "Sistema de gestión de residuos del Gobierno Municipal de Acapulco",
         "url": "https://reci-tur.com",
-        "logo": "https://reci-tur.com/images/GOBM.png",
+        "logo": "https://reci-tur.com/images/{{GetLogoPrortal()}}",
         "sameAs": [
             "https://facebook.com/recitur",
             "https://twitter.com/recitur"
@@ -176,7 +176,7 @@
         
         <!-- IMAGEN CENTRAL con metadatos optimizados -->
         <div class="contenedor-imagen" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-            <img src="{{asset('images/GOBM.png')}}" 
+            <img src="{{asset('images/'.GetLogoPrortal())}}" 
                  alt="{{GetSiglas(2)}} - Sistema de Gestión de Residuos del Gobierno Municipal de Acapulco" 
                  title="{{GetSiglas(2)}} - Plataforma de Gestión de Residuos Comerciales"
                  itemprop="contentUrl"
@@ -185,7 +185,7 @@
                  height="630">
             <meta itemprop="description" content="Plataforma {{GetSiglas(2)}} del Gobierno Municipal de Acapulco para gestión de residuos comerciales y turísticos">
             <meta itemprop="name" content="{{GetSiglas(2)}} Gobierno Municipal Acapulco">
-            <meta itemprop="url" content="https://reci-tur.com/images/GOBM.png">
+            <meta itemprop="url" content="https://reci-tur.com/images/{{GetLogoPrortal()}}">
         </div>
         
         <!-- Contenido semántico adicional para SEO -->

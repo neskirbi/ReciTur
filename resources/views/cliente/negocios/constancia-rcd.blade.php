@@ -250,7 +250,7 @@
                 <table class="top-header">
                     <tr>
                         <td class="logo-cell">
-                            <img src="{{ public_path('images/GOBM.png') }}" class="logo" alt="Gobierno">
+                            <img src="{{ public_path('images/'.GetLogoPrortal()) }}" class="logo" alt="Gobierno">
                         </td>
                         <td class="folio-cell">
                             <img src="{{ public_path('images/acapulco.png') }}" class="logo" alt="Acapulco">

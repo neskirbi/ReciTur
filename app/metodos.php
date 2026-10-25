@@ -21,7 +21,7 @@ function GetSiglas($opcion){
             break;
 
         case 2:
-            return 'Recitur';
+            return 'Recitrash';
         break;
     }
 }
@@ -447,6 +447,10 @@ function Notificar($subject,$title,$subtitle,$body,$correos,$links){
 
 function GetLogo(){
     return "";
+}
+
+function GetLogoPrortal(){
+    return "cmxlog.png";
 }
 
 function TokenGen($mail){

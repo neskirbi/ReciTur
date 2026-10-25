@@ -34,7 +34,7 @@
 
     
     
-    <img src="{{asset('images/GOBM.png')}}" alt="Imagen principal" style="width: 100%; display: block;">
+    <img src="{{asset('images/'.GetLogoPrortal())}}" alt="Imagen principal" style="width: 100%; display: block;">
     
     <div class="login-container">
         <h2>Registro</h2>
