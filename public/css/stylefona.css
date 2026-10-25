@@ -1,15 +1,27 @@
+
 :root {
   /* ============================================
-     PALETA: OCEAN SUNSET
+     PALETA: RECI-TRASH INSTITUCIONAL
+     Guinda + Verde ecológico + Dorado
      ============================================ */
-  --theme-success: #0F9B8E;   /* Verde menta / turquesa */
-  --theme-info:    #2E86AB;   /* Azul océano */
-  --theme-danger:  #E4572E;   /* Naranja coral intenso */
-  --theme-warning: #F4A259;   /* Naranja melocotón */
-  --theme-primary: #1B4965;   /* Azul marino profundo */
-  --theme-gray:    #9CAEA9;   /* Gris verdoso suave */
-}
 
+  --theme-success: #198754;   /* Verde ecológico */
+  --theme-info:    #497D8A;   /* Azul petróleo suave */
+  --theme-danger:  #9F2241;   /* Guinda institucional */
+  --theme-warning: #B9975B;   /* Dorado institucional */
+  --theme-primary: #9F2241;   /* Guinda principal */
+  --theme-gray:    #ADB5BD;   /* Gris neutro */
+
+  /* Colores complementarios */
+  --theme-green-dark: #126642;
+  --theme-burgundy-dark: #74172F;
+  --theme-gold-light: #E9DFC9;
+  --theme-text: #343A40;
+  --theme-text-muted: #6C757D;
+  --theme-background: #F5F5F3;
+  --theme-surface: #FFFFFF;
+  --theme-border: #DEE2E6;
+}
 
 /* ============================================
    ESTILO PARA BOTONES
@@ -21,7 +33,9 @@
   color: #fff;
 }
 .btn-theme-success:hover {
-  background-color: color-mix(in srgb, var(--theme-success) 75%, transparent);
+  background-color: var(--theme-green-dark);
+  border-color: var(--theme-green-dark);
+  color: #fff;
 }
 
 .btn-theme-info {
@@ -30,7 +44,9 @@
   color: #fff;
 }
 .btn-theme-info:hover {
-  background-color: color-mix(in srgb, var(--theme-info) 75%, transparent);
+  background-color: #386572;
+  border-color: #386572;
+  color: #fff;
 }
 
 .btn-theme-danger {
@@ -39,7 +55,9 @@
   color: #fff;
 }
 .btn-theme-danger:hover {
-  background-color: color-mix(in srgb, var(--theme-danger) 75%, transparent);
+  background-color: var(--theme-burgundy-dark);
+  border-color: var(--theme-burgundy-dark);
+  color: #fff;
 }
 
 .btn-theme-warning {
@@ -48,7 +66,9 @@
   color: #fff;
 }
 .btn-theme-warning:hover {
-  background-color: color-mix(in srgb, var(--theme-warning) 75%, transparent);
+  background-color: #947744;
+  border-color: #947744;
+  color: #fff;
 }
 
 .btn-theme-primary {
@@ -57,23 +77,23 @@
   color: #fff;
 }
 .btn-theme-primary:hover {
-  background-color: color-mix(in srgb, var(--theme-primary) 75%, transparent);
+  background-color: var(--theme-burgundy-dark);
+  border-color: var(--theme-burgundy-dark);
+  color: #fff;
 }
 
-
 /* ============================================
-   BOTONES OUTLINE (solo borde)
+   BOTONES OUTLINE
    ============================================ */
 
 .btn-outline-theme-gray {
   background-color: transparent;
   border: 1px solid var(--theme-gray);
-  color: #6c757d;
+  color: var(--theme-text-muted);
 }
-
 .btn-outline-theme-gray:hover {
-  background-color: #e2e6ea;
-  color: #495057;
+  background-color: #E9ECEF;
+  color: var(--theme-text);
   border-color: var(--theme-gray);
 }
 
@@ -110,7 +130,7 @@
 .btn-outline-theme-warning {
   background-color: transparent;
   border: 2px solid var(--theme-warning);
-  color: var(--theme-warning);
+  color: #7A602F;
 }
 .btn-outline-theme-warning:hover {
   background-color: var(--theme-warning);
@@ -127,46 +147,88 @@
   color: #fff;
 }
 
-
 /* ============================================
    FONDOS
    ============================================ */
-.bg-theme-success  { background-color: var(--theme-success); color: #fff; }
-.bg-theme-info     { background-color: var(--theme-info); color: #fff; }
-.bg-theme-danger   { background-color: var(--theme-danger); color: #fff; }
-.bg-theme-warning  { background-color: var(--theme-warning); color: #fff; }
-.bg-theme-primary  { background-color: var(--theme-primary); color: #fff; }
+
+.bg-theme-success {
+  background-color: var(--theme-success);
+  color: #fff;
+}
+.bg-theme-info {
+  background-color: var(--theme-info);
+  color: #fff;
+}
+.bg-theme-danger {
+  background-color: var(--theme-danger);
+  color: #fff;
+}
+.bg-theme-warning {
+  background-color: var(--theme-warning);
+  color: #343A40;
+}
+.bg-theme-primary {
+  background-color: var(--theme-primary);
+  color: #fff;
+}
 
 /* ============================================
    BORDES
    ============================================ */
-.border-theme-success  { border: 2px solid var(--theme-success); }
-.border-theme-info     { border: 2px solid var(--theme-info); }
-.border-theme-danger   { border: 2px solid var(--theme-danger); }
-.border-theme-warning  { border: 2px solid var(--theme-warning); }
-.border-theme-primary  { border: 2px solid var(--theme-primary); }
+
+.border-theme-success {
+  border: 2px solid var(--theme-success);
+}
+.border-theme-info {
+  border: 2px solid var(--theme-info);
+}
+.border-theme-danger {
+  border: 2px solid var(--theme-danger);
+}
+.border-theme-warning {
+  border: 2px solid var(--theme-warning);
+}
+.border-theme-primary {
+  border: 2px solid var(--theme-primary);
+}
 
 /* ============================================
-   TEXTO / ÍCONOS
+   TEXTO E ICONOS
    ============================================ */
-.text-theme-success  { color: var(--theme-success) !important; }
-.text-theme-info     { color: var(--theme-info) !important; }
-.text-theme-danger   { color: var(--theme-danger) !important; }
-.text-theme-warning  { color: var(--theme-warning) !important; }
-.text-theme-primary  { color: var(--theme-primary) !important; }
 
+.text-theme-success {
+  color: var(--theme-success) !important;
+}
+.text-theme-info {
+  color: var(--theme-info) !important;
+}
+.text-theme-danger {
+  color: var(--theme-danger) !important;
+}
+.text-theme-warning {
+  color: #947744 !important;
+}
+.text-theme-primary {
+  color: var(--theme-primary) !important;
+}
 
 /* ============================================
-   TARJETAS DE CARACTERÍSTICAS
+   TARJETAS DE CARACTERISTICAS
    ============================================ */
+
 .feature-card {
   padding: 20px;
   margin: 50px 0;
   text-align: center;
-  transition: transform 0.3s;
+  background-color: var(--theme-surface);
+  border: 1px solid var(--theme-border);
+  border-radius: 12px;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
+
 .feature-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(52, 58, 64, 0.10);
 }
 
 .card-icon {
@@ -179,6 +241,7 @@
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 0;
+  color: var(--theme-text);
 }
 
 .nav-icon {
@@ -191,33 +254,66 @@
 }
 
 /* ============================================
-   PAGINACIÓN
+   PAGINACION
    ============================================ */
+
 .pagination .page-link {
   border-radius: 0.375rem;
   margin-left: 4px;
   margin-right: 4px;
   color: var(--theme-primary);
+  border-color: var(--theme-border);
 }
 
 .pagination .page-item.active .page-link {
   background-color: var(--theme-primary);
   border-color: var(--theme-primary);
+  color: #fff;
 }
 
 /* ============================================
-   LAYOUT GLOBAL — Navbar fijo + Sidebar fijo
+   ELEMENTOS GENERALES
    ============================================ */
+
+body {
+  background-color: var(--theme-background);
+  color: var(--theme-text);
+}
+
+a {
+  color: var(--theme-primary);
+}
+
+a:hover {
+  color: var(--theme-burgundy-dark);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--theme-primary);
+  box-shadow: 0 0 0 0.2rem rgba(159, 34, 65, 0.18);
+}
+
+.table thead th {
+  background-color: #F0E5E8;
+  color: var(--theme-burgundy-dark);
+}
+
+/* ============================================
+   LAYOUT GLOBAL
+   Navbar fijo + Sidebar fijo
+   ============================================ */
+
 .content-wrapper {
-    padding-top: 60px;
+  padding-top: 60px;
 }
 
 #sidebar {
-    top: 60px !important;
+  top: 60px !important;
 }
 
 @media (max-width: 768px) {
-    .content-wrapper {
-        padding-top: 60px !important;
-    }
+  .content-wrapper {
+    padding-top: 60px !important;
+  }
 }

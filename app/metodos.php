@@ -10,7 +10,7 @@ use Kreait\Firebase\Factory;
 
 function Version(){
     return rand(1,100);
-    return 5;
+    return 6;
 }
 
 function GetSiglas($opcion){
@@ -38,7 +38,7 @@ function GetUrl() {
         // Si falla, usa la IP del servidor
         $server_ip = ($local_ip == gethostname()) ? $_SERVER['SERVER_ADDR'] : $local_ip;
         
-        return $protocol.$server_ip."/Recitur/public/";
+        return $protocol.$server_ip."/recitrash/public/";
     }
     
     return $protocol.$url."/";

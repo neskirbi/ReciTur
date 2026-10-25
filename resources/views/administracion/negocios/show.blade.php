@@ -7,7 +7,7 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
   @include('toast.toasts')
-  @include('administracion.vbars.navbar')
+@include('administracion.navbar')
 <div class="wrapper">
 
 
