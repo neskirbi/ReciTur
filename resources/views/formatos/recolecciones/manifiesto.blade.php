@@ -90,8 +90,8 @@
     <table class="header-table">
         <tr>
             <td class="header-image-cell">
-                <!-- Imagen del encabezado a la izquierda -->
-                <img src="{{ isset($vista) ? asset('images/formatos/manifiesto/headermanifiesto.png') : public_path('images/formatos/manifiesto/headermanifiesto.png') }}" alt="" width="100%">
+                <!-- Imagen del encabezado a la izquierda
+                <img src="{{ isset($vista) ? asset('images/formatos/manifiesto/headermanifiesto.png') : public_path('images/formatos/manifiesto/headermanifiesto.png') }}" alt="" width="100%"> -->
             </td>
             <td class="qr-cell">
                 <!-- QR a la derecha -->
