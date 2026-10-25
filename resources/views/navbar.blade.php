@@ -63,7 +63,7 @@
     <!-- NAVBAR BLANCO -->
     <div class="navbar-custom">
         <a class="navbar-brand" href="{{url('home')}}">
-            <img src="{{asset('images').'/reciturlogo1.png'}}" alt="" height="45px">            
+            <img src="{{asset('images').'/'.GetLogo()}}" alt="" height="45px">            
         </a>
         
         <nav class="navbar navbar-expand-md navbar-light">

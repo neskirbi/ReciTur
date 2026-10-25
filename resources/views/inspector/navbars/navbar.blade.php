@@ -58,7 +58,7 @@
 <div class="navbar-custom" style="display: flex; align-items: center; padding: 0.5rem 1rem;">
   <!-- Logo -->
   <a class="navbar-brand" href="{{url('homec')}}" style="display: flex; align-items: center; margin-right: 0.5rem;">
-    <img src="{{asset('images').'/reciturlogo1.png'}}" alt="" height="45px">
+    <img src="{{asset('images').'/'.GetLogo()}}" alt="" height="45px">
   </a>
 
   <!-- Botón de colapso junto al logo -->

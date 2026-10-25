@@ -445,6 +445,10 @@ function Notificar($subject,$title,$subtitle,$body,$correos,$links){
     Mail::to($correos)->queue($correo);
 }
 
+function GetLogo(){
+    return "";
+}
+
 function TokenGen($mail){
     $id=GetUuid();
     $token=Token::where('mail',$mail)->first();

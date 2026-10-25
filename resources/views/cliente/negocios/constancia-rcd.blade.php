@@ -256,7 +256,7 @@
                             <img src="{{ public_path('images/acapulco.png') }}" class="logo" alt="Acapulco">
                         </td>
                         <td class="amr-cell">
-                            <img src="{{ public_path('images/reciturlogo1.png') }}" class="logo" alt="Recitur">
+                            <img src="{{ public_path('images/'.GetLogo()) }}" class="logo" alt="Recitur">
                         </td>
                     </tr>
                 </table>
@@ -464,7 +464,7 @@
 
 <!-- IMAGEN INFERIOR FULL WIDTH -->
 <div class="bottom-image-full">
-    <img src="{{ public_path('images/GOBMF.png') }}" alt="Gobierno de México">
+    
 </div>
 
 </body>

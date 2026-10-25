@@ -61,7 +61,7 @@
     <!-- NAVBAR BLANCO -->
     <div class="navbar-custom">
            <a class="navbar-brand" href="{{url('homec')}}" style="display: flex; align-items: center;">
-                <img src="{{asset('images').'/reciturlogo1.png'}}" alt="" height="45px">
+                <img src="{{asset('images').'/'.GetLogo()}}" alt="" height="45px">
             </a>
         <nav class="navbar navbar-expand-md navbar-light">
             <button class="navbar-toggler" id="navbar-toggler">

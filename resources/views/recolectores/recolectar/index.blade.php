@@ -85,8 +85,7 @@
 
     <div class="container">
         <div class="row justify-content-center">
-            <img src="{{ asset('images/cedulas/acapulco/headercedula.png') }}" alt="" style="margin-top: 50px;" width="100%">
-
+            
             <div class="cedula-body" style="margin-top: 50px;">
                 <div class="qr-overlay">
                     <img src="{{ asset('images/cedulas/qrgeneral.png') }}" alt="Escanear QR" onclick="abrirCamara()" />
@@ -97,8 +96,7 @@
                 <img src="{{ asset('images/cedulas/acapulco/bodycedula.png') }}" alt="" width="100%" style="visibility: hidden;">
             </div>
 
-            <img src="{{ asset('images/cedulas/acapulco/footercedula.png') }}" style="margin-top: 50px;" alt="" width="100%">
-        </div>
+         </div>
     </div>
 
     <!-- Contenedor del lector QR -->
