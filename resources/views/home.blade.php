@@ -6,29 +6,29 @@
     <!-- Meta Tags Esenciales -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{GetSiglas(2)}} | Sistema de Gestión de Residuos - Gobierno Municipal</title>
+    <title>{{GetSiglas(2)}} | Sistema de Gestión de Residuos - Gobierno de la Ciudad de México</title>
     
     <!-- Meta Description -->
-    <meta name="description" content="{{GetSiglas(2)}} - Plataforma oficial del Gobierno Municipal para la gestión, seguimiento y recolección de residuos. Sistema especializado para negocios, hoteles y restaurantes en Acapulco.">
+    <meta name="description" content="{{GetSiglas(2)}} - Plataforma oficial del Gobierno de la Ciudad de México para la gestión, seguimiento y recolección de residuos. Sistema especializado para negocios, hoteles y restaurantes en la CDMX.">
     
     <!-- Keywords -->
-    <meta name="keywords" content="{{GetSiglas(2)}}, gestión residuos, recolección basura, gobierno municipal, medio ambiente, reciclaje, residuos comerciales, sustentabilidad, recolección Acapulco, reci-tur">
+    <meta name="keywords" content="{{GetSiglas(2)}}, gestión residuos, recolección basura, gobierno CDMX, medio ambiente, reciclaje, residuos comerciales, sustentabilidad, recolección Ciudad de México, reci-trash">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://reci-tur.com/">
-    <meta property="og:title" content="{{GetSiglas(2)}} | Sistema de Gestión de Residuos - Gobierno Municipal">
-    <meta property="og:description" content="Plataforma oficial del Gobierno Municipal para la gestión y seguimiento de residuos comerciales e industriales en Acapulco.">
-    <meta property="og:image" content="https://reci-tur.com/images/{{GetLogoPrortal()}}">
+    <meta property="og:url" content="https://reci-trash.com/">
+    <meta property="og:title" content="{{GetSiglas(2)}} | Sistema de Gestión de Residuos - Gobierno de la Ciudad de México">
+    <meta property="og:description" content="Plataforma oficial del Gobierno de la Ciudad de México para la gestión y seguimiento de residuos comerciales e industriales en la CDMX.">
+    <meta property="og:image" content="https://reci-trash.com/images/{{GetLogoPrortal()}}">
     <meta property="og:site_name" content="{{GetSiglas(2)}}">
     <meta property="og:locale" content="es_MX">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://reci-tur.com/">
+    <meta property="twitter:url" content="https://reci-trash.com/">
     <meta property="twitter:title" content="{{GetSiglas(2)}} | Sistema de Gestión de Residuos">
-    <meta property="twitter:description" content="Plataforma oficial del Gobierno Municipal para la gestión de residuos comerciales en Acapulco.">
-    <meta property="twitter:image" content="https://reci-tur.com/images/{{GetLogoPrortal()}}">
+    <meta property="twitter:description" content="Plataforma oficial del Gobierno de la Ciudad de México para la gestión de residuos comerciales en la CDMX.">
+    <meta property="twitter:image" content="https://reci-trash.com/images/{{GetLogoPrortal()}}">
     <meta property="twitter:site" content="@{{GetSiglas(2)}}">
     
     <!-- Schema.org markup -->
@@ -37,16 +37,16 @@
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "{{GetSiglas(2)}} - Sistema de Gestión de Residuos",
-        "alternateName": "Reci-Tur",
-        "description": "Plataforma oficial del Gobierno Municipal para la gestión y seguimiento de residuos comerciales e industriales en Acapulco",
-        "url": "https://reci-tur.com",
+        "alternateName": "Reci-Trash",
+        "description": "Plataforma oficial del Gobierno de la Ciudad de México para la gestión y seguimiento de residuos comerciales e industriales en la CDMX",
+        "url": "https://reci-trash.com",
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Web Browser",
         "permissions": "geolocation",
         "author": {
             "@type": "GovernmentOrganization",
-            "name": "Gobierno Municipal de Acapulco",
-            "url": "https://reci-tur.com"
+            "name": "Gobierno de la Ciudad de México",
+            "url": "https://reci-trash.com"
         },
         "offers": {
             "@type": "Offer",
@@ -55,10 +55,10 @@
         },
         "areaServed": {
             "@type": "City",
-            "name": "Acapulco",
+            "name": "Ciudad de México",
             "address": {
                 "@type": "PostalAddress",
-                "addressRegion": "Guerrero",
+                "addressRegion": "Ciudad de México",
                 "addressCountry": "MX"
             }
         }
@@ -70,26 +70,26 @@
     {
         "@context": "https://schema.org",
         "@type": "GovernmentOrganization",
-        "name": "{{GetSiglas(2)}} - Gobierno Municipal de Acapulco",
-        "alternateName": "Reci-Tur",
-        "description": "Sistema de gestión de residuos del Gobierno Municipal de Acapulco",
-        "url": "https://reci-tur.com",
-        "logo": "https://reci-tur.com/images/{{GetLogoPrortal()}}",
+        "name": "{{GetSiglas(2)}} - Gobierno de la Ciudad de México",
+        "alternateName": "Reci-Trash",
+        "description": "Sistema de gestión de residuos del Gobierno de la Ciudad de México",
+        "url": "https://reci-trash.com",
+        "logo": "https://reci-trash.com/images/{{GetLogoPrortal()}}",
         "sameAs": [
-            "https://facebook.com/recitur",
-            "https://twitter.com/recitur"
+            "https://facebook.com/recitrash",
+            "https://twitter.com/recitrash"
         ],
         "address": {
             "@type": "PostalAddress",
-            "addressLocality": "Acapulco",
-            "addressRegion": "Guerrero",
+            "addressLocality": "Ciudad de México",
+            "addressRegion": "Ciudad de México",
             "addressCountry": "MX"
         },
         "contactPoint": {
             "@type": "ContactPoint",
             "contactType": "customer service",
-            "telephone": "+52-744-XXX-XXXX",
-            "email": "contacto@reci-tur.com",
+            "telephone": "+52-55-XXX-XXXX",
+            "email": "contacto@reci-trash.com",
             "areaServed": "MX",
             "availableLanguage": "es"
         }
@@ -97,7 +97,7 @@
     </script>
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://reci-tur.com/">
+    <link rel="canonical" href="https://reci-trash.com/">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -107,10 +107,10 @@
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     
     <!-- Geolocation para búsquedas locales -->
-    <meta name="geo.region" content="MX-GRO">
-    <meta name="geo.placename" content="Acapulco">
-    <meta name="geo.position" content="16.8531;-99.8237">
-    <meta name="ICBM" content="16.8531, -99.8237">
+    <meta name="geo.region" content="MX-CMX">
+    <meta name="geo.placename" content="Ciudad de México">
+    <meta name="geo.position" content="19.4326;-99.1332">
+    <meta name="ICBM" content="19.4326, -99.1332">
     
     <!-- Verificación de propiedad del sitio -->
     <meta name="google-site-verification" content="tu_codigo_de_verificacion">
@@ -171,28 +171,28 @@
     <!-- Contenido principal -->
     <main role="main">
         <!-- Texto oculto para SEO pero visible para screen readers -->
-        <h1 class="sr-only">{{GetSiglas(2)}} - Sistema de Gestión de Residuos del Gobierno Municipal de Acapulco</h1>
-        <p class="sr-only">Plataforma oficial Reci-Tur para el registro, seguimiento y gestión de residuos comerciales e industriales en Acapulco. Sistema especializado para hoteles, restaurantes y negocios del sector turístico.</p>
+        <h1 class="sr-only">{{GetSiglas(2)}} - Sistema de Gestión de Residuos del Gobierno de la Ciudad de México</h1>
+        <p class="sr-only">Plataforma oficial Reci-Trash para el registro, seguimiento y gestión de residuos comerciales e industriales en la Ciudad de México. Sistema especializado para hoteles, restaurantes y negocios del sector turístico.</p>
         
         <!-- IMAGEN CENTRAL con metadatos optimizados -->
         <div class="contenedor-imagen" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
             <img src="{{asset('images/'.GetLogoPrortal())}}" 
-                 alt="{{GetSiglas(2)}} - Sistema de Gestión de Residuos del Gobierno Municipal de Acapulco" 
+                 alt="{{GetSiglas(2)}} - Sistema de Gestión de Residuos del Gobierno de la Ciudad de México" 
                  title="{{GetSiglas(2)}} - Plataforma de Gestión de Residuos Comerciales"
                  itemprop="contentUrl"
                  class="hero-image"
                  width="1200" 
                  height="630">
-            <meta itemprop="description" content="Plataforma {{GetSiglas(2)}} del Gobierno Municipal de Acapulco para gestión de residuos comerciales y turísticos">
-            <meta itemprop="name" content="{{GetSiglas(2)}} Gobierno Municipal Acapulco">
-            <meta itemprop="url" content="https://reci-tur.com/images/{{GetLogoPrortal()}}">
+            <meta itemprop="description" content="Plataforma {{GetSiglas(2)}} del Gobierno de la Ciudad de México para gestión de residuos comerciales y turísticos">
+            <meta itemprop="name" content="{{GetSiglas(2)}} Gobierno de la Ciudad de México">
+            <meta itemprop="url" content="https://reci-trash.com/images/{{GetLogoPrortal()}}">
         </div>
         
         <!-- Contenido semántico adicional para SEO -->
         <div style="display: none;" aria-hidden="true">
-            <h2>Gestión de Residuos Acapulco</h2>
-            <p>{{GetSiglas(2)}} es el sistema oficial del Gobierno Municipal de Acapulco para la gestión integral de residuos sólidos urbanos. Plataforma especializada en el sector turístico y comercial.</p>
-            <h3>Servicios de Reci-Tur</h3>
+            <h2>Gestión de Residuos Ciudad de México</h2>
+            <p>{{GetSiglas(2)}} es el sistema oficial del Gobierno de la Ciudad de México para la gestión integral de residuos sólidos urbanos. Plataforma especializada en el sector turístico y comercial.</p>
+            <h3>Servicios de Reci-Trash</h3>
             <ul>
                 <li>Registro de generadores de residuos</li>
                 <li>Seguimiento de recolecciones</li>
@@ -216,7 +216,7 @@
             "@type": "ListItem",
             "position": 1,
             "name": "Inicio",
-            "item": "https://reci-tur.com"
+            "item": "https://reci-trash.com"
         }]
     }
     </script>

@@ -178,29 +178,6 @@
               </div>
             </div>
 
-            <!-- Documentación 
-            <div class="card card-info">
-              <div class="card-header">
-                <h3 class="card-title"><i class="fas fa-file-pdf"></i> Documentación</h3>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="plan"><i class="fas fa-file-upload"></i> Plan de manejo (pdf)</label>
-                      <iframe name="inlineFrameExample" id="inlineFrameExample"
-                        title="Plan de manejo"
-                        width="100%"
-                        height="200"
-                        src="{{asset('documentos/clientes/negocios/plan').'/'.$negocio->id.'.pdf'.'?ver='.rand(0,10000)}}">
-                      </iframe>
-                      <a target="_blank" class="btn btn-default" href="{{asset('documentos/clientes/negocios/plan').'/'.$negocio->id.'.pdf'.'?ver='.rand(0,10000)}}">Ver</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>-->
-
             <!-- Datos del Contacto -->
             <div class="card card-info">
               <div class="card-header">
