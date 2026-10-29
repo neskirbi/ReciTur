@@ -121,7 +121,7 @@
       <a class="nav-link" href="{{ url('mapa') }}"><i class="fa fa-map me-2"></i>Mapa</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{ url('generadoresa') }}"><i class="fa fa-building me-2"></i>Generadores</a>
+      <a class="nav-link" href="{{ url('asociados/generadores') }}"><i class="fa fa-building me-2"></i>Generadores</a>
     </li>
    
 
