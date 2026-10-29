@@ -182,7 +182,7 @@ Route::get('ConstanciaGestionRCD/{id}','App\Http\Controllers\Cliente\NegocioCont
 
 Route::middleware('asociadoislogged')->group(function () {
     Route::resource('asociados/etransporte', 'App\Http\Controllers\Asociacion\ETransporteController');
-    Route::resource('asociados/generadores', 'App\Http\Controllers\Asociacion\GeneradorController');
+    Route::resource('asociados/generadoresa', 'App\Http\Controllers\Asociacion\GeneradorController');
     Route::resource('asociados/catalogos', 'App\Http\Controllers\Asociacion\CatalogosController');
 });
 

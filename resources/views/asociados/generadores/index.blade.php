@@ -57,7 +57,7 @@
                             <div class="card-footer">
                               <div class="d-flex" style="gap: .5rem;">
                                 <!-- Botón Ver -->
-                                <a href="{{ route('generadores.show', $generador->id) }}" class="btn btn-theme-success text-white" style="width: 25%;">
+                                <a href="{{ route('generadoresa.show', $generador->id) }}" class="btn btn-theme-success text-white" style="width: 25%;">
                                   <i class="fa fa-eye" aria-hidden="true"></i> Ver
                                 </a>
                                 <!-- Botón Quitar (siempre visible) -->
