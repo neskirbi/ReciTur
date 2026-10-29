@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Asociacion;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Generador;
 use App\Models\Entidad;
 use Redirect;
@@ -145,7 +146,15 @@ class GeneradorController extends Controller
     public function destroy($id)
     {
         $generador = Generador::findOrFail($id);
+
+        // Verificar si tiene negocios asociados
+        $tieneNegocios = DB::table('negocios')->where('id_generador', $id)->count();
+        if ($tieneNegocios > 0) {
+            return Redirect::back()->with('error', 'No se puede eliminar el generador porque tiene negocios asociados.');
+        }
+
+        // Si no tiene negocios, se elimina
         $generador->delete();
-        return Redirect::back()->with('success', 'Generador eliminado.');
+        return Redirect::back()->with('success', 'Generador eliminado correctamente.');
     }
 }

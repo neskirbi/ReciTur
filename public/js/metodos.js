@@ -1,7 +1,7 @@
 
 function Url(){
     if(window.location.origin.includes('localhost') || window.location.origin.includes('192.168')){
-        return window.location.origin+'/Recitur/public/';
+        return window.location.origin+'/recitur/public/';
     }else{
        return window.location.origin+'/';
     }

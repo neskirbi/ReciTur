@@ -60,16 +60,11 @@
                                 <a href="{{ route('generadores.show', $generador->id) }}" class="btn btn-theme-success text-white" style="width: 25%;">
                                   <i class="fa fa-eye" aria-hidden="true"></i> Ver
                                 </a>
-                                <!-- Botón Quitar (solo si no está verificado) -->
-                                @if($generador->verificado == 0)
-                                  <form action="{{ route('generadores.destroy', $generador->id) }}" method="POST" class="m-0" style="width: 25%;">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <button id="borrar" class="borrar btn btn-theme-danger btn-quitar w-100" data-texto="¿Deseas quitar este generador?">
-                                      <i class="fa fa-times" aria-hidden="true"></i> Quitar
-                                    </button>
-                                  </form>
-                                @endif
+                                <!-- Botón Quitar (siempre visible) -->
+                                <button type="button" class="btn btn-theme-danger text-white" style="width: 25%;" 
+                                        onclick="confirmarEliminar('{{ $generador->id }}', '{{ $generador->razonsocial }}')">
+                                  <i class="fa fa-times" aria-hidden="true"></i> Quitar
+                                </button>
                               </div>
                             </div>
                           </div>
@@ -96,7 +91,49 @@
   </div>
   <!-- ./wrapper -->
 
- 
+  <!-- Modal de Confirmación -->
+  <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-theme-danger text-white">
+          <h5 class="modal-title" id="modalEliminarLabel"><i class="fa fa-exclamation-triangle"></i> Confirmar eliminación</h5>
+          <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>¿Estás seguro de que deseas eliminar el generador <strong id="nombreGenerador"></strong>?</p>
+          <p class="text-muted small">Esta acción no se puede deshacer.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <form id="formEliminar" method="POST" class="m-0">
+            {{ csrf_field() }}
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit" class="btn btn-theme-danger text-white">
+              <i class="fa fa-trash"></i> Sí, eliminar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
   @include('asociados.footer')
+
+  <!-- Script para manejar el modal -->
+  <script>
+    function confirmarEliminar(id, nombre) {
+        // Cambiar la acción del formulario dinámicamente
+        var url = "{{ url('asociados/generadores') }}/" + id;
+        document.getElementById('formEliminar').action = url;
+        
+        // Poner el nombre en el modal
+        document.getElementById('nombreGenerador').innerText = nombre;
+        
+        // Abrir el modal
+        $('#modalEliminar').modal('show');
+    }
+  </script>
 </body>
 </html>

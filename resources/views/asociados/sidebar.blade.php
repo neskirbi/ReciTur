@@ -108,13 +108,6 @@
 <!-- Sidebar colapsable -->
 <nav id="sidebar" class="position-fixed text-white">
   <ul class="nav flex-column px-3">
-    <!--<div class="nav-section-title">General</div>
-    <li class="nav-item">
-      <a class="nav-link" href="#dashboard"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#perfil"><i class="fa fa-user me-2"></i>Perfil</a>
-    </li>-->
 
     <div class="nav-section-title">Administración</div>
     <li class="nav-item">
@@ -122,8 +115,7 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" href="{{ url('asociados/generadores') }}"><i class="fa fa-building me-2"></i>Generadores</a>
-    </li>
-   
+    </li>   
 
     <div class="nav-section-title">Cuenta</div>
     <li class="nav-item mt-2">
