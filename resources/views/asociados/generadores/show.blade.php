@@ -1,643 +1,405 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  @include('cliente.header')
-  <title>{{GetSiglas(0)}} | Generadores</title>
-
-  
+  @include('asociados.header')
+  <title>{{GetSiglas(2)}} | Generador</title>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-@include('toast.toasts')  
+@include('toast.toasts')
 <div class="wrapper">
 
-  <!-- Navbar -->
- 
-  @include('asociados.navigations.navigation')
-  <!-- /.navbar -->
+  @include('asociados.navbar')
 
-  <!-- Main Sidebar Container -->
-  @include('asociados.sidebars.sidebar')
-
-  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-     
-    </div>
-    <!-- /.content-header -->
+    <div class="content-header">&nbsp;</div>
 
-    <!-- Main content -->
     <section class="content">
+        @include('asociados.sidebar')
         <div class="container-fluid">
-        
+
+            <div class="d-flex justify-content-end mb-3">
+                <a href="{{ route('generadores.index') }}" class="btn btn-default">
+                    <i class="fa fa-arrow-left"></i> Regresar
+                </a>
+            </div>
+
             @if($generador->verificado==0)
-            <div class="card card-default">
+                <div class="card card-default">
             @else
-            <div class="card card-success">
+                <div class="card card-success">
             @endif
+
                 <div class="card-header">
-                    <h3 class="card-title">Generador</h3>
-                    @if($generador->verificado==0)
-                    <div class="card-tools">
-                        <form action="{{url('confirmargenerador').'/'.$generador->id}}" method="GET">
-                        @csrf
-                        <button style="display:visible;" type="submite" class="confirmarclick btn btn-success btn-sm" data-texto="¿Los datos son correctos?"><i class="fa fa-check" aria-hidden="true"><span>Confirmar</span></i></button>
-                        </form>
-                    </div>
-                    @endif            
+                    <h3 class="card-title"><i class="fa fa-industry title-icon" aria-hidden="true"></i> Generador</h3>
                 </div>
-                <!-- /.card-header -->
-                <form method="POST" action="{{url('generadorasoc')}}/{{$generador->id}}" id="formgenerador" enctype="multipart/form-data">
+
+                <form action="{{ route('generadores.update', $generador->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <input required name="_method" type="hidden" value="PUT">                    
-                    <div class="card-body">                  
+                    @method('PUT')
+
+                    <div class="card-body">
 
                         <div class="card card-primary" id="fiscales">
                             <div class="card-header">
-                                <h3 class="card-title">Datos fiscales</h3>            
+                                <h3 class="card-title">Datos Generador</h3>
                             </div>
-
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="razonsocial">Denominación/Razon social</label>
-                                    <input required type="text" value="{{$generador->razonsocial}}" name="razonsocial" class="form-control" id="razonsocial" placeholder="Denominación/Razon social" aria-invalid="false" >
+                                    <label for="razonsocial">Denominación/Razón social</label>
+                                    <input type="text" name="razonsocial" class="form-control" id="razonsocial" maxlength="250" value="{{$generador->razonsocial}}">
                                 </div>
 
                                 <div class="row">
-
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="fisicaomoral">Persona</label>
-                                            <select required name="fisicaomoral" class="form-control" id="fisicaomoral" aria-invalid="false" disabled>
-                                                <option value="{{$generador->fisicaomoral}}">{{$generador->fisicaomoral}}</option>
-                                                <optgroup>
-                                                <option value="Moral">Moral</option>
-                                                <option value="Física">Física</option>
-                                                </optgroup>
-                                                
+                                            <select name="fisicaomoral" id="fisicaomoral" class="form-control" onchange="togglePersona()">
+                                                <option value="Física" {{ $generador->fisicaomoral == 'Física' ? 'selected' : '' }}>Física</option>
+                                                <option value="Moral" {{ $generador->fisicaomoral == 'Moral' ? 'selected' : '' }}>Moral</option>
                                             </select>
                                         </div>
                                     </div>
-
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="rfc">RFC</label>
-                                            <input required  type="text" value="{{$generador->rfc}}" name="rfc" class="form-control" id="rfc" placeholder="RFC" aria-invalid="false" >
-                                            
-                                        </div>
-                                    </div>                       
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="usocfdi">Uso de CFDI</label>
-                                            <!--<input  type="text" name="entidad" class="form-control" id="entidad" placeholder="Entidad federativa" aria-invalid="false" >-->
-                                            <select  name="usocfdi" class="form-control" id="usocfdi">
-                                                <option value="{{$generador->usocfdi}}">{{$generador->usocfdi}}</option>
-                                                <optgroup></optgroup>
-                                                <option value="G03 GASTOS EN GENERAL">G03 GASTOS EN GENERAL</option>
-                                                <option value="I01 CONSTRUCCIONES">I01 CONSTRUCCIONES</option>
-                                                <option value="S01 SIN EFECTOS FISCALES">S01 SIN EFECTOS FISCALES</option>
-                                                
-                                            </select>
+                                            <input type="text" name="rfc" class="form-control" id="rfc" maxlength="50" value="{{$generador->rfc}}">
                                         </div>
                                     </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="rfc">Constancia de situación fiscal actualizada</label>
-                                            <div class="input-group">
-                                                <div class="custom-file">                                    
-                                                    <input type="file" class="custom-file-input" id="rfcpdf" value="{{$generador->rfcpdf}}" name="rfcpdf">
-                                                    <label class="custom-file-label" for="rfcpdf">Cambiar Constancia en pdf</label>                                    
-                                                </div>
-                                            </div>
-                                            <font color="red">No cambia hasta guardar.</font>
-                                            <iframe id="inlineFrameExample"
-                                                title="identificación"
-                                                width="100%"
-                                                height="200"
-                                                src="{{asset('documentos/generadores/rfc/empresa').'/'.$generador->rfcpdf.'?ver='.rand(0,10000)}}">
-                                            </iframe>                      
-                                            <a target="_blank" class="btn btn-default" href="{{asset('documentos/generadores/rfc/empresa').'/'.$generador->rfcpdf}}">Ver</a>
-                                        </div>
-                                    </div>  
                                 </div>
 
-                            
+                                <div class="form-group">
+                                    <label for="rfcpdf">RFC (PDF)</label>
+                                    <input type="file" name="rfcpdf" class="form-control" id="rfcpdf" accept="application/pdf">
+                                    @if($generador->rfcpdf)
+                                        <a href="{{ asset('documentos/generadores/rfc/empresa/'.$generador->rfcpdf) }}" target="_blank" class="btn btn-sm btn-default mt-1">
+                                            <i class="fa fa-file-pdf"></i> Ver actual
+                                        </a>
+                                    @endif
+                                </div>
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="calle">Calle</label>
-                                            <input required  type="text" value="{{$generador->calle}}" name="calle" class="form-control" id="calle" placeholder="Calle" aria-invalid="false" >
+                                            <input type="text" name="calle" class="form-control" id="calle" maxlength="500" value="{{$generador->calle}}">
                                         </div>
                                     </div>
-
-                                    <div class="col-md-3">                                    
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="numeroext">Número ext.</label>
-                                            <input required  type="text" value="{{$generador->numeroext}}" name="numeroext" class="form-control" id="numeroext" placeholder="Número ext." aria-invalid="false" >
+                                            <input type="text" name="numeroext" class="form-control" id="numeroext" maxlength="20" value="{{$generador->numeroext}}">
                                         </div>
-                            
                                     </div>
-                                    <div class="col-md-3"> 
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="numeroint">Número int.</label>
-                                            <input required  type="text" value="{{$generador->numeroint}}" name="numeroint" class="form-control" id="numeroint" placeholder="Número ext." aria-invalid="false" >
+                                            <input type="text" name="numeroint" class="form-control" id="numeroint" maxlength="20" value="{{$generador->numeroint}}">
                                         </div>
-                            
                                     </div>
-                                </div>                            
-                            
+                                </div>
 
                                 <div class="form-group">
                                     <label for="colonia">Colonia</label>
-                                    <input required  type="text" value="{{$generador->colonia}}" name="colonia" class="form-control" id="colonia" placeholder="Colonia" aria-invalid="false" >
+                                    <input type="text" name="colonia" class="form-control" id="colonia" maxlength="250" value="{{$generador->colonia}}">
                                 </div>
 
                                 <div class="row">
-
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="entidad">Entidad federativa</label>
-                                            <select required name="entidad" class="form-control" id="entidad">
-                                                <option value="{{$generador->entidad}}">{{$generador->entidad}}</option>
-                                                <option value="Aguascalientes">Aguascalientes</option>
-                                                <option value="Baja California">Baja California</option>
-                                                <option value="Baja California Sur">Baja California Sur</option>
-                                                <option value="Campeche">Campeche</option>
-                                                <option value="Chiapas">Chiapas</option>
-                                                <option value="Chihuahua">Chihuahua</option>
-                                                <option value="CDMX">Ciudad de México</option>
-                                                <option value="Coahuila">Coahuila</option>
-                                                <option value="Colima">Colima</option>
-                                                <option value="Durango">Durango</option>
-                                                <option value="Estado de México">Estado de México</option>
-                                                <option value="Guanajuato">Guanajuato</option>
-                                                <option value="Guerrero">Guerrero</option>
-                                                <option value="Hidalgo">Hidalgo</option>
-                                                <option value="Jalisco">Jalisco</option>
-                                                <option value="Michoacán">Michoacán</option>
-                                                <option value="Morelos">Morelos</option>
-                                                <option value="Nayarit">Nayarit</option>
-                                                <option value="Nuevo León">Nuevo León</option>
-                                                <option value="Oaxaca">Oaxaca</option>
-                                                <option value="Puebla">Puebla</option>
-                                                <option value="Querétaro">Querétaro</option>
-                                                <option value="Quintana Roo">Quintana Roo</option>
-                                                <option value="San Luis Potosí">San Luis Potosí</option>
-                                                <option value="Sinaloa">Sinaloa</option>
-                                                <option value="Sonora">Sonora</option>
-                                                <option value="Tabasco">Tabasco</option>
-                                                <option value="Tamaulipas">Tamaulipas</option>
-                                                <option value="Tlaxcala">Tlaxcala</option>
-                                                <option value="Veracruz">Veracruz</option>
-                                                <option value="Yucatán">Yucatán</option>
-                                                <option value="Zacatecas">Zacatecas</option>
-                                            </select>
+                                            <input type="text" name="entidad" class="form-control" id="entidad" maxlength="100" value="{{$generador->entidad}}">
                                         </div>
                                     </div>
-
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="municipio">Municipio/Alcaldía</label>
-                                            <input required  type="text" value="{{$generador->municipio}}" name="municipio" class="form-control" id="municipio" placeholder="Municipio" aria-invalid="false" >
+                                            <label for="municipio">Municipio</label>
+                                            <input type="text" name="municipio" class="form-control" id="municipio" maxlength="150" value="{{$generador->municipio}}">
                                         </div>
                                     </div>
-
-                                
                                 </div>
-
-                            
-
 
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="cp">CP</label>
-                                            <input required  type="text" value="{{$generador->cp}}" name="cp" class="form-control" id="cp" placeholder="CP" aria-invalid="false" >
+                                            <input type="text" name="cp" class="form-control" id="cp" maxlength="20" value="{{$generador->cp}}">
                                         </div>
                                     </div>
                                 </div>
-                            
 
-                            
-
-                            <div class="row">
+                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="telefono">Teléfono</label>
-                                            <input required  type="text" value="{{$generador->telefono}}" name="telefono" class="form-control" id="telefono" placeholder="Teléfono" aria-invalid="false" >
+                                            <input type="text" name="telefono" class="form-control" id="telefono" maxlength="50" value="{{$generador->telefono}}">
                                         </div>
                                     </div>
-
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="estado">Celular</label>
-                                            <input required  type="text" value="{{$generador->celular}}" name="celular" class="form-control" id="celular" placeholder="Celular" aria-invalid="false" >
+                                            <label for="celular">Celular</label>
+                                            <input type="text" name="celular" class="form-control" id="celular" maxlength="50" value="{{$generador->celular}}">
                                         </div>
                                     </div>
                                 </div>
-
 
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="mail">Correo</label>
-                                            <input required  type="text" value="{{$generador->mail}}" name="mail" class="form-control" id="mail" placeholder="Correo" aria-invalid="false" >
+                                            <input type="text" name="mail" class="form-control" id="mail" maxlength="150" value="{{$generador->mail}}">
                                         </div>
                                     </div>
-
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="mail">Correo</label>
-                                            <input required  type="text" value="{{$generador->mail2}}" name="mail2" class="form-control" id="mail2" placeholder="Correo" aria-invalid="false" >
-                                        </div>
-                                    </div>
-                                </div>
-                
-                            </div>
-                        </div>
-
-                        @if($generador->fisicaomoral=='Moral')
-                        <!--Datos del representante legal en caso de ser persona moral-->
-
-                        <div class="card card-primary" id="representante">
-                            <div class="card-header">
-                                <h3 class="card-title">Representante legal</h3>            
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="nombresrepre">Nombre(s)</label>
-                                            <input required  type="text" value="{{$generador->nombresrepre}}" name="nombresrepre" class="form-control" id="nombresrepre" placeholder="Nombre(s)" aria-invalid="false" >
-                                        </div>
-                                        
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="apellidosrepre">Apellidos</label>
-                                            <input required  type="text" value="{{$generador->apellidosrepre}}" name="apellidosrepre" class="form-control" id="apellidosrepre" placeholder="Apellidos" aria-invalid="false" >
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="nacionalidadrepre">Nacionalidad</label>
-                                            <input required  type="text" value="{{$generador->nacionalidadrepre}}" name="nacionalidadrepre" class="form-control" id="nacionalidadrepre" placeholder="Nacionalidad" aria-invalid="false" >
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="identificacionrepre">Identificación</label>
-                                            <select required class="form-control" name="identificacionrepre" id="identificacionrepre"  aria-invalid="false">
-                                                <option value="{{$generador->identificacionrepre}}">{{$generador->identificacionrepre}}</option>
-                                                <optgroup>
-                                                <option value="INE">INE</option>
-                                                <option value="Pasaporte">Pasaporte</option>
-                                                <option value="Cédula Profesional">Cédula Profesional</option>
-                                                </optgroup>
-                                            </select>
-                                            <div class="input-group">
-                                                <div class="custom-file">                                    
-                                                    <input type="file" class="custom-file-input" id="identificacionreprepdf" value="{{$generador->identificacionreprepdf}}" name="identificacionreprepdf">
-                                                    <label class="custom-file-label" for="identificacionreprepdf">Cambiar identificación en pdf</label>                                    
-                                                </div>
-                                            </div>
-                                            <font color="red">No cambia hasta guardar.</font>
-                                            <iframe id="inlineFrameExample"
-                                                title="identificación"
-                                                width="100%"
-                                                height="200"
-                                                src="{{asset('documentos/generadores/identificaciones/representante').'/'.$generador->identificacionreprepdf.'?ver='.rand(0,10000)}}">
-                                            </iframe>                      
-                                            <a target="_blank" class="btn btn-default" href="{{asset('documentos/generadores/identificaciones/representante').'/'.$generador->identificacionreprepdf}}">Ver</a>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="rfcrepre">RFC</label>
-                                            <input required  type="text" value="{{$generador->rfcrepre}}" name="rfcrepre" class="form-control" id="rfcrepre" placeholder="RFC" aria-invalid="false" >
-                                            <div class="input-group">
-                                                <div class="custom-file">                                    
-                                                    <input type="file" class="custom-file-input" id="rfcreprepdf" value="{{$generador->rfcreprepdf}}" name="rfcreprepdf">
-                                                    <label class="custom-file-label" for="rfcreprepdf">Cambiar RFC en pdf</label>                                    
-                                                </div>
-                                            </div>
-                                            <font color="red">No cambia hasta guardar.</font>
-                                            <iframe id="inlineFrameExample"
-                                                title="identificación"
-                                                width="100%"
-                                                height="200"
-                                                src="{{asset('documentos/generadores/rfc/representante').'/'.$generador->rfcreprepdf.'?ver='.rand(0,10000)}}">
-                                            </iframe>                      
-                                            <a target="_blank" class="btn btn-default" href="{{asset('documentos/generadores/rfc/representante').'/'.$generador->rfcreprepdf}}">Ver</a>
-                                        </div>
-                                    </div>
-
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <!--Datos de la empresa en caso de ser persona moral-->
-
-                        <div class="card card-primary"  id="empresa">
-                            <div class="card-header">
-                                <h3 class="card-title">Empresa</h3>            
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="fechaconst">Fecha Constitución</label>
-                                            <input required  type="date" value="{{$generador->fechaconst}}" name="fechaconst" class="form-control" id="fechaconst" aria-invalid="false" >
-                                        </div>
-                                        
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="numeroactacont">Número de acta constitutiva</label>
-                                            <input required  type="text" value="{{$generador->numeroactacont}}" name="numeroactacont" class="form-control" id="numeroactacont" placeholder="Número de acta constitutiva" aria-invalid="false" >
-                                            <div class="input-group">
-                                                <div class="custom-file">                                    
-                                                    <input type="file" class="custom-file-input" id="numeroactacontpdf" value="{{$generador->numeroactacontpdf}}" name="numeroactacontpdf">
-                                                    <label class="custom-file-label" for="numeroactacontpdf">Cambiar acta en pdf</label>                                    
-                                                </div>
-                                            </div>
-                                            <font color="red">No cambia hasta guardar.</font>
-                                            <iframe id="inlineFrameExample"
-                                                title="identificación"
-                                                width="100%"
-                                                height="200"
-                                                src="{{asset('documentos/generadores/actas/empresa').'/'.$generador->numeroactacontpdf.'?ver='.rand(0,10000)}}">
-                                            </iframe>                      
-                                            <a target="_blank" class="btn btn-default" href="{{asset('documentos/generadores/actas/empresa').'/'.$generador->numeroactacontpdf}}">Ver</a>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="podernotarial">Poder Notarial</label>                                            
-                                            <div class="input-group">
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="podernotarial" value="" name="podernotarial">
-                                                    <label class="custom-file-label" for="podernotarial">Cambiar comprobante en pdf</label>                                    
-                                                </div>
-                                            </div>
-                                                <font color="red">No cambia hasta guardar.</font>
-                                                <iframe id="inlineFrameExample"
-                                                    title="identificación"
-                                                    width="100%"
-                                                    height="200"
-                                                    src="{{asset('documentos/generadores/actas/poder').'/'.$generador->id.'.pdf'.'?ver='.rand(0,10000)}}">
-                                                </iframe>                      
-                                                <a target="_blank" class="btn btn-default" href="{{asset('documentos/generadores/actas/poder').'/'.$generador->id.'.pdf'}}">Ver</a>
-                                        </div>
-                                    </div> 
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="domicilioempresapdf">Comprobante de domicilio fiscal</label>                                            
-                                            <div class="input-group">
-                                                <div class="custom-file">                                    
-                                                    <input type="file" class="custom-file-input" id="domicilioempresapdf" value="{{$generador->domicilioempresapdf}}" name="domicilioempresapdf">
-                                                    <label class="custom-file-label" for="rfcpdf">Cambiar comprobante en pdf</label>                                    
-                                                </div>
-                                            </div>
-                                                <font color="red">No cambia hasta guardar.</font>
-                                                <iframe id="inlineFrameExample"
-                                                    title="identificación"
-                                                    width="100%"
-                                                    height="200"
-                                                    src="{{asset('documentos/generadores/comprobantedomicilio/empresa').'/'.$generador->numeroactacontpdf.'?ver='.rand(0,10000)}}">
-                                                </iframe>                      
-                                                <a target="_blank" class="btn btn-default" href="{{asset('documentos/generadores/comprobantedomicilio/empresa').'/'.$generador->numeroactacontpdf}}">Ver</a>
-                                        </div>
-                                    </div> 
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="notario">Nombre del notario o corredor público</label>
-                                            <input required  type="text" value="{{$generador->notario}}" name="notario" class="form-control" id="notario" placeholder="Nombre del notario o corredor público" aria-invalid="false" >
-                                        </div>
-                                    </div>
-                                                    
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="numeronotaria">Número de notaría o correduría</label>
-                                            <input required  type="text" value="{{$generador->numeronotaria}}" name="numeronotaria" class="form-control" id="numeronotaria" placeholder="Número de notaría o correduría" aria-invalid="false" >
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="entidadnotaria">Entidad de la notaría</label>
-                                            <select required name="entidadnotaria" class="form-control" id="entidadnotaria">
-                                                <option value="{{$generador->entidadnotaria}}">{{$generador->entidadnotaria}}</option>
-                                                <option value="Aguascalientes">Aguascalientes</option>
-                                                <option value="Baja California">Baja California</option>
-                                                <option value="Baja California Sur">Baja California Sur</option>
-                                                <option value="Campeche">Campeche</option>
-                                                <option value="Chiapas">Chiapas</option>
-                                                <option value="Chihuahua">Chihuahua</option>
-                                                <option value="CDMX">Ciudad de México</option>
-                                                <option value="Coahuila">Coahuila</option>
-                                                <option value="Colima">Colima</option>
-                                                <option value="Durango">Durango</option>
-                                                <option value="Estado de México">Estado de México</option>
-                                                <option value="Guanajuato">Guanajuato</option>
-                                                <option value="Guerrero">Guerrero</option>
-                                                <option value="Hidalgo">Hidalgo</option>
-                                                <option value="Jalisco">Jalisco</option>
-                                                <option value="Michoacán">Michoacán</option>
-                                                <option value="Morelos">Morelos</option>
-                                                <option value="Nayarit">Nayarit</option>
-                                                <option value="Nuevo León">Nuevo León</option>
-                                                <option value="Oaxaca">Oaxaca</option>
-                                                <option value="Puebla">Puebla</option>
-                                                <option value="Querétaro">Querétaro</option>
-                                                <option value="Quintana Roo">Quintana Roo</option>
-                                                <option value="San Luis Potosí">San Luis Potosí</option>
-                                                <option value="Sinaloa">Sinaloa</option>
-                                                <option value="Sonora">Sonora</option>
-                                                <option value="Tabasco">Tabasco</option>
-                                                <option value="Tamaulipas">Tamaulipas</option>
-                                                <option value="Tlaxcala">Tlaxcala</option>
-                                                <option value="Veracruz">Veracruz</option>
-                                                <option value="Yucatán">Yucatán</option>
-                                                <option value="Zacatecas">Zacatecas</option>
-                                            </select>
+                                            <label for="mail2">Correo</label>
+                                            <input type="text" name="mail2" class="form-control" id="mail2" maxlength="150" value="{{$generador->mail2}}">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        @endif
 
+                        <div id="bloqueMoral" style="{{ $generador->fisicaomoral == 'Moral' ? '' : 'display:none;' }}">
+                            <div class="card card-primary" id="representante">
+                                <div class="card-header">
+                                    <h3 class="card-title">Representante legal</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="nombresrepre">Nombre(s)</label>
+                                                <input type="text" name="nombresrepre" class="form-control" id="nombresrepre" maxlength="150" value="{{$generador->nombresrepre}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="apellidosrepre">Apellidos</label>
+                                                <input type="text" name="apellidosrepre" class="form-control" id="apellidosrepre" maxlength="150" value="{{$generador->apellidosrepre}}">
+                                            </div>
+                                        </div>
+                                    </div>
 
-                        @if($generador->fisicaomoral=='Física')
-                        <!--En caso de ser persona fisica-->
-                        <div class="card card-primary"   id="fisica">
-                            <div class="card-header">
-                                <h3 class="card-title">Personales</h3>            
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="nacionalidadrepre">Nacionalidad</label>
+                                                <input type="text" name="nacionalidadrepre" class="form-control" id="nacionalidadrepre" maxlength="100" value="{{$generador->nacionalidadrepre}}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="identificacionrepre">Identificación</label>
+                                                <input type="text" name="identificacionrepre" class="form-control" id="identificacionrepre" value="{{$generador->identificacionrepre}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="rfcrepre">RFC</label>
+                                                <input type="text" name="rfcrepre" class="form-control" id="rfcrepre" maxlength="50" value="{{$generador->rfcrepre}}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="identificacionreprepdf">Identificación (PDF)</label>
+                                                <input type="file" name="identificacionreprepdf" class="form-control" id="identificacionreprepdf" accept="application/pdf">
+                                                @if($generador->identificacionreprepdf)
+                                                    <a href="{{ asset('documentos/generadores/identificaciones/representante/'.$generador->identificacionreprepdf) }}" target="_blank" class="btn btn-sm btn-default mt-1">
+                                                        <i class="fa fa-file-pdf"></i> Ver actual
+                                                    </a>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="rfcreprepdf">RFC Representante (PDF)</label>
+                                                <input type="file" name="rfcreprepdf" class="form-control" id="rfcreprepdf" accept="application/pdf">
+                                                @if($generador->rfcreprepdf)
+                                                    <a href="{{ asset('documentos/generadores/rfc/representante/'.$generador->rfcreprepdf) }}" target="_blank" class="btn btn-sm btn-default mt-1">
+                                                        <i class="fa fa-file-pdf"></i> Ver actual
+                                                    </a>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="nombresfisica">Nombre(s)</label>
-                                            <input required  type="text" value="{{$generador->nombresfisica}}" name="nombresfisica" class="form-control" id="nombresfisica" placeholder="Nombre(s)" aria-invalid="false" >
-                                        </div>
-                                        
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="apellidosfisica">Apellidos</label>
-                                            <input required  type="text" value="{{$generador->apellidosfisica}}" name="apellidosfisica" class="form-control" id="apellidosfisica" placeholder="Apellidos" aria-invalid="false" >
-                                        </div>
-                                    </div>
-                                    
+                            <div class="card card-primary" id="empresa">
+                                <div class="card-header">
+                                    <h3 class="card-title">Empresa</h3>
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="nacionalidadfisica">Nacionalidad</label>
-                                            <input required  type="text" value="{{$generador->nacionalidadfisica}}" name="nacionalidadfisica" class="form-control" id="nacionalidadfisica" placeholder="Nacionalidad" aria-invalid="false" >
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="identificacionfisica">Identificación</label>
-                                            <select required class="form-control" name="identificacionfisica" id="identificacionfisica"  aria-invalid="false">
-                                                <option value="{{$generador->identificacionfisica}}">{{$generador->identificacionfisica}}</option>
-                                                <optgroup>
-                                                <option value="INE">INE</option>
-                                                <option value="Pasaporte">Pasaporte</option>
-                                                <option value="Cédula Profesional">Cédula Profesional</option>
-                                                </optgroup>
-                                            </select>
-                                            <div class="input-group">
-                                                <div class="custom-file">                                    
-                                                    <input type="file" class="custom-file-input" id="identificacionfisicapdf" value="{{$generador->identificacionfisicapdf}}" name="identificacionfisicapdf">
-                                                    <label class="custom-file-label" for="identificacionfisicapdf">Cambiar identificación en pdf</label>                                    
-                                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="fechaconst">Fecha Constitución</label>
+                                                <input type="date" name="fechaconst" class="form-control" id="fechaconst" value="{{$generador->fechaconst}}">
                                             </div>
-                                            <font color="red">No cambia hasta guardar.</font><iframe id="inlineFrameExample"
-                                                title="identificación"
-                                                width="100%"
-                                                height="200"
-                                                src="{{asset('documentos/generadores/identificaciones/personafisica').'/'.$generador->identificacionfisicapdf.'?ver='.rand(0,10000)}}">
-                                            </iframe>
-                                            <a target="_blank" class="btn btn-default" href="{{asset('documentos/generadores/identificaciones/personafisica').'/'.$generador->identificacionfisicapdf}}">Ver</a>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="numeroactacont">Número de acta constitutiva</label>
+                                                <input type="text" name="numeroactacont" class="form-control" id="numeroactacont" maxlength="100" value="{{$generador->numeroactacont}}">
+                                            </div>
                                         </div>
                                     </div>
 
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="numeroactacontpdf">Acta constitutiva (PDF)</label>
+                                                <input type="file" name="numeroactacontpdf" class="form-control" id="numeroactacontpdf" accept="application/pdf">
+                                                @if($generador->numeroactacontpdf)
+                                                    <a href="{{ asset('documentos/generadores/actas/empresa/'.$generador->numeroactacontpdf) }}" target="_blank" class="btn btn-sm btn-default mt-1">
+                                                        <i class="fa fa-file-pdf"></i> Ver actual
+                                                    </a>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="podernotarial">Poder Notarial (PDF)</label>
+                                                <input type="file" name="podernotarial" class="form-control" id="podernotarial" accept="application/pdf">
+                                                <a href="{{ asset('documentos/generadores/actas/poder/'.$generador->id.'.pdf') }}" target="_blank" class="btn btn-sm btn-default mt-1">
+                                                    <i class="fa fa-file-pdf"></i> Ver actual
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                    
-                                </div>       
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="domicilioempresapdf">Comprobante de domicilio fiscal (PDF)</label>
+                                                <input type="file" name="domicilioempresapdf" class="form-control" id="domicilioempresapdf" accept="application/pdf">
+                                                @if($generador->domicilioempresapdf)
+                                                    <a href="{{ asset('documentos/generadores/comprobantedomicilio/empresa/'.$generador->domicilioempresapdf) }}" target="_blank" class="btn btn-sm btn-default mt-1">
+                                                        <i class="fa fa-file-pdf"></i> Ver actual
+                                                    </a>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="notario">Nombre del notario o corredor público</label>
+                                                <input type="text" name="notario" class="form-control" id="notario" maxlength="250" value="{{$generador->notario}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="numeronotaria">Número de notaría o correduría</label>
+                                                <input type="text" name="numeronotaria" class="form-control" id="numeronotaria" maxlength="150" value="{{$generador->numeronotaria}}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="entidadnotaria">Entidad de la notaría</label>
+                                                <input type="text" name="entidadnotaria" class="form-control" id="entidadnotaria" maxlength="100" value="{{$generador->entidadnotaria}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        @endif
 
+                        <div id="bloqueFisica" style="{{ $generador->fisicaomoral == 'Física' ? '' : 'display:none;' }}">
+                            <div class="card card-primary" id="fisica">
+                                <div class="card-header">
+                                    <h3 class="card-title">Personales</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="nombresfisica">Nombre(s)</label>
+                                                <input type="text" name="nombresfisica" class="form-control" id="nombresfisica" maxlength="150" value="{{$generador->nombresfisica}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="apellidosfisica">Apellidos</label>
+                                                <input type="text" name="apellidosfisica" class="form-control" id="apellidosfisica" maxlength="150" value="{{$generador->apellidosfisica}}">
+                                            </div>
+                                        </div>
+                                    </div>
 
-                    </div><!--End body-->
-                    <div class="modal-footer" >
-                        <button type="submit" id="guardar" class="btn  btn-info float-right">Guardar</button>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="nacionalidadfisica">Nacionalidad</label>
+                                                <input type="text" name="nacionalidadfisica" class="form-control" id="nacionalidadfisica" maxlength="100" value="{{$generador->nacionalidadfisica}}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="identificacionfisica">Identificación</label>
+                                                <input type="text" name="identificacionfisica" class="form-control" id="identificacionfisica" value="{{$generador->identificacionfisica}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="identificacionfisicapdf">Identificación (PDF)</label>
+                                                <input type="file" name="identificacionfisicapdf" class="form-control" id="identificacionfisicapdf" accept="application/pdf">
+                                                @if($generador->identificacionfisicapdf)
+                                                    <a href="{{ asset('documentos/generadores/identificaciones/personafisica/'.$generador->identificacionfisicapdf) }}" target="_blank" class="btn btn-sm btn-default mt-1">
+                                                        <i class="fa fa-file-pdf"></i> Ver actual
+                                                    </a>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-theme-success text-white">
+                            <i class="fa fa-save"></i> Guardar
+                        </button>
                     </div>
                 </form>
-                <div>
-                    
-                   
-                </div>
+
             </div>
-            
-          
-        </div><!-- /.container-fluid -->
+
+        </div>
     </section>
-    <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.1.0
-    </div>
-  </footer>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
+  @include('asociados.footer')
 </div>
-<!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="{{asset('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-  $.widget.bridge('uibutton', $.ui.button);
+    function togglePersona() {
+        var tipo = document.getElementById('fisicaomoral').value;
+        var divMoral = document.getElementById('bloqueMoral');
+        var divFisica = document.getElementById('bloqueFisica');
 
- 
+        if (tipo === 'Moral') {
+            divMoral.style.display = 'block';
+            divFisica.style.display = 'none';
+        } else {
+            divMoral.style.display = 'none';
+            divFisica.style.display = 'block';
+        }
+    }
 </script>
-<!-- Bootstrap 4 -->
-<script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<!-- ChartJS -->
-<script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
-<!-- Sparkline -->
-<script src="{{asset('plugins/sparklines/sparkline.js')}}"></script>
-<!-- JQVMap -->
-<script src="{{asset('plugins/jqvmap/jquery.vmap.min.js')}}"></script>
-<script src="{{asset('plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
-<!-- jQuery Knob Chart -->
-<script src="{{asset('plugins/jquery-knob/jquery.knob.min.js')}}"></script>
-<!-- daterangepicker -->
-<script src="{{asset('plugins/moment/moment.min.js')}}"></script>
-<script src="{{asset('plugins/daterangepicker/daterangepicker.js')}}"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="{{asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
-<!-- Summernote -->
-<script src="{{asset('plugins/summernote/summernote-bs4.min.js')}}"></script>
-<!-- overlayScrollbars -->
-<script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
-<!-- AdminLTE App, funcion de sidebar -->
-<script src="{{asset('dist/js/adminlte.js')}}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{asset('dist/js/demo.js')}}"></script>
-<script>
-$(function () {
-  bsCustomFileInput.init();
-});
-</script>
-@include('asociados.footer')
 </body>
 </html>
