@@ -103,6 +103,10 @@ function GetNombre(){
     if(Auth::guard('directores')->check()){
         return Auth::guard('directores')->user()->director;
     }  
+
+    if(Auth::guard('asociados')->check()){
+        return Auth::guard('asociados')->user()->asociado;
+    }  
     
     if(Auth::guard('administradores')->check()){
         return Auth::guard('administradores')->user()->administrador;

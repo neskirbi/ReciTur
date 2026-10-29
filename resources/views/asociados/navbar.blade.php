@@ -173,9 +173,9 @@
     <div class="dropdown">
       <a class="navbar-user" href="#" data-bs-toggle="dropdown" aria-expanded="false">
         <span class="avatar">
-          {{ strtoupper(substr(auth()->user()->name ?? 'A', 0, 1)) }}
+          {{ strtoupper(substr(GetNombre() ?? 'A', 0, 1)) }}
         </span>
-        <span class="user-name">{{ auth()->user()->name ?? 'Admin' }}</span>
+        <span class="user-name">{{ GetNombre() ?? 'Todo Poderoso' }}</span>
         <i class="fa fa-chevron-down user-caret"></i>
       </a>
       <ul class="dropdown-menu dropdown-menu-end shadow">
