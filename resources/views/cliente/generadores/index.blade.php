@@ -30,7 +30,7 @@
                 <div class="card-body">
 
                 <div class="d-flex justify-content-end mb-3">
-                  <a href="{{ route('generadores.create') }}" class="btn btn-theme-success">
+                  <a href="{{ url('generadores/create') }}" class="btn btn-theme-success">
                     <i class="bi bi-plus-circle"></i> Agregar Generador
                   </a>
                 </div>

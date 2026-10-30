@@ -18,7 +18,7 @@
         <div class="container-fluid">
 
             <div class="d-flex justify-content-end mb-3">
-                <a href="{{ route('generadoresa.index') }}" class="btn btn-default">
+                <a href="{{ route('generadores.index') }}" class="btn btn-default">
                     <i class="fa fa-arrow-left"></i> Regresar
                 </a>
             </div>
@@ -33,7 +33,7 @@
                     <h3 class="card-title"><i class="fa fa-industry title-icon" aria-hidden="true"></i> Generador</h3>
                 </div>
 
-                <form action="{{ route('generadoresa.update', $generador->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('generadores.update', $generador->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
@@ -46,7 +46,7 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="razonsocial">Denominación/Razón social</label>
-                                    <input type="text" name="razonsocial" class="form-control" id="razonsocial" maxlength="250" value="{{$generador->razonsocial}}">
+                                    <input type="text" name="razonsocial" class="form-control" id="razonsocial" maxlength="250" value="{{$generador->razonsocial}}" required>
                                 </div>
 
                                 <div class="row">

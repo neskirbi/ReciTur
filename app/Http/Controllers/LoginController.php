@@ -41,7 +41,7 @@ class LoginController extends Controller
         {
             Auth::guard('asociados')->login($asociado);
 
-            return redirect('asociados/generadoresa');
+            return redirect('asociados/generadores');
         }
         return redirect('acceso')->with('error', '¡Error en los los datos!');
     }
