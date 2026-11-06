@@ -29,3 +29,4 @@ Route::post('MunicipiosApi','App\Http\Controllers\Api\ApiController@MunicipiosAp
 
 Route::post('GetUnidadesClasificacion','App\Http\Controllers\Api\Clientes\ApiController@GetUnidadesClasificacion');
 
+Route::post('GenerarTemp/{tabla}/{id}','App\Http\Controllers\LoginController@GenerarTemp');

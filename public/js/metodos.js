@@ -1,10 +1,15 @@
 
 function Url(){
-    if(window.location.origin.includes('localhost') || window.location.origin.includes('192.168')){
-        return window.location.origin+'/Recitur/public/';
-    }else{
-       return window.location.origin+'/';
-    }
+    const origin = window.location.origin;
+    const esLocal = origin.includes('localhost')
+        || origin.includes('127.0.0.1')
+        || /^https?:\/\/(192\.168\.|10\.|172\.(1[6-9]|2\d|3[01])\.)/.test(origin);
+
+    if (!esLocal) return origin + '/';
+
+    // En local, toma el primer segmento del path (ej. /Recitur/public/ -> Recitur)
+    const segmento = window.location.pathname.split('/').filter(Boolean)[0];
+    return origin + '/' + (segmento ? segmento + '/public/' : '');
 }
 
 function AppKey(){
@@ -3077,5 +3082,41 @@ function GetUnidadesClasificacion(_this){
     }).fail(function(xhr, status, error) {
         alert(error);
         
+    });
+}
+
+/**
+ * Genera un temp (token temporal) para cualquier entidad con columna `temp`.
+ *
+ * @param {HTMLElement} _this   Botón que dispara la acción
+ * @param {string}      id      ID del registro
+ * @param {string}      tabla   Nombre de la tabla / entidad (ej. 'recolectores')
+ * @param {string}      input   Selector del input donde se mostrará el temp (ej. '#temp')
+ */
+function GenerarTemp(_this, id, tabla, input){
+    _this = $(_this);
+    _this.prop('disabled', true);
+
+    $.ajax({
+        headers: { "APP-KEY": AppKey() },
+        method: 'post',
+        url: Url() + "api/GenerarTemp/" + tabla + "/" + id,
+        data: {},
+        context: document.body
+    }).done(function(data) {
+        _this.prop('disabled', false);
+
+        var temp = (typeof data === 'object' && data.temp) ? data.temp : data;
+
+        if (typeof data === 'object' && data.success === false) {
+            alert(data.message || 'No se pudo generar el token temporal.');
+            return;
+        }
+
+        $(input).val(temp);
+        alert('Token temporal generado correctamente.');
+    }).fail(function() {
+        _this.prop('disabled', false);
+        alert('Error al generar el token temporal.');
     });
 }

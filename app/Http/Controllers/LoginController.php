@@ -18,7 +18,7 @@ use App\Models\Director;
 use App\Models\Sedema;
 use App\Models\Recolector;
 use App\Models\Transportista;
- 
+ use Illuminate\Support\Str;
 
 
 
@@ -491,6 +491,51 @@ class LoginController extends Controller
         return view('mails.confirmado');
 
     }
+
+    public function GenerarTemp($tabla, $id)
+{
+
+
+    $tablasPermitidas = [
+        'administradores',
+        'asociados',
+        'choferes',
+        'clientes',
+        'directores',
+        'finanzas',
+        'inspectores',
+        'recepciones',
+        'recolectores',
+        'sedemas',
+        'soporte',
+        'transportistas',
+    ];
+
+    if (!in_array($tabla, $tablasPermitidas)) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Tabla no permitida.'
+        ], 400);
+    }
+
+    $registro = DB::table($tabla)->where('id', $id)->first();
+
+    if (!$registro) {
+        return response()->json([
+            'success' => false,
+            'message' => 'El registro no existe.'
+        ], 404);
+    }
+
+    $temp = Str::random(20);
+
+    DB::table($tabla)->where('id', $id)->update(['temp' => $temp]);
+
+    return response()->json([
+        'success' => true,
+        'temp'    => $temp
+    ], 200);
+}
 
         
 }

@@ -36,8 +36,6 @@
                                         @csrf
                                         @method('PUT')
 
-                                    
-
                                         <div class="row mb-3">
                                             <div class="col-md-6">
                                                 <label for="nombres" class="form-label fw-bold">Nombres</label>
@@ -64,9 +62,15 @@
 
                                             </div>
                                             <div class="col-md-6">
-                                                <label for="pass" class="form-label fw-bold">Nueva Contraseña (opcional)</label>
-                                                <input type="text" class="form-control" id="pass" name="pass" value="{{ old('pass', $recolector->pass ?? '') }}" required>
-                                                <small class="text-muted">Déjalo en blanco si no deseas cambiarla.</small>
+                                                <label for="temp" class="form-label fw-bold">Contraseña temporal</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="temp" name="temp" value="{{ $recolector->temp ?? '' }}" readonly>
+                                                    <button type="button" class="btn btn-outline-theme-warning"
+                                                            onclick="GenerarTemp(this, '{{ $recolector->id }}', 'recolectores', '#temp')">
+                                                        <i class="fa fa-key me-1"></i> Generar
+                                                    </button>
+                                                </div>
+                                                <small class="text-muted">Se genera un token temporal para que el usuario restablezca su contraseña.</small>
                                             </div>
                                         </div>
 

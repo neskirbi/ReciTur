@@ -52,37 +52,37 @@ class RecolectorController extends Controller
      * @return \Illuminate\Http\Response
      */ 
     public function store(Request $request)
-    {
-        //return $request;
-        $correo = BuscarCorreo($request->mail);
-        if($correo !=''){
-            return Redirect::back()->with('error','El correo ya fue registrado anteriormente en '.$correo);
-        }
-
-        
-        $recolector=new Recolector();
-
-        $recolector->id=GetUuid();        
-        $recolector->nombres=$request->nombres;
-        $recolector->apellidos=$request->apellidos;
-        $recolector->mail=$request->mail;                        
-        $recolector->telefono=$request->telefono;             
-        $recolector->pass=$request->pass;
-
-        if($request->telefono!=null){
-            //$response=EnviarMensaje("+52".$request->telefono,'Su numero se ha registrado en reci-trash.mx, para confirmar el registro de su número vaya al siguiente link reci-trash.mx/ConfirmacionRecolector/'.$recolector->id.' .');
-            /*if(intval($response)>=400){
-                return Redirect::back()->with('error','Error, el numero es invalido.');
-            }*/
-        }
-
-
-        if($recolector->save()){
-            return redirect('recolectores')->with('success','Registro guardado.');
-        }else{
-            return Redirect::back()->with('error','Error al guardar el registro.');
-        }
+{
+    //return $request;
+    $correo = BuscarCorreo($request->mail);
+    if($correo !=''){
+        return Redirect::back()->with('error','El correo ya fue registrado anteriormente en '.$correo);
     }
+
+    $recolector=new Recolector();
+
+    $recolector->id=GetUuid();        
+    $recolector->nombres=$request->nombres;
+    $recolector->apellidos=$request->apellidos;
+    $recolector->mail=$request->mail;                        
+    $recolector->telefono=$request->telefono;             
+    $recolector->pass='';
+    $recolector->temp=\Illuminate\Support\Str::random(20);
+
+    if($request->telefono!=null){
+        //$response=EnviarMensaje("+52".$request->telefono,'Su numero se ha registrado en reci-trash.mx, para confirmar el registro de su número vaya al siguiente link reci-trash.mx/ConfirmacionRecolector/'.$recolector->id.' .');
+        /*if(intval($response)>=400){
+            return Redirect::back()->with('error','Error, el numero es invalido.');
+        }*/
+    }
+
+
+    if($recolector->save()){
+        return redirect('recolectores')->with('success','Registro guardado.');
+    }else{
+        return Redirect::back()->with('error','Error al guardar el registro.');
+    }
+}
 
     /**
      * Display the specified resource.

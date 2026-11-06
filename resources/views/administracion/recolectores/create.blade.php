@@ -35,8 +35,6 @@
                                     <form action="{{ url('recolectores' ) }}" method="POST">
                                         @csrf
 
-                                    
-
                                         <div class="row mb-3">
                                             <div class="col-md-6">
                                                 <label for="nombres" class="form-label fw-bold">Nombres</label>
@@ -60,11 +58,6 @@
                                             <div class="col-md-6">
                                                 <label for="mail" class="form-label fw-bold">Correo electrónico</label>
                                                 <input type="email" class="form-control" id="mail" name="mail" value="" data-mail="" onkeyup="Cambio(this);" required>
-
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="pass" class="form-label fw-bold">Nueva Contraseña</label>
-                                                <input type="text" class="form-control" id="pass" name="pass" value="" required>
                                             </div>
                                         </div>
 
