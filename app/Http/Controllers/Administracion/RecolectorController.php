@@ -155,7 +155,28 @@ class RecolectorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $recolector = Recolector::find($id);
+
+        if (!$recolector) {
+            return response()->json([
+                'success' => false,
+                'message' => 'El recolector no existe.'
+            ], 404);
+        }
+
+        try {
+            $recolector->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Recolector eliminado correctamente.'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error al eliminar el recolector: ' . $e->getMessage()
+            ], 500);
+        }
     }
 
     function BorrarRecolector($id){

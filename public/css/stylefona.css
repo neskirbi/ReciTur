@@ -194,3 +194,122 @@
     border-color: var(--theme-primary);
 }
 
+/* Botón outline danger reutilizado para "Eliminar" en tarjetas */
+.btn-outline-theme-danger {
+  background-color: transparent;
+  border: 2px solid var(--theme-danger);
+  color: var(--theme-danger);
+}
+.btn-outline-theme-danger:hover {
+  background-color: var(--theme-danger);
+  color: #fff;
+}
+
+/* Ajuste opcional para que los botones de las tarjetas se vean parejos */
+.btn-block {
+  flex: 1 1 auto;
+}
+
+
+/* ===== Tarjeta de recolector rediseñada ===== */
+.recolector-card {
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid #ececec;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.recolector-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(105, 25, 50, 0.15);
+  border-color: rgba(105, 25, 50, 0.25);
+}
+
+.recolector-card__header {
+  background: linear-gradient(135deg, var(--theme-primary) 0%, var(--theme-danger) 100%);
+  padding: 22px 0 14px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.recolector-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 3px solid rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.6rem;
+  backdrop-filter: blur(4px);
+}
+
+.recolector-card__body {
+  padding: 14px 14px 8px;
+  text-align: center;
+  flex: 1 1 auto;
+}
+
+.recolector-card__name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #2b2b2b;
+  margin: 0 0 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.recolector-card__badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--theme-success);
+  background: rgba(23, 109, 74, 0.1);
+  border: 1px solid rgba(23, 109, 74, 0.25);
+  padding: 2px 10px;
+  border-radius: 50px;
+}
+
+.recolector-card__badge .fa-circle {
+  font-size: 7px;
+  vertical-align: middle;
+}
+
+.recolector-card__actions {
+  display: flex;
+  gap: 8px;
+  padding: 10px 14px 14px;
+  border-top: 1px solid #f1f1f1;
+  margin-top: auto;
+}
+
+.recolector-card__btn {
+  flex: 1 1 0;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 8px;
+  border-radius: 8px;
+  white-space: nowrap;       /* Evita que el texto se quiebre */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+/* Botón outline danger (para "Eliminar") */
+.btn-outline-theme-danger {
+  background-color: transparent;
+  border: 2px solid var(--theme-danger);
+  color: var(--theme-danger);
+}
+.btn-outline-theme-danger:hover {
+  background-color: var(--theme-danger);
+  color: #fff;
+}
