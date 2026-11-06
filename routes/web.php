@@ -119,6 +119,11 @@ Route::post('GuardarPass/{id}','App\Http\Controllers\LoginController@GuardarPass
 Route::post('loginasociado', 'App\Http\Controllers\LoginController@authenticateasociado');
 Route::post('loginadmin', 'App\Http\Controllers\LoginController@authenticateadmin');
 
+Route::get('NuevaPass/{tabla}/{id}','App\Http\Controllers\LoginController@NuevaPass');
+Route::post('GuardarNuevaPass/{tabla}/{id}','App\Http\Controllers\LoginController@GuardarNuevaPass');
+
+
+
 
 Route::get('loginpage',function(){
     return view('loginpage');

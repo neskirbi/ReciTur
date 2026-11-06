@@ -10,7 +10,7 @@ use Kreait\Firebase\Factory;
 
 function Version(){
     return rand(1,100);
-    return 5;
+    return 6;
 }
 
 function GetSiglas($opcion){

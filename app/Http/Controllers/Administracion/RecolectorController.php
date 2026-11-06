@@ -67,7 +67,7 @@ class RecolectorController extends Controller
     $recolector->mail=$request->mail;                        
     $recolector->telefono=$request->telefono;             
     $recolector->pass='';
-    $recolector->temp=\Illuminate\Support\Str::random(20);
+    $recolector->temp=\Illuminate\Support\Str::random(6);
 
     if($request->telefono!=null){
         //$response=EnviarMensaje("+52".$request->telefono,'Su numero se ha registrado en reci-trash.mx, para confirmar el registro de su número vaya al siguiente link reci-trash.mx/ConfirmacionRecolector/'.$recolector->id.' .');
@@ -133,7 +133,7 @@ class RecolectorController extends Controller
         //No se entra por que no validamos celulares ahorita 
         if(0)
         if($request->telefono!=null){
-            $response=EnviarMensaje("+52".$request->telefono,'Su numero se ha registrado en reci-trash.mx, para confirmar el registro de su número vaya al siguiente link reci-trash.mx/ConfirmacionRecolector/'.$recolector->id.' .');
+            //$response=EnviarMensaje("+52".$request->telefono,'Su numero se ha registrado en reci-trash.mx, para confirmar el registro de su número vaya al siguiente link reci-trash.mx/ConfirmacionRecolector/'.$recolector->id.' .');
             if(intval($response)>=400){
                 return Redirect::back()->with('error','Error, el numero es invalido.');
             }

@@ -47,98 +47,112 @@ class LoginController extends Controller
     }
 
     function Login(Request $request){
-        
-        $director = Director::where([
-            'mail' => $request->mail
-        ])->first();
 
-        if($director){
-            if(!password_verify($request->pass,$director->pass)){
-                return redirect('loginpage')->with('error', '¡Error de contraseña!');
-            }
-            Auth::guard('directores')->login($director);
-            return redirect('home');
+    // Si el usuario tiene un temp generado, se ignora la contraseña
+    $conTemp = [
+        'directores'      => Director::class,
+        'administradores' => Administrador::class,
+        'clientes'        => Cliente::class,
+        'transportistas'  => Transportista::class,
+        'sedemas'         => Sedema::class,
+        'recolectores'    => Recolector::class,
+        'inspectores'     => Inspector::class,
+    ];
+
+    foreach ($conTemp as $tabla => $modelo) {
+        $registro = $modelo::where('mail', $request->mail)->first();
+
+        if ($registro && !empty($registro->temp)) {
+            return redirect('NuevaPass/' . $tabla . '/' . $registro->id);
         }
-
-        $administrador = Administrador::where([
-            'mail' => $request->mail
-        ])->first();
-
-        if($administrador){
-            if(!password_verify($request->pass,$administrador->pass)){
-                return redirect('loginpage')->with('error', '¡Error de contraseña!');
-            }
-            Auth::guard('administradores')->login($administrador);    
-            return redirect('home');
-        }
-
-        $cliente = Cliente::where([
-            'mail' => $request->mail
-        ])->first();
-
-        if($cliente){
-            if(!password_verify($request->pass,$cliente->pass)){
-                return redirect('loginpage')->with('error', '¡Error de contraseña!');
-            }
-            Auth::guard('clientes')->login($cliente);
-            return redirect('home');
-        }
-
-        $transportista = Transportista::where([
-            'mail' => $request->mail
-        ])->first();
-
-        if($transportista){
-            if(!password_verify($request->pass,$transportista->pass)){
-                return redirect('loginpage')->with('error', '¡Error de contraseña!');
-            }
-            Auth::guard('transportistas')->login($transportista);
-            return redirect('home');
-        }
-
-        $sedema = Sedema::where([
-            'mail' => $request->mail
-        ])->first();
-
-        if($sedema){
-            if($request->pass!=$sedema->pass){
-                return redirect('loginpage')->with('error', '¡Error de contraseña!');
-            }
-            Auth::guard('sedemas')->login($sedema);
-            return redirect('home');
-        }
-
-
-        $recolector = Recolector::where([
-            'mail' => $request->mail
-        ])->first();
-
-        if($recolector){
-            if($request->pass!=$recolector->pass){
-                return redirect('loginpage')->with('error', '¡Error de contraseña!');
-            }
-            Auth::guard('recolectores')->login($recolector);
-            return redirect('home');
-        }
-
-        
-
-
-        $inspector = Inspector::where([
-            'mail' => $request->mail
-        ])->first();
-
-        if($inspector){
-            if(!password_verify($request->pass,$inspector->pass)){
-                return redirect('loginpage')->with('error', '¡Error de contraseña!');
-            }
-            Auth::guard('inspectores')->login($inspector);
-            return redirect('home');
-        }
-
-
-        return redirect('loginpage')->with('error', '¡Correo no registrado!');
     }
+
+    $director = Director::where([
+        'mail' => $request->mail
+    ])->first();
+
+    if($director){
+        if(!password_verify($request->pass,$director->pass)){
+            return redirect('loginpage')->with('error', '¡Error de contraseña!');
+        }
+        Auth::guard('directores')->login($director);
+        return redirect('home');
+    }
+
+    $administrador = Administrador::where([
+        'mail' => $request->mail
+    ])->first();
+
+    if($administrador){
+        if(!password_verify($request->pass,$administrador->pass)){
+            return redirect('loginpage')->with('error', '¡Error de contraseña!');
+        }
+        Auth::guard('administradores')->login($administrador);    
+        return redirect('home');
+    }
+
+    $cliente = Cliente::where([
+        'mail' => $request->mail
+    ])->first();
+
+    if($cliente){
+        if(!password_verify($request->pass,$cliente->pass)){
+            return redirect('loginpage')->with('error', '¡Error de contraseña!');
+        }
+        Auth::guard('clientes')->login($cliente);
+        return redirect('home');
+    }
+
+    $transportista = Transportista::where([
+        'mail' => $request->mail
+    ])->first();
+
+    if($transportista){
+        if(!password_verify($request->pass,$transportista->pass)){
+            return redirect('loginpage')->with('error', '¡Error de contraseña!');
+        }
+        Auth::guard('transportistas')->login($transportista);
+        return redirect('home');
+    }
+
+    $sedema = Sedema::where([
+        'mail' => $request->mail
+    ])->first();
+
+    if($sedema){
+        if($request->pass!=$sedema->pass){
+            return redirect('loginpage')->with('error', '¡Error de contraseña!');
+        }
+        Auth::guard('sedemas')->login($sedema);
+        return redirect('home');
+    }
+
+    $recolector = Recolector::where([
+        'mail' => $request->mail
+    ])->first();
+
+    if($recolector){
+        if(!password_verify($request->pass,$recolector->pass)){
+            return redirect('loginpage')->with('error', '¡Error de contraseña!');
+        }
+        Auth::guard('recolectores')->login($recolector);
+        return redirect('home');
+    }
+
+    $inspector = Inspector::where([
+        'mail' => $request->mail
+    ])->first();
+
+    if($inspector){
+        if(!password_verify($request->pass,$inspector->pass)){
+            return redirect('loginpage')->with('error', '¡Error de contraseña!');
+        }
+        Auth::guard('inspectores')->login($inspector);
+        return redirect('home');
+    }
+
+    return redirect('loginpage')->with('error', '¡Correo no registrado!');
+}
 
 
     public function logout(){
@@ -492,10 +506,8 @@ class LoginController extends Controller
 
     }
 
-    public function GenerarTemp($tabla, $id)
+   public function GenerarTemp($tabla, $id)
 {
-
-
     $tablasPermitidas = [
         'administradores',
         'asociados',
@@ -527,7 +539,9 @@ class LoginController extends Controller
         ], 404);
     }
 
-    $temp = Str::random(20);
+    do {
+        $temp = Str::random(6);
+    } while (DB::table($tabla)->where('temp', $temp)->exists());
 
     DB::table($tabla)->where('id', $id)->update(['temp' => $temp]);
 
@@ -537,5 +551,79 @@ class LoginController extends Controller
     ], 200);
 }
 
-        
+    
+
+/**
+ * Muestra la vista para ingresar la nueva contraseña cuando el usuario tiene `temp`.
+ */
+public function NuevaPass($tabla, $id)
+{
+    $tablasPermitidas = [
+        'directores'      => Director::class,
+        'administradores' => Administrador::class,
+        'clientes'        => Cliente::class,
+        'transportistas'  => Transportista::class,
+        'sedemas'         => Sedema::class,
+        'recolectores'    => Recolector::class,
+        'inspectores'     => Inspector::class,
+    ];
+
+    if (!isset($tablasPermitidas[$tabla])) {
+        return redirect('loginpage')->with('error', 'Entidad no válida.');
+    }
+
+    $modelo   = $tablasPermitidas[$tabla];
+    $registro = $modelo::find($id);
+
+    if (!$registro || empty($registro->temp)) {
+        return redirect('loginpage')->with('error', 'El enlace no es válido o ya fue utilizado.');
+    }
+
+    return view('auth.nuevapass', [
+        'tabla'    => $tabla,
+        'id'       => $id,
+        'registro' => $registro,
+    ]);
+}
+
+/**
+ * Guarda la nueva contraseña, limpia el `temp` y redirige al login.
+ */
+public function GuardarNuevaPass(Request $request, $tabla, $id)
+{
+    $request->validate([
+        'pass' => 'required|min:6|confirmed',
+    ]);
+
+    $tablasPermitidas = [
+        'directores'      => Director::class,
+        'administradores' => Administrador::class,
+        'clientes'        => Cliente::class,
+        'transportistas'  => Transportista::class,
+        'sedemas'         => Sedema::class,
+        'recolectores'    => Recolector::class,
+        'inspectores'     => Inspector::class,
+    ];
+
+    if (!isset($tablasPermitidas[$tabla])) {
+        return redirect('loginpage')->with('error', 'Entidad no válida.');
+    }
+
+    $modelo   = $tablasPermitidas[$tabla];
+    $registro = $modelo::find($id);
+
+    if (!$registro || empty($registro->temp)) {
+        return redirect('loginpage')->with('error', 'El enlace no es válido o ya fue utilizado.');
+    }
+
+    // Se guarda hasheada, consistente con password_verify del Login
+    $registro->pass = password_hash($request->pass, PASSWORD_DEFAULT);
+    $registro->temp = null;
+
+    if ($registro->save()) {
+        return redirect('loginpage')->with('success', 'Contraseña actualizada correctamente. Ya puede iniciar sesión.');
+    }
+
+    return redirect()->back()->with('error', 'No se pudo guardar la contraseña. Intente nuevamente.');
+}
 }
