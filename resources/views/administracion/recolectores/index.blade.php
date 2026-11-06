@@ -51,7 +51,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         @foreach($recolectores as $recolector)
-                                        <div class="col-md-4 col-lg-3 col-xl-2 mb-4">
+                                        <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
                                             <div class="recolector-card h-100">
                                                 <div class="recolector-card__header">
                                                     <div class="recolector-avatar">
@@ -70,13 +70,13 @@
                                                 <div class="recolector-card__actions">
                                                     <a href="{{ url('recolectores') }}/{{$recolector->id }}"
                                                        class="btn btn-sm btn-outline-theme-success recolector-card__btn">
-                                                        Ver
+                                                        <i class="fa fa-eye me-1"></i> Ver
                                                     </a>
                                                     <button type="button"
                                                             class="btn btn-sm btn-outline-theme-danger recolector-card__btn btn-eliminar-recolector"
                                                             data-id="{{ $recolector->id }}"
                                                             data-nombre="{{ $recolector->nombres }} {{ $recolector->apellidos }}">
-                                                        Eliminar
+                                                        <i class="fa fa-trash me-1"></i> Eliminar
                                                     </button>
                                                 </div>
                                             </div>
