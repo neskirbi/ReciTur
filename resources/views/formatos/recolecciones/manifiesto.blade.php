@@ -205,50 +205,6 @@
             </td>
         </tr>
 
-        <!-- Sección Destino -->
-        <tr>
-            <td class="bordes icon-cell"><img class="img-icono" src="{{ isset($vista) ? asset('images/formatos/manifiesto/destino.png') : public_path('images/formatos/manifiesto/destino.png') }}" alt="Destino"></td>
-            <td class="bordes">
-                <table>
-                    <tr>
-                        <td style="width: 60%;">NOMBRE DE LA EMPRESA DESTINATARIA:</td>
-                        <td style="width: 40%;" class="bolder">{{$centro->nombreEmpresa }}</td>
-                    </tr>
-                    <tr>
-                        <td>AUTORIZACIÓN RAMIR:</td>
-                        <td class="bolder">{{$centro->autorizacionRamir }}</td>
-                    </tr>
-                    <tr>
-                        <td>DOMICILIO FISCAL:</td>
-                        <td class="bolder">{{$centro->domicilioFiscal  }}</td>
-                    </tr>
-                    <tr>
-                        <td>TELÉFONO:</td>
-                        <td class="bolder">{{$centro->telefono }}</td>
-                    </tr>
-                </table>
-
-                <hr>
-
-                <div class="text-center">RECIBÍ LOS RESIDUOS DESCRITOS EN EL MANIFIESTO.</div>
-                <br>
-                
-                <table>
-                    <tr>
-                        <td style="width: 15%;">NOMBRE:</td>
-                        <td style="width: 35%;" class="bolder">{{$centro->nombreReceptor ?? 'N/A'}}</td>
-                        <td style="width: 15%;">FIRMA:</td>
-                        <td style="width: 35%;"></td>
-                    </tr>
-                    <tr>
-                        <td>CARGO:</td>
-                        <td class="bolder">Recepcion</td>
-                        <td>FECHA DE RECEPCIÓN:</td>
-                        <td class="bolder">{{FechaFormateada($recoleccion->created_at)}}</td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
     </table>
 </body>
 </html>
