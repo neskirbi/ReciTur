@@ -329,7 +329,7 @@
                                         </td>
                                         <td>
                                             <div class="card-label">Volumen Total Gestionado:</div>
-                                            <div class="card-value">{{ number_format($volumenTotal, 2) }} m³</div>
+                                            <div class="card-value">{{ number_format($volumenTotal, 2) }} {{ $unidadTotal }}</div>
                                         </td>
                                     </tr>
                                 </table>
@@ -357,7 +357,7 @@
                                 @forelse($desgloseResiduos as $item)
                                     <div class="desglose-item">
                                         <span class="nombre">{{ $item['nombre'] }}</span><br>
-                                        <span class="volumen">{{ number_format($item['volumen'], 2) }} m³</span>
+                                        <span class="volumen">{{ number_format($item['volumen'], 2) }} {{ $item['unidades'] }}</span>
                                     </div>
                                 @empty
                                     <div class="desglose-item">

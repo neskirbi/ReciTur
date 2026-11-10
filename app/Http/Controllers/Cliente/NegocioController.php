@@ -309,19 +309,16 @@ class NegocioController extends Controller
         }
     }
 
-    public function ConstanciaGestionRCD($id)
+   public function ConstanciaGestionRCD($id)
 {
     try {
-        // Obtener el negocio
         $negocio = Negocio::find($id);
         if (!$negocio) {
             return redirect()->back()->with('error', 'No se encontró el negocio.');
         }
 
-        // Obtener el generador
         $generador = Generador::find($negocio->id_generador);
 
-        // Obtener todas las recolecciones del negocio con su detalle
         $recolecciones = Cliente::join('generadores', 'generadores.id_cliente', '=', 'clientes.id')
             ->join('negocios', 'negocios.id_generador', '=', 'generadores.id')
             ->join('recolecciones', 'recolecciones.id_negocio', '=', 'negocios.id')
@@ -343,49 +340,62 @@ class NegocioController extends Controller
             ->orderBy('recolecciones.created_at', 'asc')
             ->get();
 
-        // Volumen total y desglose por tipo de residuo
+        // Volumen total y desglose por tipo de residuo (respetando unidades)
         $volumenTotal = 0;
         $desgloseTemp = [];
+        $unidadesContador = [];
 
         foreach ($recolecciones as $r) {
             $cantidadTotal = $r->cantidad * $r->multiplicador;
             $volumenTotal += $cantidadTotal;
 
-            $residuo = $r->residuo ?: 'Sin clasificar';
+            $residuo  = $r->residuo ?: 'Sin clasificar';
+            $unidad   = $r->unidades ?: 'kg';
+
             if (!isset($desgloseTemp[$residuo])) {
-                $desgloseTemp[$residuo] = 0;
+                $desgloseTemp[$residuo] = [
+                    'volumen'  => 0,
+                    'unidades' => $unidad,
+                ];
             }
-            $desgloseTemp[$residuo] += $cantidadTotal;
+            $desgloseTemp[$residuo]['volumen'] += $cantidadTotal;
+
+            // Contar unidades para determinar la dominante en el total
+            $unidadesContador[$unidad] = ($unidadesContador[$unidad] ?? 0) + 1;
         }
 
-        // Formatear el desglose como array listo para la vista
+        // Unidad dominante para el total general
+        $unidadTotal = 'kg';
+        if (!empty($unidadesContador)) {
+            arsort($unidadesContador);
+            $unidadTotal = array_key_first($unidadesContador);
+        }
+
         $desgloseResiduos = [];
-        foreach ($desgloseTemp as $nombre => $volumen) {
+        foreach ($desgloseTemp as $nombre => $data) {
             $desgloseResiduos[] = [
-                'nombre'  => $nombre,
-                'volumen' => $volumen,
+                'nombre'   => $nombre,
+                'volumen'  => $data['volumen'],
+                'unidades' => $data['unidades'],
             ];
         }
 
-        // Número de manifiestos = total de recolecciones únicas
         $numeroManifiestos = $recolecciones->unique('id_recoleccion')->count();
 
-        // Periodo (primera y última recolección)
         $fechaInicio = $recolecciones->min('fecha_recoleccion');
         $fechaFin    = $recolecciones->max('fecha_recoleccion');
 
         $periodoInicio = $fechaInicio ? date('d/m/Y', strtotime($fechaInicio)) : 'N/A';
         $periodoFin    = $fechaFin    ? date('d/m/Y', strtotime($fechaFin))    : 'N/A';
 
-        // Folio de la constancia
         $folio = 'RSU-' . date('Y') . '-' . str_pad(substr($negocio->id, 0, 6), 6, '0', STR_PAD_LEFT);
 
-        // ✅ AQUÍ ESTABA EL ERROR: era constancia-rsu, debe ser constancia-rcd
         $pdf = PDF::loadView('cliente.negocios.constancia-rcd', [
             'negocio'           => $negocio,
             'generador'         => $generador,
             'desgloseResiduos'  => $desgloseResiduos,
             'volumenTotal'      => $volumenTotal,
+            'unidadTotal'       => $unidadTotal,
             'numeroManifiestos' => $numeroManifiestos,
             'periodoInicio'     => $periodoInicio,
             'periodoFin'        => $periodoFin,
