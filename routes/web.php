@@ -19,7 +19,7 @@ use App\Models\Token;
  * Redirecciona del home al panel si es que ya esta logueado
  */
 Route::get('/', function () {
-    return redirect('home');
+return redirect('home');
 })->name('home');
 
 
@@ -27,48 +27,50 @@ Route::get('/', function () {
  * Redirecciona del home al panel si es que ya esta logueado
  */
 Route::get('home', function () {
-    if(Auth::guard('directores')->check()){
-        return redirect('graficas');
-    }   
+if(Auth::guard('directores')->check()){
+return redirect('graficas');
+}   
 
-    if(Auth::guard('administradores')->check()){
-        return redirect('establecimientos');
-    }  
+if(Auth::guard('administradores')->check()){
+return redirect('establecimientos');
+}  
 
-    if(Auth::guard('vendedores')->check()){
-        return redirect('ventas');
-    } 
+if(Auth::guard('vendedores')->check()){
+return redirect('ventas');
+} 
 
-    if(Auth::guard('recepciones')->check()){
-        return redirect('cita');
-    } 
+if(Auth::guard('recepciones')->check()){
+return redirect('cita');
+} 
 
-    if(Auth::guard('finanzas')->check()){
-        return redirect('pagosfi');
-    }     
+if(Auth::guard('finanzas')->check()){
+return redirect('pagosfi');
+} 
 
-    if(Auth::guard('clientes')->check()){
-        return redirect('homec');
-    }    
-    
-    if(Auth::guard('transportistas')->check()){
-        return redirect('empresas');
-    }  
+if(Auth::guard('clientes')->check()){
+return redirect('homec');
+}
 
-    if(Auth::guard('recolectores')->check()){
-        return redirect('homer');
-    }  
+if(Auth::guard('transportistas')->check()){
+return redirect('empresas');
+}  
 
-    
-
-    if(Auth::guard('inspectores')->check()){
-        return redirect('maps');
-    }  
+if(Auth::guard('recolectores')->check()){
+return redirect('homer');
+}  
 
 
-    
-    
-    return view('home');
+
+if(Auth::guard('inspectores')->check()){
+return redirect('maps');
+}  
+
+
+if(Auth::guard('autoridades')->check()){
+    return redirect('autoridad/negocios');
+}
+
+return view('home');
 });
 
 
@@ -82,7 +84,7 @@ Route::get('home', function () {
 Route::get('Manifiesto/{id}', 'App\Http\Controllers\General\GeneralController@Manifiesto');
 
 Route::get('terminosycondiciones',function(){
-    return view('formatos.terminosycondiciones');
+return view('formatos.terminosycondiciones');
 });
 
 
@@ -97,22 +99,22 @@ Route::resource('clientes', 'App\Http\Controllers\ClienteController');
 
 
 Route::get('acceso',function(){
-    return view('asociados.login.login');
+return view('asociados.login.login');
 });
 
 
 Route::get('PassReset',function(){
-    return view('cliente.extras.passreset');
+return view('cliente.extras.passreset');
 });
 
 Route::post('Recuperar','App\Http\Controllers\LoginController@Recuperar');
 Route::get('Recuperar/{id}',function($id){
-    $token=Token::find($id);
-    if($token){
-        return view('cliente.extras.pass',['id'=>$id]);
-    }else{
-        return redirect('home')->with('error','No se encontró la petición o ya se ultilizó el link anteriormente.');
-    }
+$token=Token::find($id);
+if($token){
+return view('cliente.extras.pass',['id'=>$id]);
+}else{
+return redirect('home')->with('error','No se encontró la petición o ya se ultilizó el link anteriormente.');
+}
 });
 Route::post('GuardarPass/{id}','App\Http\Controllers\LoginController@GuardarPass');
 
@@ -126,11 +128,11 @@ Route::post('GuardarNuevaPass/{tabla}/{id}','App\Http\Controllers\LoginControlle
 
 
 Route::get('loginpage',function(){
-    return view('loginpage');
+return view('loginpage');
 });
 
 Route::get('registropage', function () {
-    return view('registro');
+return view('registro');
 });
 
 
@@ -287,10 +289,6 @@ Route::post('CargarPagos', 'App\Http\Controllers\Administracion\PagoController@C
 Route::resource('catalogos', 'App\Http\Controllers\Administracion\CatalogoController');
 
 
-
-
-
-
 Route::resource('recolectores','App\Http\Controllers\Administracion\RecolectorController');
 
 
@@ -348,7 +346,7 @@ Route::resource('establecimientos', 'App\Http\Controllers\Administracion\Negocio
 Route::get('cedula/{id}','App\Http\Controllers\Administracion\NegocioController@Cedula');
 
 Route::get('imagenes',function(){
-    return view('administracion.citas.imagenes');
+return view('administracion.citas.imagenes');
 });
 
 
@@ -377,12 +375,12 @@ Route::resource('entregas','App\Http\Controllers\Administracion\EntregaControlle
 Route::post('RecuperarAdmin','App\Http\Controllers\LoginController@RecuperarAdmin');
 
 Route::get('AdminPass/{id}',function($id){
-    $token=Token::find($id);
-    if($token){
-        return view('administracion.extras.pass',['id'=>$id]);
-    }else{
-        return redirect('home')->with('error','No se encontró la petición o ya se ultilizó el link anteriormente.');
-    }
+$token=Token::find($id);
+if($token){
+return view('administracion.extras.pass',['id'=>$id]);
+}else{
+return redirect('home')->with('error','No se encontró la petición o ya se ultilizó el link anteriormente.');
+}
 });
 
 
@@ -420,7 +418,7 @@ Route::get('confirmaciont/{id}','App\Http\Controllers\LoginController@Confirmaci
  * Rutas android
  */
 Route::get('TCRecitrackTrasporte',function(){
-    return view('formatos.TCRecitrackTrasporte');
+return view('formatos.TCRecitrackTrasporte');
 });
 
 
@@ -433,7 +431,7 @@ Route::get('TCRecitrackTrasporte',function(){
    */
 
    Route::get('encuestas',function(){
-       return redirect('hoteles');
+   return redirect('hoteles');
    });
 
    Route::resource('hoteles','App\Http\Controllers\Encuestas\HotelController');
@@ -444,15 +442,15 @@ Route::get('TCRecitrackTrasporte',function(){
 
   
 
-    /**
-     * Ruta Recolectores
-     */
+/**
+ * Ruta Recolectores
+ */
 
-     
-    Route::get('ConfirmacionRecolector/{id}','App\Http\Controllers\Android\Recolector\LoginController@ConfirmacionRecolector');
+ 
+Route::get('ConfirmacionRecolector/{id}','App\Http\Controllers\Android\Recolector\LoginController@ConfirmacionRecolector');
 
-    
-    
+
+
 
 
 
@@ -482,11 +480,11 @@ Route::get('TCRecitrackTrasporte',function(){
 
   Route::get('soporte',function(){
 
-    if(Auth::guard('soporte')->check()){
-        return redirect('vehiculossoporte');
-    }  
+if(Auth::guard('soporte')->check()){
+return redirect('vehiculossoporte');
+}  
 
-    return view('soporte.login.login');
+return view('soporte.login.login');
 });
 
 Route::resource('empresassoporte', 'App\Http\Controllers\Soporte\EmpresaController');
@@ -528,3 +526,27 @@ Route::get('manifiestorecoleccion/{fecha}','App\Http\Controllers\Recolectores\Re
 Route::resource('maps','App\Http\Controllers\Inspector\MapaController');
 
 Route::resource('negocio', 'App\Http\Controllers\Inspector\NegocioController');
+
+/**
+ * Rutas para Autoridades
+ */
+Route::group(['prefix' => 'autoridad'], function () {
+
+    Route::get('negocios','App\Http\Controllers\Autoridad\NegocioController@index');
+    Route::get('negocios/{id}','App\Http\Controllers\Autoridad\NegocioController@show');
+    Route::put('negocios/{id}','App\Http\Controllers\Autoridad\NegocioController@update');
+    Route::get('cedula/{id}','App\Http\Controllers\Autoridad\NegocioController@Cedula');
+
+    Route::get('mapa','App\Http\Controllers\Autoridad\MapaController@index');
+
+    Route::get('recolecciones','App\Http\Controllers\Autoridad\RecoleccionController@index');
+    Route::get('recolecciones/{id}','App\Http\Controllers\Autoridad\RecoleccionController@show');
+
+    Route::get('recolectores','App\Http\Controllers\Autoridad\RecolectorController@index');
+    Route::post('recolectores','App\Http\Controllers\Autoridad\RecolectorController@store');
+    Route::get('recolectores/{id}','App\Http\Controllers\Autoridad\RecolectorController@show');
+    Route::put('recolectores/{id}','App\Http\Controllers\Autoridad\RecolectorController@update');
+    Route::delete('recolectores/{id}','App\Http\Controllers\Autoridad\RecolectorController@destroy');
+
+    
+});

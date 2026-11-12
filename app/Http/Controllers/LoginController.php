@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\Asociado;
+use App\Models\Autoridad;
 use App\Models\Cliente;
 use App\Models\Inspector;
 use App\Models\Administrador;
@@ -57,6 +58,7 @@ class LoginController extends Controller
         'sedemas'         => Sedema::class,
         'recolectores'    => Recolector::class,
         'inspectores'     => Inspector::class,
+        'autoridades' => Autoridad::class,
     ];
 
     foreach ($conTemp as $tabla => $modelo) {
@@ -88,6 +90,16 @@ class LoginController extends Controller
             return redirect('loginpage')->with('error', '¡Error de contraseña!');
         }
         Auth::guard('administradores')->login($administrador);    
+        return redirect('home');
+    }
+
+    $autoridad = Autoridad::where('mail', $request->mail)->first();
+
+    if($autoridad){
+        if(!password_verify($request->pass,$autoridad->pass)){
+            return redirect('loginpage')->with('error', '¡Error de contraseña!');
+        }
+        Auth::guard('autoridades')->login($autoridad);
         return redirect('home');
     }
 
@@ -155,57 +167,11 @@ class LoginController extends Controller
 }
 
 
-    public function logout(){
-        
-        if( Auth::guard('directores')->check()){
-            Auth::guard('directores')->logout();
-        }
-        if( Auth::guard('administradores')->check()){
-            Auth::guard('administradores')->logout();
-        }
-        if( Auth::guard('vendedores')->check()){
-            Auth::guard('vendedores')->logout();
-        }
-        if( Auth::guard('recepciones')->check()){
-            Auth::guard('recepciones')->logout();
-        }
-        if( Auth::guard('finanzas')->check()){
-            Auth::guard('finanzas')->logout();
-        }
-        if( Auth::guard('recepciones')->check()){
-            Auth::guard('recepciones')->logout();
-        }
-        if( Auth::guard('finanzas')->check()){
-            Auth::guard('finanzas')->logout();
-        }
-        if( Auth::guard('sedemas')->check()){
-            Auth::guard('sedemas')->logout();
-        }   
-        if( Auth::guard('clientes')->check()){
-            Auth::guard('clientes')->logout();
-        }
-        if( Auth::guard('residentes')->check()){
-            Auth::guard('residentes')->logout();
-        }  
-        if( Auth::guard('transportistas')->check()){
-            Auth::guard('transportistas')->logout();
-        }       
-
-        if( Auth::guard('asociados')->check()){
-            Auth::guard('asociados')->logout();
-            return redirect('acceso');
-        }    
-
-        if( Auth::guard('recolectores')->check()){
-            Auth::guard('recolectores')->logout();
-            return redirect('home');
-        }
-
-        if( Auth::guard('inspectores')->check()){
-            Auth::guard('inspectores')->logout();
-            return redirect('home');
-        }
-        
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect('home');
     }
 
@@ -521,6 +487,7 @@ class LoginController extends Controller
         'sedemas',
         'soporte',
         'transportistas',
+        'autoridades',
     ];
 
     if (!in_array($tabla, $tablasPermitidas)) {
@@ -566,6 +533,7 @@ public function NuevaPass($tabla, $id)
         'sedemas'         => Sedema::class,
         'recolectores'    => Recolector::class,
         'inspectores'     => Inspector::class,
+        'autoridades'     => Autoridad::class,
     ];
 
     if (!isset($tablasPermitidas[$tabla])) {
@@ -603,6 +571,7 @@ public function GuardarNuevaPass(Request $request, $tabla, $id)
         'sedemas'         => Sedema::class,
         'recolectores'    => Recolector::class,
         'inspectores'     => Inspector::class,
+        'autoridades' => Autoridad::class,
     ];
 
     if (!isset($tablasPermitidas[$tabla])) {

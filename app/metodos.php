@@ -55,6 +55,9 @@ function BuscarCorreo($mail){
         $res='Administradores';
     }
 
+    if(DB::table('autoridades')->where('mail',$mail)->first()){
+        $res='Autoridades';
+    }
 
     if(DB::table('clientes')->where('mail',$mail)->first()){
         $res='Clientes';
@@ -77,6 +80,11 @@ function GetId(){
     if(Auth::guard('administradores')->check()){
         return Auth::guard('administradores')->user()->id;
     }  
+    
+    if(Auth::guard('autoridades')->check()){
+        return Auth::guard('autoridades')->user()->id;
+    }
+
     
     if(Auth::guard('clientes')->check()){
         return Auth::guard('clientes')->user()->id;
@@ -108,6 +116,10 @@ function GetNombre(){
         return Auth::guard('administradores')->user()->administrador;
     }  
     
+    if(Auth::guard('autoridades')->check()){
+        return Auth::guard('autoridades')->user()->autoridad;
+    }
+    
     if(Auth::guard('finanzas')->check()){
         return Auth::guard('finanzas')->user()->nombre;
     }  
@@ -133,6 +145,10 @@ function GetApellidos(){
     if(Auth::guard('administradores')->check()){
         return Auth::guard('administradores')->user()->administrador;
     }  
+
+    if(Auth::guard('autoridades')->check()){
+    return Auth::guard('autoridades')->user()->cargo;
+}
     
     if(Auth::guard('finanzas')->check()){
         return Auth::guard('finanzas')->user()->nombre;
@@ -196,6 +212,9 @@ function GetMail(){
     if(Auth::guard('administradores')->check()){
         return Auth::guard('administradores')->user()->mail;
     }  
+    if(Auth::guard('autoridades')->check()){
+        return Auth::guard('autoridades')->user()->mail;
+    }
     
     if(Auth::guard('finanzas')->check()){
         return Auth::guard('finanzas')->user()->mail;

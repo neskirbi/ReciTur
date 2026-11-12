@@ -111,6 +111,10 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        'autoridades' => [
+            'driver' => 'session',
+            'provider' => 'autoridades',
+        ],
     ],
 
     /*
@@ -199,7 +203,11 @@ return [
         'inspectores' => [
             'driver' => 'eloquent',
             'model' => App\Models\Inspector::class,
-        ]
+        ],
+        'autoridades' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Autoridad::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
