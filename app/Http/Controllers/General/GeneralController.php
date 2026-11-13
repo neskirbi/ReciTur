@@ -43,26 +43,8 @@ class GeneralController extends Controller
         //return view('formatos.recolecciones.manifiesto',['recoleccion'=>$recoleccion,'detallesRecoleccion'=>$detallesRecoleccion,'centro'=>$centro,'qr'=>$qr,'vista'=>1]);
         $pdf = \PDF::loadView('formatos.recolecciones.manifiesto',['recoleccion'=>$recoleccion,'detallesRecoleccion'=>$detallesRecoleccion,'centro'=>$centro,'qr'=>$qr]);
         
-        return $pdf ->setPaper('A4', 'portrait')->download($recoleccion->negocio.'.pdf');
+        return $pdf->setPaper('A4', 'portrait')->stream($recoleccion->negocio.'.pdf');
     }
 
-    /**
-     * 
-     * select('citas.obra','citas.folio','generadores.razonsocial',
-        'generadores.fisicaomoral','generadores.telefono','generadores.calle',
-        'generadores.numeroext','generadores.numeroint','generadores.colonia',
-        'generadores.municipio','generadores.cp','obras.cantidadobra',
-        'obras.telefono as obrtelefono','citas.calleynumeroobr as obrcalle','citas.nautorizacion','obras.cancelado',
-        'citas.coloniaobr as obrcolonia','citas.municipioobr as obrmunicipio','citas.cpobr as obrcp','obras.tipoobra',
-        'obras.superficie','citas.distancia',
-        'citas.nautorizacion','obras.numeroint as obrnumeroint',
-        'citas.foliofiscal',
-        'citas.id_materialobra','citas.nombrecompleto','citas.observacion','citas.fechacita',
-        'citas.unidades','citas.combustible','citas.id_obra',
-        'citas.cantidad','citas.razonvehiculo','citas.direccionvehiculo','citas.telefonovehiculo',
-        'citas.ramir','citas.regsct','citas.vehiculo','citas.marcaymodelo','citas.matricula',
-        'citas.condicionesmaterial','citas.planta','citas.plantaauto','citas.direccionplanta',
-        'citas.nombreres','citas.firmares','citas.nombrecompleto','citas.firmachof','citas.recibio',
-        'citas.cargo','citas.firmarecibio','citas.confirmacion')
-    **/
+   
 }
